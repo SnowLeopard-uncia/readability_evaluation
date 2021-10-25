@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingBottom="5dp"
+    >
+
+<ImageView
+    android:id="@+id/tab_content_image"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:scaleType="centerInside"
+    android:src="@drawable/report"
+    >
+
+
+</ImageView>
+    <TextView
+        android:id="@+id/tab_content_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:text="测试"
+
+        android:textColor="@color/text_color"/>
+
+</LinearLayout>
