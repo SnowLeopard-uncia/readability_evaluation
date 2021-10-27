@@ -1,12 +1,31 @@
 <resources>
     <string name="app_name">Bamboo</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="text_load">直接输入文本</string>
+    <string name="photo_load">拍照上传识别</string>
+    <string name="file_load">上传文档识别</string>
+    <string name="hint_load">选择上传文本方式</string>
+    <string name="text_title">可读性测评</string>
+    <string name="mark">开始评分</string>
+    <string name="text_evaluation">编辑文本</string>
+    <string name="result">识别结果</string>
+    <string name="file_upload">文档上传</string>
+    <string name="photo_upload">图片上传</string>
+    <string name="test">ehfwjdhjkfhaueuicnbhdibhfv uidshcfusidhuifchui uhduivchfsdjfhhu
+dhfjavhfhsdjfhvdsjvhfsdknhcvufsdhnjv dhvjshdf hjsdh fjbv jbvjhsdhfsjdnvmcn jfhs vjksdbfjvb
+sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfdj
+cvufsdhnjv dhvjshdf hjsdh fjbv jbvjhsdhfsjdnvmcn jfhs vjksdbfjvb
+sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd
+cvufsdhnjv dhvjshdf hjsdh fjbv jbvjhsdhfsjdnvmcn jfhs vjksdbfjvb
+sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd
+cvufsdhnjv dhvjshdf hjsdh fjbv jbvjhsdhfsjdnvmcn jfhs vjksdbfjvb
+sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
     <string-array name="tabNames">
         <item>"知识广场"</item>
         <item>"分级词汇"</item>
         <item>"可读性测评"</item>
         <item>"学习报告"</item>
     </string-array>
-    <string name="title_activity_main2">MainActivity2</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
 </resources>

@@ -5,4 +5,12 @@
     <dimen name="appbar_padding">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="btn_load_way_radius">16.67dp</dimen>
+    <dimen name="text_evaluation_marginHorizontal">22dp</dimen>
+    <dimen name="text_evaluation_padding">20dp</dimen>
+    <dimen name="btn_mark_width">228.33dp</dimen>
+    <dimen name="edit_text_textSize">15sp</dimen>
+    <dimen name="edit_text_radius">10dp</dimen>
+    <dimen name="btn_upload_radius">30dp</dimen>
+    <dimen name="text_view_margin_bottom">16dp</dimen>
 </resources>

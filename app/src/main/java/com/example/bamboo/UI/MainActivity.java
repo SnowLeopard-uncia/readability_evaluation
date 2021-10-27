@@ -1,5 +1,6 @@
 package com.example.bamboo.UI;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +23,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 //    Resources resources=getResources();
 //    private String[] tabs =resources.getStringArray(R.array.tabNames);
 private String[] tabs=  {"知识广场", "分级词汇", "可读性测评","学习报告"};
@@ -36,13 +38,12 @@ private int[] tabIcons={R.drawable.square,R.drawable.word,
     private List<Fragment> FragmentList = new ArrayList<>();
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ActionBar actionBar;
-        actionBar=getSupportActionBar();
-        actionBar.hide();
+
         init();
         initViewPagerFragment();
         initEvent();
