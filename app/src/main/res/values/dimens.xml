@@ -13,4 +13,6 @@
     <dimen name="edit_text_radius">10dp</dimen>
     <dimen name="btn_upload_radius">30dp</dimen>
     <dimen name="text_view_margin_bottom">16dp</dimen>
+    <dimen name="text_view_title_textSize">17.33sp</dimen>
+    <dimen name="navBarHeight">85dp</dimen>
 </resources>
