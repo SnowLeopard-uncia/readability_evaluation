@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--登录页面输入框的样式-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#ffffff"/>
+            <corners
+                android:radius="15dip" />
+
+            <padding android:top="1px"/>
+        </shape>
+    </item>
+
+</selector>

@@ -28,4 +28,6 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
         <item>"可读性测评"</item>
         <item>"学习报告"</item>
     </string-array>
+    <string name="agreeProtocol">同意服务条款与隐私保护条例</string>
+    <string name="spinnerPrompt">选择年级</string>
 </resources>
