@@ -15,5 +15,6 @@ public class FileLoadEvaluationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_load);
+        initNavBar(true,getResources().getString(R.string.text_title));
     }
 }
