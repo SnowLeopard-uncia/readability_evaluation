@@ -18,6 +18,7 @@ public class BaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_base);
         ActionBar actionBar;
         actionBar=getSupportActionBar();
+        assert actionBar != null;
         actionBar.hide();
         getWindow().setStatusBarColor(getColor(R.color.status_background));
     }

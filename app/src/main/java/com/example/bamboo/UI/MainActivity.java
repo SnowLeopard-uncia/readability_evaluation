@@ -119,7 +119,6 @@ private int[] tabIcons={R.drawable.square,R.drawable.word,
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,this);
         for (int i = 0; i < tabs.length; i++) {
-
             FragmentList.add(FragmentFactory.createFragment(i));
             mPagerAdapter.setTabTitles(tabs);
             mPagerAdapter.setFragments(FragmentList);
