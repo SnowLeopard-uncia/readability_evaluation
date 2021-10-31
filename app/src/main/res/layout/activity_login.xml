@@ -10,14 +10,15 @@
 
     <EditText
         android:id="@+id/et_user"
-        android:layout_width="295.3dp"
-        android:layout_height="54.1dp"
+        android:layout_width="@dimen/login_input_edit_width"
+        android:layout_height="@dimen/login_input_edit_height"
         android:background="@drawable/login_input_edit_shape"
-        android:drawableLeft="@drawable/user_icon"
+        android:drawableLeft="@drawable/phone"
         android:drawablePadding="43dp"
-        android:hint="     请输入账号"
+        android:hint="@string/user_input_hint"
         android:textColorHint="@color/colorHint"
         android:textSize="21.3sp"
+        android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,11 +27,11 @@
 
     <EditText
         android:id="@+id/et_password"
-        android:layout_width="295.3dp"
-        android:layout_height="54.1dp"
+        android:layout_width="@dimen/login_input_edit_width"
+        android:layout_height="@dimen/login_input_edit_height"
         android:background="@drawable/login_input_edit_shape"
         android:textSize="21.3sp"
-        android:hint="     请输入密码"
+        android:hint="@string/password_input_hint"
         android:textColorHint="@color/colorHint"
         android:inputType="textPassword"
         android:drawableLeft="@drawable/password_icon"
@@ -41,45 +42,61 @@
         app:layout_constraintTop_toBottomOf="@+id/et_user"
         app:layout_constraintVertical_bias="0.120" />
 
+    <LinearLayout
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.850"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password">
+
+        <TextView
+            android:id="@+id/to_register_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:text="@string/jump_to_register_text"
+            android:textColor="#fff602"
+            android:textSize="15sp"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#fff602"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="126.3dp"
         android:layout_height="82.2dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/login_box"
-        android:text="登录"
-        android:textColor="#ffffff"
+        android:text="@string/login"
+        android:textColor="@color/text_color"
         android:textSize="27.4sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="还没注册？马上注册"
-        android:textColor="#ffffff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.835"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
-
     <CheckBox
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:button="@drawable/login_check_box_shape"
-        android:checked="true"
+        android:checked="false"
         android:paddingLeft="6.85dp"
         android:text="@string/agreeProtocol"
         android:textColor="@color/colorText"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

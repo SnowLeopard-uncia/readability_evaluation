@@ -30,4 +30,18 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
     </string-array>
     <string name="agreeProtocol">同意服务条款与隐私保护条例</string>
     <string name="spinnerPrompt">选择年级</string>
+    <string name="user_input_hint">&#160;&#160;&#160;&#160;请输入手机号</string>
+    <string name="password_input_hint">&#160;&#160;&#160;&#160;&#160;请输入密码</string>
+    <string name="password_confirm_hint">&#160;&#160;&#160;&#160;&#160;请确认密码</string>
+    <string name="name_input_hint">&#160;&#160;&#160;&#160;请输入昵称</string>
+    <string name="grade_select_hint">&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+        &#160;&#160;&#160;&#160;请选择年级</string>
+    <string name="jump_to_register_text">我要注册</string>
+    <string name="login">登 录</string>
+    <string name="register">注册</string>
+    <string name="language_select">语种选择</string>
+    <string name="book">图书</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 </resources>

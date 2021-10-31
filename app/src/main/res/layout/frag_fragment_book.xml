@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/first_linearLayout"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="horizontal"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            app:layout_constraintVertical_bias="0.055">-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="@string/book"-->
+    <!--                android:textColor="@color/text_color"-->
+    <!--                android:textSize="24sp" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/tv_title"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:textColor="@color/text_color"-->
+    <!--                android:textSize="24sp" />-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="@string/book"-->
+    <!--                android:textColor="@color/text_color"-->
+    <!--                android:textSize="24sp" />-->
+    <!--        </LinearLayout>-->
+
+
+    <View
+        android:id="@+id/v_background"
+        android:layout_width="380.5dp"
+        android:layout_height="568.8dp"
+        android:background="@drawable/bg_book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <LinearLayout
+        android:id="@+id/second_linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/v_background"
+        app:layout_constraintVertical_bias="0.041">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="等级D"
+            android:textColor="@color/text_color"
+            android:textSize="21sp" />
+
+        <View
+            style="@style/book_line"
+            android:layout_gravity="center"
+            android:layout_marginLeft="6.8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="16.75dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/v_background"
+        app:layout_constraintStart_toEndOf="@id/second_linearLayout"
+        app:layout_constraintTop_toBottomOf="@id/second_linearLayout"
+        app:layout_constraintVertical_bias="0.080">
+
+        <TextView
+            android:id="@+id/tv_A"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="B"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_C"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="C"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="D"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_E"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="E"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_F"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="F"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_G"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="G"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_H"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="H"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_I"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="I"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_J"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="J"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_K"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="K"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="L"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:text="M"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="347dp"
+        android:layout_height="376dp"
+        app:layout_constraintBottom_toBottomOf="@id/v_background"
+        app:layout_constraintEnd_toEndOf="@id/v_background"
+        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintStart_toStartOf="@id/v_background"
+        app:layout_constraintTop_toBottomOf="@id/second_linearLayout"
+        app:layout_constraintVertical_bias="0.309" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

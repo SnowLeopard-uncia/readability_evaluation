@@ -1,6 +1,7 @@
 package com.example.bamboo.UI;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -21,9 +22,10 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
 //    Resources resources=getResources();
 //    private String[] tabs =resources.getStringArray(R.array.tabNames);
+
 private String[] tabs=  {"知识广场", "分级词汇", "可读性测评","学习报告"};
 private int[] tabIcons={R.drawable.square,R.drawable.word,
         R.drawable.text,R.drawable.report
@@ -70,7 +72,7 @@ private int[] tabIcons={R.drawable.square,R.drawable.word,
     private void changeTabSelect(TabLayout.Tab tab) {
 
         View view = tab.getCustomView();
-      //  View view = LayoutInflater.from(this).inflate(R.layout.tab_style,null);
+//        View view = LayoutInflater.from(this).inflate(R.layout.tab_style,null);
         ImageView tabImage = (ImageView) view.findViewById(R.id.tab_content_image);
         TextView tabText = (TextView) view.findViewById(R.id.tab_content_text);
         tabText.setTextColor(getResources().getColor(R.color.select_tab));

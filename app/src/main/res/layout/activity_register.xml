@@ -7,6 +7,69 @@
     android:background="@drawable/bg_main"
     tools:context=".UI.RegisterActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:textSize="27sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.050" />
+
+    <EditText
+        android:id="@+id/et_user"
+        android:layout_width="@dimen/login_input_edit_width"
+        android:layout_height="@dimen/login_input_edit_height"
+        android:background="@drawable/login_input_edit_shape"
+        android:drawableLeft="@drawable/phone"
+        android:drawablePadding="43dp"
+        android:hint="@string/user_input_hint"
+        android:inputType="phone"
+        android:textColorHint="@color/colorHint"
+        android:textSize="21.3sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.180" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="@dimen/login_input_edit_width"
+        android:layout_height="@dimen/login_input_edit_height"
+        android:background="@drawable/login_input_edit_shape"
+        android:drawableLeft="@drawable/password_icon"
+        android:drawablePadding="45dp"
+        android:hint="@string/password_input_hint"
+        android:inputType="textPassword"
+        android:textColorHint="@color/colorHint"
+        android:textSize="21.3sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_user"
+        app:layout_constraintVertical_bias="0.070" />
+
+    <EditText
+        android:id="@+id/et_confirm_password"
+        android:layout_width="@dimen/login_input_edit_width"
+        android:layout_height="@dimen/login_input_edit_height"
+        android:background="@drawable/login_input_edit_shape"
+        android:drawableLeft="@drawable/password_confirm"
+        android:drawablePadding="45dp"
+        android:hint="@string/password_confirm_hint"
+        android:inputType="textPassword"
+        android:textColorHint="@color/colorHint"
+        android:textSize="21.3sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        app:layout_constraintVertical_bias="0.085" />
+
     <EditText
         android:id="@+id/et_name"
         android:layout_width="295.3dp"
@@ -14,22 +77,21 @@
         android:background="@drawable/login_input_edit_shape"
         android:drawableLeft="@drawable/name_icon"
         android:drawablePadding="45dp"
-        android:hint="    请输入昵称"
+        android:hint="@string/name_input_hint"
         android:textColorHint="@color/colorHint"
         android:textSize="21.3sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.560" />
-
+        app:layout_constraintTop_toBottomOf="@id/et_confirm_password"
+        app:layout_constraintVertical_bias="0.100" />
 
     <TextView
         android:id="@+id/tv_grade"
         android:layout_width="295.3dp"
         android:layout_height="54.1dp"
         android:background="@drawable/login_input_edit_shape"
-        android:text="           请选择年级"
+        android:text="@string/grade_select_hint"
         android:textColor="@color/colorHint"
         android:textSize="21.3sp"
         android:gravity="center_vertical"
@@ -38,8 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_name"
-        app:layout_constraintVertical_bias="0.120"/>
-
+        app:layout_constraintVertical_bias="0.130"/>
 
     <Spinner
         android:id="@+id/spinner"
@@ -56,19 +117,18 @@
         app:layout_constraintTop_toTopOf="@+id/tv_grade" />
 
     <Button
-        android:id="@+id/btn_language_selection"
+        android:id="@+id/btn_register"
         android:layout_width="186.5dp"
         android:layout_height="86.8dp"
         android:layout_marginTop="48dp"
-        android:background="@drawable/language_background"
-        android:text="语种选择"
-        android:textColor="#ffffff"
+        android:background="@drawable/bg_btn_language_select"
+        android:text="@string/language_select"
+        android:textColor="@color/text_color"
         android:textSize="27.4sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_grade"
         app:layout_constraintVertical_bias="0.0" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
