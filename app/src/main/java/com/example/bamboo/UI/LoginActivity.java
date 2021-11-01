@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264"); //初始化Bmob功能
+//        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264"); //初始化Bmob功能
 
         et_user = findViewById(R.id.et_user);
         et_password = findViewById(R.id.et_password);

@@ -16,4 +16,5 @@
     <color name="colorHint">#7e7e7e</color>
     <color name="colorText">#1d1a1a</color>
     <color name="transparent">#00000000</color>
+    <color name="btn_book_reading">#1d2088</color>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    </style>
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--    </style>-->
 
     <style name="book_line">
         <item name="android:layout_height">0dp</item>
@@ -16,4 +16,5 @@
         <item name="android:background">#fff602</item>
         <item name="android:layout_gravity">center_horizontal</item>
     </style>
+
 </resources>

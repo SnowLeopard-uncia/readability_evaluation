@@ -97,7 +97,6 @@ public class SquareFragment extends Fragment {
         list.add(menuItem3);
     }
 
-
     private void setActionBar() {
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         ActionBar actionBar = getActivity().getActionBar();
