@@ -35,10 +35,10 @@ public class BaseActivity extends AppCompatActivity {
         //如果isShowBack是true就显示，如果false就不显示
         tv_title.setText(titles);
         iv_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+    @Override
+    public void onClick(View view) {
+        onBackPressed();
+    }
+});
     }
 }

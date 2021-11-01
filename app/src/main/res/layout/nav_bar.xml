@@ -4,13 +4,13 @@
     android:layout_height="@dimen/navBarHeight"
     android:background="@color/tab_background">
 
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:src="@drawable/icon_back"
-        android:layout_margin="@dimen/text_evaluation_marginHorizontal"
-        />
+<ImageView
+    android:id="@+id/iv_back"
+    android:layout_width="23dp"
+    android:layout_height="23dp"
+    android:src="@drawable/icon_back"
+    android:layout_margin="@dimen/text_evaluation_marginHorizontal"
+    />
 
     <TextView
         android:id="@+id/tv_title"

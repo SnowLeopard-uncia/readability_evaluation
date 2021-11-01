@@ -15,5 +15,6 @@ public class PhotoLoadEvaluationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_load);
+        initNavBar(true,getResources().getString(R.string.text_title));
     }
 }

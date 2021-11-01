@@ -58,18 +58,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         Drawable drawable2 = getResources().getDrawable(R.drawable.password_icon);
         drawable2.setBounds(50, 0, 135, 105);
         et_password.setCompoundDrawables(drawable2,null,null,null);
-
-
     }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_login:
-
-
-
-
                 Intent intent1 = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent1);
                 break;
@@ -95,8 +88,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-
-
         String cloudCodeName = "userLogin";
         JSONObject params = new JSONObject();
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
@@ -111,8 +102,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 }
             }
         });
-
-
     }
 
 
