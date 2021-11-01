@@ -1,5 +1,6 @@
 package com.example.bamboo.fragment.ui.main;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,9 @@ import com.example.bamboo.javaBean.BookItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookFragment extends Fragment {
+import yalantis.com.sidemenu.interfaces.ScreenShotable;
+
+public class BookFragment extends Fragment implements ScreenShotable {
 
     private List<BookItem> bookList = new ArrayList<>();
 
@@ -39,6 +42,13 @@ public class BookFragment extends Fragment {
         }
 
 
+    @Override
+    public void takeScreenShot() {
 
+    }
 
+    @Override
+    public Bitmap getBitmap() {
+        return null;
+    }
 }

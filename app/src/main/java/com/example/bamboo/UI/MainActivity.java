@@ -2,27 +2,42 @@ package com.example.bamboo.UI;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.animation.Animator;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.bamboo.fragment.ui.adapter.FragmentFactory;
 import com.example.bamboo.fragment.ui.adapter.PagerAdapter;
 import com.example.bamboo.R;
+import com.example.bamboo.fragment.ui.main.BookFragment;
+import com.example.bamboo.fragment.ui.main.SquareFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import yalantis.com.sidemenu.interfaces.Resourceble;
+import yalantis.com.sidemenu.interfaces.ScreenShotable;
+import yalantis.com.sidemenu.util.ViewAnimator;
+
+public class MainActivity extends BaseActivity {
 //    Resources resources=getResources();
 //    private String[] tabs =resources.getStringArray(R.array.tabNames);
 
@@ -38,16 +53,21 @@ private int[] tabIcons={R.drawable.square,R.drawable.word,
     private List<Fragment> FragmentList = new ArrayList<>();
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
         init();
         initViewPagerFragment();
         initEvent();
+
     }
+
+
 
     private void initEvent() {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -78,13 +98,10 @@ private int[] tabIcons={R.drawable.square,R.drawable.word,
         tabText.setTextColor(getResources().getColor(R.color.select_tab));
         if (tab.getPosition()==0) {
             tabImage.setImageResource(R.drawable.square_select);
-//            viewPager.setCurrentItem(0);
         } else if (tab.getPosition()==1) {
             tabImage.setImageResource(R.drawable.word_select);
-//            viewPager.setCurrentItem(1);
         } else if(tab.getPosition()==2){
             tabImage.setImageResource(R.drawable.text_select);
-//            viewPager.setCurrentItem(2);
         }else{
             tabImage.setImageResource(R.drawable.report_select);
         }
@@ -111,8 +128,8 @@ private int[] tabIcons={R.drawable.square,R.drawable.word,
 
     private void init() {
         tabLayout = findViewById(R.id.btn_TabLayout);
-        viewPager = findViewById(R.id.viewPager);
-
+        viewPager = findViewById(R.id.viewPagerMain);
+        viewPager.setOffscreenPageLimit(4);
     }
 
     private void initViewPagerFragment() {
@@ -151,6 +168,5 @@ private int[] tabIcons={R.drawable.square,R.drawable.word,
         tabTitle.setText(tabs[position]);
         return view;
     }
-
 
 }

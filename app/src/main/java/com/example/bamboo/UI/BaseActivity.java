@@ -21,10 +21,9 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        ActionBar actionBar;
-        actionBar=getSupportActionBar();
-        assert actionBar != null;
-        actionBar.hide();
+//        ActionBar actionBar;
+//        actionBar=getSupportActionBar();
+//        actionBar.hide();
         getWindow().setStatusBarColor(getColor(R.color.status_background));
     }
 

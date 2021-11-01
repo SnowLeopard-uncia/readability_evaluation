@@ -16,4 +16,6 @@
     <color name="colorHint">#7e7e7e</color>
     <color name="colorText">#1d1a1a</color>
     <color name="transparent">#00000000</color>
+    <color name="slide_menu_img_bg">#2C276A</color>
+    <color name="slide_select_bg">#465CFF</color>
 </resources>

@@ -18,5 +18,8 @@
     <dimen name="book_letter_margin">11.1dp</dimen>
     <dimen name="book_letter_textSize">15sp</dimen>
     <dimen name="sliding_menu_width">80dp</dimen>
+    <dimen name="text_view_title_textSize">17.33sp</dimen>
+    <dimen name="navBarHeight">85dp</dimen>
+    <dimen name="img_sliding_menu_padding">20dp</dimen>
 
 </resources>
