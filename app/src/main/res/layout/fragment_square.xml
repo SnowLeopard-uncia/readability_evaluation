@@ -1,113 +1,85 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent">-->
-
-<!--    <RelativeLayout-->
-<!--        android:id="@+id/header"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:background="#00000000"-->
-<!--        android:gravity="center_vertical" >-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/left"-->
-<!--            android:src="@drawable/list"-->
-<!--            android:layout_marginLeft="11.5dp"-->
-<!--            android:layout_marginTop="11.5dp"-->
-<!--            android:layout_width="24dp"-->
-<!--            android:layout_height="24dp"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/title"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="10sp" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/right"-->
-<!--            android:src="@drawable/user_information"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_marginRight="11.5dp"-->
-<!--            android:layout_marginTop="11.5dp"-->
-<!--            android:layout_width="24dp"-->
-<!--            android:layout_height="24dp"/>-->
-
-<!--    </RelativeLayout>-->
-
-<!--    <androidx.drawerlayout.widget.DrawerLayout-->
-<!--        android:id="@+id/drawer_layout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_below="@id/header" >-->
-
-<!--        <FrameLayout-->
-<!--            android:id="@+id/content_frame"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content" />-->
-
-<!--        <ListView-->
-<!--            android:id="@+id/drawer_list"-->
-<!--            android:layout_width="77dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_gravity="left"-->
-<!--            android:background="#111"-->
-<!--            android:choiceMode="singleChoice"-->
-<!--            android:divider="@android:color/transparent"-->
-<!--            android:dividerHeight="0dp" />-->
-<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
-
-<!--</RelativeLayout>-->
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <io.codetail.widget.RevealFrameLayout
-        android:id="@+id/container_frame"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_square"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/content_overlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"/>
-
-        <LinearLayout
-            android:id="@+id/content_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/tab_background"
             android:minHeight="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </io.codetail.widget.RevealFrameLayout>
+        <FrameLayout
+            android:id="@+id/in_square_fragment_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"></FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:scrollbarThumbVertical="@android:color/transparent"
-        android:layout_width="@dimen/sliding_menu_width"
-        android:layout_height="match_parent"
-        android:layout_gravity="start|bottom">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:scrollbarThumbVertical="@android:color/transparent">
 
         <LinearLayout
             android:id="@+id/left_drawer"
-            android:orientation="vertical"
             android:layout_width="@dimen/sliding_menu_width"
             android:layout_height="wrap_content"
             android:divider="@android:color/transparent"
-            android:background="@android:color/transparent">
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/sliding_menu_width"
+                android:layout_height="@dimen/sliding_menu_width"
+                android:background="@color/slide_menu_img_bg"
+                android:padding="@dimen/img_sliding_menu_padding"
+                android:scaleType="fitXY"
+                android:src="@drawable/icn_close" />
+
+            <ImageView
+                android:id="@+id/img_to_book_fragment"
+                android:layout_width="@dimen/sliding_menu_width"
+                android:layout_height="@dimen/sliding_menu_width"
+                android:background="@color/slide_menu_img_bg"
+                android:padding="@dimen/img_sliding_menu_padding"
+                android:scaleType="fitXY"
+                android:src="@drawable/icn_book" />
+
+            <ImageView
+                android:id="@+id/img_to_video_fragment"
+                android:layout_width="@dimen/sliding_menu_width"
+                android:layout_height="@dimen/sliding_menu_width"
+                android:background="@color/slide_menu_img_bg"
+                android:padding="@dimen/img_sliding_menu_padding"
+                android:scaleType="fitXY"
+                android:src="@drawable/icn_video" />
+
+            <ImageView
+                android:id="@+id/img_to_audio_fragment"
+                android:layout_width="@dimen/sliding_menu_width"
+                android:layout_height="@dimen/sliding_menu_width"
+                android:background="@color/slide_menu_img_bg"
+                android:padding="@dimen/img_sliding_menu_padding"
+                android:scaleType="fitXY"
+                android:src="@drawable/icn_audio" />
         </LinearLayout>
     </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>

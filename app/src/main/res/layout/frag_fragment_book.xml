@@ -18,49 +18,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.055" />
 
-    <!--        <LinearLayout-->
-    <!--            android:id="@+id/first_linearLayout"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:orientation="horizontal"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"-->
-    <!--            app:layout_constraintVertical_bias="0.055">-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:text="@string/book"-->
-    <!--                android:textColor="@color/text_color"-->
-    <!--                android:textSize="24sp" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/tv_title"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:textColor="@color/text_color"-->
-    <!--                android:textSize="24sp" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:text="@string/book"-->
-    <!--                android:textColor="@color/text_color"-->
-    <!--                android:textSize="24sp" />-->
-    <!--        </LinearLayout>-->
-
-
     <View
         android:id="@+id/v_background"
-        android:layout_width="380.5dp"
-        android:layout_height="568.8dp"
+        android:layout_width="374dp"
+        android:layout_height="530dp"
         android:background="@drawable/bg_book"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.417" />
 
     <LinearLayout
         android:id="@+id/second_linearLayout"
@@ -77,11 +44,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="等级D"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/text_color"
             android:textSize="21sp" />
 
         <View
             style="@style/book_line"
+            android:layout_height="1.5dp"
             android:layout_gravity="center"
             android:layout_marginLeft="6.8dp" />
     </LinearLayout>
@@ -92,9 +61,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/v_background"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@id/second_linearLayout"
         app:layout_constraintTop_toBottomOf="@id/second_linearLayout"
-        app:layout_constraintVertical_bias="0.080">
+        app:layout_constraintVertical_bias="0.096">
 
         <TextView
             android:id="@+id/tv_A"
@@ -216,7 +186,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="347dp"
+        android:layout_width="344dp"
         android:layout_height="376dp"
         app:layout_constraintBottom_toBottomOf="@id/v_background"
         app:layout_constraintEnd_toEndOf="@id/v_background"

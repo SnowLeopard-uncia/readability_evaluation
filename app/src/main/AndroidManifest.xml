@@ -15,7 +15,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Bamboo">
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".UI.ChooseLanguageActivity"
+            android:exported="false" />
+        <!-- android:theme="@style/Theme.Bamboo"> -->
         <activity
             android:name=".UI.ReadingFinishingActivity"
             android:exported="false" />
