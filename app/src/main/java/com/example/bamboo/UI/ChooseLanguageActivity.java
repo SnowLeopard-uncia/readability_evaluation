@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseLanguageActivity extends BaseActivity {
-   private ViewPager chooseViewPager;
-   private List<View> mPages;
-   private int[] imgArray;
+    private ViewPager chooseViewPager;
+    private List<View> mPages;
+    private int[] imgArray;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override

@@ -3,6 +3,7 @@ package com.example.bamboo.UI;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.bamboo.R;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -26,19 +29,20 @@ import cn.bmob.v3.listener.CloudCodeListener;
 import cn.bmob.v3.listener.SaveListener;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends BaseActivity implements View.OnClickListener{
     EditText et_user;
     EditText et_password;
     Button btn_login;
     TextView tv_register;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264"); //初始化Bmob功能
+//        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264"); //初始化Bmob功能
 
         et_user = findViewById(R.id.et_user);
         et_password = findViewById(R.id.et_password);

@@ -7,24 +7,23 @@
     android:paddingBottom="5dp"
     >
 
-<ImageView
-    android:id="@+id/tab_content_image"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:scaleType="centerInside"
-    android:src="@drawable/report"
-    >
-
+    <ImageView
+        android:id="@+id/tab_content_image"
+        android:layout_width="33dp"
+        android:layout_height="35dp"
+        android:layout_weight="1"
+        android:scaleType="centerInside"
+        android:src="@drawable/report"
+        android:layout_marginTop="10dp">
 
 </ImageView>
     <TextView
         android:id="@+id/tab_content_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3.5dp"
         android:textSize="10sp"
         android:text="测试"
-
         android:textColor="@color/text_color"/>
 
 </LinearLayout>

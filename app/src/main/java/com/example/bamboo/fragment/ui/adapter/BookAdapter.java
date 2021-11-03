@@ -1,32 +1,46 @@
 package com.example.bamboo.fragment.ui.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.bamboo.R;
-import com.example.bamboo.javaBean.BookItem;
+import com.example.bamboo.UI.BookIntroductionActivity;
+import com.example.bamboo.javaBean.book;
 import java.util.List;
 
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
-    private List<BookItem> mBookItemList;
+    private List<book> mBookList;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView bookImage;
+        View bookView;
+        ImageView iv_book_shape;
+        ImageView iv_book_bg;
+        ImageView iv_lock;
+        TextView tv_level;
+        TextView tv_coin;
 
         // ViewHolder类的构造方法，View为RecyclerView子项的最外层布局
         public ViewHolder(View view) {
             super(view);
-            bookImage = (ImageView) view.findViewById(R.id.iv_book_shape);
+            bookView = view;
+            iv_book_shape = (ImageView) view.findViewById(R.id.iv_book_shape);
+            iv_book_bg = (ImageView) view.findViewById(R.id.iv_book_bg);
+            iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
+            tv_level =  view.findViewById(R.id.tv_level);
+            tv_coin =  view.findViewById(R.id.tv_coin);
         }
     }
 
 
-    public BookAdapter(List<BookItem> bookItemList) {
-        mBookItemList = bookItemList;
+    public BookAdapter(List<book> bookList) {
+        mBookList = bookList;
     }
 
     // 创建ViewHolder实例
@@ -36,15 +50,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
                 .inflate(R.layout.item_book,parent,false); // 将子项布局加载进来
         final ViewHolder holder = new ViewHolder(view);
 
-//        holder.bookImage.setOnClickListener(new View.OnClickListener() {
+//        holder.iv_book_shape.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                int position = holder.getAdapterPosition();// 获取点击的星球卡片在recyclerview中的位置
-//                // 因为只做了一个星球的日记列表，所以点击其它星球卡片没有反应
-//                if(position==0){
-//                    Intent intent = new Intent(v.getContext(),DiaryList.class);
+//                    Intent intent = new Intent(v.getContext(), BookIntroductionActivity.class);
 //                    v.getContext().startActivity(intent);
-//                }
 //            }
 //        });
         return holder;
@@ -53,14 +63,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     // 对子项的数据进行赋值
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        BookItem book = mBookItemList.get(position);
-        holder.bookImage.setImageResource(book.getImageId());
+        book book = mBookList.get(position);
+
     }
 
     // 获取子项的个数
     @Override
     public int getItemCount() {
-        return mBookItemList.size();
+        return mBookList.size();
     }
 
 

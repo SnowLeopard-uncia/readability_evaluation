@@ -3,6 +3,7 @@ package com.example.bamboo.UI;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,12 +18,13 @@ import android.widget.Toast;
 import com.example.bamboo.R;
 import com.example.bamboo.javaBean.User;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
 
     EditText et_user;
     EditText et_password;
@@ -33,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btn_register;
     CheckBox checkBox;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
