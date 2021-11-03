@@ -61,7 +61,7 @@ private BookFragment bookFragment=new BookFragment();
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.in_square_fragment_layout,bookFragment)
-                .hide(bookFragment)
+//                .hide(bookFragment)
                 .add(R.id.in_square_fragment_layout,audioFragment)
                 .hide(audioFragment)
                 .add(R.id.in_square_fragment_layout,videoFragment)
