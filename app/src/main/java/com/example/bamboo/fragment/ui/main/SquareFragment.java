@@ -1,7 +1,6 @@
 package com.example.bamboo.fragment.ui.main;
 
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -32,9 +30,7 @@ import com.example.bamboo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import yalantis.com.sidemenu.interfaces.ScreenShotable;
 import yalantis.com.sidemenu.model.SlideMenuItem;
-import yalantis.com.sidemenu.util.ViewAnimator;
 
 public class SquareFragment extends Fragment {
 
@@ -61,7 +57,6 @@ public class SquareFragment extends Fragment {
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.in_square_fragment_layout, bookFragment)
-                .hide(bookFragment)
                 .add(R.id.in_square_fragment_layout, audioFragment)
                 .hide(audioFragment)
                 .add(R.id.in_square_fragment_layout, videoFragment)
@@ -161,7 +156,7 @@ public class SquareFragment extends Fragment {
         //定义左上角图标是否可以点击
 //        toolbar.setNavigationIcon(R.drawable.list);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.list);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.list);
 
 
         /*

@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.bamboo.R;
 
+import cn.bmob.v3.Bmob;
+
 public class BaseActivity extends AppCompatActivity {
     private ImageView iv_back;
     private TextView tv_title;
@@ -25,6 +27,7 @@ public class BaseActivity extends AppCompatActivity {
 //        actionBar=getSupportActionBar();
 //        actionBar.hide();
         getWindow().setStatusBarColor(getColor(R.color.status_background));
+//        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264"); //初始化Bmob功能
     }
 
     public void initNavBar(boolean isShowBack,String titles){

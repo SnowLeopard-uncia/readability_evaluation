@@ -1,6 +1,5 @@
 package com.example.bamboo.fragment.ui.adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +8,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.bamboo.R;
-import com.example.bamboo.UI.BookIntroductionActivity;
-import com.example.bamboo.javaBean.book;
+import com.example.bamboo.javaBean.Book;
 import java.util.List;
 
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
-    private List<book> mBookList;
+    private List<Book> mBookList;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View bookView;
@@ -39,7 +37,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     }
 
 
-    public BookAdapter(List<book> bookList) {
+    public BookAdapter(List<Book> bookList) {
         mBookList = bookList;
     }
 
@@ -63,7 +61,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     // 对子项的数据进行赋值
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        book book = mBookList.get(position);
+        Book book = mBookList.get(position);
 
     }
 

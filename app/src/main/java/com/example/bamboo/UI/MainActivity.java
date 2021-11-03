@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
 //    private String[] tabs =resources.getStringArray(R.array.tabNames);
 
 private String[] tabs=  {"知识广场", "分级词汇", "可读性测评","学习报告"};
-private int[] tabIcons={R.drawable.square,R.drawable.word,
+private int[] tabIcons={R.drawable.square_select,R.drawable.word,
         R.drawable.text,R.drawable.report
 ,};
     private int[] tabIconsSelected={
