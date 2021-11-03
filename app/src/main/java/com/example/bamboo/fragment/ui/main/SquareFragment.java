@@ -1,7 +1,6 @@
 package com.example.bamboo.fragment.ui.main;
 
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -32,23 +30,21 @@ import com.example.bamboo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import yalantis.com.sidemenu.interfaces.ScreenShotable;
 import yalantis.com.sidemenu.model.SlideMenuItem;
-import yalantis.com.sidemenu.util.ViewAnimator;
 
-public class SquareFragment extends Fragment{
+public class SquareFragment extends Fragment {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private List<SlideMenuItem> slideMenuItems = new ArrayList<>();
     private LinearLayout linearLayout;
-    private  Toolbar toolbar;
+    private Toolbar toolbar;
     private ImageView imgToBookFragment;
     private ImageView imgToAudioFragment;
     private ImageView imgToVideoFragment;
-private AudioFragment audioFragment=new AudioFragment();
-private VideoFragment videoFragment=new VideoFragment();
-private BookFragment bookFragment=new BookFragment();
+    private AudioFragment audioFragment = new AudioFragment();
+    private VideoFragment videoFragment = new VideoFragment();
+    private BookFragment bookFragment = new BookFragment();
 
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -60,11 +56,10 @@ private BookFragment bookFragment=new BookFragment();
 
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.in_square_fragment_layout,bookFragment)
-//                .hide(bookFragment)
-                .add(R.id.in_square_fragment_layout,audioFragment)
+        fragmentTransaction.add(R.id.in_square_fragment_layout, bookFragment)
+                .add(R.id.in_square_fragment_layout, audioFragment)
                 .hide(audioFragment)
-                .add(R.id.in_square_fragment_layout,videoFragment)
+                .add(R.id.in_square_fragment_layout, videoFragment)
                 .hide(videoFragment)
                 .commit();
     }
@@ -80,11 +75,10 @@ private BookFragment bookFragment=new BookFragment();
             }
         });
 
-    imgToBookFragment=getView().findViewById(R.id.img_to_book_fragment);
-        imgToVideoFragment=getView().findViewById(R.id.img_to_video_fragment);
-        imgToAudioFragment=getView().findViewById(R.id.img_to_audio_fragment);
+        imgToBookFragment = getView().findViewById(R.id.img_to_book_fragment);
+        imgToVideoFragment = getView().findViewById(R.id.img_to_video_fragment);
+        imgToAudioFragment = getView().findViewById(R.id.img_to_audio_fragment);
         toolbar = getView().findViewById(R.id.toolbar);
-
 
 
         imgToAudioFragment.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +89,7 @@ private BookFragment bookFragment=new BookFragment();
                 restartButton();
                 imgToAudioFragment.setBackgroundResource(R.color.slide_select_bg);
                 drawerLayout.closeDrawers();
-                if (!audioFragment.isVisible()){
+                if (!audioFragment.isVisible()) {
                     fragmentTransaction.show(audioFragment)
                             .hide(bookFragment)
                             .hide(videoFragment)
@@ -113,7 +107,7 @@ private BookFragment bookFragment=new BookFragment();
                 restartButton();
                 imgToBookFragment.setBackgroundResource(R.color.slide_select_bg);
                 drawerLayout.closeDrawers();
-                if (!bookFragment.isVisible()){
+                if (!bookFragment.isVisible()) {
                     fragmentTransaction.show(bookFragment)
                             .hide(videoFragment)
                             .hide(audioFragment)
@@ -131,12 +125,12 @@ private BookFragment bookFragment=new BookFragment();
                 restartButton();
                 imgToVideoFragment.setBackgroundResource(R.color.slide_select_bg);
                 drawerLayout.closeDrawers();
-          if (!videoFragment.isVisible()){
-              fragmentTransaction.show(videoFragment)
-                      .hide(bookFragment)
-                      .hide(audioFragment)
-                      .commit();
-          }
+                if (!videoFragment.isVisible()) {
+                    fragmentTransaction.show(videoFragment)
+                            .hide(bookFragment)
+                            .hide(audioFragment)
+                            .commit();
+                }
 
             }
         });
@@ -152,12 +146,9 @@ private BookFragment bookFragment=new BookFragment();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_square, container, false);
+        View view = inflater.inflate(R.layout.fragment_square, container, false);
         return view;
     }
-
-
-
 
 
     private void setActionBar() {
@@ -165,7 +156,7 @@ private BookFragment bookFragment=new BookFragment();
         //定义左上角图标是否可以点击
 //        toolbar.setNavigationIcon(R.drawable.list);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.list);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.list);
 
 
         /*

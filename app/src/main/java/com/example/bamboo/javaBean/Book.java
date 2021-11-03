@@ -1,8 +1,9 @@
 package com.example.bamboo.javaBean;
 
 import java.io.File;
+import java.util.List;
 
-public class book {
+public class Book {
     private int book_id;
     private char grade;
     private int gold_coin;
@@ -11,8 +12,11 @@ public class book {
     private String suit_age;
     private String level;
     private String author;
+    private String book_title;
+    private File colorcover;
+    private List<String[]> word_list;
 
-    public book(int book_id, char grade, int gold_coin, File colorcover) {
+    public Book(int book_id, char grade, int gold_coin, File colorcover) {
         this.book_id = book_id;
         this.grade = grade;
         this.gold_coin = gold_coin;
@@ -99,8 +103,6 @@ public class book {
         this.colorcover = colorcover;
     }
 
-    private String book_title;
-    private File colorcover;
 
 
 }
