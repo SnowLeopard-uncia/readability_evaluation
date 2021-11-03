@@ -20,7 +20,7 @@ import java.util.List;
 
 import yalantis.com.sidemenu.interfaces.ScreenShotable;
 
-public class BookFragment extends Fragment implements ScreenShotable {
+public class BookFragment extends Fragment{
 
     private List<book> bookList = new ArrayList<>();
 
@@ -41,19 +41,5 @@ public class BookFragment extends Fragment implements ScreenShotable {
         return view;
     }
 
-
-    @Override
-    public void takeScreenShot() {
-
-    }
-
-    @Override
-    public Bitmap getBitmap() {
-        return null;
-    }
-
-    private void initBooks() {
-        
-    }
 
 }
