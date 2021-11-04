@@ -159,11 +159,6 @@ public class SquareFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.list);
 
 
-        /*
-        ((AppCompatActivity) getActivity()).getActionBar().setHomeButtonEnabled(true);
-        //在左边添加向左箭头返回键
-         */
-
         //注册侧滑菜单监听器
         drawerToggle = new ActionBarDrawerToggle(
                 getActivity(),/* host Activity */

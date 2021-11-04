@@ -2,43 +2,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    xmlns:circle="http://schemas.android.com/apk/res-auto">
-<com.example.bamboo.view.CircleRelativeLayout
-    android:layout_width="0dp"
-    android:layout_weight="1"
-    android:layout_height="match_parent"
-    circle:background_color="#3838e4"
-    circle:background_alpha="100"
-    android:layout_marginLeft="30dp"
+    xmlns:circle="http://schemas.android.com/apk/res-auto"
+    android:background="@color/tab_background"
     >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="级别X"
-        />
-</com.example.bamboo.view.CircleRelativeLayout>
 
     <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        >
+        <com.example.bamboo.view.CircleRelativeLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            circle:background_color="#25259A"
+            circle:background_alpha="100"
+            android:layout_marginLeft="30dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_word_menu_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:text="@string/A"
+                android:textSize="15sp" />
+        </com.example.bamboo.view.CircleRelativeLayout>
+
+<!--        android:layout_centerInParent="true"-->
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_weight="2"
         android:layout_height="120dp"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        android:gravity="center|left"
         android:layout_gravity="center"
         >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="适合年龄：5-6岁"
-        android:layout_margin="5dp"
-        />
+
         <TextView
+            android:id="@+id/tv_word_list_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="单词总数：20"
+            android:text="单词本标题--词汇"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="20dp"
+            circle:layout_constraintStart_toStartOf="parent"
+            circle:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            />
-    </LinearLayout>
+            android:text="适合年龄："
+            circle:layout_constraintStart_toStartOf="parent"
+            circle:layout_constraintTop_toBottomOf="@+id/tv_word_list_title" />
+
+        <TextView
+            android:id="@+id/tv_suit_age_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            circle:layout_constraintStart_toEndOf="@+id/textView6"
+            circle:layout_constraintTop_toTopOf="@+id/textView6" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="单词总数："
+            circle:layout_constraintStart_toStartOf="parent"
+            circle:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/tv_word_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            circle:layout_constraintStart_toEndOf="@+id/textView5"
+            circle:layout_constraintTop_toTopOf="@+id/textView5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

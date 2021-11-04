@@ -16,6 +16,12 @@ public class Book {
     private File colorcover;
     private List<String[]> word_list;
 
+    public Book(int book_id, char grade, int gold_coin) {
+        this.book_id = book_id;
+        this.grade = grade;
+        this.gold_coin = gold_coin;
+    }
+
     public Book(int book_id, char grade, int gold_coin, File colorcover) {
         this.book_id = book_id;
         this.grade = grade;
