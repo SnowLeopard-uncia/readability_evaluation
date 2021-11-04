@@ -6,20 +6,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.bamboo.R;
-import com.example.bamboo.javaBean.Book;
+import com.example.bamboo.fragment.ui.main.BookFragment;
+import com.example.bamboo.javaBean.BookHome;
+import com.example.bamboo.javaBean.WordMenuList;
+
 import java.util.List;
 
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
-    private List<Book> mBookList;
+    private List<BookHome> mBookList;
+    private BookFragment bookfragment;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View bookView;
         ImageView iv_book_shape;
-        ImageView iv_book_bg;
         ImageView iv_lock;
         TextView tv_level;
         TextView tv_coin;
@@ -29,7 +35,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             super(view);
             bookView = view;
             iv_book_shape = (ImageView) view.findViewById(R.id.iv_book_shape);
-            iv_book_bg = (ImageView) view.findViewById(R.id.iv_book_bg);
             iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
             tv_level =  view.findViewById(R.id.tv_level);
             tv_coin =  view.findViewById(R.id.tv_coin);
@@ -37,7 +42,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     }
 
 
-    public BookAdapter(List<Book> bookList) {
+    public BookAdapter(List<BookHome> bookList) {
         mBookList = bookList;
     }
 
@@ -61,7 +66,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     // 对子项的数据进行赋值
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Book book = mBookList.get(position);
+        BookHome book = mBookList.get(position);
+        holder.tv_level.setText(book.getLevel());
+        holder.tv_coin.setText(""+book.getGoldCoin());
+//        String url = book.getColorcover().getUrl();
+//        Glide.with(bookfragment).load(url).into(holder.iv_book_shape);
 
     }
 
