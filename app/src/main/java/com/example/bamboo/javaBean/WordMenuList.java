@@ -4,7 +4,7 @@ package com.example.bamboo.javaBean;
 public class WordMenuList {
 
     private String createdAt;
-    private String newTablename;
+    private String new_tableName; //这个可以写一个 就是类的字段名要和json的对应，就是因为不对应所以获取不到，所以一直为null
     private String objectId;
     private String updatedAt;
     private String vocAge;
@@ -13,11 +13,12 @@ public class WordMenuList {
     private String vocTitle;
     private String vocWordnum;
 
-    public WordMenuList(String vocAge, String vocLevel, String vocTitle, String vocWordnum) {
+    public WordMenuList(String vocAge, String vocLevel, String vocTitle, String vocWordnum,String newTablename) {
         this.vocAge = vocAge;
         this.vocLevel = vocLevel;
         this.vocTitle = vocTitle;
         this.vocWordnum = vocWordnum;
+        this.new_tableName =newTablename;
     }
 
     public String getCreatedAt() {
@@ -28,12 +29,12 @@ public class WordMenuList {
         this.createdAt = createdAt;
     }
 
-    public String getNewTablename() {
-        return newTablename;
+    public String getNew_tableName() {
+        return new_tableName;
     }
 
-    public void setNewTablename(String newTablename) {
-        this.newTablename = newTablename;
+    public void setNew_tableName(String new_tableName) {
+        this.new_tableName = new_tableName;
     }
 
     public String getObjectId() {

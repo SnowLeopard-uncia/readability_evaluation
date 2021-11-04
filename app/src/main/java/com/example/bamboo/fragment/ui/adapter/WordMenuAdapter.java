@@ -1,8 +1,11 @@
 package com.example.bamboo.fragment.ui.adapter;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bamboo.R;
 import com.example.bamboo.UI.WordListActivity;
-import com.example.bamboo.javaBean.WordList;
 import com.example.bamboo.javaBean.WordMenuList;
 
 import java.util.List;
@@ -35,8 +37,9 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
                 WordMenuList wordMenuList = mWordMenuLists.get(position);
                 Context context = view.getContext();
                 Intent intent = new Intent(context, WordListActivity.class);
+                Log.e(TAG, "onClick: "+wordMenuList.getNew_tableName());
                 Bundle bundle = new Bundle();
-                bundle.putString("new_tableName",wordMenuList.getNewTablename());
+                bundle.putString("new_tableName",wordMenuList.getNew_tableName());
                 intent.putExtras(bundle);
                 context.startActivity(intent);
 
