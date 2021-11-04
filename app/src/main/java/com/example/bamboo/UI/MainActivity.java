@@ -46,7 +46,7 @@ private int[] tabIcons={R.drawable.square_select,R.drawable.word,
         R.drawable.text,R.drawable.report
 ,};
     private int[] tabIconsSelected={
-            R.drawable.square_select,R.drawable.word_select,
+            R.drawable.square, R.drawable.word_select,
             R.drawable.text_select,R.drawable.report_select
     };
     private PagerAdapter mPagerAdapter;
