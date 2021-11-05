@@ -1,5 +1,13 @@
 package com.example.bamboo.fragment.ui.adapter;
 
+import static android.content.ContentValues.TAG;
+import static android.os.FileUtils.copy;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +19,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bamboo.R;
+import com.example.bamboo.UI.MainActivity;
 import com.example.bamboo.fragment.ui.main.BookFragment;
+import com.example.bamboo.fragment.ui.main.SquareFragment;
 import com.example.bamboo.javaBean.BookHome;
 import com.example.bamboo.javaBean.WordMenuList;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
+
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.DownloadFileListener;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     private List<BookHome> mBookList;
-    private BookFragment bookfragment;
+    String url;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View bookView;
@@ -36,8 +63,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             bookView = view;
             iv_book_shape = (ImageView) view.findViewById(R.id.iv_book_shape);
             iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
-            tv_level =  view.findViewById(R.id.tv_level);
-            tv_coin =  view.findViewById(R.id.tv_coin);
+            tv_level = view.findViewById(R.id.tv_level);
+            tv_coin = view.findViewById(R.id.tv_coin);
         }
     }
 
@@ -50,8 +77,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_book,parent,false); // 将子项布局加载进来
+                .inflate(R.layout.item_book, parent, false); // 将子项布局加载进来
         final ViewHolder holder = new ViewHolder(view);
+//        Bmob.initialize(holder.bookView.getContext(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
 
 //        holder.iv_book_shape.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -68,9 +96,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         BookHome book = mBookList.get(position);
         holder.tv_level.setText(book.getLevel());
-        holder.tv_coin.setText(""+book.getGoldCoin());
-//        String url = book.getColorcover().getUrl();
-//        Glide.with(bookfragment).load(url).into(holder.iv_book_shape);
+        holder.tv_coin.setText("" + book.getGoldCoin());
+//        BmobFile bmobfile =new BmobFile(book.getColorcover().getFilename(),"",book.getColorcover().getUrl());
+//        downloadFile(bmobfile);
+//        Log.e(TAG, "图片地址: " +url);
+
+//        Glide.with(holder.bookView.getContext()).load(url).dontAnimate().into(holder.iv_book_shape);
+
+//        holder.iv_book_shape.setImageBitmap(BitmapFactory.decodeFile(url));
 
     }
 
@@ -79,6 +112,40 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public int getItemCount() {
         return mBookList.size();
     }
+
+
+
+//    private void downloadFile(BmobFile file){
+//        //允许设置下载文件的存储路径，默认下载文件的目录为：context.getApplicationContext().getCacheDir()+"/bmob/"
+//        File saveFile = new File(Environment.getExternalStorageDirectory(), file.getFilename());
+//        file.download(saveFile, new DownloadFileListener() {
+//
+//            @Override
+//            public void onStart() {
+//            }
+//
+//            @Override
+//            public void done(String savePath, BmobException e) {
+//                if(e==null){
+//                    url = savePath;
+//                }else{
+//                    Log.e(TAG, " " + e.getMessage());
+//                }
+//            }
+//
+//            @Override
+//            public void onProgress(Integer value, long newworkSpeed) {
+//                Log.e("bmob","下载进度："+value+","+newworkSpeed);
+//            }
+//
+//        });
+//    }
+
+
+
+
+
+
 
 
 }
