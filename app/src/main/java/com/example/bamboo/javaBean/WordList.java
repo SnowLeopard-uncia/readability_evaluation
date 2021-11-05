@@ -6,7 +6,9 @@ public class WordList {
     private String soundmard;
     private String zh;
 
-    
+    public WordList(String word) {
+        this.word = word;
+    }
 
     public String getWord() {
         return word;
