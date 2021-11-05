@@ -2,13 +2,11 @@ package com.example.bamboo.fragment.ui.main;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,14 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bamboo.R;
 import com.example.bamboo.fragment.ui.adapter.BookAdapter;
-import com.example.bamboo.fragment.ui.adapter.WordMenuAdapter;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookHome;
-import com.example.bamboo.javaBean.WordMenuList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,11 +88,14 @@ public class BookFragment extends Fragment {
         BaseResponse<List<BookHome>> responseBookHomeList = gson.fromJson(jsonData, new TypeToken<BaseResponse<List<BookHome>>>() {
         }.getType());
         List<BookHome> dataResponseList = responseBookHomeList.getResults();
+        Log.e(TAG, "parseJsonDataWithGson: jsonData"+jsonData );
         for (BookHome bookHome : dataResponseList) {
             bookList.add(bookHome);
             Log.e(TAG, "parseJson: " + bookHome.getLevel());
-            Log.e(TAG, "parseJson: " + bookHome.getGoldCoin());
-            Log.e(TAG, "parseJson: " + bookHome.getColorcover());
+//            Log.e(TAG, "parseJson: " + bookHome.getGoldCoin());
+            Log.e(TAG, "parseJson: " + bookHome.getColorcover().getUrl());
+//            ColorcoverDTO colorcoverDTO = gson.fromJson((JsonElement) bookHome.getColorcover(),ColorcoverDTO.class);
+//            Log.e(TAG, "parseJsonDataWithGson: url"+colorcoverDTO.getUrl());
         }
 
         initRecyclerView();

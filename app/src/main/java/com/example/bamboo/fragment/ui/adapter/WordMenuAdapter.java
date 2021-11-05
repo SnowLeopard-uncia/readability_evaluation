@@ -30,6 +30,8 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_word_menu_list,parent,false); // 将子项布局加载进来
         final ViewHolder holder = new ViewHolder(view);
+
+        //holder.wordItemView.setClickable(false);
         holder.wordItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

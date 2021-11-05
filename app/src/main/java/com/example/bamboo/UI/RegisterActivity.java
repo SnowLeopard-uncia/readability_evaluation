@@ -57,7 +57,7 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+                Intent intent = new Intent(RegisterActivity.this,ChooseLanguageActivity.class);
                 startActivity(intent);
             }
         });

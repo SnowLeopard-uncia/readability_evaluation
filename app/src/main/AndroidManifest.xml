@@ -27,6 +27,9 @@
             android:name=".UI.TextTextEvaluationActivity"
             android:exported="true" />
         <activity
+            android:name=".UI.ChooseLanguageActivity"
+            android:exported="true" />
+        <activity
             android:name=".UI.MainActivity"
             android:exported="true" />
         <activity android:name=".UI.LoginActivity">
