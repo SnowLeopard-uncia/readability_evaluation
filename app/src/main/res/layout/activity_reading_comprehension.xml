@@ -4,146 +4,190 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
     tools:context=".UI.ReadingComprehensionActivity">
 
+    <include layout="@layout/nav_bar" />
+
     <ImageView
-        android:layout_width="310dp"
-        android:layout_height="518dp"
+        android:layout_width="276dp"
+        android:layout_height="461dp"
+        android:src="@drawable/bg_reading_comprehension"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.34" />
 
     <LinearLayout
-        android:layout_width="310dp"
-        android:layout_height="518dp"
+        android:layout_width="276dp"
+        android:layout_height="461dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39">
+        app:layout_constraintVertical_bias="0.34">
 
         <TextView
             android:id="@+id/tv_question"
-            android:layout_width="310dp"
+            android:layout_width="276dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_comprehension_subject"
+            android:gravity="center"
             android:textColor="@color/text_color"
-            android:textSize="20sp"
-            android:gravity="center"/>
+            android:textSize="19sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_height="70.6dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_answerA"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/comprehension_option_btn_shape"
-                android:text="@string/A"
-                android:textColor="@color/text_color"
-                android:textSize="21sp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_answerA"
+                    android:layout_width="35.6dp"
+                    android:layout_height="35.6dp"
+                    android:layout_marginLeft="9dp" />
+                <Button
+                    android:id="@+id/btn_answerA"
+                    android:layout_width="35.6dp"
+                    android:layout_height="35.6dp"
+                    android:layout_marginLeft="9dp"
+                    android:background="@drawable/option_unselect"
+                    android:text="@string/A"
+                    android:textColor="@color/text_color"
+                    android:textSize="18.69sp" />
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_answerA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:gravity="center"
+                android:layout_marginLeft="14dp"
                 android:textColor="@color/text_color"
-                android:textSize="16sp" />
+                android:textSize="19sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_height="70.6dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_answerB"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/comprehension_option_btn_shape"
-                android:text="@string/B"
-                android:textColor="@color/text_color"
-                android:textSize="21sp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_answerB"
+                    android:layout_width="35.6dp"
+                    android:layout_height="35.6dp"
+                    android:layout_marginLeft="9dp"
+                    android:background="@drawable/option_unselect"
+                    android:text="@string/B"
+                    android:textColor="@color/text_color"
+                    android:textSize="18.69sp" />
+
+                <ImageView
+                    android:id="@+id/iv_answerB"
+                    android:layout_width="35.6dp"
+                    android:layout_height="35.6dp"
+                    android:layout_marginLeft="9dp" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_answerB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:gravity="center"
+                android:layout_marginLeft="14dp"
                 android:textColor="@color/text_color"
-                android:textSize="16sp" />
+                android:textSize="19sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_height="70.6dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_answerC"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/comprehension_option_btn_shape"
-                android:text="@string/C"
-                android:textColor="@color/text_color"
-                android:textSize="21sp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_answerC"
+                    android:layout_width="35.6dp"
+                    android:layout_height="35.6dp"
+                    android:layout_marginLeft="9dp"
+                    android:background="@drawable/option_unselect"
+                    android:text="@string/C"
+                    android:textColor="@color/text_color"
+                    android:textSize="18.69sp" />
+
+                <ImageView
+                    android:id="@+id/iv_answerC"
+                    android:layout_width="35.6dp"
+                    android:layout_height="35.6dp"
+                    android:layout_marginLeft="9dp" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_answerC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:gravity="center"
+                android:layout_marginLeft="14dp"
                 android:textColor="@color/text_color"
-                android:textSize="16sp" />
+                android:textSize="19sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_height="70.6dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_answerD"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/comprehension_option_btn_shape"
-                android:text="@string/D"
-                android:textColor="@color/text_color"
-                android:textSize="21sp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_answerD"
+                    android:layout_width="35.6dp"
+                    android:layout_height="35.6dp"
+                    android:layout_marginLeft="9dp"
+                    android:background="@drawable/option_unselect"
+                    android:text="@string/D"
+                    android:textColor="@color/text_color"
+                    android:textSize="18.69sp" />
+
+                <ImageView
+                    android:id="@+id/iv_answerD"
+                    android:layout_width="35.6dp"
+                    android:layout_height="35.6dp"
+                    android:layout_marginLeft="9dp" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_answerD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:gravity="center"
+                android:layout_marginLeft="14dp"
                 android:textColor="@color/text_color"
-                android:textSize="16sp" />
+                android:textSize="19sp" />
         </LinearLayout>
-
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/iv_toLeft"
         android:layout_width="58dp"
         android:layout_height="58dp"
         android:src="@drawable/word_left"
@@ -152,10 +196,11 @@
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92" />
+        app:layout_constraintVertical_bias="0.88" />
 
 
     <ImageView
+        android:id="@+id/iv_toRight"
         android:layout_width="58dp"
         android:layout_height="58dp"
         android:src="@drawable/word_right"
@@ -164,6 +209,6 @@
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92" />
+        app:layout_constraintVertical_bias="0.88" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

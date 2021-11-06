@@ -18,17 +18,17 @@ public class BookHome {
     private String updatedAt;
 
     public static class ColorcoverDTO {
-        private String _type;
+        private String __type;
         private String cdn;
         private String filename;
         private String url;
 
         public String getType() {
-            return _type;
+            return __type;
         }
 
         public void setType(String type) {
-            this._type = type;
+            this.__type = type;
         }
 
         public String getCdn() {

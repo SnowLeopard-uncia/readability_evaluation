@@ -28,6 +28,21 @@
             android:name=".UI.TextTextEvaluationActivity"
             android:exported="true" />
         <activity
+            android:name=".UI.BookIntroductionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UI.BookReadingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UI.ReadingComprehensionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UI.WordPreviewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UI.ReadingFinishingActivity"
+            android:exported="true" />
+        <activity
             android:name=".UI.ChooseLanguageActivity"
             android:exported="true" />
         <activity
@@ -41,7 +56,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.RegisterActivity" />
-        <activity android:name=".UI.ChooseLanguageActivity" />
 
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"

@@ -7,17 +7,7 @@
     android:background="@drawable/bg_main"
     tools:context=".UI.RegisterActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register"
-        android:textSize="27sp"
-        android:textColor="@color/text_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.050" />
+    <include layout="@layout/nav_bar"/>
 
     <EditText
         android:id="@+id/et_user"
@@ -25,16 +15,16 @@
         android:layout_height="@dimen/login_input_edit_height"
         android:background="@drawable/login_input_edit_shape"
         android:drawableLeft="@drawable/phone"
-        android:drawablePadding="43dp"
+        android:drawablePadding="38.27dp"
         android:hint="@string/user_input_hint"
         android:inputType="phone"
         android:textColorHint="@color/colorHint"
-        android:textSize="21.3sp"
+        android:textSize="@dimen/login_input_edit_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.180" />
+        app:layout_constraintVertical_bias="0.160" />
 
     <EditText
         android:id="@+id/et_password"
@@ -42,16 +32,16 @@
         android:layout_height="@dimen/login_input_edit_height"
         android:background="@drawable/login_input_edit_shape"
         android:drawableLeft="@drawable/password_icon"
-        android:drawablePadding="45dp"
+        android:drawablePadding="40dp"
         android:hint="@string/password_input_hint"
         android:inputType="textPassword"
         android:textColorHint="@color/colorHint"
-        android:textSize="21.3sp"
+        android:textSize="@dimen/login_input_edit_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_user"
-        app:layout_constraintVertical_bias="0.070" />
+        app:layout_constraintVertical_bias="0.07" />
 
     <EditText
         android:id="@+id/et_confirm_password"
@@ -59,54 +49,54 @@
         android:layout_height="@dimen/login_input_edit_height"
         android:background="@drawable/login_input_edit_shape"
         android:drawableLeft="@drawable/password_confirm"
-        android:drawablePadding="45dp"
+        android:drawablePadding="40dp"
         android:hint="@string/password_confirm_hint"
         android:inputType="textPassword"
         android:textColorHint="@color/colorHint"
-        android:textSize="21.3sp"
+        android:textSize="@dimen/login_input_edit_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_password"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintVertical_bias="0.084" />
 
     <EditText
         android:id="@+id/et_name"
-        android:layout_width="295.3dp"
-        android:layout_height="54.1dp"
+        android:layout_width="@dimen/login_input_edit_width"
+        android:layout_height="@dimen/login_input_edit_height"
         android:background="@drawable/login_input_edit_shape"
         android:drawableLeft="@drawable/name_icon"
-        android:drawablePadding="45dp"
+        android:drawablePadding="40dp"
         android:hint="@string/name_input_hint"
         android:textColorHint="@color/colorHint"
-        android:textSize="21.3sp"
+        android:textSize="@dimen/login_input_edit_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_confirm_password"
-        app:layout_constraintVertical_bias="0.100" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
         android:id="@+id/tv_grade"
-        android:layout_width="295.3dp"
-        android:layout_height="54.1dp"
+        android:layout_width="@dimen/login_input_edit_width"
+        android:layout_height="@dimen/login_input_edit_height"
         android:background="@drawable/login_input_edit_shape"
         android:text="@string/grade_select_hint"
         android:textColor="@color/colorHint"
-        android:textSize="21.3sp"
+        android:textSize="@dimen/login_input_edit_text_size"
         android:gravity="center_vertical"
         android:drawableLeft="@drawable/grade_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_name"
-        app:layout_constraintVertical_bias="0.130"/>
+        app:layout_constraintVertical_bias="0.129"/>
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="29dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="25.81dp"
+        android:layout_height="25.81dp"
+        android:layout_marginTop="10.68dp"
         android:background="@drawable/select_icon"
         android:spinnerMode="dialog"
         android:dropDownSelector="@color/colorHint"
@@ -118,17 +108,16 @@
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="186.5dp"
-        android:layout_height="86.8dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="165.9dp"
+        android:layout_height="77.2dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/bg_btn_language_select"
         android:text="@string/language_select"
         android:textColor="@color/text_color"
-        android:textSize="27.4sp"
+        android:textSize="24.3sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_grade"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_grade"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

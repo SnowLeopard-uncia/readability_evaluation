@@ -45,6 +45,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        initNavBar(true,getResources().getString(R.string.register));
+
         et_user = findViewById(R.id.et_user);
         et_password = findViewById(R.id.et_password);
         et_confirm_password = findViewById(R.id.et_confirm_password);
@@ -108,19 +110,19 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private void initView() {
         Drawable drawable1 = getResources().getDrawable(R.drawable.phone);
-        drawable1.setBounds(65, 0, 135, 110);
+        drawable1.setBounds(58, 0, 120, 98);
         et_user.setCompoundDrawables(drawable1, null, null, null);
         Drawable drawable2 = getResources().getDrawable(R.drawable.password_icon);
-        drawable2.setBounds(50, 0, 135, 105);
+        drawable2.setBounds(45, 0, 120, 94);
         et_password.setCompoundDrawables(drawable2, null, null, null);
         Drawable drawable3 = getResources().getDrawable(R.drawable.name_icon);
-        drawable3.setBounds(50, 0, 135, 105);
+        drawable3.setBounds(45, 0, 120, 94);
         et_name.setCompoundDrawables(drawable3, null, null, null);
         Drawable drawable4 = getResources().getDrawable(R.drawable.grade_icon);
-        drawable4.setBounds(40, 0, 147, 118);
+        drawable4.setBounds(36, 0, 131, 105);
         tv_grade.setCompoundDrawables(drawable4, null, null, null);
         Drawable drawable5 = getResources().getDrawable(R.drawable.password_confirm);
-        drawable5.setBounds(50, 0, 135, 105);
+        drawable5.setBounds(45, 0, 120, 94);
         et_confirm_password.setCompoundDrawables(drawable5, null, null, null);
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,

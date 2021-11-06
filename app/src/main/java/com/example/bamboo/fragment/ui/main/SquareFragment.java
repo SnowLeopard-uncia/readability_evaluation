@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,7 @@ public class SquareFragment extends Fragment {
     private List<SlideMenuItem> slideMenuItems = new ArrayList<>();
     private LinearLayout linearLayout;
     private Toolbar toolbar;
+    private TextView toolbarTitle;
     private ImageView imgToBookFragment;
     private ImageView imgToAudioFragment;
     private ImageView imgToVideoFragment;
@@ -62,6 +64,8 @@ public class SquareFragment extends Fragment {
                 .add(R.id.in_square_fragment_layout, videoFragment)
                 .hide(videoFragment)
                 .commit();
+        toolbarTitle.setText(getResources().getString(R.string.book));
+        imgToBookFragment.setBackgroundResource(R.drawable.menu_item_selected);
     }
 
     private void initView() {
@@ -79,6 +83,7 @@ public class SquareFragment extends Fragment {
         imgToVideoFragment = getView().findViewById(R.id.img_to_video_fragment);
         imgToAudioFragment = getView().findViewById(R.id.img_to_audio_fragment);
         toolbar = getView().findViewById(R.id.toolbar);
+        toolbarTitle = getView().findViewById(R.id.toolbar_title);
 
 
         imgToAudioFragment.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +92,7 @@ public class SquareFragment extends Fragment {
                 FragmentManager fragmentManager = getChildFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 restartButton();
-                imgToAudioFragment.setBackgroundResource(R.color.slide_select_bg);
+                imgToAudioFragment.setBackgroundResource(R.drawable.menu_item_selected);
                 drawerLayout.closeDrawers();
                 if (!audioFragment.isVisible()) {
                     fragmentTransaction.show(audioFragment)
@@ -95,7 +100,7 @@ public class SquareFragment extends Fragment {
                             .hide(videoFragment)
                             .commit();
                 }
-
+                toolbarTitle.setText(getResources().getString(R.string.audio));
             }
         });
 
@@ -105,7 +110,7 @@ public class SquareFragment extends Fragment {
                 FragmentManager fragmentManager = getChildFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 restartButton();
-                imgToBookFragment.setBackgroundResource(R.color.slide_select_bg);
+                imgToBookFragment.setBackgroundResource(R.drawable.menu_item_selected);
                 drawerLayout.closeDrawers();
                 if (!bookFragment.isVisible()) {
                     fragmentTransaction.show(bookFragment)
@@ -113,6 +118,7 @@ public class SquareFragment extends Fragment {
                             .hide(audioFragment)
                             .commit();
                 }
+                toolbarTitle.setText(getResources().getString(R.string.book));
 
             }
         });
@@ -123,7 +129,7 @@ public class SquareFragment extends Fragment {
                 FragmentManager fragmentManager = getChildFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 restartButton();
-                imgToVideoFragment.setBackgroundResource(R.color.slide_select_bg);
+                imgToVideoFragment.setBackgroundResource(R.drawable.menu_item_selected);
                 drawerLayout.closeDrawers();
                 if (!videoFragment.isVisible()) {
                     fragmentTransaction.show(videoFragment)
@@ -131,16 +137,16 @@ public class SquareFragment extends Fragment {
                             .hide(audioFragment)
                             .commit();
                 }
-
+                toolbarTitle.setText(getResources().getString(R.string.video));
             }
         });
 
     }
 
     private void restartButton() {
-        imgToBookFragment.setBackgroundResource(R.color.slide_menu_img_bg);
-        imgToAudioFragment.setBackgroundResource(R.color.slide_menu_img_bg);
-        imgToVideoFragment.setBackgroundResource(R.color.slide_menu_img_bg);
+        imgToBookFragment.setBackgroundResource(R.drawable.menu_item_unselect);
+        imgToAudioFragment.setBackgroundResource(R.drawable.menu_item_unselect);
+        imgToVideoFragment.setBackgroundResource(R.drawable.menu_item_unselect);
 
     }
 
@@ -153,6 +159,7 @@ public class SquareFragment extends Fragment {
 
     private void setActionBar() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        toolbar.setTitle("");
         //定义左上角图标是否可以点击
 //        toolbar.setNavigationIcon(R.drawable.list);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);

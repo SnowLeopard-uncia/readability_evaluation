@@ -23,7 +23,15 @@
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_view_title_textSize"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/in_square_fragment_layout"
@@ -59,7 +67,7 @@
             android:layout_width="@dimen/sliding_menu_width"
             android:layout_height="@dimen/sliding_menu_width"
             android:scaleType="fitXY"
-            android:background="@color/slide_menu_img_bg"
+            android:background="@drawable/menu_item_unselect"
             android:padding="@dimen/img_sliding_menu_padding"
             android:src="@drawable/icn_close"
 
@@ -69,7 +77,7 @@
                 android:layout_width="@dimen/sliding_menu_width"
                 android:layout_height="@dimen/sliding_menu_width"
                 android:scaleType="fitXY"
-                android:background="@color/slide_menu_img_bg"
+                android:background="@drawable/menu_item_unselect"
                 android:padding="@dimen/img_sliding_menu_padding"
                 android:src="@drawable/icn_book"
                 />
@@ -78,7 +86,7 @@
                 android:layout_width="@dimen/sliding_menu_width"
                 android:layout_height="@dimen/sliding_menu_width"
                 android:scaleType="fitXY"
-                android:background="@color/slide_menu_img_bg"
+                android:background="@drawable/menu_item_unselect"
                 android:padding="@dimen/img_sliding_menu_padding"
                 android:src="@drawable/icn_video"
                 />
@@ -87,7 +95,7 @@
                 android:layout_width="@dimen/sliding_menu_width"
                 android:layout_height="@dimen/sliding_menu_width"
                 android:scaleType="fitXY"
-                android:background="@color/slide_menu_img_bg"
+                android:background="@drawable/menu_item_unselect"
                 android:padding="@dimen/img_sliding_menu_padding"
                 android:src="@drawable/icn_audio"
                 />

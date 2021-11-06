@@ -3,6 +3,7 @@ package com.example.bamboo.fragment.ui.adapter;
 import static android.content.ContentValues.TAG;
 import static android.os.FileUtils.copy;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bamboo.R;
+import com.example.bamboo.UI.BookIntroductionActivity;
 import com.example.bamboo.UI.MainActivity;
 import com.example.bamboo.fragment.ui.main.BookFragment;
 import com.example.bamboo.fragment.ui.main.SquareFragment;
@@ -52,6 +54,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View bookView;
+        ImageView iv_book_bg;//用于测试
         ImageView iv_book_shape;
         ImageView iv_lock;
         TextView tv_level;
@@ -62,6 +65,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             super(view);
             bookView = view;
             iv_book_shape = (ImageView) view.findViewById(R.id.iv_book_shape);
+            iv_book_bg = (ImageView) view.findViewById(R.id.iv_book_bg);//用于测试
             iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
             tv_level = view.findViewById(R.id.tv_level);
             tv_coin = view.findViewById(R.id.tv_coin);
@@ -81,13 +85,17 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         final ViewHolder holder = new ViewHolder(view);
 //        Bmob.initialize(holder.bookView.getContext(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
 
-//        holder.iv_book_shape.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                    Intent intent = new Intent(v.getContext(), BookIntroductionActivity.class);
-//                    v.getContext().startActivity(intent);
-//            }
-//        });
+        holder.iv_book_bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();// 获取点击的书本在书列表中的位置
+                BookHome book = mBookList.get(position);// 获取点击的书本
+                Intent intent = new Intent(v.getContext(), BookIntroductionActivity.class);
+                intent.putExtra("book_id", book.getBookId());
+                intent.putExtra("gold_coin", book.getGoldCoin());
+                v.getContext().startActivity(intent);
+            }
+        });
         return holder;
     }
 
@@ -112,7 +120,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public int getItemCount() {
         return mBookList.size();
     }
-
 
 
 //    private void downloadFile(BmobFile file){
@@ -140,12 +147,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 //
 //        });
 //    }
-
-
-
-
-
-
 
 
 }

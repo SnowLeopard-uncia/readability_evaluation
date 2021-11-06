@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".UI.BookReadingActivity">
 
+    <include layout="@layout/nav_bar"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

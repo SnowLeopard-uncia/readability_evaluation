@@ -48,7 +48,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264"); //初始化Bmob功能
 
         et_user = findViewById(R.id.et_user);
         et_password = findViewById(R.id.et_password);
@@ -60,10 +59,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         // 控制用户名、密码图标大小
         Drawable drawable1 = getResources().getDrawable(R.drawable.phone);
-        drawable1.setBounds(65, 0, 135, 110);
+        drawable1.setBounds(58, 0, 120, 98);
         et_user.setCompoundDrawables(drawable1, null, null, null);
         Drawable drawable2 = getResources().getDrawable(R.drawable.password_icon);
-        drawable2.setBounds(50, 0, 135, 105);
+        drawable2.setBounds(45, 0, 120, 94);
         et_password.setCompoundDrawables(drawable2, null, null, null);
     }
 

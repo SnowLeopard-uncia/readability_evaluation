@@ -33,12 +33,14 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
         &#160;&#160;&#160;&#160;请选择年级</string>
     <string name="jump_to_register_text">我要注册</string>
     <string name="login">登 录</string>
-    <string name="register">注册</string>
+    <string name="register">注   册</string>
     <string name="language_select">语种选择</string>
     <string name="word_preview">单词预习</string>
     <string name="reading_comprehension">阅读理解</string>
     <string name="book_reading">绘本阅读</string>
-    <string name="book">图书</string>
+    <string name="book">图 书</string>
+    <string name="audio">音 频</string>
+    <string name="video">视 频</string>
     <string name="A">A</string>
     <string name="B">B</string>
     <string name="C">C</string>

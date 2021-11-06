@@ -7,16 +7,19 @@
     android:background="@drawable/bg_main"
     tools:context=".UI.BookIntroductionActivity">
 
+    <include layout="@layout/nav_bar"/>
+
     <ImageView
         android:id="@+id/iv_book"
-        android:layout_width="145dp"
-        android:layout_height="189dp"
+        android:layout_width="129.05dp"
+        android:layout_height="168.21dp"
+        android:src="@drawable/bg_book_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.178" />
+        app:layout_constraintVertical_bias="0.158" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,46 +27,67 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toEndOf="@id/iv_book"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.150" >
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_book_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_introduction_textSize"/>
         <TextView
             android:id="@+id/tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_introduction_textSize"/>
         <TextView
             android:id="@+id/tv_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_introduction_textSize"/>
         <TextView
             android:id="@+id/tv_suit_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_introduction_textSize"/>
         <TextView
             android:id="@+id/tv_word_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_introduction_textSize"/>
         <TextView
-            android:id="@+id/tv_coin"
+            android:id="@+id/tv_SYN_ParseTreeHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_introduction_textSize"/>
+        <TextView
+            android:id="@+id/tv_Word_CTTR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_introduction_textSize"/>
+
 
     </LinearLayout>
 
     <Button
-        android:layout_width="158dp"
-        android:layout_height="68dp"
+        android:id="@+id/btn_word_preview"
+        android:layout_width="140dp"
+        android:layout_height="60.5dp"
         android:background="@drawable/bg_btn_mark"
         android:text="@string/word_preview"
         android:textColor="@color/text_color"
@@ -75,8 +99,9 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_book"
         app:layout_constraintVertical_bias="0.262" />
     <Button
-        android:layout_width="158dp"
-        android:layout_height="68dp"
+        android:id="@+id/btn_reading_comprehension"
+        android:layout_width="140dp"
+        android:layout_height="60.5dp"
         android:background="@drawable/bg_btn_mark"
         android:text="@string/reading_comprehension"
         android:textColor="@color/text_color"
@@ -88,10 +113,11 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_book"
         app:layout_constraintVertical_bias="0.262" />
     <Button
-        android:layout_width="315dp"
-        android:layout_height="68dp"
+        android:id="@+id/btn_reading"
+        android:layout_width="280.35dp"
+        android:layout_height="60.52dp"
         android:background="@drawable/bg_btn_book_reading"
-        android:text="@string/reading_comprehension"
+        android:text="@string/book_reading"
         android:textColor="@color/text_color"
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"

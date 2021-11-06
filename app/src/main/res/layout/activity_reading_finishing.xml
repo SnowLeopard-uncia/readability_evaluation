@@ -7,9 +7,12 @@
     android:background="@drawable/bg_main"
     tools:context=".UI.ReadingFinishingActivity">
 
+    <include layout="@layout/nav_bar" />
+
+
     <ImageView
-        android:layout_width="210dp"
-        android:layout_height="144dp"
+        android:layout_width="187dp"
+        android:layout_height="128dp"
         android:src="@drawable/nice"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,8 +22,8 @@
 
     <ImageView
         android:id="@+id/iv_bg_finish"
-        android:layout_width="210dp"
-        android:layout_height="170dp"
+        android:layout_width="187dp"
+        android:layout_height="151dp"
         android:src="@drawable/bg_reading_finish"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,11 +35,11 @@
         android:id="@+id/tv_coin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="33sp"
         android:textColor="@color/unselect_tab"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.60"
+        app:layout_constraintHorizontal_bias="0.57"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.53" />
