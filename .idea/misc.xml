@@ -28,6 +28,7 @@
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_reading_comprehension.xml" value="0.1" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_reading_finishing.xml" value="0.1" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_register.xml" value="0.10758196721311475" />
+        <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_test.xml" value="0.1096311475409836" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_text_text_evaluation.xml" value="0.10666666666666667" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_word_preview.xml" value="0.1" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/frag_fragment_audio.xml" value="0.12260928961748634" />
@@ -95,7 +96,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

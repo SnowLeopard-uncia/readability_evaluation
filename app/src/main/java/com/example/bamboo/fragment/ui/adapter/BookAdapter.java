@@ -105,6 +105,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         BookHome book = mBookList.get(position);
         holder.tv_level.setText(book.getLevel());
         holder.tv_coin.setText("" + book.getGoldCoin());
+
 //        BmobFile bmobfile =new BmobFile(book.getColorcover().getFilename(),"",book.getColorcover().getUrl());
 //        downloadFile(bmobfile);
 //        Log.e(TAG, "图片地址: " +url);

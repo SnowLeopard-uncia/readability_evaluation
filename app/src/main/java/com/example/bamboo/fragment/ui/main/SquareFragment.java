@@ -44,6 +44,7 @@ public class SquareFragment extends Fragment {
     private ImageView imgToBookFragment;
     private ImageView imgToAudioFragment;
     private ImageView imgToVideoFragment;
+    private ImageView imgToSpanish;
     private AudioFragment audioFragment = new AudioFragment();
     private VideoFragment videoFragment = new VideoFragment();
     private BookFragment bookFragment = new BookFragment();
@@ -82,6 +83,7 @@ public class SquareFragment extends Fragment {
         imgToBookFragment = getView().findViewById(R.id.img_to_book_fragment);
         imgToVideoFragment = getView().findViewById(R.id.img_to_video_fragment);
         imgToAudioFragment = getView().findViewById(R.id.img_to_audio_fragment);
+        imgToSpanish = getView().findViewById(R.id.img_to_spanish);
         toolbar = getView().findViewById(R.id.toolbar);
         toolbarTitle = getView().findViewById(R.id.toolbar_title);
 
@@ -147,6 +149,7 @@ public class SquareFragment extends Fragment {
         imgToBookFragment.setBackgroundResource(R.drawable.menu_item_unselect);
         imgToAudioFragment.setBackgroundResource(R.drawable.menu_item_unselect);
         imgToVideoFragment.setBackgroundResource(R.drawable.menu_item_unselect);
+        imgToSpanish.setBackgroundResource(R.drawable.menu_item_unselect);
 
     }
 
@@ -259,6 +262,8 @@ public class SquareFragment extends Fragment {
         slideMenuItems.add(menuItem2);
         SlideMenuItem menuItem3 = new SlideMenuItem("audio", R.drawable.icn_audio);
         slideMenuItems.add(menuItem3);
+        SlideMenuItem menuItem4 = new SlideMenuItem("spanish", R.drawable.spanish);
+        slideMenuItems.add(menuItem4);
     }
 
 }

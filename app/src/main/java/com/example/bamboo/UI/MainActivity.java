@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
 
 private String[] tabs=  {"知识广场", "分级词汇", "可读性测评","学习报告"};
 private int[] tabIcons={R.drawable.square_select,R.drawable.word,
-        R.drawable.text,R.drawable.report
+        R.drawable.text,R.drawable.personal
 ,};
     private int[] tabIconsSelected={
             R.drawable.square, R.drawable.word_select,
@@ -121,7 +121,7 @@ private int[] tabIcons={R.drawable.square_select,R.drawable.word,
             tabImage.setImageResource(R.drawable.text);
 //            viewPager.setCurrentItem(2);
         }else{
-            tabImage.setImageResource(R.drawable.report);
+            tabImage.setImageResource(R.drawable.personal);
         }
 
     }

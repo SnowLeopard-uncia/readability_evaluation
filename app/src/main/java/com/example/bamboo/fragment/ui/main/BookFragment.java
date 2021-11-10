@@ -3,7 +3,6 @@ package com.example.bamboo.fragment.ui.main;
 import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,21 +20,19 @@ import com.example.bamboo.javaBean.BookHome;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.Bmob;
-import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.CloudCodeListener;
-import cn.bmob.v3.listener.DownloadFileListener;
 
 
 public class BookFragment extends Fragment {
 
     private List<BookHome> bookList = new ArrayList<>();
+
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -101,6 +98,9 @@ public class BookFragment extends Fragment {
 
         initRecyclerView();
     }
+
+
+
 
 
 //    private void downloadFile(BmobFile file){
