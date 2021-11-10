@@ -50,11 +50,8 @@ public class WordFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 //        init();
 //        initRecyclerView(); 放在这里不行
-
-
     }
 //test
     private void init() {

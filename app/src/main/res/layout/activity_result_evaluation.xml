@@ -7,39 +7,60 @@
     android:background="@drawable/bg_main"
     tools:context=".UI.ResultEvaluationActivity">
 
-  <TextView
-      android:id="@+id/textView3"
+  <ScrollView
+
       android:layout_width="match_parent"
       android:layout_height="0dp"
+      android:padding="@dimen/text_evaluation_padding"
       android:background="@drawable/bg_edit_text"
       android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
       app:layout_constraintBottom_toTopOf="@+id/guideline19"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHeight_default="spread"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/guideline18" />
+      app:layout_constraintTop_toTopOf="@+id/guideline18" >
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-  <TextView
-      android:id="@+id/textView4"
+        />
+  </ScrollView>
+
+  <ScrollView
       android:layout_width="match_parent"
       android:layout_height="0dp"
+      android:padding="@dimen/text_evaluation_padding"
       android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
       android:background="@drawable/bg_edit_text"
       app:layout_constraintBottom_toTopOf="@+id/guideline21"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHeight_default="spread"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/guideline20" />
+      app:layout_constraintTop_toTopOf="@+id/guideline20"
+      >
+    <EditText
+        android:id="@+id/et_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/edit_text_textSize"
+        android:background="@color/white"
+        />
+
+  </ScrollView>
+
 
   <Button
+      android:id="@+id/btn_evaluation_again"
       android:layout_width="@dimen/btn_mark_width"
       android:layout_height="wrap_content"
-      android:text="还未知"
-      android:background="@drawable/bg_btn_mark"
       android:layout_marginTop="@dimen/text_evaluation_marginHorizontal"
+      android:textColor="@color/white"
+      android:background="@drawable/bg_btn_mark"
+      android:text="修改"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView4"></Button>
+      app:layout_constraintTop_toBottomOf="@+id/guideline21"></Button>
   <androidx.constraintlayout.widget.Guideline
       android:id="@+id/guideline18"
       android:layout_width="wrap_content"
@@ -72,7 +93,10 @@
 
   <include
       android:id="@+id/include"
-      layout="@layout/nav_bar"></include>
+      layout="@layout/nav_bar"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"></include>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
