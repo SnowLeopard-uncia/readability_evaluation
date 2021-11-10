@@ -48,6 +48,8 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="appKey">f2c0e499b2961d0a3b7f5c8d52f3a264</string>
+    <string name="evaluationUrl">http://8.134.49.78:5000</string>
     <string-array name="tabNames">
         <item>"知识广场"</item>
         <item>"分级词汇"</item>

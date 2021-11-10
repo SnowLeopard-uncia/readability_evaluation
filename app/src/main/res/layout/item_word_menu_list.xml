@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="150dp"
     xmlns:circle="http://schemas.android.com/apk/res-auto"
     android:background="@color/tab_background"
     >
@@ -11,14 +11,15 @@
         android:layout_weight="1"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:gravity="center"
         >
         <com.example.bamboo.view.CircleRelativeLayout
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             circle:background_color="#25259A"
             circle:background_alpha="100"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             >
 
             <TextView
@@ -26,8 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
                 android:text="@string/A"
+                android:layout_centerInParent="true"
                 android:textSize="15sp" />
         </com.example.bamboo.view.CircleRelativeLayout>
 
@@ -38,8 +39,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_weight="2"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
+        android:layout_height="110dp"
+        android:layout_margin="20dp"
+        android:paddingLeft="10dp"
+        android:background="@drawable/bg_edit_text"
         android:orientation="vertical"
         android:layout_gravity="center"
         >
@@ -50,7 +53,7 @@
             android:layout_height="wrap_content"
             android:text="单词本标题--词汇"
             android:layout_marginHorizontal="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             circle:layout_constraintStart_toStartOf="parent"
             circle:layout_constraintTop_toTopOf="parent" />
 

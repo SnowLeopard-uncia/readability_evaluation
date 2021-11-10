@@ -1,22 +1,100 @@
 package com.example.bamboo.UI;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
+import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.bamboo.R;
+import com.example.bamboo.Util.HttpUtils;
+import com.example.bamboo.javaBean.TextResponse;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class TextTextEvaluationActivity extends BaseActivity {
 
+    private Button btn_result;
+    private EditText et_text;
+    private String url="http://8.134.49.78:5000";
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_text_evaluation);
+        initView();
+
+    }
+
+    private void initView() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);//防止EditText弹出键盘后顶起布局
         initNavBar(true,getResources().getString(R.string.text_title));
+        btn_result=findViewById(R.id.btn_txt_score);
+        et_text=findViewById(R.id.tv_text);
+
+        btn_result.setOnClickListener((view)->{
+            String mText=et_text.getText().toString();
+            Log.e(TAG, "initView: "+mText );
+            if (!mText.equals("")){
+                startToEvaluate(mText,url);
+                Toast.makeText(this,"测评中",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this,"文本为空，请重新输入",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void startToEvaluate(String mText,String url) {
+        Log.e(TAG, "startToEvaluate: "+mText);
+        HttpUtils.readabilityWithOkhttp(url, mText, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                final String responseBody=response.body().string();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+//                        Log.e(TAG, "run: "+responseBody);
+                       String result = parseJsonDataWithGson(responseBody);
+                       Intent intent = new Intent(TextTextEvaluationActivity.this,ResultEvaluationActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("result",result);
+                        bundle.putString("text",mText);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
+    }
+    private String parseJsonDataWithGson(String jsonData) {
+        Gson gson = new Gson();
+        TextResponse textResponse = gson.fromJson(jsonData, new TypeToken<TextResponse>() {
+        }.getType());
+
+        String result ="BClar05_S: "+textResponse.getOSKF().getBClar05_S()+
+                "\nAs_ContW_C: "+textResponse.getPOSF().getAs_ContW_C()+
+                "\nAs_AABiL_C: "+textResponse.getPsyF().getAs_AABiL_C()+
+                "\nTokSenL_S: "+textResponse.getShaF().getTokSenL_S();
+        return result;
+
     }
 }
