@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.bamboo.R;
 import com.example.bamboo.fragment.ui.adapter.BookAdapter;
@@ -32,13 +34,42 @@ import cn.bmob.v3.listener.CloudCodeListener;
 public class BookFragment extends Fragment {
 
     private List<BookHome> bookList = new ArrayList<>();
+    private TextView tv_grade;
+    private RecyclerView recyclerView;
+    private GridLayoutManager gridLayoutManager;
 
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        tv_grade = getView().findViewById(R.id.tv_grade);
 
         getResponseData();
+
+
+//        int position = gridLayoutManager.findFirstVisibleItemPosition();
+//        Log.e(TAG, "屏幕第一个item位置: " + position);
+
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//            }
+//
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+//                if (layoutManager instanceof GridLayoutManager) {
+//                    GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+//                    //获取最后一个可见view的位置
+//                    int lastItemPosition = gridLayoutManager.findLastVisibleItemPosition();
+//                    //获取第一个可见view的位置
+//                    int firstItemPosition = gridLayoutManager.findFirstVisibleItemPosition();
+//                    Log.e(TAG, "屏幕第一个item位置：" + firstItemPosition);
+//    }
+//
+//            }
+//        });
 
     }
 
@@ -49,10 +80,9 @@ public class BookFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        RecyclerView recyclerView = getView().findViewById(R.id.recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        recyclerView = getView().findViewById(R.id.recycler_view);
+        gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
         BookAdapter adapter = new BookAdapter(bookList);
         recyclerView.setAdapter(adapter);
     }
@@ -97,10 +127,28 @@ public class BookFragment extends Fragment {
         }
 
         initRecyclerView();
+
+//        int position = gridLayoutManager.findFirstVisibleItemPosition();
+//        Log.e(TAG, "屏幕第一个item位置: " + position);
     }
 
 
-
+//    public void MoveToPosition(LinearLayoutManager manager, RecyclerView mRecyclerView, int n) {
+//
+//
+//        int firstItem = manager.findFirstVisibleItemPosition();
+//
+//        int lastItem = manager.findLastVisibleItemPosition();
+//        if (n <= firstItem) {
+//            mRecyclerView.scrollToPosition(n);
+//        } else if (n <= lastItem) {
+//            int top = mRecyclerView.getChildAt(n - firstItem).getTop();
+//            mRecyclerView.scrollBy(0, top);
+//        } else {
+//            mRecyclerView.scrollToPosition(n);
+//        }
+//
+//    }
 
 
 //    private void downloadFile(BmobFile file){
@@ -128,7 +176,6 @@ public class BookFragment extends Fragment {
 //
 //        });
 //    }
-
 
 
 }

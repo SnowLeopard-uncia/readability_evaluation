@@ -41,6 +41,9 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
     <string name="book">图 书</string>
     <string name="audio">音 频</string>
     <string name="video">视 频</string>
+    <string name="show_more">更多</string>
+    <string name="brief_introduction">简介</string>
+    <string name="enter_video">进入视频</string>
     <string name="A">A</string>
     <string name="B">B</string>
     <string name="C">C</string>
@@ -54,6 +57,6 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
         <item>"知识广场"</item>
         <item>"分级词汇"</item>
         <item>"可读性测评"</item>
-        <item>"学习报告"</item>
+        <item>"个人中心"</item>
     </string-array>
 </resources>

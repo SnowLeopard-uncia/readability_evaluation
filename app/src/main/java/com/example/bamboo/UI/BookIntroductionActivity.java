@@ -106,7 +106,7 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
                 break;
             case R.id.btn_reading:
                 Intent intent3 = new Intent(BookIntroductionActivity.this, BookReadingActivity.class);
-                intent3.putExtra("book_id", book_id);
+//                intent3.putExtra("book_id", book_id);
                 startActivity(intent3);
                 break;
             default:

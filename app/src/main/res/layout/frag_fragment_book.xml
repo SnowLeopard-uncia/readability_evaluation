@@ -30,9 +30,10 @@
         app:layout_constraintVertical_bias="0.036">
 
         <TextView
+            android:id="@+id/tv_grade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="等级D"
+
             android:layout_marginLeft="8.9dp"
             android:textColor="@color/text_color"
             android:textSize="18.69sp" />
@@ -185,6 +186,7 @@
             android:textSize="@dimen/book_letter_textSize" />
 
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

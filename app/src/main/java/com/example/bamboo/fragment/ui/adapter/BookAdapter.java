@@ -50,11 +50,11 @@ import okhttp3.Response;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     private List<BookHome> mBookList;
-    String url;
+    String url = "http://119.91.130.240/test/page-1.jpg";
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View bookView;
-        ImageView iv_book_bg;//用于测试
+//        ImageView iv_book_bg;//用于测试
         ImageView iv_book_shape;
         ImageView iv_lock;
         TextView tv_level;
@@ -65,7 +65,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             super(view);
             bookView = view;
             iv_book_shape = (ImageView) view.findViewById(R.id.iv_book_shape);
-            iv_book_bg = (ImageView) view.findViewById(R.id.iv_book_bg);//用于测试
+//            iv_book_bg = (ImageView) view.findViewById(R.id.iv_book_bg);//用于测试
             iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
             tv_level = view.findViewById(R.id.tv_level);
             tv_coin = view.findViewById(R.id.tv_coin);
@@ -85,7 +85,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         final ViewHolder holder = new ViewHolder(view);
 //        Bmob.initialize(holder.bookView.getContext(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
 
-        holder.iv_book_bg.setOnClickListener(new View.OnClickListener() {
+        holder.iv_book_shape.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();// 获取点击的书本在书列表中的位置
@@ -106,11 +106,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         holder.tv_level.setText(book.getLevel());
         holder.tv_coin.setText("" + book.getGoldCoin());
 
+
 //        BmobFile bmobfile =new BmobFile(book.getColorcover().getFilename(),"",book.getColorcover().getUrl());
 //        downloadFile(bmobfile);
 //        Log.e(TAG, "图片地址: " +url);
 
-//        Glide.with(holder.bookView.getContext()).load(url).dontAnimate().into(holder.iv_book_shape);
+        Glide.with(holder.bookView.getContext()).load(url).into(holder.iv_book_shape);
 
 //        holder.iv_book_shape.setImageBitmap(BitmapFactory.decodeFile(url));
 
