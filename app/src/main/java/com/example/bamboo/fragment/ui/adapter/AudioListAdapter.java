@@ -76,8 +76,6 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
     int itemBackGround = position % 2;
     if (itemBackGround==0){
         holder.audioItemView.setBackgroundColor(0x40EDEDED);
-    }else{
-        holder.audioItemView.setBackgroundColor(0x40efefef);
     }
 //        onBindViewHolder 方法可能是在class里for添加了其他视图
 //        引入mposition与当前的position判断，判断在点击的位置上显示打勾图片，在其他位置上不显示打勾
