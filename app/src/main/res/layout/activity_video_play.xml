@@ -5,9 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/nav_bar"/>
+<!--    <include layout="@layout/nav_bar" />-->
 
 
+    <VideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,10 +35,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"/>
         <Button
-            android:id="@+id/btn_stop"
+            android:id="@+id/btn_replay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="停止"
+            android:text="重播"
             android:background="@drawable/bg_btn_mark"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"/>
