@@ -44,7 +44,7 @@ public class WordFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.e(TAG, "onActivityCreated: "+"你有没有运行");
+        
         try {
             getResponseData();
         } catch (JSONException e) {

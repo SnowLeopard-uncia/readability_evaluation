@@ -17,7 +17,7 @@
 
             android:layout_width="100dp"
             android:layout_height="100dp"
-            circle:background_color="#25259A"
+            circle:background_color="#67B8FF"
             circle:background_alpha="100"
             android:layout_marginLeft="10dp"
             >

@@ -42,7 +42,7 @@ public class ResultEvaluationActivity extends BaseActivity {
         setContentView(R.layout.activity_result_evaluation);
         getDataFromIntent();
         initView();
-
+        initNavBar(true,"可读性测评");
 
         btn_evaluation_again.setOnClickListener((view -> {
             String mText = et_text.getText().toString();
@@ -99,10 +99,25 @@ public class ResultEvaluationActivity extends BaseActivity {
         TextResponse textResponse = gson.fromJson(jsonData, new TypeToken<TextResponse>() {
         }.getType());
 
-        String result ="BClar05_S: "+textResponse.getOSKF().getBClar05_S()+
-                "\nAs_ContW_C: "+textResponse.getPOSF().getAs_ContW_C()+
-                "\nAs_AABiL_C: "+textResponse.getPsyF().getAs_AABiL_C()+
-                "\nTokSenL_S: "+textResponse.getShaF().getTokSenL_S();
+        String result =textResponse.getEnDF().toString()+
+                textResponse.getEnGF().toString()+
+                textResponse.getOSKF().toString()+
+                textResponse.getPhrF().toString()+
+                textResponse.getPOSF().toString()+
+                textResponse.getPsyF().toString()+
+                textResponse.getShaF().toString()+
+                textResponse.getTraF().toString()+
+                textResponse.getTrSF().toString()+
+                textResponse.getTTRF().toString()+
+                textResponse.getVarF().toString()+
+                textResponse.getWBKF().toString()+
+                textResponse.getWoKF().toString()+
+                textResponse.getWoLF().toString()
+                ;
+//        String result ="BClar05_S: "+textResponse.getOSKF().getBClar05_S()+
+//                "\nAs_ContW_C: "+textResponse.getPOSF().getAs_ContW_C()+
+//                "\nAs_AABiL_C: "+textResponse.getPsyF().getAs_AABiL_C()+
+//                "\nTokSenL_S: "+textResponse.getShaF().getTokSenL_S();
         return result;
 
     }

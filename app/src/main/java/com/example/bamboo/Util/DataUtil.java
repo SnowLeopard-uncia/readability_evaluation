@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataUtil {
+
     public static List<ImageView> getViewpagerInfo(Context context, int image[]){
         List<ImageView> data =new ArrayList<>();
         for (int i = 0;i<image.length;i++) //添加数据

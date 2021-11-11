@@ -41,7 +41,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
                 Intent intent = new Intent(context, WordListActivity.class);
                 Log.e(TAG, "onClick: "+wordMenuList.getNew_tableName());
                 Bundle bundle = new Bundle();
-                bundle.putString("new_tableName",wordMenuList.getNew_tableName());
+                bundle.putString("level",wordMenuList.getVocLevel());
                 intent.putExtras(bundle);
                 context.startActivity(intent);
 

@@ -1,24 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="25dp"
 
     >
 
-    <TextView
-        android:id="@+id/tv_title"
+    <LinearLayout
+        android:layout_width="17.8dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline26">
+
+        <TextView
+            android:id="@+id/tv_A"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="A"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_B"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="B"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_C"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="C"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_D"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="D"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_E"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="E"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_F"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="F"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_G"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="G"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_H"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="H"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_I"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="I"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_J"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="J"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_K"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="K"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_L"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="L"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+        <TextView
+            android:id="@+id/tv_M"
+            android:layout_width="14.8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_letter_margin"
+            android:gravity="center"
+            android:text="M"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/book_letter_textSize" />
+
+    </LinearLayout>
+
+<!--    <View-->
+<!--        android:id="@+id/view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:background="@drawable/bg_book"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/rv_audio_list"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/rv_audio_list"-->
+<!--        app:layout_constraintHeight_default="spread"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/guideline26"-->
+<!--        app:layout_constraintWidth_default="spread" />-->
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:text="audio"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_audio_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_audio_list"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintTop_toTopOf="@+id/guideline26" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

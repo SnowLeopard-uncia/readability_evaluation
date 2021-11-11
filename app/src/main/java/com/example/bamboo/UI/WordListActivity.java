@@ -16,8 +16,12 @@ import android.util.Log;
 import com.example.bamboo.R;
 import com.example.bamboo.fragment.ui.adapter.WordListAdapter;
 import com.example.bamboo.fragment.ui.adapter.WordMenuAdapter;
+import com.example.bamboo.javaBean.BaseResponse;
+import com.example.bamboo.javaBean.BookHome;
 import com.example.bamboo.javaBean.WordList;
 import com.example.bamboo.javaBean.WordMenuList;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +35,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.CloudCodeListener;
 
 public class WordListActivity extends BaseActivity {
-    String getTableName;
+    String level;
     private List<WordList> mWordLists=new ArrayList<>();
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -45,8 +49,8 @@ public class WordListActivity extends BaseActivity {
             e.printStackTrace();
         }
 
-        initView();
-        initRecyclerView();
+//        initView();
+
     }
 
     private void initView() {
@@ -61,23 +65,24 @@ public class WordListActivity extends BaseActivity {
     private void getDataFromIntent() throws JSONException {
         Intent intent = getIntent();
         Bundle data = intent.getExtras();
-        getTableName=data.getString("new_tableName");
-        Log.e(TAG, "getDataFromIntent: "+getTableName );
-        getResponseData(getTableName);
+        level=data.getString("level");
+        Log.e(TAG, "getDataFromIntent: "+level );
+        getResponseData(level);
     }
 
-    private void getResponseData(String getTableName) throws JSONException {
+    private void getResponseData(String level) throws JSONException {
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
         JSONObject params= new JSONObject();
-        params.put("new_tableName","word101");
+        params.put("level",level);
         Log.e(TAG, "getResponseData: params"+params.toString());
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
 //第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams），第三个参数是回调类
-        ace.callEndpoint("unclickWord", params, new CloudCodeListener() {
+        ace.callEndpoint("wordBookInfo", params, new CloudCodeListener() {
             @Override
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String result = object.toString();
+                    parseJsonDataWithGson(result);
                     Log.e(TAG, "获取单词成功"+result);
                 } else {
                     Log.e(TAG, "执行错误" + e.getMessage());
@@ -87,7 +92,14 @@ public class WordListActivity extends BaseActivity {
 
     }
     private void parseJsonDataWithGson(String responseData) {
-
+        Gson gson = new Gson();
+        BaseResponse<List<WordList>> response = gson.fromJson(responseData, new TypeToken<BaseResponse<List<WordList>>>() {
+        }.getType());
+        List<WordList> responseWordList = response.getResults();
+        for (WordList wordList:responseWordList){
+            mWordLists.add(wordList);
+        }
+        initRecyclerView();
     }
 
     private void initRecyclerView() {

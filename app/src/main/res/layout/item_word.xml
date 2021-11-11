@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="word"
+            android:textSize="@dimen/edit_text_textSize"
             android:layout_centerInParent="true"
 
             />

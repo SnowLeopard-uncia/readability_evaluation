@@ -23,5 +23,6 @@
     <dimen name="text_view_title_textSize">21sp</dimen>
     <dimen name="navBarHeight">70dp</dimen>
     <dimen name="img_sliding_menu_padding">20dp</dimen>
+    <dimen name="audio_item_margin">10dp</dimen>
 
 </resources>

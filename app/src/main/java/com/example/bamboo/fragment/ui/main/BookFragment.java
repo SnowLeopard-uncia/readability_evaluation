@@ -39,8 +39,6 @@ public class BookFragment extends Fragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
         getResponseData();
 
     }
@@ -96,9 +94,7 @@ public class BookFragment extends Fragment {
             Log.e(TAG, "parseJson: " + bookHome.getColorcover().getUrl());
 //            BmobFile bmobfile =new BmobFile(bookHome.getColorcover().getFilename(),"",bookHome.getColorcover().getUrl());
 //            downloadFile(bmobfile);
-
         }
-
         initRecyclerView();
     }
 

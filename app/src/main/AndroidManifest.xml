@@ -22,6 +22,9 @@
             android:name=".UI.PhotoLoadEvaluationActivity"
             android:exported="true" />
         <activity
+            android:name=".UI.AudioActivity"
+            android:exported="true" />
+        <activity
             android:name=".UI.BaseActivity"
             android:exported="true" />
         <activity
