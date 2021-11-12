@@ -6,6 +6,7 @@ import static android.os.FileUtils.copy;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
 import android.util.Log;
@@ -90,6 +91,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();// 获取点击的书本在书列表中的位置
                 BookHome book = mBookList.get(position);// 获取点击的书本
+
                 Intent intent = new Intent(v.getContext(), BookIntroductionActivity.class);
                 intent.putExtra("book_id", book.getBookId());
                 intent.putExtra("gold_coin", book.getGoldCoin());
@@ -148,6 +150,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 //            }
 //
 //        });
+//    }
+
+//    private void passUserID(){
+//        Bundle bundle =
+//
+//        String userID = getContext().getIntent().getExtras().getString("userID");
+//        BookFragment  bookFragment = new BookFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putString("key_str",userID);
+//        bookFragment.setArguments(bundle);
 //    }
 
 

@@ -3,6 +3,7 @@ package com.example.bamboo.UI;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
 import android.os.Build;
@@ -17,7 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bamboo.R;
+import com.example.bamboo.javaBean.BaseResponse;
+import com.example.bamboo.javaBean.BookIntroduction;
 import com.example.bamboo.javaBean.UserLogin;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +30,9 @@ import androidx.core.content.res.ResourcesCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.Bmob;
@@ -40,6 +48,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     Button btn_login;
     TextView tv_register;
     CheckBox checkBox;
+
+    private List<UserLogin> userList = new ArrayList<>();
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -115,12 +125,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 if (e == null) {
                     String result = object.toString();
                     Log.e(TAG, "done: json：" + result);
+
                     if (result.equals("2")) {
                         Toast.makeText(LoginActivity.this, "手机号或密码错误", Toast.LENGTH_SHORT).show();
                     } else {
-                        Intent intent1 = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent1);
+                        parseJsonDataWithGson(result);
+                        saveUserID();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        intent.putExtra("userID", userList.get(0).getObjectId());
+                        Log.e(TAG, "登录时获得用户ID： " + userList.get(0).getObjectId());
+                        startActivity(intent);
                     }
+
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -128,5 +144,25 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         });
     }
 
+
+    private void parseJsonDataWithGson(String jsonData) {
+        Gson gson = new Gson();
+
+        BaseResponse<List<UserLogin>> responseUserLoginList = gson.fromJson(jsonData,
+                new TypeToken<BaseResponse<List<UserLogin>>>() {
+                }.getType());
+        List<UserLogin> dataResponseList = responseUserLoginList.getResults();
+        for (UserLogin userLogin : dataResponseList) {
+            userList.add(userLogin);
+            Log.e(TAG, "金币：" + userLogin.getCoin());
+
+        }
+
+    }
+    private void saveUserID(){
+        SharedPreferences.Editor editor = getSharedPreferences("userInformation",MODE_PRIVATE).edit();
+        editor.putString("userID",userList.get(0).getObjectId());
+        editor.apply();
+    }
 
 }

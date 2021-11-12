@@ -120,6 +120,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                 if (correct && question_num == mQuizList.size() - 1) {
                     Intent intent = new Intent(ReadingComprehensionActivity.this, ReadingFinishingActivity.class);
                     intent.putExtra("gold_coin", gold_coin);
+                    intent.putExtra("book_objectId", getIntent().getExtras().getString("book_objectId"));
                     startActivity(intent);
                     finish();
                 }

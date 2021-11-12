@@ -87,11 +87,11 @@ public class VideoFragment extends Fragment {
         List<VideoHome> dataResponseList = responseVideoHomeList.getResults();
         for (VideoHome videoHome : dataResponseList) {
             videoList.add(videoHome);
-            Log.e(TAG, "parseJson: " + videoHome.getVideoID());
-            Log.e(TAG, "parseJson: " + videoHome.getVideoPrice());
-            Log.e(TAG, "parseJson: " + videoHome.getVideoPic());
-            Log.e(TAG, "parseJson: " + videoHome.getVideoName());
-            Log.e(TAG, "parseJson: " + videoHome.getVideoLevel());
+//            Log.e(TAG, "parseJson: " + videoHome.getVideoID());
+//            Log.e(TAG, "parseJson: " + videoHome.getVideoPrice());
+//            Log.e(TAG, "parseJson: " + videoHome.getVideoPic());
+//            Log.e(TAG, "parseJson: " + videoHome.getVideoName());
+//            Log.e(TAG, "parseJson: " + videoHome.getVideoLevel());
 
         }
 
