@@ -102,11 +102,11 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
                 Intent intent2 = new Intent(BookIntroductionActivity.this, ReadingComprehensionActivity.class);
                 intent2.putExtra("book_id", book_id);
                 intent2.putExtra("gold_coin", gold_coin);
+                intent2.putExtra("book_objectId", bookList.get(0).getObjectId());
                 startActivity(intent2);
                 break;
             case R.id.btn_reading:
                 Intent intent3 = new Intent(BookIntroductionActivity.this, BookReadingActivity.class);
-//                intent3.putExtra("book_id", book_id);
                 startActivity(intent3);
                 break;
             default:

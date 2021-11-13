@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,7 +20,11 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.example.bamboo.R;
+import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.UserLogin;
+import com.example.bamboo.javaBean.UserRegister;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +43,7 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
     private List<View> mPages;
     private int[] imgArray;
     private Button btn_register;
+    private List<UserRegister> userList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -98,6 +104,8 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
                 if (e == null) {
                     String result = object.toString();
                     Log.e(TAG, "注册done: json：" + result);
+                    parseJsonDataWithGson(result);
+                    saveUserID();
                     Toast.makeText(ChooseLanguageActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ChooseLanguageActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -107,5 +115,25 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
                 }
             }
         });
+    }
+
+    private void parseJsonDataWithGson(String jsonData) {
+        Gson gson = new Gson();
+
+        BaseResponse<List<UserRegister>> responseUserRegisterList = gson.fromJson(jsonData,
+                new TypeToken<BaseResponse<List<UserRegister>>>() {
+                }.getType());
+        List<UserRegister> dataResponseList = responseUserRegisterList.getResults();
+        for (UserRegister userRegister : dataResponseList) {
+            userList.add(userRegister);
+
+        }
+
+    }
+
+    private void saveUserID(){
+        SharedPreferences.Editor editor = getSharedPreferences("userInformation",MODE_PRIVATE).edit();
+        editor.putString("userID",userList.get(0).getObjectId());
+        editor.apply();
     }
 }

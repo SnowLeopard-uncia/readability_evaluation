@@ -54,6 +54,8 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
     <string name="appKey">f2c0e499b2961d0a3b7f5c8d52f3a264</string>
     <string name="evaluationUrl">http://8.134.49.78:5000</string>
     <string name="nav_title">分级词汇</string>
+    <string name="personal_center">个人中心</string>
+    <string name="growth_trajectory">成长轨迹</string>
     <string-array name="tabNames">
         <item>"知识广场"</item>
         <item>"分级词汇"</item>

@@ -92,9 +92,9 @@ public class WordFragment extends Fragment {
         List<WordMenuList> dataResponseList= responseWordMenuList.getResults();
         for (WordMenuList wordMenuList:dataResponseList){
             wordMenuLists.add(wordMenuList);
-            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getCreatedAt());
-            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getVocLevel());
-            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getNew_tableName());
+//            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getCreatedAt());
+//            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getVocLevel());
+//            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getNew_tableName());
         }
     initRecyclerView();
 

@@ -47,7 +47,7 @@ private int[] tabIcons={R.drawable.square_select,R.drawable.word,
 ,};
     private int[] tabIconsSelected={
             R.drawable.square, R.drawable.word_select,
-            R.drawable.text_select,R.drawable.report_select
+            R.drawable.text_select,R.drawable.personal_select
     };
     private PagerAdapter mPagerAdapter;
     private List<Fragment> FragmentList = new ArrayList<>();
@@ -55,11 +55,14 @@ private int[] tabIcons={R.drawable.square_select,R.drawable.word,
     private ViewPager viewPager;
 
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         init();
         initViewPagerFragment();
@@ -103,7 +106,7 @@ private int[] tabIcons={R.drawable.square_select,R.drawable.word,
         } else if(tab.getPosition()==2){
             tabImage.setImageResource(R.drawable.text_select);
         }else{
-            tabImage.setImageResource(R.drawable.report_select);
+            tabImage.setImageResource(R.drawable.personal_select);
         }
     }
 

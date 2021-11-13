@@ -43,6 +43,9 @@ public class BookFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         tv_grade = getView().findViewById(R.id.tv_grade);
 
+//        String userID = getActivity().getIntent().getExtras().getString("userID");
+//        BookFragment  bookFragment = new BookFragment();
+//        Bundle bundle = new Bundle();
         getResponseData();
 
 
@@ -115,12 +118,12 @@ public class BookFragment extends Fragment {
         List<BookHome> dataResponseList = responseBookHomeList.getResults();
         for (BookHome bookHome : dataResponseList) {
             bookList.add(bookHome);
-            Log.e(TAG, "parseJson: " + bookHome.getLevel());
-            Log.e(TAG, "parseJson: " + bookHome.getGoldCoin());
-            Log.e(TAG, "parseJson: " + bookHome.getColorcover().getType());
-            Log.e(TAG, "parseJson: " + bookHome.getColorcover().getFilename());
-            Log.e(TAG, "parseJson: " + bookHome.getColorcover().getCdn());
-            Log.e(TAG, "parseJson: " + bookHome.getColorcover().getUrl());
+//            Log.e(TAG, "parseJson: " + bookHome.getLevel());
+//            Log.e(TAG, "parseJson: " + bookHome.getGoldCoin());
+//            Log.e(TAG, "parseJson: " + bookHome.getColorcover().getType());
+//            Log.e(TAG, "parseJson: " + bookHome.getColorcover().getFilename());
+//            Log.e(TAG, "parseJson: " + bookHome.getColorcover().getCdn());
+//            Log.e(TAG, "parseJson: " + bookHome.getColorcover().getUrl());
 //            BmobFile bmobfile =new BmobFile(bookHome.getColorcover().getFilename(),"",bookHome.getColorcover().getUrl());
 //            downloadFile(bmobfile);
 
@@ -176,6 +179,7 @@ public class BookFragment extends Fragment {
 //
 //        });
 //    }
+
 
 
 }
