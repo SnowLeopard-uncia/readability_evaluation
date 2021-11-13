@@ -13,13 +13,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 public class HttpUtils {
+
     public static void readabilityWithOkhttp(String address,String text,okhttp3.Callback callback){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("text",text);
         String postBody =jsonObject.toString();
         Log.e(TAG, "readabilityWithOkhttp: "+postBody );
         MediaType mediaType = MediaType.Companion.parse("application/json;charset=UTF-8");
-
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body =  RequestBody.Companion.create(postBody,mediaType);
@@ -40,5 +40,14 @@ public class HttpUtils {
 //                .build();
 //        Log.e(TAG, "readabilityWithOkhttp: "+request);
 //        client.newCall(request).enqueue(callback);
+    }
+
+    public static void downloadLrc(String url,okhttp3.Callback callback){
+                OkHttpClient client = new OkHttpClient();
+        Request request=new Request.Builder()
+                .url(url)
+                .build();
+        Log.e(TAG, "downloadUrl: "+request);
+        client.newCall(request).enqueue(callback);
     }
 }
