@@ -30,7 +30,8 @@ public class TextTextEvaluationActivity extends BaseActivity {
 
     private Button btn_result;
     private EditText et_text;
-    private String url="http://8.134.49.78:5000";
+    private String TextUrl ="http://8.134.49.78:5000";
+    private String levelUrl="http://8.134.49.78:8081";
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +51,15 @@ public class TextTextEvaluationActivity extends BaseActivity {
             String mText=et_text.getText().toString();
             Log.e(TAG, "initView: "+mText );
             if (!mText.equals("")){
-                startToEvaluate(mText,url);
+                startToEvaluate(mText, TextUrl);
+
                 Toast.makeText(this,"测评中",Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this,"文本为空，请重新输入",Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     private void startToEvaluate(String mText,String url) {
         Log.e(TAG, "startToEvaluate: "+mText);
@@ -84,6 +87,8 @@ public class TextTextEvaluationActivity extends BaseActivity {
                 });
             }
         });
+
+
     }
     private String parseJsonDataWithGson(String jsonData) {
         Gson gson = new Gson();

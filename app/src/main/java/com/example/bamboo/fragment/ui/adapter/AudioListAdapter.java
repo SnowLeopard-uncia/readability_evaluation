@@ -56,6 +56,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
             Intent intent = new Intent(context, AudioActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("musicSelectedID",String.valueOf(audioList.getId()));
+            bundle.putString("musicName",audioList.getName());
             intent.putExtras(bundle);
             context.startActivity(intent);
         }));

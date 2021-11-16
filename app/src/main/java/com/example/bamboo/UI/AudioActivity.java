@@ -2,27 +2,80 @@ package com.example.bamboo.UI;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.bamboo.R;
+import com.example.bamboo.Util.HttpUtils;
+import com.example.bamboo.Util.LrcParser;
+import com.example.bamboo.javaBean.Audio;
+import com.example.bamboo.javaBean.BaseResponse;
+import com.example.bamboo.javaBean.LrcInfo;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.CloudCodeListener;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
-public class AudioActivity extends BaseActivity {
+public class AudioActivity extends BaseActivity implements View.OnClickListener{
 
     private String audioId;
+    private String audioName;
+    private String mp3Url;
+    private String lrcUrl;
+    private ImageView iv_play;
+    private ImageView iv_last;
+    private ImageView iv_next;
+    private MediaPlayer mediaPlayer = new MediaPlayer();
+    private Uri uri;
+    private InputStream inputStream;
+    private String lrcPath;
+    private SeekBar musicSeekBar;
+    private Timer timer =null;
+    private  TimerTask timerTask=null;
+    private String duration;
+    private String singer;
+    private TextView tv_title;
+    private TextView tv_singer;
+    private TextView tv_duration;
+    private TextView tv_level;
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +84,50 @@ public class AudioActivity extends BaseActivity {
         init();
         try {
             dataFromAudioList();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void initMediaPlayer(String url) throws IOException {
+        if (url != null){
+             uri = Uri.parse(url);
+        }else{
+            uri=Uri.parse("http://119.91.130.240/Englishmusic/A/Are you sleeping.mp3");
+        }
+        mediaPlayer.setDataSource(AudioActivity.this,uri); //指定url
+        mediaPlayer.prepare();//进入准备状态
+
     }
 
     private void dataFromAudioList() throws JSONException {
         Intent intent = getIntent();
         Bundle data = intent.getExtras();
         audioId=data.getString("musicSelectedID");
+        audioName = data.getString("musicName");
         getDataFromResponse();
     }
 
     private void init() {
         initNavBar(true,"");
+        iv_play=findViewById(R.id.iv_play);
+        iv_last=findViewById(R.id.iv_last);
+        iv_next=findViewById(R.id.iv_next);
+        musicSeekBar =findViewById(R.id.musicSeekBar);
+        tv_title=findViewById(R.id.tv_audio_title);
+        tv_level=findViewById(R.id.tv_audio_level);
+        tv_singer=findViewById(R.id.tv_singer);
+        tv_duration=findViewById(R.id.tv_audio_duration);
+
+
+
+        iv_play.setOnClickListener(this);
+        iv_last.setOnClickListener(this);
+        iv_next.setOnClickListener(this);
+
+
     }
     private void getDataFromResponse() throws JSONException {
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
@@ -56,8 +139,12 @@ public class AudioActivity extends BaseActivity {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String result = object.toString();
-                    parseJsonDataWithGson(result);
-                    Log.e(TAG, "audio done: "+result );
+                    try {
+                        parseJsonDataWithGson(result);
+                        Log.e(TAG, "audio done: "+result );
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -66,8 +153,165 @@ public class AudioActivity extends BaseActivity {
 
     }
 
-    private void parseJsonDataWithGson(String result) {
-
+    private void parseJsonDataWithGson(String result) throws IOException {
+        Gson gson = new Gson();
+        BaseResponse<List<Audio>> response = gson.fromJson(result,new TypeToken<BaseResponse<List<Audio>>>(){}.getType());
+        List<Audio> audioList = response.getResults();
+        Audio audio = audioList.get(0);
+        mp3Url=audio.getMp3Path();
+        lrcUrl=audio.getLrcPath();
+        tv_title.setText(audioName);
+        tv_singer.setText(audio.getSinger());
+        tv_duration.setText(audio.getDuration());
+        tv_level.setText(audio.getLevel());
+        Log.e(TAG, "parseJsonDataWithGson: "+mp3Url+"   "+lrcUrl);
+        downloadLrc(lrcUrl);
+        initMediaPlayer(mp3Url);
     }
+
+    private void downloadLrc(String url) {
+        HttpUtils.downloadLrc(url, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (Build.VERSION.SDK_INT >= 23) {
+                    int REQUEST_CODE_CONTACT = 101;
+                    String[] permissions = {
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                    //验证是否许可权限
+                    for (String str : permissions) {
+                        if (AudioActivity.this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
+                            //申请权限
+                            AudioActivity.this.requestPermissions(permissions, REQUEST_CODE_CONTACT);
+                            return;
+                        } else {
+
+                            //这里就是权限打开之后自己要操作的逻辑
+                             inputStream = response.body().byteStream();
+                            new DownTask().execute();
+
+
+                        }
+                    }
+                }
+
+
+            }
+
+        });
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.iv_play:
+                if(!mediaPlayer.isPlaying()){
+                    mediaPlayer.start(); //开始播放
+                    musicSeekBar.setMax(mediaPlayer.getDuration());
+                }
+                timer = new Timer();
+//                if (timer != null) {
+//                    timer = null;
+//                    timerTask = null;
+//                }
+                timerTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (mediaPlayer != null) {
+                            if (mediaPlayer.isPlaying()) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ClipDrawable drawable = new ClipDrawable(new ColorDrawable(0x40616ff9), Gravity.START, ClipDrawable.HORIZONTAL);
+                                        musicSeekBar.setProgressDrawable(drawable);
+                                        musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+                                    }
+                                });
+                            }
+                        }
+                    }
+                };
+                timer.schedule(timerTask, 0, 1000);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null){
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    class DownTask extends AsyncTask<Void,Integer,Boolean>{
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            FileOutputStream fileOutputStream = null;
+            String filePath="";
+            try {
+                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+//                    filePath=Environment.getExternalStorageDirectory().getAbsolutePath();
+                    filePath=getApplicationContext().getExternalFilesDir(null).getAbsolutePath(); //解决了一个安卓10的问题！
+
+
+                }else {
+                    filePath=getFilesDir().getAbsolutePath();
+                    filePath=getApplicationContext().getExternalFilesDir(null).getAbsolutePath();
+                }
+
+//                 File file = Context.getExternalFilesDir(null);
+                File file = new File(filePath,audioName+".lrc");
+                if (file!=null){
+                    fileOutputStream=new FileOutputStream(file);
+                    byte[] buffer = new byte[2048];
+                    int len = 0 ;
+                    while((len = inputStream.read(buffer)) != -1){
+                        fileOutputStream.write(buffer,0,len);
+                    }
+                    fileOutputStream.flush();
+                }
+
+                lrcPath=filePath+"/"+audioName+".lrc";
+                Log.e(TAG, "onResponse: "+"文件下载完成："+filePath+"   "+lrcPath );
+
+                LrcParser lrcParser = new LrcParser();
+                String path =lrcPath;
+                try {
+                    LrcInfo lrcInfo =lrcParser.parser(path);
+                    Log.e(TAG, "doInBackground: "+lrcInfo.getArtist() );
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.e(TAG, "onPreExecute: "+"下载开始" );
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            Log.e(TAG, "onPostExecute: "+"下载结束" );
+        }
+    }
+
 
 }

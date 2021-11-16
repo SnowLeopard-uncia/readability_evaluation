@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="10dp"
-   android:paddingVertical="10dp"
+    android:paddingVertical="10dp"
 
     >
 
@@ -12,19 +12,9 @@
         android:id="@+id/iv_lock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/lock"
         android:layout_marginRight="@dimen/audio_item_margin"
+        android:src="@drawable/lock"
         app:layout_constraintEnd_toStartOf="@+id/tv_audio_level"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_audio_name"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="audio_name"
-        android:layout_marginLeft="@dimen/audio_item_margin"
-        app:layout_constraintStart_toEndOf="@+id/tv_audio_id"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -37,12 +27,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_audio_id"
+        android:id="@+id/tv_audio_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/audio_item_margin"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="audio_name"
         android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/guideline34"
+        app:layout_constraintStart_toEndOf="@+id/tv_audio_id"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="spread" />
+
+    <TextView
+        android:id="@+id/tv_audio_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1001"
         android:layout_marginLeft="@dimen/audio_item_margin"
+        android:text="1001"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/iv_playing"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,9 +54,16 @@
         android:id="@+id/tv_audio_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/audio_item_margin"
         android:text="@string/A"
         android:textColor="@color/white"
-        android:layout_marginEnd="@dimen/audio_item_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
 </androidx.constraintlayout.widget.ConstraintLayout>
