@@ -27,6 +27,9 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
     private VideoView video_view;
     private String url;
+    Button btn_play;
+    Button btn_pause;
+    Button btn_replay;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -34,12 +37,12 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
 
-//        initNavBar(true, "");
+        initNavBar(true, "");
         url = getIntent().getExtras().getString("src");
         video_view = findViewById(R.id.video_view);
-        Button btn_play = findViewById(R.id.btn_play);
-        Button btn_pause = findViewById(R.id.btn_pause);
-        Button btn_replay = findViewById(R.id.btn_replay);
+        btn_play = findViewById(R.id.btn_play);
+        btn_pause = findViewById(R.id.btn_pause);
+        btn_replay = findViewById(R.id.btn_replay);
         btn_play.setOnClickListener(this);
         btn_pause.setOnClickListener(this);
         btn_replay.setOnClickListener(this);
@@ -59,16 +62,24 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
             case R.id.btn_play:
                 if(!video_view.isPlaying()) {
                     video_view.start();
+                    btn_play.setBackgroundResource(R.drawable.video_play_select);
+                    btn_pause.setBackgroundResource(R.drawable.video_pause);
+                    btn_replay.setBackgroundResource(R.drawable.video_replay);
                 }
                 break;
             case R.id.btn_pause:
                 if(video_view.isPlaying()) {
                     video_view.pause();
+                    btn_pause.setBackgroundResource(R.drawable.video_pause_select);
+                    btn_play.setBackgroundResource(R.drawable.video_play);
+                    btn_replay.setBackgroundResource(R.drawable.video_replay);
                 }
                 break;
             case R.id.btn_replay:
                 if(video_view.isPlaying()) {
                     video_view.resume();
+                    btn_replay.setBackgroundResource(R.drawable.bg_btn_video_replay);
+                    btn_play.setBackgroundResource(R.drawable.video_play_select);
                 }
                 break;
         }

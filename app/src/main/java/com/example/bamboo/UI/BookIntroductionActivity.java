@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookHome;
@@ -107,6 +108,7 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
                 break;
             case R.id.btn_reading:
                 Intent intent3 = new Intent(BookIntroductionActivity.this, BookReadingActivity.class);
+                intent3.putExtra("book_id", book_id);
                 startActivity(intent3);
                 break;
             default:
@@ -154,6 +156,7 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
             tv_word_count.setText("单词总数：" + bookIntroduction.getWord_count());
             tv_SYN_ParseTreeHeight.setText("句法树深度：" + bookIntroduction.getSYN_ParseTreeHeight());
             tv_Word_CTTR.setText("CTTR指数：" + bookIntroduction.getWord_CTTR());
+            Glide.with(this).load(bookIntroduction.getCover_url()).into(iv_book);
         }
 
     }

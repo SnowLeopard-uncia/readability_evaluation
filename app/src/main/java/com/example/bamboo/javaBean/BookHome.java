@@ -5,17 +5,18 @@ public class BookHome {
     private Integer book_id;
     private String book_title;
     private ColorcoverDTO colorcover;
+    private String cover_url;
     private String createdAt;
     private Integer gold_coin;
     private String level;
     private String objectId;
+    private String updatedAt;
 
     public BookHome(Integer goldCoin, String level) {
         this.gold_coin = goldCoin;
         this.level = level;
     }
 
-    private String updatedAt;
 
     public static class ColorcoverDTO {
         private String __type;
@@ -78,6 +79,14 @@ public class BookHome {
 
     public void setColorcover(ColorcoverDTO colorcover) {
         this.colorcover = colorcover;
+    }
+
+    public String getCover_url() {
+        return cover_url;
+    }
+
+    public void setCover_url(String cover_url) {
+        this.cover_url = cover_url;
     }
 
     public String getCreatedAt() {

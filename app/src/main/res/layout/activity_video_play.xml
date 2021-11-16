@@ -3,44 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_video_play"
     android:orientation="vertical">
 
-<!--    <include layout="@layout/nav_bar" />-->
+    <include layout="@layout/nav_bar" />
 
 
     <VideoView
         android:id="@+id/video_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"/>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp">
 
         <Button
             android:id="@+id/btn_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="播放"
-            android:background="@drawable/bg_btn_mark"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"/>
+            android:layout_width="86dp"
+            android:layout_height="40dp"
+            android:background="@drawable/video_play"
+            android:layout_marginLeft="22dp" />
         <Button
             android:id="@+id/btn_pause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="暂停"
-            android:background="@drawable/bg_btn_mark"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"/>
+            android:layout_width="86dp"
+            android:layout_height="40dp"
+            android:background="@drawable/video_pause"
+            android:layout_marginLeft="28dp" />
         <Button
             android:id="@+id/btn_replay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="重播"
-            android:background="@drawable/bg_btn_mark"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"/>
+            android:layout_width="86dp"
+            android:layout_height="40dp"
+            android:background="@drawable/video_replay"
+            android:layout_marginLeft="28dp" />
     </LinearLayout>
 </LinearLayout>

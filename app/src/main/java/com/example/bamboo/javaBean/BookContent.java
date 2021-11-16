@@ -4,89 +4,12 @@ public class BookContent {
     private Integer book_id;
     private String createdAt;
     private String objectId;
+    private String p;
     private Integer page;
     private Integer page_sum;
-    private PictureDTO picture;
     private String updatedAt;
-    private VideoDTO video;
+    private String v;
 
-    public static class PictureDTO {
-        private String __type;
-        private String cdn;
-        private String filename;
-        private String url;
-
-        public String get__type() {
-            return __type;
-        }
-
-        public void set__type(String __type) {
-            this.__type = __type;
-        }
-
-        public String getCdn() {
-            return cdn;
-        }
-
-        public void setCdn(String cdn) {
-            this.cdn = cdn;
-        }
-
-        public String getFilename() {
-            return filename;
-        }
-
-        public void setFilename(String filename) {
-            this.filename = filename;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-    }
-
-    public static class VideoDTO {
-        private String __type;
-        private String cdn;
-        private String filename;
-        private String url;
-
-        public String get__type() {
-            return __type;
-        }
-
-        public void set__type(String __type) {
-            this.__type = __type;
-        }
-
-        public String getCdn() {
-            return cdn;
-        }
-
-        public void setCdn(String cdn) {
-            this.cdn = cdn;
-        }
-
-        public String getFilename() {
-            return filename;
-        }
-
-        public void setFilename(String filename) {
-            this.filename = filename;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-    }
 
     public Integer getBook_id() {
         return book_id;
@@ -112,6 +35,14 @@ public class BookContent {
         this.objectId = objectId;
     }
 
+    public String getP() {
+        return p;
+    }
+
+    public void setP(String p) {
+        this.p = p;
+    }
+
     public Integer getPage() {
         return page;
     }
@@ -128,14 +59,6 @@ public class BookContent {
         this.page_sum = page_sum;
     }
 
-    public PictureDTO getPicture() {
-        return picture;
-    }
-
-    public void setPicture(PictureDTO picture) {
-        this.picture = picture;
-    }
-
     public String getUpdatedAt() {
         return updatedAt;
     }
@@ -144,11 +67,11 @@ public class BookContent {
         this.updatedAt = updatedAt;
     }
 
-    public VideoDTO getVideo() {
-        return video;
+    public String getV() {
+        return v;
     }
 
-    public void setVideo(VideoDTO video) {
-        this.video = video;
+    public void setV(String v) {
+        this.v = v;
     }
 }
