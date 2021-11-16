@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bamboo.R;
 import com.example.bamboo.UI.VideoIntroductionActivity;
 import com.example.bamboo.javaBean.VideoHome;
@@ -20,7 +21,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View videoView;
-        ImageView iv_book_bg;//用于测试
+//        ImageView iv_book_bg;//用于测试
         ImageView iv_book_shape;
         ImageView iv_lock;
         TextView tv_level;
@@ -48,7 +49,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     @Override
     public VideoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_book, parent, false); // 将子项布局加载进来
+                .inflate(R.layout.item_video, parent, false); // 将子项布局加载进来
 
         final VideoAdapter.ViewHolder holder = new VideoAdapter.ViewHolder(view);
 
@@ -71,6 +72,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         VideoHome video = mVideoList.get(position);
         holder.tv_level.setText(video.getVideoLevel());
         holder.tv_coin.setText("" + video.getVideoPrice());
+        Glide.with(holder.videoView.getContext()).load(video.getPng()).into(holder.iv_book_shape);
 
     }
 

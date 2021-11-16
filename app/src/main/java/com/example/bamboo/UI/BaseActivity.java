@@ -30,18 +30,18 @@ public class BaseActivity extends AppCompatActivity {
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
     }
 
-    public void initNavBar(boolean isShowBack,String titles){
-        iv_back=findViewById(R.id.iv_back);
-        tv_title=findViewById(R.id.tv_title);
+    public void initNavBar(boolean isShowBack, String titles) {
+        iv_back = findViewById(R.id.iv_back);
+        tv_title = findViewById(R.id.tv_title);
 
-        iv_back.setVisibility(isShowBack ? View.VISIBLE:View.GONE);
+        iv_back.setVisibility(isShowBack ? View.VISIBLE : View.GONE);
         //如果isShowBack是true就显示，如果false就不显示
         tv_title.setText(titles);
         iv_back.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        onBackPressed();
-    }
-});
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 }

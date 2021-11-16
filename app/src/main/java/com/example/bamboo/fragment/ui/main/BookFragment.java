@@ -1,7 +1,9 @@
 package com.example.bamboo.fragment.ui.main;
 
 import static android.content.ContentValues.TAG;
+import static android.content.Context.MODE_PRIVATE;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +21,12 @@ import com.example.bamboo.R;
 import com.example.bamboo.fragment.ui.adapter.BookAdapter;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookHome;
+import com.example.bamboo.javaBean.Personal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +49,9 @@ public class BookFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         tv_grade = getView().findViewById(R.id.tv_grade);
 
-//        String userID = getActivity().getIntent().getExtras().getString("userID");
-//        BookFragment  bookFragment = new BookFragment();
-//        Bundle bundle = new Bundle();
+
         getResponseData();
+
 
 
 //        int position = gridLayoutManager.findFirstVisibleItemPosition();
@@ -154,31 +159,7 @@ public class BookFragment extends Fragment {
 //    }
 
 
-//    private void downloadFile(BmobFile file){
-//        //允许设置下载文件的存储路径，默认下载文件的目录为：context.getApplicationContext().getCacheDir()+"/bmob/"
-//        File saveFile = new File(Environment.getExternalStorageDirectory(), file.getFilename());
-//        file.download(saveFile, new DownloadFileListener() {
-//
-//            @Override
-//            public void onStart() {
-//            }
-//
-//            @Override
-//            public void done(String savePath, BmobException e) {
-//                if(e==null){
-//                    Log.e(TAG, "图片路径为： " + savePath);
-//                }else{
-//                    Log.e(TAG, " 图片下载不了：" + e.getMessage());
-//                }
-//            }
-//
-//            @Override
-//            public void onProgress(Integer value, long newworkSpeed) {
-//                Log.e("bmob","下载进度："+value+","+newworkSpeed);
-//            }
-//
-//        });
-//    }
+
 
 
 

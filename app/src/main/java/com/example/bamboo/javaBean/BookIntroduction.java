@@ -12,6 +12,7 @@ public class BookIntroduction {
     private String book_title;
     private ColorcoverDTO colorcover;
     private String content;
+    private String cover_url;
     private String createdAt;
     private Integer gold_coin;
     private String level;
@@ -131,6 +132,14 @@ public class BookIntroduction {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCover_url() {
+        return cover_url;
+    }
+
+    public void setCover_url(String cover_url) {
+        this.cover_url = cover_url;
     }
 
     public String getCreatedAt() {

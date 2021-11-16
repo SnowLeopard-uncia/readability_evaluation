@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookIntroduction;
@@ -139,7 +140,8 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
             tv_suit_age.setText("适合年级：" + videoIntroduction.getVideoAge());
             tv_theme.setText("主题：" + videoIntroduction.getTopic());
             tv_brief_introduction.setText("简介：" + videoIntroduction.getIntroduce());
-            Log.e(TAG, "parseJson: " + videoIntroduction.getSrc());
+            Glide.with(this).load(videoIntroduction.getPng()).into(iv_book);
+//            Log.e(TAG, "parseJson: " + videoIntroduction.getSrc());
 
         }
 

@@ -3,11 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_audio_list.xml" value="0.146484375" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_btn_book_reading.xml" value="0.146484375" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_btn_login.xml" value="0.134765625" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_btn_mark.xml" value="0.146484375" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_btn_upload.xml" value="0.146484375" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_btn_uploadway.xml" value="0.134765625" />
+        <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_btn_video_pause.xml" value="0.146484375" />
+        <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_btn_video_play.xml" value="0.146484375" />
+        <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_btn_video_replay.xml" value="0.146484375" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_dialog.xml" value="0.146484375" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/bg_edit_text.xml" value="0.146484375" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/drawable/comprehension_option_btn_shape.xml" value="0.134375" />
@@ -21,7 +25,7 @@
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_audio.xml" value="0.11509562841530055" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_base.xml" value="0.122265625" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_book_introduction.xml" value="0.1" />
-        <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_book_reading.xml" value="0.121484375" />
+        <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_book_reading.xml" value="0.1" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_choose_language.xml" value="0.1" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_file_load.xml" value="0.122265625" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/activity_information_selection.xml" value="0.11441256830601093" />
@@ -48,6 +52,7 @@
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/fragment_word.xml" value="0.1" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/item_book.xml" value="0.10109289617486339" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/item_drawer_list.xml" value="0.12260928961748634" />
+        <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/item_video.xml" value="0.1" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/nav_bar.xml" value="0.1" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/spinner_item.xml" value="0.22" />
         <entry key="..\:/Android Project/BambooApp/app/src/main/res/layout/tab_style.xml" value="0.122265625" />
