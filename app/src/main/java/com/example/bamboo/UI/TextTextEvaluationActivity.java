@@ -51,7 +51,7 @@ public class TextTextEvaluationActivity extends BaseActivity {
             String mText=et_text.getText().toString();
             Log.e(TAG, "initView: "+mText );
             if (!mText.equals("")){
-                startToEvaluate(mText, TextUrl);
+                startToEvaluate(mText, TextUrl,levelUrl);
 
                 Toast.makeText(this,"测评中",Toast.LENGTH_SHORT).show();
             }else{
@@ -61,7 +61,7 @@ public class TextTextEvaluationActivity extends BaseActivity {
     }
 
 
-    private void startToEvaluate(String mText,String url) {
+    private void startToEvaluate(String mText,String url,String levelUrl) {
         Log.e(TAG, "startToEvaluate: "+mText);
         HttpUtils.readabilityWithOkhttp(url, mText, new Callback() {
             @Override
@@ -85,6 +85,18 @@ public class TextTextEvaluationActivity extends BaseActivity {
                         startActivity(intent);
                     }
                 });
+            }
+        });
+
+        HttpUtils.readabilityWithOkhttp(levelUrl, mText, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
             }
         });
 

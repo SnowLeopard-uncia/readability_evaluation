@@ -6,7 +6,8 @@ import java.io.BufferedReader;
         import java.io.IOException;
         import java.io.InputStream;
         import java.io.InputStreamReader;
-        import java.util.Iterator;
+import java.util.Arrays;
+import java.util.Iterator;
         import java.util.Map;
         import java.util.Map.Entry;
         import java.util.TreeMap;
@@ -56,7 +57,7 @@ public class LrcParser {
      * */
     public LrcInfo parser(InputStream inputStream) throws IOException{
         //包装对象
-        InputStreamReader inr = new InputStreamReader(inputStream);
+        InputStreamReader inr = new InputStreamReader(inputStream,"GBK");
         BufferedReader reader =new BufferedReader(inr);
         //一行一行的读，每读一行解析一行
         String line =null;
@@ -131,10 +132,17 @@ public class LrcParser {
                 //得到时间点后的内容
                 String[] content = pattern.split(line);
                 //for(int index =0; index<content.length; index++){
-                Log.i("","content="+content[content.length-1]);
+
+                if(Arrays.equals(content, new String[]{})){  //此处为了解决空行！
+                    currentContent ="";
+                }else{
+                    currentContent = content[content.length-1];
+                    Log.i("","content="+content[content.length-1]);
+                }
+
                 //if(index==content.length-1){
                 //将内容设置魏当前内容
-                currentContent = content[content.length-1];
+//                currentContent = content[content.length-1];
                 //}
                 //}
                 //设置时间点和内容的映射
@@ -162,4 +170,6 @@ public class LrcParser {
         }
         return min*60*1000+sec*1000+mill*10;
     }
+
+
 }

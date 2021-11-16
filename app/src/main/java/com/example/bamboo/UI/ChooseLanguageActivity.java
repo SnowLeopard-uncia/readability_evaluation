@@ -20,6 +20,9 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.example.bamboo.R;
+import com.example.bamboo.Util.ChooseAdapter;
+import com.example.bamboo.Util.DataUtil;
+import com.example.bamboo.fragment.ui.adapter.ViewPaperAdapter;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.UserLogin;
 import com.example.bamboo.javaBean.UserRegister;
@@ -44,26 +47,39 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
     private int[] imgArray;
     private Button btn_register;
     private List<UserRegister> userList = new ArrayList<>();
+    private List<String> strArray = new ArrayList<>();
+    private List<String> chineseList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_language);
+        initNavBar(true,"请选择语种");
         init();
     }
 
     private void init() {
+
         chooseViewPager = findViewById(R.id.vp_choose);
         btn_register = findViewById(R.id.btn_register);
         btn_register.setOnClickListener(this);
         imgArray = new int[]{R.drawable.bg_choose_english, R.drawable.bg_choose_spanish};
+        strArray.add("English");
+        strArray.add("Spanish");
+        chineseList.add("英语");
+        chineseList.add("西语");
+
         mPages = new ArrayList<View>();
         for (int i = 0; i < imgArray.length; i++) {
             ImageView imageView = new ImageView(this);
             mPages.add(imageView);
             imageView.setBackgroundResource(imgArray[i]);
         }
+//        ViewPaperAdapter viewPaperAdapter = new ViewPaperAdapter(this, DataUtil.getViewpagerInfo(this,imgArray,strArray));
+//        ViewPaperAdapter viewPaperAdapter = new ViewPaperAdapter(this,mPages);
+        ChooseAdapter viewPaperAdapter = new ChooseAdapter(this,strArray,chineseList,imgArray);
+        chooseViewPager.setAdapter(viewPaperAdapter);
     }
 
     @Override

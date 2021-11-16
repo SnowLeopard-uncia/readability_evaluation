@@ -17,6 +17,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -74,6 +76,10 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
     private TextView tv_singer;
     private TextView tv_duration;
     private TextView tv_level;
+    private String lrcWord="";
+    private TextView tv_audio_content;
+    private TextView tv_audio_start_duration;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -91,6 +97,8 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
 
     }
 
+
+
     private void initMediaPlayer(String url) throws IOException {
         if (url != null){
              uri = Uri.parse(url);
@@ -101,6 +109,20 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
         mediaPlayer.prepare();//进入准备状态
 
     }
+
+
+    @SuppressLint("SetTextI18n")
+    public void initTotalTime(){
+        int time =mediaPlayer.getDuration();
+        int second = time /1000;
+        if (second >=10){
+            tv_audio_start_duration.setText("00:" + second);
+        }else {
+            tv_audio_start_duration.setText("00:" +"0" + second);
+        }
+//        musicSeekBar.setMax(second);
+    }
+
 
     private void dataFromAudioList() throws JSONException {
         Intent intent = getIntent();
@@ -120,13 +142,86 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
         tv_level=findViewById(R.id.tv_audio_level);
         tv_singer=findViewById(R.id.tv_singer);
         tv_duration=findViewById(R.id.tv_audio_duration);
-
-
+tv_audio_content=findViewById(R.id.tv_audio_content);
+        tv_audio_start_duration=findViewById(R.id.tv_audio_start_duration);
 
         iv_play.setOnClickListener(this);
         iv_last.setOnClickListener(this);
         iv_next.setOnClickListener(this);
 
+        musicSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                if(i<60000){
+                    if (i >=10000){
+                        tv_audio_start_duration.setText("00:" + i/1000);
+
+                    }else {
+                        tv_audio_start_duration.setText("00:0" + i/1000);
+                    }
+                }else{
+                    int sec = i/1000 %60;
+                    if(sec<10){
+                        tv_audio_start_duration.setText("0"+i/60000+":"+"0"+sec);
+                    }else{
+                        tv_audio_start_duration.setText("0"+i/60000+":"+sec);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                if (mediaPlayer.isPlaying()){
+                    seekBar.setTag(mediaPlayer.isPlaying());
+                    mediaPlayer.pause();
+                    iv_play.setActivated(false);
+
+                }else {
+                    seekBar.setTag(false);
+                }
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int dest = seekBar.getProgress();
+                int time = mediaPlayer.getDuration();
+                int max = seekBar.getMax();
+//                mediaPlayer.seekTo(time*dest/max);
+
+                if ((boolean)seekBar.getTag()){
+                    iv_play.setActivated(true);
+//                    mediaPlayer.seekTo(seekBar.getProgress());
+                    mediaPlayer.seekTo(dest*1000);
+                    mediaPlayer.start();
+                    Log.i("MediaPlayer", "onStopTrackingTouch: " +mediaPlayer.getCurrentPosition());
+
+                    timer = new Timer();
+                    timerTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (mediaPlayer != null) {
+                                if (mediaPlayer.isPlaying()) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    };
+                    timer.schedule(timerTask, 0, 1000);
+
+                }else {
+                    mediaPlayer.seekTo(seekBar.getProgress());
+                }
+
+            }
+        });
 
     }
     private void getDataFromResponse() throws JSONException {
@@ -210,33 +305,41 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.iv_play:
+
                 if(!mediaPlayer.isPlaying()){
+                    iv_play.setActivated(true);
                     mediaPlayer.start(); //开始播放
                     musicSeekBar.setMax(mediaPlayer.getDuration());
-                }
-                timer = new Timer();
-//                if (timer != null) {
-//                    timer = null;
-//                    timerTask = null;
-//                }
-                timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (mediaPlayer != null) {
-                            if (mediaPlayer.isPlaying()) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        ClipDrawable drawable = new ClipDrawable(new ColorDrawable(0x40616ff9), Gravity.START, ClipDrawable.HORIZONTAL);
-                                        musicSeekBar.setProgressDrawable(drawable);
-                                        musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
-                                    }
-                                });
+
+                    if (timer != null) {
+                        timer = null;
+                        timerTask = null;
+                    }
+                    timer = new Timer();
+                    timerTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (mediaPlayer != null) {
+                                if (mediaPlayer.isPlaying()) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+//                                        ClipDrawable drawable = new ClipDrawable(new ColorDrawable(0x40616ff9), Gravity.START, ClipDrawable.HORIZONTAL);
+//                                        musicSeekBar.setProgressDrawable(drawable);
+                                            musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+
+                                        }
+                                    });
+                                }
                             }
                         }
-                    }
-                };
-                timer.schedule(timerTask, 0, 1000);
+                    };
+                    timer.schedule(timerTask, 0, 1000);
+                }else{
+                    iv_play.setActivated(false);
+                    mediaPlayer.pause();
+                }
+
                 break;
             default:
                 break;
@@ -262,7 +365,7 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
             try {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
 //                    filePath=Environment.getExternalStorageDirectory().getAbsolutePath();
-                    filePath=getApplicationContext().getExternalFilesDir(null).getAbsolutePath(); //解决了一个安卓10的问题！
+                    filePath=getApplicationContext().getExternalFilesDir(null).getAbsolutePath(); //解决了一个安卓11的问题！
 
 
                 }else {
@@ -281,7 +384,6 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
                     }
                     fileOutputStream.flush();
                 }
-
                 lrcPath=filePath+"/"+audioName+".lrc";
                 Log.e(TAG, "onResponse: "+"文件下载完成："+filePath+"   "+lrcPath );
 
@@ -289,7 +391,18 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
                 String path =lrcPath;
                 try {
                     LrcInfo lrcInfo =lrcParser.parser(path);
-                    Log.e(TAG, "doInBackground: "+lrcInfo.getArtist() );
+                    Log.e(TAG, "doInBackground: "+lrcInfo.getArtist());
+                    for (Object value:lrcInfo.getInfo().values()){
+                        Log.e(TAG, "doInBackground: value"+value);
+                        lrcWord=lrcWord+value+"\n";
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tv_audio_content.setText(lrcWord);
+                        }
+                    });
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
