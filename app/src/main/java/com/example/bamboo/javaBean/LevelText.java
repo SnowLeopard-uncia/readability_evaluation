@@ -7,4 +7,10 @@ public class LevelText {
     public String getGrade() {
         return grade;
     }
+
+    @Override
+    public String toString() {
+        return "\n" +
+                "grade= " + grade;
+    }
 }

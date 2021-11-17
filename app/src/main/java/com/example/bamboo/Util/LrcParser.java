@@ -71,7 +71,7 @@ public class LrcParser {
             Entry<Long,String> entry = (Entry<Long,String>)iter.next();
             Long key = entry.getKey();
             String val = entry.getValue();
-            Log.e("---", "key="+key+"   val="+val);
+//            Log.e("---", "key="+key+"   val="+val);
         }
         return lrcinfo;
     }
@@ -137,7 +137,7 @@ public class LrcParser {
                     currentContent ="";
                 }else{
                     currentContent = content[content.length-1];
-                    Log.i("","content="+content[content.length-1]);
+//                    Log.i("","content="+content[content.length-1]);
                 }
 
                 //if(index==content.length-1){

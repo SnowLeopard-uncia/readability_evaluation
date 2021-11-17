@@ -5,9 +5,12 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.bamboo.R;
 import com.example.bamboo.Util.HttpUtils;
+import com.example.bamboo.javaBean.LevelText;
 import com.example.bamboo.javaBean.TextResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -32,6 +36,9 @@ public class TextTextEvaluationActivity extends BaseActivity {
     private EditText et_text;
     private String TextUrl ="http://8.134.49.78:5000";
     private String levelUrl="http://8.134.49.78:8081";
+    private int temp =0;
+    private String results="";
+   private Bundle bundle = new Bundle();
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,19 +79,28 @@ public class TextTextEvaluationActivity extends BaseActivity {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 final String responseBody=response.body().string();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-//                        Log.e(TAG, "run: "+responseBody);
-                       String result = parseJsonDataWithGson(responseBody);
-                       Intent intent = new Intent(TextTextEvaluationActivity.this,ResultEvaluationActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("result",result);
-                        bundle.putString("text",mText);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    }
-                });
+                new Thread(()->{
+                    String result = parseJsonDataWithGson(responseBody);
+                    results=results+result;
+                    bundle.putString("text",mText);
+                    temp++;
+                    Message msg =Message.obtain();
+                    msg.what=temp;
+                    handler.sendMessage(msg);
+                }).start();
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+////                        Log.e(TAG, "run: "+responseBody);
+//                       String result = parseJsonDataWithGson(responseBody);
+//                       Intent intent = new Intent(TextTextEvaluationActivity.this,ResultEvaluationActivity.class);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("result",result);
+//                        bundle.putString("text",mText);
+//                        intent.putExtras(bundle);
+//                        startActivity(intent);
+//                    }
+//                });
             }
         });
 
@@ -96,7 +112,17 @@ public class TextTextEvaluationActivity extends BaseActivity {
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-
+                final String responseBody=response.body().string();
+                new Thread(()->{
+                    Gson gson = new Gson();
+                    LevelText levelText = gson.fromJson(responseBody, new TypeToken<LevelText>() {
+                    }.getType());
+                    results=results+levelText.toString();
+                    temp++;
+                    Message msg =Message.obtain();
+                    msg.what=temp;
+                    handler.sendMessage(msg);
+                }).start();
             }
         });
 
@@ -126,4 +152,19 @@ public class TextTextEvaluationActivity extends BaseActivity {
         return result;
 
     }
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {      //判断标志位
+                case 2:
+                    Intent intent = new Intent(TextTextEvaluationActivity.this,ResultEvaluationActivity.class);
+                    bundle.putString("result",results);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    break;
+            }
+        }
+    };
 }

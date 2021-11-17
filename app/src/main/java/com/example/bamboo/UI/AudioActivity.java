@@ -1,30 +1,31 @@
 package com.example.bamboo.UI;
 
 import static android.content.ContentValues.TAG;
+import static android.widget.Toast.LENGTH_SHORT;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
+import android.os.IBinder;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bamboo.R;
 import com.example.bamboo.Util.HttpUtils;
@@ -32,6 +33,7 @@ import com.example.bamboo.Util.LrcParser;
 import com.example.bamboo.javaBean.Audio;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.LrcInfo;
+import com.example.bamboo.service.MusicService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -79,8 +81,10 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
     private String lrcWord="";
     private TextView tv_audio_content;
     private TextView tv_audio_start_duration;
-
-
+    private Intent mServiceIntent;
+    private boolean isBindService;
+    private MusicService.MusicBind musicBind;
+    private int temp =0;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -169,15 +173,15 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                         tv_audio_start_duration.setText("0"+i/60000+":"+sec);
                     }
                 }
-
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 if (mediaPlayer.isPlaying()){
-                    seekBar.setTag(mediaPlayer.isPlaying());
-                    mediaPlayer.pause();
+                    seekBar.setTag(!mediaPlayer.isPlaying());
                     iv_play.setActivated(false);
+                    mediaPlayer.pause();
+
 
                 }else {
                     seekBar.setTag(false);
@@ -191,10 +195,10 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                 int max = seekBar.getMax();
 //                mediaPlayer.seekTo(time*dest/max);
 
-                if ((boolean)seekBar.getTag()){
+                if (!(boolean)seekBar.getTag()){
                     iv_play.setActivated(true);
-//                    mediaPlayer.seekTo(seekBar.getProgress());
-                    mediaPlayer.seekTo(dest*1000);
+                    mediaPlayer.seekTo(seekBar.getProgress());
+//                    mediaPlayer.seekTo(dest*1000);
                     mediaPlayer.start();
                     Log.i("MediaPlayer", "onStopTrackingTouch: " +mediaPlayer.getCurrentPosition());
 
@@ -202,7 +206,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                     timerTask = new TimerTask() {
                         @Override
                         public void run() {
-                            if (mediaPlayer != null) {
+                            if (mediaPlayer != null && temp==0) {
                                 if (mediaPlayer.isPlaying()) {
                                     runOnUiThread(new Runnable() {
                                         @Override
@@ -210,6 +214,14 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                                             musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
                                         }
                                     });
+                                }
+                            }else{
+                                if (mediaPlayer != null){
+                                    mediaPlayer.pause();
+//                                    mediaPlayer.reset();
+//                                    mediaPlayer.stop();
+//                                    mediaPlayer.release();
+//                                    mediaPlayer=null;
                                 }
                             }
                         }
@@ -307,6 +319,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
             case R.id.iv_play:
 
                 if(!mediaPlayer.isPlaying()){
+//                    startMusicService();
                     iv_play.setActivated(true);
                     mediaPlayer.start(); //开始播放
                     musicSeekBar.setMax(mediaPlayer.getDuration());
@@ -319,24 +332,31 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                     timerTask = new TimerTask() {
                         @Override
                         public void run() {
-                            if (mediaPlayer != null) {
+                            if (mediaPlayer != null && temp==0) {
                                 if (mediaPlayer.isPlaying()) {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-//                                        ClipDrawable drawable = new ClipDrawable(new ColorDrawable(0x40616ff9), Gravity.START, ClipDrawable.HORIZONTAL);
-//                                        musicSeekBar.setProgressDrawable(drawable);
                                             musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
-
                                         }
                                     });
                                 }
+                            }else{
+                                if (mediaPlayer != null){
+                                    mediaPlayer.pause();
+//                                    mediaPlayer.reset();
+//                                    mediaPlayer.stop();
+//                                    mediaPlayer.release();
+//                                    mediaPlayer=null;
+                                }
+
                             }
                         }
                     };
                     timer.schedule(timerTask, 0, 1000);
                 }else{
                     iv_play.setActivated(false);
+//                    musicBind.stopMusic();
                     mediaPlayer.pause();
                 }
 
@@ -346,13 +366,21 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
         }
     }
 
+    //如果不在销毁的时候释放资源，就会重放√
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        temp=1;
         if (mediaPlayer != null){
+            mediaPlayer.reset();
             mediaPlayer.stop();
             mediaPlayer.release();
+            mediaPlayer=null; //设置为null释放内存
+            //mediaplayer在播放中途没有播放完退出会IllegalStateExceptionat
+            //stop called in state 1, mPlayer(0x0)
+            //    error (-38, 0)
         }
+        super.onDestroy();
+
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -391,9 +419,9 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                 String path =lrcPath;
                 try {
                     LrcInfo lrcInfo =lrcParser.parser(path);
-                    Log.e(TAG, "doInBackground: "+lrcInfo.getArtist());
+//                    Log.e(TAG, "doInBackground: "+lrcInfo.getArtist());
                     for (Object value:lrcInfo.getInfo().values()){
-                        Log.e(TAG, "doInBackground: value"+value);
+//                        Log.e(TAG, "doInBackground: value"+value);
                         lrcWord=lrcWord+value+"\n";
                     }
                     runOnUiThread(new Runnable() {
@@ -402,7 +430,6 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                             tv_audio_content.setText(lrcWord);
                         }
                     });
-
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -425,6 +452,37 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
             Log.e(TAG, "onPostExecute: "+"下载结束" );
         }
     }
+//启动音乐服务
+    private void startMusicService(){
+        //启动service
+        if (mServiceIntent == null){
+            mServiceIntent=new Intent(AudioActivity.this, MusicService.class);
+            this.startService(mServiceIntent);
+        }
+        //绑定service
+        if (!isBindService){
+            isBindService=true;
+            this.bindService(mServiceIntent,conn, Context.BIND_AUTO_CREATE);
+        }
+        //解除绑定 ， 如果绑定
 
+    }
+    public void destory(){
+        if (isBindService){
+            isBindService=false;
+            this.unbindService(conn);
+        }
+    }
+    ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            musicBind = (MusicService.MusicBind)iBinder;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
 
 }

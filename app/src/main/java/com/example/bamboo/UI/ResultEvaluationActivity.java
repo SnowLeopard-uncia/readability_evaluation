@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.bamboo.R;
 import com.example.bamboo.Util.HttpUtils;
+import com.example.bamboo.javaBean.LevelText;
 import com.example.bamboo.javaBean.TextResponse;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -34,6 +38,9 @@ public class ResultEvaluationActivity extends BaseActivity {
     private String result;
     private Button btn_evaluation_again;
     private String url="http://8.134.49.78:5000";
+    private String levelUrl="http://8.134.49.78:8081";
+    private int temp =0;
+    private String results="";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -82,14 +89,46 @@ public class ResultEvaluationActivity extends BaseActivity {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 final String responseBody=response.body().string();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String result = parseJsonDataWithGson(responseBody);
-                        tv_result.setText(result);
-                        Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
-                    }
-                });
+                new Thread(()->{
+                    String result = parseJsonDataWithGson(responseBody);
+                    results=results+result;
+                    temp++;
+                    Message msg =Message.obtain();//从全局池中返回一个message实例，避免多次创建message（如new Message
+                    msg.what=temp;
+                    handler.sendMessage(msg);
+                }).start();
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        String result = parseJsonDataWithGson(responseBody);
+//
+////                        tv_result.setText(result);
+////                        Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+            }
+        });
+
+
+        HttpUtils.readabilityWithOkhttp(levelUrl, mText, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                final String responseBody=response.body().string();
+                new Thread(()->{
+                    Gson gson = new Gson();
+                    LevelText levelText = gson.fromJson(responseBody, new TypeToken<LevelText>() {
+                    }.getType());
+                    results=results+levelText.toString();
+                    temp++;
+                    Message msg =Message.obtain();
+                    msg.what=temp;
+                    handler.sendMessage(msg);
+                }).start();
             }
         });
 
@@ -121,4 +160,17 @@ public class ResultEvaluationActivity extends BaseActivity {
         return result;
 
     }
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {      //判断标志位
+                case 2:
+                    tv_result.setText(results);
+                    Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
 }
