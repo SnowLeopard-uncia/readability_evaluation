@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="20dp"
-   android:layout_margin="10dp"
+    app:cardCornerRadius="18dp"
+   android:layout_margin="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+    android:paddingHorizontal="@dimen/activity_horizontal_margin"
         >
         <TextView
             android:id="@+id/tv_word"

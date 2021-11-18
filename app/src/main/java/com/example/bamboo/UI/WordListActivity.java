@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.bamboo.R;
 import com.example.bamboo.fragment.ui.adapter.WordListAdapter;
@@ -35,7 +36,10 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.CloudCodeListener;
 
 public class WordListActivity extends BaseActivity {
-    String level;
+    private String level;
+    private String wordNum;
+    private TextView tvLevel;
+    private TextView tvWordNum;
     private List<WordList> mWordLists=new ArrayList<>();
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -43,6 +47,7 @@ public class WordListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_list);
         initNavBar(true,"分级词汇");
+        initView();
         try {
             getDataFromIntent();
         } catch (JSONException e) {
@@ -54,18 +59,17 @@ public class WordListActivity extends BaseActivity {
     }
 
     private void initView() {
-       WordList wordList=new WordList("hi");
-       mWordLists.add(wordList);
-        WordList wordList1=new WordList("hii");
-        mWordLists.add(wordList1);
-        WordList wordList2=new WordList("hiii");
-        mWordLists.add(wordList2);
+        tvLevel=findViewById(R.id.tv_word_level);
+        tvWordNum=findViewById(R.id.tv_word_num);
     }
 
     private void getDataFromIntent() throws JSONException {
         Intent intent = getIntent();
         Bundle data = intent.getExtras();
         level=data.getString("level");
+        wordNum=data.getString("wordNum");
+        tvWordNum.setText(wordNum);
+        tvLevel.setText(level);
         Log.e(TAG, "getDataFromIntent: "+level );
         getResponseData(level);
     }

@@ -72,7 +72,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
     holder.iv_playing.setVisibility(View.INVISIBLE);
     holder.tv_audioId.setText(""+audioList.getId());
     holder.tv_audioName.setText(audioList.getName());
-    holder.tv_audioLevel.setText(""+audioList.getResourceCoin());
+    holder.tv_audioLevel.setText(""+audioList.getLevel());
 
     int itemBackGround = position % 2;
     if (itemBackGround==0){

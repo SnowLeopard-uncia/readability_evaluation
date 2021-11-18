@@ -36,6 +36,14 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WordList wordList = mWordListList.get(position);
         holder.tv_word.setText(wordList.getWord());
+        holder.wordItemView.setOnClickListener(view -> {
+            wordList.setIsClick(wordList.getIsClick()+1);
+            if ((wordList.getIsClick()%2)==1){
+                holder.tv_word.setText(wordList.getZh());
+            }else{
+                holder.tv_word.setText(wordList.getWord());
+            }
+        });
     }
 
     @Override

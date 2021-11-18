@@ -42,6 +42,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
                 Log.e(TAG, "onClick: "+wordMenuList.getNew_tableName());
                 Bundle bundle = new Bundle();
                 bundle.putString("level",wordMenuList.getVocLevel());
+                bundle.putString("wordNum",wordMenuList.getVocWordnum());
                 intent.putExtras(bundle);
                 context.startActivity(intent);
 
@@ -54,7 +55,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WordMenuList wordMenuList = mWordMenuLists.get(position);
         holder.tv_wordLevel.setText(wordMenuList.getVocLevel());
-        holder.tv_wordTitle.setText(wordMenuList.getVocTitle());
+//        holder.tv_wordTitle.setText(wordMenuList.getVocTitle());
         holder.tv_wordAge.setText(wordMenuList.getVocAge());
         holder.tv_wordAccount.setText(wordMenuList.getVocWordnum());
     }
@@ -76,7 +77,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
             wordItemView=itemView;
             tv_wordAccount=itemView.findViewById(R.id.tv_word_account);
             tv_wordLevel=itemView.findViewById(R.id.tv_word_menu_level);
-            tv_wordTitle=itemView.findViewById(R.id.tv_word_list_title);
+//            tv_wordTitle=itemView.findViewById(R.id.tv_word_list_title);
             tv_wordAge=itemView.findViewById(R.id.tv_suit_age_word);
         }
     }

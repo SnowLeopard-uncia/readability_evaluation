@@ -181,10 +181,11 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                     seekBar.setTag(!mediaPlayer.isPlaying());
                     iv_play.setActivated(false);
                     mediaPlayer.pause();
-
-
+//此处逻辑要理清楚
                 }else {
-                    seekBar.setTag(false);
+                    mediaPlayer.start();
+                    mediaPlayer.pause();
+                    seekBar.setTag(true);
                 }
             }
 

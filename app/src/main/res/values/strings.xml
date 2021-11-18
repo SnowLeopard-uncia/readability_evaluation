@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Bamboo</string>
+    <string name="app_name">太空漫读</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="text_load">直接输入文本</string>
     <string name="photo_load">拍照上传识别</string>
-    <string name="file_load">上传文档识别</string>
+    <string name="file_load">上传txt文档识别</string>
     <string name="hint_load">选择上传文本方式</string>
     <string name="text_title">可读性测评</string>
     <string name="mark">开始评分</string>
@@ -52,7 +52,8 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="appKey">f2c0e499b2961d0a3b7f5c8d52f3a264</string>
-    <string name="evaluationUrl">http://8.134.49.78:5000</string>
+    <string name="TextUrl">http://8.134.49.78:5000</string>
+    <string name="levelUrl">http://8.134.49.78:8081</string>
     <string name="nav_title">分级词汇</string>
     <string name="personal_center">个人中心</string>
     <string name="growth_trajectory">成长轨迹</string>
