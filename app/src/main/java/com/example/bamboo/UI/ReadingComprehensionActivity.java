@@ -57,6 +57,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
 
     private int question_num = 0;
     private boolean correct = false;
+    private boolean select = false;
     private List<QuizList> mQuizList = new ArrayList<>();
 
     private Integer gold_coin;
@@ -117,6 +118,11 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                 }
                 break;
             case R.id.iv_toRight:
+                if((!correct) || (!select)) {
+                    Toast.makeText(this, "请先正确回答这个问题", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (correct && question_num == mQuizList.size() - 1) {
                     Intent intent = new Intent(ReadingComprehensionActivity.this, ReadingFinishingActivity.class);
                     intent.putExtra("gold_coin", gold_coin);
@@ -128,14 +134,15 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                     question_num++;
                     initQuestion();
                     initButton();
+                    return;
                 }
-                if (!correct) {
-                    Toast.makeText(this, "请先正确回答这个问题", Toast.LENGTH_SHORT).show();
-                }
+
                 break;
             case R.id.btn_answerA:
+//                correct = false;
                 initButton();
                 btn_answerA.setBackgroundResource(R.drawable.option_select);
+                select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("a")) {
                     iv_answerA.setBackgroundResource(R.drawable.correct);
                     correct = true;
@@ -146,8 +153,10 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
 
                 break;
             case R.id.btn_answerB:
+//                correct = false;
                 initButton();
                 btn_answerB.setBackgroundResource(R.drawable.option_select);
+                select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("b")) {
                     iv_answerB.setBackgroundResource(R.drawable.correct);
                     correct = true;
@@ -157,8 +166,10 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                 }
                 break;
             case R.id.btn_answerC:
+//                correct = false;
                 initButton();
                 btn_answerC.setBackgroundResource(R.drawable.option_select);
+                select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("c")) {
                     iv_answerC.setBackgroundResource(R.drawable.correct);
                     correct = true;
@@ -168,8 +179,10 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                 }
                 break;
             case R.id.btn_answerD:
+//                correct = false;
                 initButton();
                 btn_answerD.setBackgroundResource(R.drawable.option_select);
+                select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("d")) {
                     iv_answerD.setBackgroundResource(R.drawable.correct);
                     correct = true;
@@ -239,6 +252,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
         iv_answerB.setBackgroundResource(R.color.transparent);
         iv_answerC.setBackgroundResource(R.color.transparent);
         iv_answerD.setBackgroundResource(R.color.transparent);
+        select = false;
     }
 
 //    private void delay(){

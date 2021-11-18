@@ -19,6 +19,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
@@ -26,6 +28,7 @@ import com.example.bamboo.javaBean.BookHome;
 import com.example.bamboo.javaBean.BookIntroduction;
 import com.example.bamboo.javaBean.Personal;
 import com.example.bamboo.javaBean.ReadingRank;
+import com.example.bamboo.javaBean.UserLocal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -50,6 +53,8 @@ public class ReportsFragment extends Fragment {
     private TextView tv_rank;
     private Spinner rank_spinner;
 
+    UserLocal userLocal = new UserLocal();
+
     String objectId;
     private List<Personal> personList = new ArrayList<>();
     private List<ReadingRank> rankList = new ArrayList<>();
@@ -70,13 +75,26 @@ public class ReportsFragment extends Fragment {
         }
 
 
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_report, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        try {
+            getUserPageResponseData();
+            getUserRankResponseData();
+            getRankPageResponseData();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -124,10 +142,18 @@ public class ReportsFragment extends Fragment {
             personList.add(personal);
 
             tv_name.setText(personal.getUsername());
-            tv_level.setText("等级"+personal.getLevel());
-            tv_book_num.setText(personal.getBooknum()+"");
-            tv_word_num.setText(personal.getWordnum()+"");
-            tv_coin_num.setText(personal.getCoin()+"");
+            tv_level.setText("等级" + personal.getLevel());
+            tv_book_num.setText(personal.getBooknum() + "");
+            tv_word_num.setText(personal.getWordnum() + "");
+            tv_coin_num.setText(personal.getCoin() + "");
+
+
+            userLocal.setCoin(personal.getCoin());
+            userLocal.setLevel(personal.getLevel());
+            userLocal.update(1);
+//            userLocal.save();
+
+
         }
 
     }
@@ -191,11 +217,6 @@ public class ReportsFragment extends Fragment {
         }
 
     }
-
-
-
-
-
 
 
 }

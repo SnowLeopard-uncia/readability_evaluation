@@ -19,11 +19,13 @@ import android.widget.Toast;
 import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.QuizList;
+import com.example.bamboo.javaBean.UserLocal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class ReadingFinishingActivity extends BaseActivity {
 
     String book_objectId;
     String objectId;
+    int coin;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -45,10 +48,11 @@ public class ReadingFinishingActivity extends BaseActivity {
 
         initNavBar(true, "");
         TextView tv_coin = findViewById(R.id.tv_coin);
-        int coin = getIntent().getExtras().getInt("gold_coin");
+        coin = getIntent().getExtras().getInt("gold_coin");
         book_objectId = getIntent().getExtras().getString("book_objectId");
         tv_coin.setText("" + coin);
         getUserID();
+        updateLocalDatabase();
 
         try {
             updateCoin();
@@ -65,9 +69,9 @@ public class ReadingFinishingActivity extends BaseActivity {
         String cloudCodeName = "coinUpdate";
         JSONObject params = new JSONObject();
         params.put("book_objectId", book_objectId);
-        Log.e(TAG, "金币更新请求参数book_objectId：" + book_objectId);
+//        Log.e(TAG, "金币更新请求参数book_objectId：" + book_objectId);
         params.put("objectId", objectId);
-        Log.e(TAG, "金币更新请求参数objectId：" + objectId);
+//        Log.e(TAG, "金币更新请求参数objectId：" + objectId);
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
 //第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
         ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
@@ -89,9 +93,9 @@ public class ReadingFinishingActivity extends BaseActivity {
         String cloudCodeName = "bookAndwordNumUpdate";
         JSONObject params = new JSONObject();
         params.put("objectId", book_objectId);
-        Log.e(TAG, "书本量、词汇量更新请求参数objectId：" + book_objectId);
+//        Log.e(TAG, "书本量、词汇量更新请求参数objectId：" + book_objectId);
         params.put("UserObjectId", objectId);
-        Log.e(TAG, "书本量、词汇量更新请求参数UserObjectId：" + objectId);
+//        Log.e(TAG, "书本量、词汇量更新请求参数UserObjectId：" + objectId);
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
 //第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
         ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
@@ -110,6 +114,14 @@ public class ReadingFinishingActivity extends BaseActivity {
     private void getUserID() {
         SharedPreferences pref = getSharedPreferences("userInformation", MODE_PRIVATE);
         objectId = pref.getString("userID", "");
+    }
+
+    private void updateLocalDatabase() {
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        UserLocal updateUserLocal = new UserLocal();
+        updateUserLocal.setCoin(userLocal.getCoin() + coin);
+        updateUserLocal.update(1);
+//        updateUserLocal.save();
     }
 }
 

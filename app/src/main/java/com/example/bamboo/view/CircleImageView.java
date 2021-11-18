@@ -1,4 +1,4 @@
-package com.example.bamboo.fragment.ui.adapter;
+package com.example.bamboo.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

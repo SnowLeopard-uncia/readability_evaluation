@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bamboo.R;
+import com.example.bamboo.Util.UserUtils;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookIntroduction;
 import com.example.bamboo.javaBean.UserLogin;
@@ -100,10 +101,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         String phone = et_user.getText().toString().trim();
         String password = et_password.getText().toString().trim();
 
-        if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(this, "手机号不能为空", Toast.LENGTH_SHORT).show();
+        if(TextUtils.isEmpty(phone)){
+            Toast.makeText(this, "手机号不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
+
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
             return;

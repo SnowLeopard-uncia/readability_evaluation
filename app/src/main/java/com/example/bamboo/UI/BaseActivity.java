@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.bamboo.R;
 
+import org.litepal.LitePal;
+
 import cn.bmob.v3.Bmob;
 
 public class BaseActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class BaseActivity extends AppCompatActivity {
 //        actionBar.hide();
         getWindow().setStatusBarColor(getColor(R.color.status_background));
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
+        LitePal.getDatabase();
     }
 
     public void initNavBar(boolean isShowBack, String titles) {

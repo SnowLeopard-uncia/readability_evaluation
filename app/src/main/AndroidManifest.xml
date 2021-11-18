@@ -4,6 +4,7 @@
     package="com.example.bamboo">
     <!-- 获取wifi网络状态的信息 -->
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
