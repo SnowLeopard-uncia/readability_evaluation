@@ -210,7 +210,7 @@ public class MainActivity extends BaseActivity {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+                    Log.e(TAG, "首页用户请求done: json：" + responseData);
                     parseJsonDataWithGson1(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -231,9 +231,10 @@ public class MainActivity extends BaseActivity {
             personList.add(personal);
 
             userLocal.setCoin(personal.getCoin());
+            Log.e(TAG, "首页后台返回金币：" + personal.getCoin());
             userLocal.setLevel(personal.getLevel());
-            userLocal.update(1);
-//            userLocal.save();
+//            userLocal.update(1);
+            userLocal.save();
 
 
         }

@@ -120,7 +120,7 @@ public class ReportsFragment extends Fragment {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+                    Log.e(TAG, "个人中心用户请求done: json：" + responseData);
                     parseJsonDataWithGson1(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -145,8 +145,10 @@ public class ReportsFragment extends Fragment {
             tv_level.setText("等级" + personal.getLevel());
             tv_book_num.setText(personal.getBooknum() + "");
             tv_word_num.setText(personal.getWordnum() + "");
+
             tv_coin_num.setText(personal.getCoin() + "");
 
+            Log.e(TAG, "个人中心后台返回金币：" + personal.getCoin());
 
             userLocal.setCoin(personal.getCoin());
             userLocal.setLevel(personal.getLevel());
