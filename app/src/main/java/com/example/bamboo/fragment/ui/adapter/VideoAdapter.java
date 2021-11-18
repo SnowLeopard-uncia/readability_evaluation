@@ -12,7 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bamboo.R;
 import com.example.bamboo.UI.VideoIntroductionActivity;
+import com.example.bamboo.javaBean.UserLocal;
 import com.example.bamboo.javaBean.VideoHome;
+
+import org.litepal.LitePal;
 
 import java.util.List;
 
@@ -21,7 +24,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View videoView;
-//        ImageView iv_book_bg;//用于测试
+        //        ImageView iv_book_bg;//用于测试
         ImageView iv_book_shape;
         ImageView iv_lock;
         TextView tv_level;
@@ -73,6 +76,26 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         holder.tv_level.setText(video.getVideoLevel());
         holder.tv_coin.setText("" + video.getVideoPrice());
         Glide.with(holder.videoView.getContext()).load(video.getPng()).into(holder.iv_book_shape);
+
+
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+
+        int userCoin = userLocal.getCoin();
+
+//        Log.e(TAG, "Adapter里面的userCoin: " +userCoin);
+        if (video.getVideoLevel().equals(userLocal.getLevel())) {
+            holder.iv_lock.setVisibility(View.INVISIBLE);
+            holder.iv_book_shape.setClickable(true);
+        }
+
+        if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin >= video.getVideoPrice()) {
+            holder.iv_lock.setVisibility(View.INVISIBLE);
+            holder.iv_book_shape.setClickable(true);
+        }
+        if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin < video.getVideoPrice()) {
+            holder.iv_lock.setVisibility(View.VISIBLE);
+            holder.iv_book_shape.setClickable(false);
+        }
 
     }
 

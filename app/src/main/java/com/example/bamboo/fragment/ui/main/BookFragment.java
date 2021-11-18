@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,6 @@ public class BookFragment extends Fragment {
 
 
         getResponseData();
-
 
 
 //        int position = gridLayoutManager.findFirstVisibleItemPosition();
@@ -86,6 +86,15 @@ public class BookFragment extends Fragment {
         View view = inflater.inflate(R.layout.frag_fragment_book, container, false);
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getResponseData();
+
+    }
+
 
     private void initRecyclerView() {
         recyclerView = getView().findViewById(R.id.recycler_view);
@@ -157,10 +166,6 @@ public class BookFragment extends Fragment {
 //        }
 //
 //    }
-
-
-
-
 
 
 }

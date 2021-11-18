@@ -38,7 +38,7 @@ public class VideoFragment extends Fragment {
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
 
-    public void onActivityCreated(Bundle savedInstanceState){
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         getResponseData();
@@ -48,7 +48,15 @@ public class VideoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_fragment_video,container,false);
+        return inflater.inflate(R.layout.frag_fragment_video, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getResponseData();
+
     }
 
     private void initRecyclerView() {

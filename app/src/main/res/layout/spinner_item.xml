@@ -14,7 +14,7 @@
         android:textColor="@color/person_level_text_color"
         />
 
-    <com.example.bamboo.fragment.ui.adapter.CircleImageView
+    <com.example.bamboo.view.CircleImageView
         android:id="@+id/iv_imageHead"
         android:layout_width="20dp"
         android:layout_height="20dp"

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bamboo.R;
+import com.example.bamboo.Util.UserUtils;
 import com.example.bamboo.javaBean.UserLogin;
 
 import androidx.annotation.RequiresApi;
@@ -69,9 +70,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 String confirmPassword = et_confirm_password.getText().toString();
                 String name = et_name.getText().toString();
 
-                if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(RegisterActivity.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
-                    return;
+                // 验证用户输入是否合法
+                if (!UserUtils.validateLogin(this, phone)){
+                    return ;
                 }
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(RegisterActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();

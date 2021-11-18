@@ -31,12 +31,14 @@ import com.example.bamboo.fragment.ui.main.SquareFragment;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookHome;
 import com.example.bamboo.javaBean.Personal;
+import com.example.bamboo.javaBean.UserLocal;
 import com.example.bamboo.javaBean.WordMenuList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -69,7 +71,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View bookView;
-//        ImageView iv_book_bg;//用于测试
+        //        ImageView iv_book_bg;//用于测试
         ImageView iv_book_shape;
         ImageView iv_lock;
         TextView tv_level;
@@ -123,6 +125,25 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         Glide.with(holder.bookView.getContext()).load(book.getCover_url()).into(holder.iv_book_shape);
 
 
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+
+        int userCoin = userLocal.getCoin();
+//        Log.e(TAG, "后台返回的Level: " +book.getLevel());
+//        Log.e(TAG, "Adapter里面的userLevel: " +userLocal.getLevel());
+        if (book.getLevel().equals(userLocal.getLevel())) {
+            holder.iv_lock.setVisibility(View.INVISIBLE);
+            holder.iv_book_shape.setClickable(true);
+        }
+
+        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin >= book.getGoldCoin()) {
+            holder.iv_lock.setVisibility(View.INVISIBLE);
+            holder.iv_book_shape.setClickable(true);
+        }
+        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin < book.getGoldCoin()) {
+            holder.iv_lock.setVisibility(View.VISIBLE);
+            holder.iv_book_shape.setClickable(false);
+        }
+
     }
 
     // 获取子项的个数
@@ -130,8 +151,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public int getItemCount() {
         return mBookList.size();
     }
-
-
 
 
 }
