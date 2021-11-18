@@ -181,10 +181,11 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                     seekBar.setTag(!mediaPlayer.isPlaying());
                     iv_play.setActivated(false);
                     mediaPlayer.pause();
-
-
+//此处逻辑要理清楚
                 }else {
-                    seekBar.setTag(false);
+                    mediaPlayer.start();
+                    mediaPlayer.pause();
+                    seekBar.setTag(true);
                 }
             }
 
@@ -313,11 +314,11 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.iv_play:
-
                 if(!mediaPlayer.isPlaying()){
 //                    startMusicService();
                     iv_play.setActivated(true);
@@ -359,7 +360,17 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
 //                    musicBind.stopMusic();
                     mediaPlayer.pause();
                 }
-
+                break;
+            case R.id.iv_last:
+                if (mediaPlayer != null){
+                    mediaPlayer.pause();
+                    mediaPlayer.reset();
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+                    mediaPlayer=null;
+                }
+                break;
+            case R.id.iv_next:
                 break;
             default:
                 break;

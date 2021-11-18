@@ -24,11 +24,12 @@
         android:text="@string/file_upload"
         android:textColor="@color/white"
         android:layout_marginBottom="@dimen/text_view_margin_bottom"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintBottom_toTopOf="@+id/ib_load_file"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"></TextView>
     <Button
         android:id="@+id/btn_file_score"
+        android:textColor="@color/white"
         android:layout_width="@dimen/btn_mark_width"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_btn_mark"
@@ -38,7 +39,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline17"></Button>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ib_load_file"
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
@@ -61,10 +62,10 @@
         app:layout_constraintTop_toTopOf="@+id/guideline15">
 
         <TextView
+            android:id="@+id/tv_file_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="@dimen/text_evaluation_padding"
-
             android:textSize="@dimen/edit_text_textSize" />
     </ScrollView>
 

@@ -62,6 +62,7 @@ private List<AudioList> mAudioLists = new ArrayList<>();
         BaseResponse<List<AudioList>> response = gson.fromJson(result, new TypeToken<BaseResponse<List<AudioList>>>() {
         }.getType());
         List<AudioList> audioLists = response.getResults();
+        mAudioLists.clear();
         mAudioLists.addAll(audioLists);
         initRecyclerView();
     }

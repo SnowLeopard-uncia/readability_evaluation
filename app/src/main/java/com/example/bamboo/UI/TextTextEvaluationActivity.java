@@ -128,7 +128,7 @@ public class TextTextEvaluationActivity extends BaseActivity {
 
 
     }
-    private String parseJsonDataWithGson(String jsonData) {
+    private  String parseJsonDataWithGson(String jsonData) {
         Gson gson = new Gson();
         TextResponse textResponse = gson.fromJson(jsonData, new TypeToken<TextResponse>() {
         }.getType());

@@ -31,13 +31,13 @@ import com.example.bamboo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import yalantis.com.sidemenu.model.SlideMenuItem;
+
 
 public class SquareFragment extends Fragment {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
-    private List<SlideMenuItem> slideMenuItems = new ArrayList<>();
+//    private List<SlideMenuItem> slideMenuItems = new ArrayList<>();
     private LinearLayout linearLayout;
     private Toolbar toolbar;
     private TextView toolbarTitle;
@@ -54,7 +54,7 @@ public class SquareFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initView();
         setActionBar();
-        createMenuList();
+//        createMenuList();
 
 
         FragmentManager fragmentManager = getChildFragmentManager();
@@ -253,17 +253,17 @@ public class SquareFragment extends Fragment {
         linearLayout.addView(view);
     }
 
-    private void createMenuList() {
-        SlideMenuItem menuItem0 = new SlideMenuItem("close", R.drawable.icn_close);
-        slideMenuItems.add(menuItem0);
-        SlideMenuItem menuItem1 = new SlideMenuItem("book", R.drawable.icn_book);
-        slideMenuItems.add(menuItem1);
-        SlideMenuItem menuItem2 = new SlideMenuItem("video", R.drawable.icn_video);
-        slideMenuItems.add(menuItem2);
-        SlideMenuItem menuItem3 = new SlideMenuItem("audio", R.drawable.icn_audio);
-        slideMenuItems.add(menuItem3);
-        SlideMenuItem menuItem4 = new SlideMenuItem("spanish", R.drawable.spanish);
-        slideMenuItems.add(menuItem4);
-    }
+//    private void createMenuList() {
+//        SlideMenuItem menuItem0 = new SlideMenuItem("close", R.drawable.icn_close);
+//        slideMenuItems.add(menuItem0);
+//        SlideMenuItem menuItem1 = new SlideMenuItem("book", R.drawable.icn_book);
+//        slideMenuItems.add(menuItem1);
+//        SlideMenuItem menuItem2 = new SlideMenuItem("video", R.drawable.icn_video);
+//        slideMenuItems.add(menuItem2);
+//        SlideMenuItem menuItem3 = new SlideMenuItem("audio", R.drawable.icn_audio);
+//        slideMenuItems.add(menuItem3);
+//        SlideMenuItem menuItem4 = new SlideMenuItem("spanish", R.drawable.spanish);
+//        slideMenuItems.add(menuItem4);
+//    }
 
 }

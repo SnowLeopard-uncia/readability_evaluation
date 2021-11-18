@@ -40,7 +40,8 @@
     <SeekBar
         android:id="@+id/musicSeekBar"
         android:layout_width="0dp"
-        style="@android:style/Widget.Holo.SeekBar"
+        style="@android:style/Widget.Holo.Light.SeekBar"
+        android:paddingHorizontal="0dp"
         android:layout_height="5dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
@@ -93,15 +94,17 @@
             android:text="Q"
             android:textColor="@color/white" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/tv_audio_start_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00:00"
-        android:textSize="@dimen/audio_duration_textSize"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:textColor="@color/white"
+        android:textSize="@dimen/audio_duration_textSize"
         app:layout_constraintBottom_toBottomOf="@+id/musicSeekBar"
-        app:layout_constraintEnd_toStartOf="@+id/musicSeekBar"
+        app:layout_constraintEnd_toStartOf="@+id/guideline32"
         app:layout_constraintTop_toTopOf="@+id/musicSeekBar" />
 
     <TextView
@@ -111,8 +114,9 @@
         android:text="00:03:00"
         android:textSize="@dimen/audio_duration_textSize"
         android:textColor="@color/white"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
         app:layout_constraintBottom_toBottomOf="@+id/musicSeekBar"
-        app:layout_constraintStart_toEndOf="@+id/musicSeekBar"
+       app:layout_constraintStart_toEndOf="@id/guideline33"
         app:layout_constraintTop_toTopOf="@+id/musicSeekBar" />
 
     <ScrollView
@@ -193,14 +197,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.20" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.80" />
 
     <include
         android:id="@+id/include4"

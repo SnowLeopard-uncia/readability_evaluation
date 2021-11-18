@@ -93,6 +93,7 @@ public class VideoFragment extends Fragment {
         BaseResponse<List<VideoHome>> responseVideoHomeList = gson.fromJson(jsonData, new TypeToken<BaseResponse<List<VideoHome>>>() {
         }.getType());
         List<VideoHome> dataResponseList = responseVideoHomeList.getResults();
+        videoList.clear();
         for (VideoHome videoHome : dataResponseList) {
             videoList.add(videoHome);
 //            Log.e(TAG, "parseJson: " + videoHome.getVideoID());

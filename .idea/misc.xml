@@ -77,31 +77,36 @@
         <entry key="..\:/Users/19761/AndroidStudioProjects/Bamboo/app/src/main/res/layout/fragment_text.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/19761/AndroidStudioProjects/Bamboo/app/src/main/res/layout/fragment_word.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/19761/AndroidStudioProjects/Bamboo/app/src/main/res/layout/tab_style.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_audio_list.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_audio_selector.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_btn_book_reading.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_btn_mark.xml" value="0.104296875" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_btn_upload.xml" value="0.104296875" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_btn_uploadway.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_edit_text.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_word_menu.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_word_menu_x.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/login_input_edit_shape.xml" value="0.1171875" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/menu_item_selector.xml" value="0.1171875" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/selector_btn_play.xml" value="0.1" />
-        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_audio.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_audio.xml" value="0.35014409221902015" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_base.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_choose_language.xml" value="0.12" />
-        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_file_load.xml" value="0.1" />
-        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_file_load.xml" value="0.2" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_login.xml" value="0.3715277777777778" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_path.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_photo_load.xml" value="0.112109375" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_reading_comprehension.xml" value="0.105078125" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_reading_finishing.xml" value="0.105078125" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_register.xml" value="0.134375" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_result_evaluation.xml" value="0.12" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_text_text_evaluation.xml" value="0.1" />
-        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_word_list.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_word_list.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/frag_fragment_audio.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/frag_fragment_book.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/frag_fragment_video.xml" value="0.1" />
-        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/fragment_report.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/fragment_report.xml" value="0.22" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/fragment_square.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/fragment_text.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/fragment_word.xml" value="0.105078125" />
@@ -110,10 +115,11 @@
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/item_choose_language.xml" value="0.13828125" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/item_drawer_list.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/item_word.xml" value="0.134375" />
-        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/item_word_menu_list.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/item_word_menu_list.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/nav_bar.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/tab_style.xml" value="0.110546875" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/menu/menu_main.xml" value="0.110546875" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/xml/file_paths.xml" value="0.1" />
       </map>
     </option>
   </component>
