@@ -15,21 +15,34 @@
         >
         <com.example.bamboo.view.CircleRelativeLayout
 
+            android:id="@+id/cr_word_level"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            circle:background_color="#67B8FF"
-            circle:background_alpha="100"
+            circle:background_alpha="0"
             android:layout_marginLeft="10dp"
             >
 
-            <TextView
-                android:id="@+id/tv_word_menu_level"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/A"
                 android:layout_centerInParent="true"
-                android:textSize="15sp" />
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="等级" />
+                <TextView
+                    android:id="@+id/tv_word_menu_level"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:text="@string/A"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
         </com.example.bamboo.view.CircleRelativeLayout>
 
 <!--        android:layout_centerInParent="true"-->
@@ -40,7 +53,9 @@
         android:layout_width="0dp"
         android:layout_height="90dp"
         android:layout_gravity="center"
-        android:layout_margin="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginVertical="20dp"
         android:layout_weight="3"
         android:background="@drawable/bg_edit_text"
         android:orientation="vertical"

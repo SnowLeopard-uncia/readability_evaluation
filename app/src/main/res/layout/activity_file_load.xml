@@ -29,6 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"></TextView>
     <Button
         android:id="@+id/btn_file_score"
+        android:textColor="@color/white"
         android:layout_width="@dimen/btn_mark_width"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_btn_mark"

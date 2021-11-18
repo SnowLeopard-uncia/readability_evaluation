@@ -58,6 +58,12 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
 //        holder.tv_wordTitle.setText(wordMenuList.getVocTitle());
         holder.tv_wordAge.setText(wordMenuList.getVocAge());
         holder.tv_wordAccount.setText(wordMenuList.getVocWordnum());
+        int itemBackGround = position % 2;
+        if (itemBackGround==0){
+            holder.crWordLevel.setBackgroundResource(R.drawable.bg_word_menu);
+        }else{
+            holder.crWordLevel.setBackgroundResource(R.drawable.bg_word_menu_x);
+        }
     }
 
     @Override
@@ -71,6 +77,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
         TextView tv_wordTitle;
         TextView tv_wordAccount;
         TextView tv_wordAge;
+        com.example.bamboo.view.CircleRelativeLayout crWordLevel;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +85,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
             tv_wordAccount=itemView.findViewById(R.id.tv_word_account);
             tv_wordLevel=itemView.findViewById(R.id.tv_word_menu_level);
 //            tv_wordTitle=itemView.findViewById(R.id.tv_word_list_title);
+            crWordLevel=itemView.findViewById(R.id.cr_word_level);
             tv_wordAge=itemView.findViewById(R.id.tv_suit_age_word);
         }
     }

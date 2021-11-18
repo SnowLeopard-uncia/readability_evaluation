@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    android:useLevel="false"
+    >
+
+    <size
+        android:height="@dimen/word_menu_circle"
+        android:width="@dimen/word_menu_circle" />
+    <gradient android:startColor="#89BA4F"
+        android:endColor="#40984A "
+        android:angle="0"
+        />
+</shape>
