@@ -50,4 +50,5 @@ public class HttpUtils {
         Log.e(TAG, "downloadUrl: "+request);
         client.newCall(request).enqueue(callback);
     }
+
 }

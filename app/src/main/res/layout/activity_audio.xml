@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/last"
+        android:paddingHorizontal="30dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline30"
         app:layout_constraintEnd_toStartOf="@+id/iv_play"
         app:layout_constraintTop_toTopOf="@+id/guideline30" />
@@ -20,8 +21,7 @@
         android:id="@+id/iv_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="30dp"
-        android:src="@drawable/play"
+        android:background="@drawable/selector_btn_play"
         app:layout_constraintBottom_toTopOf="@+id/guideline30"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
         app:layout_constraintStart_toStartOf="@+id/guideline31"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/next"
-
+        android:paddingHorizontal="30dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline30"
         app:layout_constraintStart_toEndOf="@+id/iv_play"
         app:layout_constraintTop_toTopOf="@+id/guideline30" />
@@ -40,10 +40,9 @@
     <SeekBar
         android:id="@+id/musicSeekBar"
         android:layout_width="0dp"
-
-        android:layout_height="3dp"
-        android:max="100"
-        android:progress="50"
+        style="@android:style/Widget.Holo.SeekBar"
+        android:layout_height="5dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintEnd_toStartOf="@+id/guideline33"
         app:layout_constraintStart_toStartOf="@+id/guideline32"
@@ -95,9 +94,11 @@
             android:textColor="@color/white" />
     </LinearLayout>
     <TextView
+        android:id="@+id/tv_audio_start_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:00:00"
+        android:text="00:00"
+        android:textSize="@dimen/audio_duration_textSize"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/musicSeekBar"
         app:layout_constraintEnd_toStartOf="@+id/musicSeekBar"
@@ -108,6 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00:03:00"
+        android:textSize="@dimen/audio_duration_textSize"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/musicSeekBar"
         app:layout_constraintStart_toEndOf="@+id/musicSeekBar"
@@ -117,6 +119,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/guideline29"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="spread"
@@ -128,6 +131,7 @@
             android:id="@+id/tv_audio_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="暂无歌词"
             android:textColor="@color/white"
             />
@@ -160,7 +164,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.29" />
+        app:layout_constraintGuide_percent="0.26" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline29"
@@ -189,14 +193,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.18" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.83" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <include
         android:id="@+id/include4"

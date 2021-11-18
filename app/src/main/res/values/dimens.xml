@@ -24,5 +24,5 @@
     <dimen name="navBarHeight">70dp</dimen>
     <dimen name="img_sliding_menu_padding">20dp</dimen>
     <dimen name="audio_item_margin">10dp</dimen>
-
+<dimen name="audio_duration_textSize">10sp</dimen>
 </resources>

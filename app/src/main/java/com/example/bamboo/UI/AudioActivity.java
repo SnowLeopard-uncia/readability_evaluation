@@ -1,28 +1,31 @@
 package com.example.bamboo.UI;
 
 import static android.content.ContentValues.TAG;
+import static android.widget.Toast.LENGTH_SHORT;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.IBinder;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bamboo.R;
 import com.example.bamboo.Util.HttpUtils;
@@ -30,6 +33,7 @@ import com.example.bamboo.Util.LrcParser;
 import com.example.bamboo.javaBean.Audio;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.LrcInfo;
+import com.example.bamboo.service.MusicService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -74,7 +78,13 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
     private TextView tv_singer;
     private TextView tv_duration;
     private TextView tv_level;
-
+    private String lrcWord="";
+    private TextView tv_audio_content;
+    private TextView tv_audio_start_duration;
+    private Intent mServiceIntent;
+    private boolean isBindService;
+    private MusicService.MusicBind musicBind;
+    private int temp =0;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -91,6 +101,8 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
 
     }
 
+
+
     private void initMediaPlayer(String url) throws IOException {
         if (url != null){
              uri = Uri.parse(url);
@@ -101,6 +113,20 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
         mediaPlayer.prepare();//进入准备状态
 
     }
+
+
+    @SuppressLint("SetTextI18n")
+    public void initTotalTime(){
+        int time =mediaPlayer.getDuration();
+        int second = time /1000;
+        if (second >=10){
+            tv_audio_start_duration.setText("00:" + second);
+        }else {
+            tv_audio_start_duration.setText("00:" +"0" + second);
+        }
+//        musicSeekBar.setMax(second);
+    }
+
 
     private void dataFromAudioList() throws JSONException {
         Intent intent = getIntent();
@@ -120,13 +146,94 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
         tv_level=findViewById(R.id.tv_audio_level);
         tv_singer=findViewById(R.id.tv_singer);
         tv_duration=findViewById(R.id.tv_audio_duration);
-
-
+tv_audio_content=findViewById(R.id.tv_audio_content);
+        tv_audio_start_duration=findViewById(R.id.tv_audio_start_duration);
 
         iv_play.setOnClickListener(this);
         iv_last.setOnClickListener(this);
         iv_next.setOnClickListener(this);
 
+        musicSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                if(i<60000){
+                    if (i >=10000){
+                        tv_audio_start_duration.setText("00:" + i/1000);
+
+                    }else {
+                        tv_audio_start_duration.setText("00:0" + i/1000);
+                    }
+                }else{
+                    int sec = i/1000 %60;
+                    if(sec<10){
+                        tv_audio_start_duration.setText("0"+i/60000+":"+"0"+sec);
+                    }else{
+                        tv_audio_start_duration.setText("0"+i/60000+":"+sec);
+                    }
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                if (mediaPlayer.isPlaying()){
+                    seekBar.setTag(!mediaPlayer.isPlaying());
+                    iv_play.setActivated(false);
+                    mediaPlayer.pause();
+
+
+                }else {
+                    seekBar.setTag(false);
+                }
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int dest = seekBar.getProgress();
+                int time = mediaPlayer.getDuration();
+                int max = seekBar.getMax();
+//                mediaPlayer.seekTo(time*dest/max);
+
+                if (!(boolean)seekBar.getTag()){
+                    iv_play.setActivated(true);
+                    mediaPlayer.seekTo(seekBar.getProgress());
+//                    mediaPlayer.seekTo(dest*1000);
+                    mediaPlayer.start();
+                    Log.i("MediaPlayer", "onStopTrackingTouch: " +mediaPlayer.getCurrentPosition());
+
+                    timer = new Timer();
+                    timerTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (mediaPlayer != null && temp==0) {
+                                if (mediaPlayer.isPlaying()) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+                                        }
+                                    });
+                                }
+                            }else{
+                                if (mediaPlayer != null){
+                                    mediaPlayer.pause();
+//                                    mediaPlayer.reset();
+//                                    mediaPlayer.stop();
+//                                    mediaPlayer.release();
+//                                    mediaPlayer=null;
+                                }
+                            }
+                        }
+                    };
+                    timer.schedule(timerTask, 0, 1000);
+
+                }else {
+                    mediaPlayer.seekTo(seekBar.getProgress());
+                }
+
+            }
+        });
 
     }
     private void getDataFromResponse() throws JSONException {
@@ -210,46 +317,70 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.iv_play:
+
                 if(!mediaPlayer.isPlaying()){
+//                    startMusicService();
+                    iv_play.setActivated(true);
                     mediaPlayer.start(); //开始播放
                     musicSeekBar.setMax(mediaPlayer.getDuration());
-                }
-                timer = new Timer();
-//                if (timer != null) {
-//                    timer = null;
-//                    timerTask = null;
-//                }
-                timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (mediaPlayer != null) {
-                            if (mediaPlayer.isPlaying()) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        ClipDrawable drawable = new ClipDrawable(new ColorDrawable(0x40616ff9), Gravity.START, ClipDrawable.HORIZONTAL);
-                                        musicSeekBar.setProgressDrawable(drawable);
-                                        musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
-                                    }
-                                });
+
+                    if (timer != null) {
+                        timer = null;
+                        timerTask = null;
+                    }
+                    timer = new Timer();
+                    timerTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (mediaPlayer != null && temp==0) {
+                                if (mediaPlayer.isPlaying()) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+                                        }
+                                    });
+                                }
+                            }else{
+                                if (mediaPlayer != null){
+                                    mediaPlayer.pause();
+//                                    mediaPlayer.reset();
+//                                    mediaPlayer.stop();
+//                                    mediaPlayer.release();
+//                                    mediaPlayer=null;
+                                }
+
                             }
                         }
-                    }
-                };
-                timer.schedule(timerTask, 0, 1000);
+                    };
+                    timer.schedule(timerTask, 0, 1000);
+                }else{
+                    iv_play.setActivated(false);
+//                    musicBind.stopMusic();
+                    mediaPlayer.pause();
+                }
+
                 break;
             default:
                 break;
         }
     }
 
+    //如果不在销毁的时候释放资源，就会重放√
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        temp=1;
         if (mediaPlayer != null){
+            mediaPlayer.reset();
             mediaPlayer.stop();
             mediaPlayer.release();
+            mediaPlayer=null; //设置为null释放内存
+            //mediaplayer在播放中途没有播放完退出会IllegalStateExceptionat
+            //stop called in state 1, mPlayer(0x0)
+            //    error (-38, 0)
         }
+        super.onDestroy();
+
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -262,7 +393,7 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
             try {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
 //                    filePath=Environment.getExternalStorageDirectory().getAbsolutePath();
-                    filePath=getApplicationContext().getExternalFilesDir(null).getAbsolutePath(); //解决了一个安卓10的问题！
+                    filePath=getApplicationContext().getExternalFilesDir(null).getAbsolutePath(); //解决了一个安卓11的问题！
 
 
                 }else {
@@ -281,7 +412,6 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
                     }
                     fileOutputStream.flush();
                 }
-
                 lrcPath=filePath+"/"+audioName+".lrc";
                 Log.e(TAG, "onResponse: "+"文件下载完成："+filePath+"   "+lrcPath );
 
@@ -289,7 +419,17 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
                 String path =lrcPath;
                 try {
                     LrcInfo lrcInfo =lrcParser.parser(path);
-                    Log.e(TAG, "doInBackground: "+lrcInfo.getArtist() );
+//                    Log.e(TAG, "doInBackground: "+lrcInfo.getArtist());
+                    for (Object value:lrcInfo.getInfo().values()){
+//                        Log.e(TAG, "doInBackground: value"+value);
+                        lrcWord=lrcWord+value+"\n";
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tv_audio_content.setText(lrcWord);
+                        }
+                    });
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -312,6 +452,37 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
             Log.e(TAG, "onPostExecute: "+"下载结束" );
         }
     }
+//启动音乐服务
+    private void startMusicService(){
+        //启动service
+        if (mServiceIntent == null){
+            mServiceIntent=new Intent(AudioActivity.this, MusicService.class);
+            this.startService(mServiceIntent);
+        }
+        //绑定service
+        if (!isBindService){
+            isBindService=true;
+            this.bindService(mServiceIntent,conn, Context.BIND_AUTO_CREATE);
+        }
+        //解除绑定 ， 如果绑定
 
+    }
+    public void destory(){
+        if (isBindService){
+            isBindService=false;
+            this.unbindService(conn);
+        }
+    }
+    ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            musicBind = (MusicService.MusicBind)iBinder;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
 
 }
