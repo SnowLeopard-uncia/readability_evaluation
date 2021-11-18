@@ -90,6 +90,7 @@ public class WordFragment extends Fragment {
         Gson gson = new Gson();
         BaseResponse<List<WordMenuList>> responseWordMenuList = gson.fromJson(jsonData,new TypeToken<BaseResponse<List<WordMenuList>>>(){}.getType());
         List<WordMenuList> dataResponseList= responseWordMenuList.getResults();
+        wordMenuLists.clear();
         for (WordMenuList wordMenuList:dataResponseList){
             wordMenuLists.add(wordMenuList);
 //            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getCreatedAt());

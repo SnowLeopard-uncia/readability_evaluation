@@ -49,6 +49,8 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
     private List<UserRegister> userList = new ArrayList<>();
     private List<String> strArray = new ArrayList<>();
     private List<String> chineseList = new ArrayList<>();
+    private int mCurrentPosition=0;
+    private String mLanguage="";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -77,9 +79,24 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
             imageView.setBackgroundResource(imgArray[i]);
         }
 //        ViewPaperAdapter viewPaperAdapter = new ViewPaperAdapter(this, DataUtil.getViewpagerInfo(this,imgArray,strArray));
-//        ViewPaperAdapter viewPaperAdapter = new ViewPaperAdapter(this,mPages);
         ChooseAdapter viewPaperAdapter = new ChooseAdapter(this,strArray,chineseList,imgArray);
         chooseViewPager.setAdapter(viewPaperAdapter);
+
+        chooseViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mCurrentPosition=position;
+                Log.e(TAG, "onPageSelected: "+mCurrentPosition);
+
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
 
     @Override
@@ -98,6 +115,11 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
     }
 
     private void doRegister() throws JSONException {
+        if (mCurrentPosition==0){
+            mLanguage="English";
+        }else{
+            mLanguage="Spanish";
+        }
         Bundle bundle = getIntent().getExtras();
         String phone = (String) bundle.get("mobilePhoneNumber");
         String password = (String) bundle.get("password");
@@ -110,7 +132,7 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
         params.put("mobilePhoneNumber", phone);
         params.put("password", password);
         params.put("username", name);
-        params.put("language", "English");
+        params.put("language", mLanguage);
         params.put("level", grade);
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
 //第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）

@@ -55,6 +55,11 @@ public class ChooseAdapter extends PagerAdapter {
     }
 
     @Override
+    public int getItemPosition(@NonNull Object object) {
+        return getItemPosition(object);
+    }
+
+    @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
 //        super.destroyItem(container, position, object);
         //移除视图
