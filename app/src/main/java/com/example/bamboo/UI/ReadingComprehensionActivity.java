@@ -141,7 +141,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
             case R.id.btn_answerA:
 //                correct = false;
                 initButton();
-                btn_answerA.setBackgroundResource(R.drawable.option_select);
+
                 select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("a")) {
                     iv_answerA.setBackgroundResource(R.drawable.correct);
@@ -150,12 +150,12 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                     iv_answerA.setBackgroundResource(R.drawable.incorrect);
                     correct = false;
                 }
-
+                btn_answerA.setBackgroundResource(R.drawable.option_select);
                 break;
             case R.id.btn_answerB:
 //                correct = false;
                 initButton();
-                btn_answerB.setBackgroundResource(R.drawable.option_select);
+
                 select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("b")) {
                     iv_answerB.setBackgroundResource(R.drawable.correct);
@@ -164,6 +164,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                     iv_answerB.setBackgroundResource(R.drawable.incorrect);
                     correct = false;
                 }
+                btn_answerB.setBackgroundResource(R.drawable.option_select);
                 break;
             case R.id.btn_answerC:
 //                correct = false;
@@ -209,7 +210,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+//                    Log.e(TAG, "done: json：" + responseData);
                     parseJsonDataWithGson(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());

@@ -84,25 +84,25 @@ public class LrcParser {
         //获取歌曲名信息
         if(line.startsWith("[ti:")){
             String title =line.substring(4,line.length()-1);
-            Log.i("","title-->"+title);
+//            Log.i("","title-->"+title);
             lrcinfo.setTitle(title);
         }
         //取得歌手信息
         else if(line.startsWith("[ar:")){
             String artist = line.substring(4, line.length()-1);
-            Log.i("","artist-->"+artist);
+//            Log.i("","artist-->"+artist);
             lrcinfo.setArtist(artist);
         }
         //取得专辑信息
         else if(line.startsWith("[al:")){
             String album =line.substring(4, line.length()-1);
-            Log.i("","album-->"+album);
+//            Log.i("","album-->"+album);
             lrcinfo.setAlbum(album);
         }
         //取得歌词制作者
         else if(line.startsWith("[by:")){
             String bysomebody=line.substring(4, line.length()-1);
-            Log.i("","by-->"+bysomebody);
+//            Log.i("","by-->"+bysomebody);
             lrcinfo.setBySomeBody(bysomebody);
         }
         //通过正则表达式取得每句歌词信息
@@ -154,7 +154,7 @@ public class LrcParser {
     }
     private long str2Long(String timeStr){
         //将时间格式为xx:xx.xx，返回的long要求以毫秒为单位
-        Log.i("","timeStr="+timeStr);
+//        Log.i("","timeStr="+timeStr);
         String[] s = timeStr.split("\\:");
         int min = Integer.parseInt(s[0]);
         int sec=0;
@@ -163,10 +163,10 @@ public class LrcParser {
             String[] ss=s[1].split("\\.");
             sec =Integer.parseInt(ss[0]);
             mill=Integer.parseInt(ss[1]);
-            Log.i("","s[0]="+s[0]+"s[1]"+s[1]+"ss[0]="+ss[0]+"ss[1]="+ss[1]);
+//            Log.i("","s[0]="+s[0]+"s[1]"+s[1]+"ss[0]="+ss[0]+"ss[1]="+ss[1]);
         }else{
             sec=Integer.parseInt(s[1]);
-            Log.i("","s[0]="+s[0]+"s[1]"+s[1]);
+//            Log.i("","s[0]="+s[0]+"s[1]"+s[1]);
         }
         return min*60*1000+sec*1000+mill*10;
     }

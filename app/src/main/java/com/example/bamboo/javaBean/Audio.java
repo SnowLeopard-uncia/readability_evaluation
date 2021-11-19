@@ -10,6 +10,15 @@ public class Audio {
     private String singer;
     private String lrcPath;
     private String mp3Path;
+    private Boolean isLocked;
+
+    public Boolean getLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(Boolean locked) {
+        isLocked = locked;
+    }
 
     public String getDuration() {
         return duration;

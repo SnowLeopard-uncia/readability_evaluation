@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.bamboo">
-    <!-- 获取wifi网络状态的信息 -->
+    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -14,6 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".UI.AudioDialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:exported="true" />
         <activity
             android:name=".UI.PathActivity"
             android:exported="true" />
@@ -77,24 +81,21 @@
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
             android:authorities="com.example.bamboo.BmobContentProvider" />
-
         <provider
-            android:authorities="com.example.bamboo.UI.FileLoadEvaluationActivity.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.bamboo.UI.FileLoadEvaluationActivity.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true"
-            >
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"
-                />
-
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
         </provider>
+
         <service
             android:name=".service.MusicService"
             android:enabled="true"
             android:exported="true" />
-    </application> <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 获取sd卡写的权限，用于文件上传和下载 -->
+    </application> <!-- 获取sd卡写的权限，用于文件上传和下载 -->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" /> <!-- 允许读取手机状态 用于创建BmobInstallation -->
@@ -105,7 +106,8 @@
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 </manifest>

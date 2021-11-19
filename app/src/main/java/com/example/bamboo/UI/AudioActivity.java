@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.example.bamboo.R;
 import com.example.bamboo.Util.HttpUtils;
 import com.example.bamboo.Util.LrcParser;
+import com.example.bamboo.fragment.ui.adapter.AudioListAdapter;
 import com.example.bamboo.javaBean.Audio;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.LrcInfo;
@@ -44,6 +45,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -74,6 +76,8 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
     private  TimerTask timerTask=null;
     private String duration;
     private String singer;
+    private int mPosition;
+    private int mMaxPosition;
     private TextView tv_title;
     private TextView tv_singer;
     private TextView tv_duration;
@@ -85,7 +89,8 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
     private boolean isBindService;
     private MusicService.MusicBind musicBind;
     private int temp =0;
-
+//    private int visibility;
+    private ArrayList<Integer> mIsLockList;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +138,12 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
         Bundle data = intent.getExtras();
         audioId=data.getString("musicSelectedID");
         audioName = data.getString("musicName");
+        mPosition=data.getInt("position");
+        mMaxPosition=data.getInt("maxPosition");
+        mIsLockList=data.getIntegerArrayList("isLockList");
+//        visibility=data.getInt("visibility");
+
+        Log.e(TAG, "dataFromAudioList: "+mPosition +"   "+mMaxPosition);
         getDataFromResponse();
     }
 
@@ -162,7 +173,6 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                 if(i<60000){
                     if (i >=10000){
                         tv_audio_start_duration.setText("00:" + i/1000);
-
                     }else {
                         tv_audio_start_duration.setText("00:0" + i/1000);
                     }
@@ -175,7 +185,6 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                     }
                 }
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 if (mediaPlayer.isPlaying()){
@@ -259,7 +268,6 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                 }
             }
         });
-
     }
 
     private void parseJsonDataWithGson(String result) throws IOException {
@@ -298,7 +306,6 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                             AudioActivity.this.requestPermissions(permissions, REQUEST_CODE_CONTACT);
                             return;
                         } else {
-
                             //这里就是权限打开之后自己要操作的逻辑
                              inputStream = response.body().byteStream();
                             new DownTask().execute();
@@ -363,10 +370,19 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                     mediaPlayer.pause();
                 }
                 break;
+
+
             case R.id.iv_last:
-            if (audioId.equals("1001")){
+            if (mPosition==0){
                 Toast.makeText(getApplicationContext(),"这是第一首", LENGTH_SHORT).show();
-            }else{
+            }else if (mIsLockList.get(mPosition-1)==1){
+                Toast.makeText(getApplicationContext(),"金币数量不足", LENGTH_SHORT).show();
+                Log.e(TAG, "onClick: "+mPosition );
+                for (int i = 0; i < mIsLockList.size(); i++) {
+                    Log.e(TAG, "onClick: "+mIsLockList.get(i)+"   "+i );
+                }
+            }
+            else{
                 temp=1;
                 if (mediaPlayer != null){
                     mediaPlayer.pause();
@@ -389,9 +405,18 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
             }
                 break;
             case R.id.iv_next:
-                if (audioId.equals("1065")){
+                if (mPosition==(mMaxPosition-1)){
                     Toast.makeText(getApplicationContext(),"这是最后一首", LENGTH_SHORT).show();
-                }else{
+                }else if (mIsLockList.get(mPosition+1)==1){
+                    Toast.makeText(getApplicationContext(),"金币数量不足", LENGTH_SHORT).show();
+                    Log.e(TAG, "onClick: "+mPosition );
+                    for (int i = 0; i < mIsLockList.size(); i++) {
+                        Log.e(TAG, "onClick: "+mIsLockList.get(i)+"   "+i );
+                    }
+
+                }
+                else{
+
                     temp=1;
                     if (mediaPlayer != null){
                         mediaPlayer.pause();

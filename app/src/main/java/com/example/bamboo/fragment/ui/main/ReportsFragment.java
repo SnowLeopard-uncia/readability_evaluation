@@ -161,6 +161,7 @@ public class ReportsFragment extends Fragment {
 //                userLocal.update(1);
             }
             else{
+                userLocal=new UserLocal();
                 userLocal.setCoin(personal.getCoin());
                 userLocal.setLevel(personal.getLevel());
                 userLocal.save(); //用save可以，初次

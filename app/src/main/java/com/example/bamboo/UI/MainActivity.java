@@ -238,6 +238,7 @@ public class MainActivity extends BaseActivity {
 //                userLocal.update(1);
             }
             else{
+                userLocal=new UserLocal();
                 userLocal.setCoin(personal.getCoin());
                 userLocal.setLevel(personal.getLevel());
                 userLocal.save(); //用save可以，初次

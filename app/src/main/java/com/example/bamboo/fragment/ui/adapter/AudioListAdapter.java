@@ -18,24 +18,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bamboo.R;
 import com.example.bamboo.UI.AudioActivity;
+import com.example.bamboo.UI.AudioDialogActivity;
 import com.example.bamboo.javaBean.AudioList;
+import com.example.bamboo.javaBean.UserLocal;
 
-import org.json.JSONObject;
+import org.litepal.LitePal;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import cn.bmob.v3.AsyncCustomEndpoints;
-import cn.bmob.v3.Bmob;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.CloudCodeListener;
 
 public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.ViewHolder> {
     private List<AudioList> mAudioList;
-    private int mposition = -1;
+    private ArrayList<Integer> mIsLockList=new ArrayList<>();
+    private int mPosition = -1;
     public AudioListAdapter(List<AudioList> mAudioList) {
         this.mAudioList = mAudioList;
     }
 
+
+    public void lockList(){
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        int userCoin = userLocal.getCoin();
+        for (int i = 0; i < mAudioList.size(); i++) {
+            int isLock=0;
+            AudioList audioList = mAudioList.get(i);
+            if ((!audioList.getLevel().equals(userLocal.getLevel())) && userCoin < audioList.getResourceCoin()) {
+                isLock=1;
+            }
+            mIsLockList.add(isLock);
+        }
+    }
 
     @NonNull
     @Override
@@ -45,24 +57,38 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
         final ViewHolder holder = new ViewHolder(view);
 
         holder.audioItemView.setOnClickListener((v -> {
-            mposition = holder.getAdapterPosition();
-            AudioList audioList = mAudioList.get(mposition);
+            UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+            int userCoin = userLocal.getCoin();
+
+            mPosition = holder.getAdapterPosition();
+            AudioList audioList = mAudioList.get(mPosition);
             holder.audioItemView.setVisibility(View.VISIBLE);
             //在点击监听里最好写入setVisibility(View.VISIBLE);这样可以避免效果会闪
             notifyDataSetChanged();
             //刷新界面 notify 通知Data 数据set设置Changed变化
             //在这里运行notifyDataSetChanged 会导致下面的onBindViewHolder 重新加载一遍
             Context context = v.getContext();
-            Intent intent = new Intent(context, AudioActivity.class);
+            Intent intent;
+//            int visibility = holder.iv_lock.getVisibility();
+            if ((!audioList.getLevel().equals(userLocal.getLevel())) && userCoin < audioList.getResourceCoin()) {
+                intent = new Intent(context, AudioDialogActivity.class);
+            }
+            else{
+            lockList();
+            intent = new Intent(context, AudioActivity.class);
             Bundle bundle = new Bundle();
+//            bundle.putInt("visibility",visibility);
+            bundle.putIntegerArrayList("isLockList",mIsLockList);
             bundle.putString("musicSelectedID",String.valueOf(audioList.getId()));
             bundle.putString("musicName",audioList.getName());
+            bundle.putInt("position", mPosition);
+            bundle.putInt("maxPosition",getItemCount());
             intent.putExtras(bundle);
+            }
             context.startActivity(intent);
         }));
         return holder;
     }
-
 
     //    public final int[] colors = new int[]{R.color.transparent,R.color.transparent};
     @SuppressLint("SetTextI18n")
@@ -73,6 +99,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
     holder.tv_audioId.setText(""+audioList.getId());
     holder.tv_audioName.setText(audioList.getName());
     holder.tv_audioLevel.setText(""+audioList.getLevel());
+    holder.tvAudioCoin.setText(""+audioList.getResourceCoin());
 
     int itemBackGround = position % 2;
     if (itemBackGround==0){
@@ -80,12 +107,26 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
     }
 //        onBindViewHolder 方法可能是在class里for添加了其他视图
 //        引入mposition与当前的position判断，判断在点击的位置上显示打勾图片，在其他位置上不显示打勾
-        if (position == mposition){
+        if (position == mPosition){
             holder.iv_playing.setVisibility(View.VISIBLE);
         }else{
             holder.iv_playing.setVisibility(View.INVISIBLE);
         }
 
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        int userCoin = userLocal.getCoin();
+        //如果等级一样，就设置锁不可见
+        if (audioList.getLevel().equals(userLocal.getLevel())) {
+            holder.iv_lock.setVisibility(View.INVISIBLE);
+        }
+        //如果等级不一样，用户金币比列表的金币多，锁不可见
+        if ((!audioList.getLevel().equals(userLocal.getLevel())) && userCoin >= audioList.getResourceCoin()) {
+            holder.iv_lock.setVisibility(View.INVISIBLE);
+        }
+        //如果用户等级和列表等级不一样，金币数比资源小，锁可见
+        if ((!audioList.getLevel().equals(userLocal.getLevel())) && userCoin < audioList.getResourceCoin()) {
+            holder.iv_lock.setVisibility(View.VISIBLE);
+        }
     }
         //解决滑动隔行颜色错乱
     @Override
@@ -105,6 +146,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
         TextView tv_audioName;
         TextView tv_audioLevel;
         ImageView iv_lock;
+        TextView tvAudioCoin;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -114,6 +156,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
             tv_audioName=itemView.findViewById(R.id.tv_audio_name);
             tv_audioLevel=itemView.findViewById(R.id.tv_audio_level);
             iv_lock=itemView.findViewById(R.id.iv_lock);
+            tvAudioCoin=itemView.findViewById(R.id.tv_audio_coin);
         }
     }
 

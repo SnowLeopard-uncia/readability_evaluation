@@ -77,7 +77,7 @@ public class VideoFragment extends Fragment {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+//                    Log.e(TAG, "done: json：" + responseData);
                     parseJsonDataWithGson(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
