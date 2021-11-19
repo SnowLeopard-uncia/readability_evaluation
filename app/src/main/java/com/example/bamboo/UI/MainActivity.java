@@ -229,7 +229,7 @@ public class MainActivity extends BaseActivity {
         List<Personal> dataResponseList = responsePersonalList.getResults();
         for (Personal personal : dataResponseList) {
             personList.add(personal);
-//            userLocal.update(1);
+
             UserLocal userLocal = LitePal.findFirst(UserLocal.class);
             if (userLocal!=null){
                 userLocal.setCoin(personal.getCoin());

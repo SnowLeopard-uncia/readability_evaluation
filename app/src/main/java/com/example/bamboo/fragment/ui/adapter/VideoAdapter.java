@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View videoView;
-        //        ImageView iv_book_bg;//用于测试
         ImageView iv_book_shape;
         ImageView iv_lock;
         TextView tv_level;
@@ -35,7 +35,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             super(view);
             videoView = view;
             iv_book_shape = (ImageView) view.findViewById(R.id.iv_book_shape);
-//            iv_book_bg = (ImageView) view.findViewById(R.id.iv_book_bg);//用于测试
             iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
             tv_level = view.findViewById(R.id.tv_level);
             tv_coin = view.findViewById(R.id.tv_coin);
@@ -61,6 +60,20 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 VideoHome video = mVideoList.get(position);
+
+                UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+                if (userLocal == null){
+                    userLocal=new UserLocal();
+                    userLocal.setCoin(0);
+                    userLocal.setLevel("A");
+                    userLocal.save();
+                }
+                int userCoin = userLocal.getCoin();
+                if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin < video.getVideoPrice()) {
+                    Toast.makeText(v.getContext(), "金币不足",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Intent intent = new Intent(v.getContext(), VideoIntroductionActivity.class);
                 intent.putExtra("videoID", video.getVideoID());
                 v.getContext().startActivity(intent);
@@ -79,22 +92,23 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
 
         UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-
+        if (userLocal == null){
+            userLocal=new UserLocal();
+            userLocal.setCoin(0);
+            userLocal.setLevel("A");
+            userLocal.save();
+        }
         int userCoin = userLocal.getCoin();
 
-//        Log.e(TAG, "Adapter里面的userCoin: " +userCoin);
         if (video.getVideoLevel().equals(userLocal.getLevel())) {
             holder.iv_lock.setVisibility(View.INVISIBLE);
-            holder.iv_book_shape.setClickable(true);
         }
 
         if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin >= video.getVideoPrice()) {
             holder.iv_lock.setVisibility(View.INVISIBLE);
-            holder.iv_book_shape.setClickable(true);
         }
         if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin < video.getVideoPrice()) {
             holder.iv_lock.setVisibility(View.VISIBLE);
-            holder.iv_book_shape.setClickable(false);
         }
 
     }

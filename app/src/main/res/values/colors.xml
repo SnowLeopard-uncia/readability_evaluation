@@ -27,5 +27,6 @@
     <color name="person_level_text_color">#575757</color>
     <color name="person_text_color">#2E6DC0</color>
     <color name="language_choose_text">#ffe400</color>
+    <color name="chart_text_color">#707070</color>
 
 </resources>

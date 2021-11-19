@@ -73,7 +73,6 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="3dp"
                 android:src="@drawable/node" />
 
@@ -91,6 +90,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_toPath"
         android:layout_width="80dp"
         android:layout_height="22dp"
         android:background="@drawable/bg_btn_mark"
@@ -291,12 +291,51 @@
     <ImageView
         android:layout_width="318.33dp"
         android:layout_height="215dp"
-        android:src="@drawable/bg_personal"
+        android:src="@drawable/bg_chart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.720" />
+        app:layout_constraintVertical_bias="0.770" />
 
+    <TextView
+        android:id="@+id/tv_personal_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A"
+        android:textColor="@color/chart_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.400"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.814" />
+
+    <TextView
+        android:id="@+id/tv_next_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B"
+        android:textColor="@color/chart_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.540"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.814" />
+
+    <TextView
+        android:id="@+id/tv_coin_need"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="距离升级还需：100金币"
+        android:textSize="10sp"
+        android:textColor="@color/chart_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.708"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.620" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

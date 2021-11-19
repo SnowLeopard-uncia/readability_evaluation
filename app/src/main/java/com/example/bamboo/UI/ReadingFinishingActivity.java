@@ -116,11 +116,9 @@ public class ReadingFinishingActivity extends BaseActivity {
 
     private void updateLocalDatabase() {
         UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-//        UserLocal updateUserLocal = new UserLocal();
         userLocal.setCoin(userLocal.getCoin() + coin);
 //        updateUserLocal.update(1);
         userLocal.updateAll();
-//        updateUserLocal.save();
     }
 }
 
