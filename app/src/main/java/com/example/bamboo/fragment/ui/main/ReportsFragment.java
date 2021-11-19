@@ -141,7 +141,7 @@ public class ReportsFragment extends Fragment {
         for (Personal personal : dataResponseList) {
             personList.add(personal);
 
-            tv_name.setText(personal.getUsername());
+            tv_name.setText(personal.getNickname());
             tv_level.setText("等级" + personal.getLevel());
             tv_book_num.setText(personal.getBooknum() + "");
             tv_word_num.setText(personal.getWordnum() + "");

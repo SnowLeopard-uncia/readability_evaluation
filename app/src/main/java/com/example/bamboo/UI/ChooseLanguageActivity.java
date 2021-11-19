@@ -131,7 +131,7 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
         JSONObject params = new JSONObject();
         params.put("mobilePhoneNumber", phone);
         params.put("password", password);
-        params.put("username", name);
+        params.put("nickname", name);
         params.put("language", mLanguage);
         params.put("level", grade);
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
