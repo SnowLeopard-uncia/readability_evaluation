@@ -37,6 +37,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
 
 
     public void lockList(){
+        mIsLockList.clear();
         UserLocal userLocal = LitePal.findFirst(UserLocal.class);
         int userCoin = userLocal.getCoin();
         for (int i = 0; i < mAudioList.size(); i++) {

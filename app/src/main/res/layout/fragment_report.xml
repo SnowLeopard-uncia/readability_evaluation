@@ -250,6 +250,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_open_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -265,8 +266,8 @@
 
                 <Spinner
                     android:id="@+id/rank_spinner"
-                    android:layout_width="8.67dp"
-                    android:layout_height="4dp"
+                    android:layout_width="12dp"
+                    android:layout_height="7dp"
                     android:layout_marginTop="10.68dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/rank_spinner"

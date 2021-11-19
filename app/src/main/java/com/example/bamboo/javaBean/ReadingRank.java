@@ -7,7 +7,7 @@ public class ReadingRank {
     private String level;
     private String objectId;
     private String updatedAt;
-    private String username;
+    private String nickname;
 
     public Integer getCoin() {
         return coin;
@@ -57,11 +57,11 @@ public class ReadingRank {
         this.updatedAt = updatedAt;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

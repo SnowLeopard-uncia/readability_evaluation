@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -65,6 +66,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
     private TextView tv_next_grade;
     private TextView tv_coin_need;
     private Button btn_toPath;
+    private LinearLayout llOpenSpinner;
 
 
     String objectId;
@@ -86,7 +88,6 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
     }
 
@@ -123,10 +124,12 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
         tv_next_grade = getView().findViewById(R.id.tv_next_grade);
         tv_coin_need = getView().findViewById(R.id.tv_coin_need);
         btn_toPath = getView().findViewById(R.id.btn_toPath);
+        llOpenSpinner=getView().findViewById(R.id.ll_open_spinner);
         btn_toPath.setOnClickListener(this);
 
         RankAdapter rankAdapter = new RankAdapter(getActivity(), rankList);
         rank_spinner.setAdapter(rankAdapter);
+
     }
 
     private void getUserPageResponseData() throws JSONException {
@@ -220,7 +223,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+//                    Log.e(TAG, "done: json：" + responseData);
                     tv_rank.setText(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -239,7 +242,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+//                    Log.e(TAG, "done: json：" + responseData);
                     parseJsonDataWithGson2(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -256,10 +259,8 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
                 new TypeToken<BaseResponse<List<ReadingRank>>>() {
                 }.getType());
         List<ReadingRank> dataResponseList = responseReadingRankList.getResults();
-        for (ReadingRank readingRank : dataResponseList) {
-            rankList.add(readingRank);
-
-        }
+        rankList.clear();
+        rankList.addAll(dataResponseList);
 
     }
 
@@ -275,7 +276,6 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
                 break;
         }
     }
-
 
 
 }
