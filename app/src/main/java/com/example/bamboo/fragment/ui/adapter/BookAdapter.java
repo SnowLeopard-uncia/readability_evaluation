@@ -126,8 +126,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
 
         UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-
+        if (userLocal == null){
+            userLocal=new UserLocal();
+            userLocal.setCoin(0);
+            userLocal.setLevel("A");
+            userLocal.save();
+        }
         int userCoin = userLocal.getCoin();
+        Log.e(TAG, "onBindViewHolder: "+userCoin);
 //        Log.e(TAG, "后台返回的Level: " +book.getLevel());
 //        Log.e(TAG, "Adapter里面的userLevel: " +userLocal.getLevel());
         if (book.getLevel().equals(userLocal.getLevel())) {

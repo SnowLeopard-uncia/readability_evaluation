@@ -99,7 +99,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 Bundle bundle = new Bundle();
                 bundle.putString("mobilePhoneNumber", et_user.getText() + "");
                 bundle.putString("password", et_password.getText() + "");
-                bundle.putString("username", et_name.getText() + "");
+                bundle.putString("nickname", et_name.getText() + "");
                 bundle.putString("level", level + "");
                 intent.putExtras(bundle);
                 startActivity(intent);
