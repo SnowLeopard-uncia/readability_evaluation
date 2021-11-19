@@ -123,7 +123,7 @@ public class LrcParser {
                 int groupCount = matcher.groupCount();
                 for(int index =0;index<groupCount;index++){
                     String timeStr = matcher.group(index);
-                    Log.i("","time["+index+"]="+timeStr);
+//                    Log.i("","time["+index+"]="+timeStr);
                     if(index==0){
                         //将第二组中的内容设置为当前的一个时间点
                         currentTime=str2Long(timeStr.substring(1, timeStr.length()-1));
@@ -147,7 +147,7 @@ public class LrcParser {
                 //}
                 //设置时间点和内容的映射
                 maps.put(currentTime, currentContent);
-                Log.i("","currentTime--->"+currentTime+"   currentContent--->"+currentContent);
+//                Log.i("","currentTime--->"+currentTime+"   currentContent--->"+currentContent);
                 //遍历map
             }
         }

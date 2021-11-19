@@ -153,6 +153,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
         iv_last.setOnClickListener(this);
         iv_next.setOnClickListener(this);
 
+
         musicSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -268,6 +269,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
         Audio audio = audioList.get(0);
         mp3Url=audio.getMp3Path();
         lrcUrl=audio.getLrcPath();
+        audioName=audio.getName();
         tv_title.setText(audioName);
         tv_singer.setText(audio.getSinger());
         tv_duration.setText(audio.getDuration());
@@ -281,7 +283,6 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
         HttpUtils.downloadLrc(url, new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
             }
 
             @Override
@@ -319,7 +320,8 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.iv_play:
-                if(!mediaPlayer.isPlaying()){
+                assert mediaPlayer!=null;
+                if(temp==0 && !mediaPlayer.isPlaying()){
 //                    startMusicService();
                     iv_play.setActivated(true);
                     mediaPlayer.start(); //开始播放
@@ -362,15 +364,53 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                 }
                 break;
             case R.id.iv_last:
+            if (audioId.equals("1001")){
+                Toast.makeText(getApplicationContext(),"这是第一首", LENGTH_SHORT).show();
+            }else{
+                temp=1;
                 if (mediaPlayer != null){
                     mediaPlayer.pause();
                     mediaPlayer.reset();
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-                    mediaPlayer=null;
+//                    mediaPlayer.stop();
+//                    mediaPlayer.release();
+//                    mediaPlayer=null;
+
                 }
+                try {
+                    audioId=String.valueOf(Integer.parseInt(audioId)-1);
+                    Log.e(TAG, "onClick: "+audioId);
+                    getDataFromResponse();
+                    temp=0;
+                    iv_play.setActivated(false);
+                    musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
                 break;
             case R.id.iv_next:
+                if (audioId.equals("1065")){
+                    Toast.makeText(getApplicationContext(),"这是最后一首", LENGTH_SHORT).show();
+                }else{
+                    temp=1;
+                    if (mediaPlayer != null){
+                        mediaPlayer.pause();
+                        mediaPlayer.reset();
+//                        mediaPlayer.stop();
+//                        mediaPlayer.release();
+//                        mediaPlayer=null;
+                    }
+                    try {
+                        audioId=String.valueOf(Integer.parseInt(audioId)+1);
+                        Log.e(TAG, "onClick: "+audioId);
+                        getDataFromResponse();
+                        temp=0;
+                        iv_play.setActivated(false);
+                        musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
                 break;
             default:
                 break;
@@ -414,7 +454,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
 
 //                 File file = Context.getExternalFilesDir(null);
                 File file = new File(filePath,audioName+".lrc");
-                if (file!=null){
+                if (!file.exists()){
                     fileOutputStream=new FileOutputStream(file);
                     byte[] buffer = new byte[2048];
                     int len = 0 ;
@@ -431,14 +471,17 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                 try {
                     LrcInfo lrcInfo =lrcParser.parser(path);
 //                    Log.e(TAG, "doInBackground: "+lrcInfo.getArtist());
+                    lrcWord="";  //关键点
                     for (Object value:lrcInfo.getInfo().values()){
 //                        Log.e(TAG, "doInBackground: value"+value);
+
                         lrcWord=lrcWord+value+"\n";
                     }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             tv_audio_content.setText(lrcWord);
+//                            Toast.makeText(getApplicationContext(),"歌词换了", LENGTH_SHORT).show();
                         }
                     });
 

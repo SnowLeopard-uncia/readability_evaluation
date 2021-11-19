@@ -3,6 +3,7 @@ package com.example.bamboo.fragment.ui.main;
 import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,11 +30,13 @@ import com.example.bamboo.javaBean.BookIntroduction;
 import com.example.bamboo.javaBean.Personal;
 import com.example.bamboo.javaBean.ReadingRank;
 import com.example.bamboo.javaBean.UserLocal;
+import com.example.bamboo.javaBean.UserLogin;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +56,7 @@ public class ReportsFragment extends Fragment {
     private TextView tv_rank;
     private Spinner rank_spinner;
 
-    UserLocal userLocal = new UserLocal();
+//    UserLocal userLocal = new UserLocal();
 
     String objectId;
     private List<Personal> personList = new ArrayList<>();
@@ -73,7 +76,6 @@ public class ReportsFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
     }
 
@@ -120,7 +122,7 @@ public class ReportsFragment extends Fragment {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "个人中心用户请求done: json：" + responseData);
+                    Log.e(TAG, "done: json：" + responseData);
                     parseJsonDataWithGson1(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -131,6 +133,7 @@ public class ReportsFragment extends Fragment {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private void parseJsonDataWithGson1(String jsonData) {
         Gson gson = new Gson();
 
@@ -141,19 +144,32 @@ public class ReportsFragment extends Fragment {
         for (Personal personal : dataResponseList) {
             personList.add(personal);
 
-            tv_name.setText(personal.getNickname());
+            tv_name.setText(personal.getUsername());
             tv_level.setText("等级" + personal.getLevel());
             tv_book_num.setText(personal.getBooknum() + "");
             tv_word_num.setText(personal.getWordnum() + "");
-
             tv_coin_num.setText(personal.getCoin() + "");
 
-            Log.e(TAG, "个人中心后台返回金币：" + personal.getCoin());
+            UserLocal userLocal = LitePal.findFirst(UserLocal.class);
 
-            userLocal.setCoin(personal.getCoin());
-            userLocal.setLevel(personal.getLevel());
-            userLocal.update(1);
+//            userLocal.update(1);
 //            userLocal.save();
+            if (userLocal!=null){
+                userLocal.setCoin(personal.getCoin());
+                userLocal.setLevel(personal.getLevel());
+                userLocal.updateAll();
+//                userLocal.update(1);
+            }
+            else{
+                userLocal.setCoin(personal.getCoin());
+                userLocal.setLevel(personal.getLevel());
+                userLocal.save(); //用save可以，初次
+            }
+            List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
+            for (UserLocal userLocal1:personalList){
+                Log.e(TAG, "onActivityCreated: "+userLocal1.getCoin());
+                Log.e(TAG, "onActivityCreated: "+userLocal1.getLevel());
+            }
 
 
         }

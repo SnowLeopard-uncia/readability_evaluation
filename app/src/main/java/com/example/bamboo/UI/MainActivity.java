@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity {
 
     private List<Personal> personList = new ArrayList<>();
     String objectId;
-    UserLocal userLocal = new UserLocal();
+//    UserLocal userLocal = new UserLocal();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -229,12 +229,19 @@ public class MainActivity extends BaseActivity {
         List<Personal> dataResponseList = responsePersonalList.getResults();
         for (Personal personal : dataResponseList) {
             personList.add(personal);
-
-            userLocal.setCoin(personal.getCoin());
-            userLocal.setLevel(personal.getLevel());
 //            userLocal.update(1);
-            userLocal.save(); //用save可以，初次
-
+            UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+            if (userLocal!=null){
+                userLocal.setCoin(personal.getCoin());
+                userLocal.setLevel(personal.getLevel());
+                userLocal.updateAll();
+//                userLocal.update(1);
+            }
+            else{
+                userLocal.setCoin(personal.getCoin());
+                userLocal.setLevel(personal.getLevel());
+                userLocal.save(); //用save可以，初次
+            }
         }
 
     }
@@ -242,5 +249,12 @@ public class MainActivity extends BaseActivity {
     private void getUserID() {
         SharedPreferences pref = this.getSharedPreferences("userInformation", MODE_PRIVATE);
         objectId = pref.getString("userID", "");
+    }
+
+    @Override
+    protected void onDestroy() {
+        //其实最好还是退出登录的时候执行这个方法
+        super.onDestroy();
+        LitePal.deleteAll(UserLocal.class);
     }
 }

@@ -45,7 +45,6 @@ public class ReadingFinishingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading_finishing);
-
         initNavBar(true, "");
         TextView tv_coin = findViewById(R.id.tv_coin);
         coin = getIntent().getExtras().getInt("gold_coin");
@@ -64,7 +63,6 @@ public class ReadingFinishingActivity extends BaseActivity {
     }
 
     public void updateCoin() throws JSONException {
-
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
         String cloudCodeName = "coinUpdate";
         JSONObject params = new JSONObject();
@@ -118,9 +116,10 @@ public class ReadingFinishingActivity extends BaseActivity {
 
     private void updateLocalDatabase() {
         UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-        UserLocal updateUserLocal = new UserLocal();
-        updateUserLocal.setCoin(userLocal.getCoin() + coin);
-        updateUserLocal.update(1);
+//        UserLocal updateUserLocal = new UserLocal();
+        userLocal.setCoin(userLocal.getCoin() + coin);
+//        updateUserLocal.update(1);
+        userLocal.updateAll();
 //        updateUserLocal.save();
     }
 }
