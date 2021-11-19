@@ -23,9 +23,6 @@ import java.util.List;
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> {
     private List<VideoHome> mVideoList;
 
-    UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-    int userCoin = userLocal.getCoin();
-
     static class ViewHolder extends RecyclerView.ViewHolder {
         View videoView;
         ImageView iv_book_shape;
@@ -64,6 +61,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
                 int position = holder.getAdapterPosition();
                 VideoHome video = mVideoList.get(position);
 
+                UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+                if (userLocal == null){
+                    userLocal=new UserLocal();
+                    userLocal.setCoin(0);
+                    userLocal.setLevel("A");
+                    userLocal.save();
+                }
+                int userCoin = userLocal.getCoin();
                 if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin < video.getVideoPrice()) {
                     Toast.makeText(v.getContext(), "金币不足",Toast.LENGTH_SHORT).show();
                     return;
@@ -86,21 +91,24 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         Glide.with(holder.videoView.getContext()).load(video.getPng()).into(holder.iv_book_shape);
 
 
-//        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-//        int userCoin = userLocal.getCoin();
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        if (userLocal == null){
+            userLocal=new UserLocal();
+            userLocal.setCoin(0);
+            userLocal.setLevel("A");
+            userLocal.save();
+        }
+        int userCoin = userLocal.getCoin();
 
         if (video.getVideoLevel().equals(userLocal.getLevel())) {
             holder.iv_lock.setVisibility(View.INVISIBLE);
-//            holder.iv_book_shape.setClickable(true);
         }
 
         if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin >= video.getVideoPrice()) {
             holder.iv_lock.setVisibility(View.INVISIBLE);
-//            holder.iv_book_shape.setClickable(true);
         }
         if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin < video.getVideoPrice()) {
             holder.iv_lock.setVisibility(View.VISIBLE);
-//            holder.iv_book_shape.setClickable(false);
         }
 
     }

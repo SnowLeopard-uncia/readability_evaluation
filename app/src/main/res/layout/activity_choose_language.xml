@@ -13,6 +13,7 @@
         android:background="@drawable/login_box"
         android:text="进 入"
         android:textColor="@color/white"
+        android:textSize="24.38sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline22" />

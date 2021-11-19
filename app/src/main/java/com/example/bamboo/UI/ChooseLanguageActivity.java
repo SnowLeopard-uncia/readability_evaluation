@@ -123,7 +123,7 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
         Bundle bundle = getIntent().getExtras();
         String phone = (String) bundle.get("mobilePhoneNumber");
         String password = (String) bundle.get("password");
-        String name = (String) bundle.get("username");
+        String name = (String) bundle.get("nickname");
         String grade = (String) bundle.get("level");
 
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");

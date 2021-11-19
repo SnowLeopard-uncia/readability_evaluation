@@ -56,7 +56,6 @@ public class ReportsFragment extends Fragment {
     private TextView tv_rank;
     private Spinner rank_spinner;
 
-//    UserLocal userLocal = new UserLocal();
 
     String objectId;
     private List<Personal> personList = new ArrayList<>();
@@ -144,16 +143,13 @@ public class ReportsFragment extends Fragment {
         for (Personal personal : dataResponseList) {
             personList.add(personal);
 
-            tv_name.setText(personal.getUsername());
+            tv_name.setText(personal.getNickname());
             tv_level.setText("等级" + personal.getLevel());
             tv_book_num.setText(personal.getBooknum() + "");
             tv_word_num.setText(personal.getWordnum() + "");
             tv_coin_num.setText(personal.getCoin() + "");
 
             UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-
-//            userLocal.update(1);
-//            userLocal.save();
             if (userLocal!=null){
                 userLocal.setCoin(personal.getCoin());
                 userLocal.setLevel(personal.getLevel());
@@ -165,6 +161,7 @@ public class ReportsFragment extends Fragment {
                 userLocal.setLevel(personal.getLevel());
                 userLocal.save(); //用save可以，初次
             }
+
             List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
             for (UserLocal userLocal1:personalList){
                 Log.e(TAG, "onActivityCreated: "+userLocal1.getCoin());

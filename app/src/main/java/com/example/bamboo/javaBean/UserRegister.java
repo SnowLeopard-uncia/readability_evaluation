@@ -6,9 +6,9 @@ public class UserRegister {
     private String imageHead;
     private String language;
     private String level;
+    private String nickname;
     private String objectId;
     private String updatedAt;
-    private String nickname;
 
     public Integer getCoin() {
         return coin;
@@ -50,6 +50,14 @@ public class UserRegister {
         this.level = level;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     public String getObjectId() {
         return objectId;
     }
@@ -66,11 +74,4 @@ public class UserRegister {
         this.updatedAt = updatedAt;
     }
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
 }
