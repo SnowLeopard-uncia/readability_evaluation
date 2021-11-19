@@ -87,6 +87,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
             e.printStackTrace();
         }
 
+
     }
 
     @Nullable
@@ -124,8 +125,8 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
         btn_toPath = getView().findViewById(R.id.btn_toPath);
         btn_toPath.setOnClickListener(this);
 
-//        RankAdapter rankAdapter = new RankAdapter(getActivity(), rankList);
-//        rank_spinner.setAdapter(rankAdapter);
+        RankAdapter rankAdapter = new RankAdapter(getActivity(), rankList);
+        rank_spinner.setAdapter(rankAdapter);
     }
 
     private void getUserPageResponseData() throws JSONException {
@@ -274,6 +275,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
                 break;
         }
     }
+
 
 
 }

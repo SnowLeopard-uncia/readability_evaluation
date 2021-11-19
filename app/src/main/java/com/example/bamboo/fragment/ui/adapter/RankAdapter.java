@@ -57,7 +57,7 @@ public class RankAdapter extends BaseAdapter {
             tv_coin.setText(mList.get(i).getCoin()+"");
 
         }
-        return null;
+        return view;
     }
 
 }
