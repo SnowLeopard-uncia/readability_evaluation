@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,6 +26,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bamboo.R;
+import com.example.bamboo.UI.BookIntroductionActivity;
+import com.example.bamboo.UI.PathActivity;
+import com.example.bamboo.UI.WordPreviewActivity;
+import com.example.bamboo.fragment.ui.adapter.RankAdapter;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookHome;
 import com.example.bamboo.javaBean.BookIntroduction;
@@ -46,7 +52,7 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.CloudCodeListener;
 
-public class ReportsFragment extends Fragment {
+public class ReportsFragment extends Fragment implements View.OnClickListener{
 
     private TextView tv_name;
     private TextView tv_level;
@@ -55,11 +61,16 @@ public class ReportsFragment extends Fragment {
     private TextView tv_coin_num;
     private TextView tv_rank;
     private Spinner rank_spinner;
+    private TextView tv_personal_grade;
+    private TextView tv_next_grade;
+    private TextView tv_coin_need;
+    private Button btn_toPath;
 
 
     String objectId;
     private List<Personal> personList = new ArrayList<>();
     private List<ReadingRank> rankList = new ArrayList<>();
+    private int[] updateCoinsNeed = {1, 2, 2, 6, 4, 4, 4, 8, 4, 4, 8, 4, 0};
 
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -107,6 +118,14 @@ public class ReportsFragment extends Fragment {
         tv_coin_num = getView().findViewById(R.id.tv_coin_num);
         tv_rank = getView().findViewById(R.id.tv_rank);
         rank_spinner = getView().findViewById(R.id.rank_spinner);
+        tv_personal_grade = getView().findViewById(R.id.tv_personal_grade);
+        tv_next_grade = getView().findViewById(R.id.tv_next_grade);
+        tv_coin_need = getView().findViewById(R.id.tv_coin_need);
+        btn_toPath = getView().findViewById(R.id.btn_toPath);
+        btn_toPath.setOnClickListener(this);
+
+//        RankAdapter rankAdapter = new RankAdapter(getActivity(), rankList);
+//        rank_spinner.setAdapter(rankAdapter);
     }
 
     private void getUserPageResponseData() throws JSONException {
@@ -148,6 +167,15 @@ public class ReportsFragment extends Fragment {
             tv_book_num.setText(personal.getBooknum() + "");
             tv_word_num.setText(personal.getWordnum() + "");
             tv_coin_num.setText(personal.getCoin() + "");
+            tv_personal_grade.setText(personal.getLevel());
+            if (personal.getLevel().equals("M")) {
+                tv_next_grade.setText("M");
+            }else{
+                tv_next_grade.setText((char)(personal.getLevel().charAt(0) + 1 )+"");
+            }
+            int need = updateCoinsNeed[personal.getLevel().charAt(0)-65];
+
+            tv_coin_need.setText("距离升级还需：" + need + "金币");
 
             UserLocal userLocal = LitePal.findFirst(UserLocal.class);
             if (userLocal!=null){
@@ -231,6 +259,19 @@ public class ReportsFragment extends Fragment {
 
         }
 
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_toPath:
+                Intent intent = new Intent(getActivity(), PathActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 
 
