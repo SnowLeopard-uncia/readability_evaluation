@@ -1,60 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="110dp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:paddingHorizontal="10dp"
     android:layout_height="32.7dp"
-    android:background="#FFFFFF"
+
+    android:background="@drawable/bg_btn_uploadway"
     android:orientation="horizontal">
 
     <TextView
         android:id="@+id/tv_order"
-        android:layout_width="15dp"
-        android:layout_height="32.7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="1"
+        android:text="100"
         android:textColor="@color/person_level_text_color"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="等级5"
+        android:textColor="@color/person_level_text_color"
+        android:textSize="8sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+
+    <TextView
+        android:id="@+id/tv_coin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="金币456"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/person_level_text_color"
+        android:textSize="6sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_level"
+        app:layout_constraintStart_toEndOf="@+id/tv_level"
+        app:layout_constraintTop_toTopOf="@+id/tv_level" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="小狗"
+        android:textColor="@color/person_level_text_color"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/iv_imageHead"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.example.bamboo.view.CircleImageView
         android:id="@+id/iv_imageHead"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginLeft="5dp"
         android:layout_gravity="center_vertical"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_order"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="小狗"
-            android:textSize="12sp"
-            android:textColor="@color/person_level_text_color" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp">
-
-            <TextView
-                android:id="@+id/tv_level"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="等级5"
-                android:textSize="8sp"
-                android:textColor="@color/person_level_text_color"/>
-
-            <TextView
-                android:id="@+id/tv_coin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="金币456"
-                android:textSize="6sp"
-                android:textColor="@color/person_level_text_color"/>
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#9F9E9E"
+        android:paddingVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_level"
+        app:layout_constraintWidth_default="spread" />
+</androidx.constraintlayout.widget.ConstraintLayout>

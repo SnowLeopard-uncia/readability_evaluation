@@ -1,6 +1,7 @@
 package com.example.bamboo.fragment.ui.adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,8 @@ public class RankAdapter extends BaseAdapter {
         return i;
     }
 
+
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
@@ -52,12 +55,12 @@ public class RankAdapter extends BaseAdapter {
             TextView tv_coin = view.findViewById(R.id.tv_coin);
             tv_order.setText(i+1+"");
             Glide.with(mContext).load(mList.get(i).getImageHead()).into(iv_imageHead);
-            tv_name.setText(mList.get(i).getUsername());
-            tv_level.setText(mList.get(i).getLevel());
-            tv_coin.setText(mList.get(i).getCoin()+"");
+            tv_name.setText(mList.get(i).getNickname());
+            tv_level.setText("等级:"+mList.get(i).getLevel());
+            tv_coin.setText("金币:"+mList.get(i).getCoin()+"");
 
         }
-        return null;
+        return view;
     }
 
 }

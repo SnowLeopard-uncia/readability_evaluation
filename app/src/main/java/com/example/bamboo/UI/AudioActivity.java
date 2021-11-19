@@ -373,9 +373,10 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
 
 
             case R.id.iv_last:
-            if (mPosition==0){
+                mPosition=mPosition-1;
+            if ((mPosition+1)==0){
                 Toast.makeText(getApplicationContext(),"这是第一首", LENGTH_SHORT).show();
-            }else if (mIsLockList.get(mPosition-1)==1){
+            }else if (mIsLockList.get(mPosition)==1){
                 Toast.makeText(getApplicationContext(),"金币数量不足", LENGTH_SHORT).show();
                 Log.e(TAG, "onClick: "+mPosition );
                 for (int i = 0; i < mIsLockList.size(); i++) {
@@ -405,9 +406,10 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
             }
                 break;
             case R.id.iv_next:
+                mPosition=mPosition+1;
                 if (mPosition==(mMaxPosition-1)){
                     Toast.makeText(getApplicationContext(),"这是最后一首", LENGTH_SHORT).show();
-                }else if (mIsLockList.get(mPosition+1)==1){
+                }else if (mIsLockList.get(mPosition)==1){
                     Toast.makeText(getApplicationContext(),"金币数量不足", LENGTH_SHORT).show();
                     Log.e(TAG, "onClick: "+mPosition );
                     for (int i = 0; i < mIsLockList.size(); i++) {
