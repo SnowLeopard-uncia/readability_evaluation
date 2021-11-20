@@ -393,6 +393,7 @@ public class SquareFragment extends Fragment {
                 new TypeToken<BaseResponse<List<Personal>>>() {
                 }.getType());
         List<Personal> dataResponseList = responsePersonalList.getResults();
+        personList.clear(); //新加的
         for (Personal personal : dataResponseList) {
             personList.add(personal);
 
