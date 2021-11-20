@@ -41,7 +41,7 @@ public class VideoFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        getResponseData();
+        getResponseData1();
 
     }
 
@@ -55,7 +55,7 @@ public class VideoFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        getResponseData();
+        getResponseData1();
 
     }
 
@@ -68,7 +68,7 @@ public class VideoFragment extends Fragment {
     }
 
 
-    private void getResponseData() {
+    private void getResponseData1() {
         Bmob.initialize(getActivity(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
 //第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams），第三个参数是回调类
@@ -78,7 +78,7 @@ public class VideoFragment extends Fragment {
                 if (e == null) {
                     String responseData = object.toString();
 //                    Log.e(TAG, "done: json：" + responseData);
-                    parseJsonDataWithGson(responseData);
+                    parseJsonDataWithGson1(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -88,7 +88,7 @@ public class VideoFragment extends Fragment {
     }
 
 
-    private void parseJsonDataWithGson(String jsonData) {
+    private void parseJsonDataWithGson1(String jsonData) {
         Gson gson = new Gson();
         BaseResponse<List<VideoHome>> responseVideoHomeList = gson.fromJson(jsonData, new TypeToken<BaseResponse<List<VideoHome>>>() {
         }.getType());
@@ -106,8 +106,43 @@ public class VideoFragment extends Fragment {
 
         initRecyclerView();
 
+    }
+
+
+    private void getResponseData2() {
+        Bmob.initialize(getActivity(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
+        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams），第三个参数是回调类
+        ace.callEndpoint("IndexVideoInfo_Spanish", null, new CloudCodeListener() {
+            @Override
+            public void done(Object object, BmobException e) {
+                if (e == null) {
+                    String responseData = object.toString();
+//                    Log.e(TAG, "done: json：" + responseData);
+                    parseJsonDataWithGson2(responseData);
+                } else {
+                    Log.e(TAG, " " + e.getMessage());
+                }
+            }
+        });
 
     }
 
 
+    private void parseJsonDataWithGson2(String jsonData) {
+        Gson gson = new Gson();
+        BaseResponse<List<VideoHome>> responseVideoHomeList = gson.fromJson(jsonData, new TypeToken<BaseResponse<List<VideoHome>>>() {
+        }.getType());
+        List<VideoHome> dataResponseList = responseVideoHomeList.getResults();
+        videoList.clear();
+        for (VideoHome videoHome : dataResponseList) {
+            videoList.add(videoHome);
+
+
+        }
+
+        initRecyclerView();
+
+
+    }
 }

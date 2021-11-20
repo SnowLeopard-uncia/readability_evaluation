@@ -234,6 +234,7 @@ public class MainActivity extends BaseActivity {
             if (userLocal!=null){
                 userLocal.setCoin(personal.getCoin());
                 userLocal.setLevel(personal.getLevel());
+                userLocal.setLanguage(personal.getLanguage());
                 userLocal.updateAll();
 //                userLocal.update(1);
             }
@@ -241,6 +242,7 @@ public class MainActivity extends BaseActivity {
                 userLocal=new UserLocal();
                 userLocal.setCoin(personal.getCoin());
                 userLocal.setLevel(personal.getLevel());
+                userLocal.setLanguage(personal.getLanguage());
                 userLocal.save(); //用save可以，初次
             }
         }
