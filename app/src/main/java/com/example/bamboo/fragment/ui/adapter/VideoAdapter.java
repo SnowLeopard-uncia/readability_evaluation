@@ -66,6 +66,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
                     userLocal=new UserLocal();
                     userLocal.setCoin(0);
                     userLocal.setLevel("A");
+                    userLocal.setLanguage("English");
                     userLocal.save();
                 }
                 int userCoin = userLocal.getCoin();
@@ -96,6 +97,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             userLocal=new UserLocal();
             userLocal.setCoin(0);
             userLocal.setLevel("A");
+            userLocal.setLanguage("English");
             userLocal.save();
         }
         int userCoin = userLocal.getCoin();

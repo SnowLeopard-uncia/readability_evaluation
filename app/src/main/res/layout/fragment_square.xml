@@ -94,14 +94,34 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/icn_audio" />
 
-            <ImageView
-                android:id="@+id/img_to_spanish"
+            <FrameLayout
                 android:layout_width="@dimen/sliding_menu_width"
-                android:layout_height="@dimen/sliding_menu_width"
-                android:background="@drawable/menu_item_unselect"
-                android:padding="@dimen/img_sliding_menu_padding"
-                android:scaleType="fitXY"
-                android:src="@drawable/spanish" />
+                android:layout_height="@dimen/sliding_menu_width">
+                <ImageView
+                    android:id="@+id/img_to_English"
+                    android:layout_width="@dimen/sliding_menu_width"
+                    android:layout_height="@dimen/sliding_menu_width"
+                    android:background="@drawable/menu_item_unselect"
+                    android:padding="@dimen/img_sliding_menu_padding"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/english" />
+                <ImageView
+                    android:id="@+id/img_to_Spanish"
+                    android:layout_width="@dimen/sliding_menu_width"
+                    android:layout_height="@dimen/sliding_menu_width"
+                    android:background="@drawable/menu_item_unselect"
+                    android:padding="@dimen/img_sliding_menu_padding"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/spanish" />
+            </FrameLayout>
+<!--            <ImageView-->
+<!--                android:id="@+id/img_change_language"-->
+<!--                android:layout_width="@dimen/sliding_menu_width"-->
+<!--                android:layout_height="@dimen/sliding_menu_width"-->
+<!--                android:background="@drawable/menu_item_unselect"-->
+<!--                android:padding="@dimen/img_sliding_menu_padding"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:src="@drawable/spanish" />-->
         </LinearLayout>
     </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -109,6 +109,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
                     userLocal=new UserLocal();
                     userLocal.setCoin(0);
                     userLocal.setLevel("A");
+                    userLocal.setLanguage("English");
                     userLocal.save();
                 }
                 int userCoin = userLocal.getCoin();
@@ -140,6 +141,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             userLocal=new UserLocal();
             userLocal.setCoin(0);
             userLocal.setLevel("A");
+            userLocal.setLanguage("English");
             userLocal.save();
         }
         int userCoin = userLocal.getCoin();

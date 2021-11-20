@@ -1,8 +1,14 @@
 package com.example.bamboo.fragment.ui.main;
 
+import static android.content.ContentValues.TAG;
+import static android.content.Context.MODE_PRIVATE;
+
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,11 +32,24 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bamboo.R;
+import com.example.bamboo.javaBean.BaseResponse;
+import com.example.bamboo.javaBean.Personal;
+import com.example.bamboo.javaBean.UserLocal;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.AsyncCustomEndpoints;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.CloudCodeListener;
 
 
 public class SquareFragment extends Fragment {
@@ -44,14 +63,27 @@ public class SquareFragment extends Fragment {
     private ImageView imgToBookFragment;
     private ImageView imgToAudioFragment;
     private ImageView imgToVideoFragment;
-    private ImageView imgToSpanish;
+//    private ImageView imgChangeLanguage;
+    private ImageView img_to_English;
+    private ImageView img_to_Spanish;
     private AudioFragment audioFragment = new AudioFragment();
     private VideoFragment videoFragment = new VideoFragment();
     private BookFragment bookFragment = new BookFragment();
 
+    String objectId;
+    private List<Personal> personList = new ArrayList<>();
+
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        getUserID();
+        try {
+            getUserPageResponseData();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         initView();
         setActionBar();
 //        createMenuList();
@@ -83,7 +115,8 @@ public class SquareFragment extends Fragment {
         imgToBookFragment = getView().findViewById(R.id.img_to_book_fragment);
         imgToVideoFragment = getView().findViewById(R.id.img_to_video_fragment);
         imgToAudioFragment = getView().findViewById(R.id.img_to_audio_fragment);
-        imgToSpanish = getView().findViewById(R.id.img_to_spanish);
+        img_to_English = getView().findViewById(R.id.img_to_English);
+        img_to_Spanish = getView().findViewById(R.id.img_to_Spanish);
         toolbar = getView().findViewById(R.id.toolbar);
         toolbarTitle = getView().findViewById(R.id.toolbar_title);
 
@@ -143,13 +176,51 @@ public class SquareFragment extends Fragment {
             }
         });
 
+        img_to_English.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.closeDrawers();
+
+                try {
+                    updateLanguage();
+                    getUserPageResponseData();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+        img_to_Spanish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    updateLanguage();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                drawerLayout.closeDrawers();
+
+                try {
+                    getUserPageResponseData();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+
     }
 
     private void restartButton() {
         imgToBookFragment.setBackgroundResource(R.drawable.menu_item_unselect);
         imgToAudioFragment.setBackgroundResource(R.drawable.menu_item_unselect);
         imgToVideoFragment.setBackgroundResource(R.drawable.menu_item_unselect);
-        imgToSpanish.setBackgroundResource(R.drawable.menu_item_unselect);
+        img_to_English.setBackgroundResource(R.drawable.menu_item_unselect);
+        img_to_Spanish.setBackgroundResource(R.drawable.menu_item_unselect);
 
     }
 
@@ -265,5 +336,100 @@ public class SquareFragment extends Fragment {
 //        SlideMenuItem menuItem4 = new SlideMenuItem("spanish", R.drawable.spanish);
 //        slideMenuItems.add(menuItem4);
 //    }
+
+
+    public void updateLanguage() throws JSONException {
+        Bmob.initialize(getActivity(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
+        String cloudCodeName = "switchLanguage";
+        JSONObject params = new JSONObject();
+        params.put("objectId", objectId);
+        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
+        ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
+            @Override
+            public void done(Object object, BmobException e) {
+                if (e == null) {
+                    String result = object.toString();
+                    Log.e(TAG, "语言更新done: json：" + result);
+                } else {
+                    Log.e(TAG, " " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void getUserID() {
+        SharedPreferences pref = getActivity().getSharedPreferences("userInformation", MODE_PRIVATE);
+        objectId = pref.getString("userID", "");
+    }
+
+    private void getUserPageResponseData() throws JSONException {
+        Bmob.initialize(getActivity(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
+        String cloudCodeName = "userPage";
+        JSONObject params = new JSONObject();
+        params.put("objectId", objectId);
+        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
+        ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
+            @Override
+            public void done(Object object, BmobException e) {
+                if (e == null) {
+                    String responseData = object.toString();
+                    Log.e(TAG, "done: json：" + responseData);
+                    parseJsonDataWithGson1(responseData);
+                } else {
+                    Log.e(TAG, " " + e.getMessage());
+                }
+            }
+        });
+
+    }
+
+
+    private void parseJsonDataWithGson1(String jsonData) {
+        Gson gson = new Gson();
+
+        BaseResponse<List<Personal>> responsePersonalList = gson.fromJson(jsonData,
+                new TypeToken<BaseResponse<List<Personal>>>() {
+                }.getType());
+        List<Personal> dataResponseList = responsePersonalList.getResults();
+        for (Personal personal : dataResponseList) {
+            personList.add(personal);
+
+            UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+            if (userLocal!=null){
+                userLocal.setCoin(personal.getCoin());
+                userLocal.setLevel(personal.getLevel());
+                userLocal.setLanguage(personal.getLanguage());
+                userLocal.updateAll();
+            }
+            else{
+                userLocal=new UserLocal();
+                userLocal.setCoin(personal.getCoin());
+                userLocal.setLevel(personal.getLevel());
+                userLocal.setLanguage(personal.getLanguage());
+                userLocal.save(); //用save可以，初次
+            }
+
+            if (userLocal.getLanguage().equals("English")){
+                img_to_English.setVisibility(View.INVISIBLE);
+                img_to_Spanish.setVisibility(View.VISIBLE);
+
+            }else {
+                img_to_Spanish.setVisibility(View.INVISIBLE);
+                img_to_English.setVisibility(View.VISIBLE);
+
+            }
+
+            List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
+            for (UserLocal userLocal1:personalList){
+                Log.e(TAG, "知识广场个人接口: "+userLocal1.getCoin());
+                Log.e(TAG, "知识广场个人接口: "+userLocal1.getLevel());
+                Log.e(TAG, "知识广场个人接口: "+userLocal1.getLanguage());
+            }
+        }
+
+    }
+
 
 }

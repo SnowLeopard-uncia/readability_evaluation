@@ -185,6 +185,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
             if (userLocal!=null){
                 userLocal.setCoin(personal.getCoin());
                 userLocal.setLevel(personal.getLevel());
+                userLocal.setLanguage(personal.getLanguage());
                 userLocal.updateAll();
 //                userLocal.update(1);
             }
@@ -192,6 +193,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
                 userLocal=new UserLocal();
                 userLocal.setCoin(personal.getCoin());
                 userLocal.setLevel(personal.getLevel());
+                userLocal.setLanguage(personal.getLanguage());
                 userLocal.save(); //用save可以，初次
             }
 
@@ -199,6 +201,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
             for (UserLocal userLocal1:personalList){
                 Log.e(TAG, "onActivityCreated: "+userLocal1.getCoin());
                 Log.e(TAG, "onActivityCreated: "+userLocal1.getLevel());
+                Log.e(TAG, "onActivityCreated: "+userLocal1.getLanguage());
             }
 
 

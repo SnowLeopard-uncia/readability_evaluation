@@ -4,6 +4,7 @@ public class Personal {
     private Integer booknum;
     private Integer coin;
     private String createdAt;
+    private String language;
     private String level;
     private String objectId;
     private String updatedAt;
@@ -32,6 +33,14 @@ public class Personal {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public String getLevel() {
