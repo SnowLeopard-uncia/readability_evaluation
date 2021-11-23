@@ -20,11 +20,13 @@ import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookHome;
 import com.example.bamboo.javaBean.BookIntroduction;
+import com.example.bamboo.javaBean.UserLocal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -146,6 +148,7 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
                 new TypeToken<BaseResponse<List<BookIntroduction>>>() {
                 }.getType());
         List<BookIntroduction> dataResponseList = responseBookIntroductionList.getResults();
+        bookList.clear();
         for (BookIntroduction bookIntroduction : dataResponseList) {
             bookList.add(bookIntroduction);
 

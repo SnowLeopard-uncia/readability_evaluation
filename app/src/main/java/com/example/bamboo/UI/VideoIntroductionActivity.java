@@ -23,12 +23,14 @@ import com.bumptech.glide.Glide;
 import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookIntroduction;
+import com.example.bamboo.javaBean.UserLocal;
 import com.example.bamboo.javaBean.VideoIntroduction;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,11 +66,30 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
 
         videoID = getIntent().getExtras().getInt("videoID");
 
-        try {
-            getResponseData();
-        } catch (JSONException e) {
-            e.printStackTrace();
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        if (userLocal == null){
+            userLocal=new UserLocal();
+            userLocal.setCoin(0);
+            userLocal.setLevel("A");
+            userLocal.setLanguage("English");
+            userLocal.save();
         }
+        String language = userLocal.getLanguage();
+        if(language.equals("English")) {
+            try {
+                getResponseData1();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }else {
+            try {
+                getResponseData2();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 
@@ -101,7 +122,7 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
         }
     }
 
-    private void getResponseData() throws JSONException {
+    private void getResponseData1() throws JSONException {
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
         String cloudCodeName = "playVideo";
         JSONObject params = new JSONObject();
@@ -114,7 +135,7 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
                 if (e == null) {
                     String responseData = object.toString();
                     Log.e(TAG, "done: json：" + responseData);
-                    parseJsonDataWithGson(responseData);
+                    parseJsonDataWithGson1(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -124,13 +145,14 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
     }
 
 
-    private void parseJsonDataWithGson(String jsonData) {
+    private void parseJsonDataWithGson1(String jsonData) {
         Gson gson = new Gson();
 
         BaseResponse<List<VideoIntroduction>> responseVideoIntroductionList = gson.fromJson(jsonData,
                 new TypeToken<BaseResponse<List<VideoIntroduction>>>() {
                 }.getType());
         List<VideoIntroduction> dataResponseList = responseVideoIntroductionList.getResults();
+        videoList.clear();
         for (VideoIntroduction videoIntroduction : dataResponseList) {
             videoList.add(videoIntroduction);
 
@@ -142,6 +164,52 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
             tv_brief_introduction.setText("简介：" + videoIntroduction.getIntroduce());
             Glide.with(this).load(videoIntroduction.getPng()).into(iv_book);
 //            Log.e(TAG, "parseJson: " + videoIntroduction.getSrc());
+
+        }
+
+    }
+
+    private void getResponseData2() throws JSONException {
+        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
+        String cloudCodeName = "playVideo_Spanish";
+        JSONObject params = new JSONObject();
+        params.put("videoID", videoID);
+        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
+        ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
+            @Override
+            public void done(Object object, BmobException e) {
+                if (e == null) {
+                    String responseData = object.toString();
+                    Log.e(TAG, "done: json：" + responseData);
+                    parseJsonDataWithGson2(responseData);
+                } else {
+                    Log.e(TAG, " " + e.getMessage());
+                }
+            }
+        });
+
+    }
+
+
+    private void parseJsonDataWithGson2(String jsonData) {
+        Gson gson = new Gson();
+
+        BaseResponse<List<VideoIntroduction>> responseVideoIntroductionList = gson.fromJson(jsonData,
+                new TypeToken<BaseResponse<List<VideoIntroduction>>>() {
+                }.getType());
+        List<VideoIntroduction> dataResponseList = responseVideoIntroductionList.getResults();
+        videoList.clear();
+        for (VideoIntroduction videoIntroduction : dataResponseList) {
+            videoList.add(videoIntroduction);
+
+            tv_book_title.setText("标题：" + videoIntroduction.getVideoName());
+            tv_director.setText("导演：" + videoIntroduction.getAuthor());
+            tv_level.setText("等级：" + videoIntroduction.getVideoLevel());
+            tv_suit_age.setText("适合年级：" + videoIntroduction.getVideoAge());
+            tv_theme.setText("主题：" + videoIntroduction.getTopic());
+            tv_brief_introduction.setText("简介：" + videoIntroduction.getIntroduce());
+            Glide.with(this).load(videoIntroduction.getPng()).into(iv_book);
 
         }
 
@@ -162,14 +230,6 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
                 alertDialog.dismiss();
             }
         });
-
-//        Window dialogWindow = alertDialog.getWindow();
-//        WindowManager m = getWindowManager();
-//        Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
-//        WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
-//        p.height = (int) (d.getHeight() * 0.30); // 高度设置为屏幕的
-//        p.width = (int) (d.getWidth() * 0.83); // 宽度设置为屏幕的
-//        dialogWindow.setAttributes(p);
 
         alertDialog.setCanceledOnTouchOutside(false); // 点击对话框外部区域不允许对话框消失，点击手机返回按键允许对话框消失
         alertDialog.show(); // 显示对话框

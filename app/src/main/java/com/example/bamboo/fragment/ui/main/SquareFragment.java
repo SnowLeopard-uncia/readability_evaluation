@@ -77,7 +77,6 @@ public class SquareFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        getUserID();
         try {
             getUserPageResponseData();
         } catch (JSONException e) {
@@ -179,14 +178,40 @@ public class SquareFragment extends Fragment {
         img_to_English.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.closeDrawers();
 
                 try {
                     updateLanguage();
-                    getUserPageResponseData();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                drawerLayout.closeDrawers();
+
+//                FragmentManager fragmentManager = getChildFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                if (bookFragment.isVisible()) {
+//                    fragmentTransaction.hide(bookFragment)
+//                            .hide(videoFragment)
+//                            .hide(audioFragment)
+//                            .show(bookFragment)
+//                            .commit();
+//                }
+//                else if (videoFragment.isVisible()) {
+//                    fragmentTransaction.hide(videoFragment)
+//                            .hide(bookFragment)
+//                            .hide(audioFragment)
+//                            .show(videoFragment)
+//                            .commit();
+//                }
+//                else if (audioFragment.isVisible()) {
+//                    fragmentTransaction.hide(audioFragment)
+//                            .hide(bookFragment)
+//                            .hide(videoFragment)
+//                            .show(audioFragment)
+//                            .commit();
+//                }
+
+
 
 
             }
@@ -203,11 +228,31 @@ public class SquareFragment extends Fragment {
 
                 drawerLayout.closeDrawers();
 
-                try {
-                    getUserPageResponseData();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                FragmentManager fragmentManager = getChildFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                if (bookFragment.isVisible()) {
+//                    fragmentTransaction.hide(bookFragment)
+//                            .hide(videoFragment)
+//                            .hide(audioFragment)
+//                            .show(bookFragment)
+//                            .commit();
+//                }
+//                else if (videoFragment.isVisible()) {
+//                    fragmentTransaction.hide(videoFragment)
+//                            .hide(bookFragment)
+//                            .hide(audioFragment)
+//                            .show(videoFragment)
+//                            .commit();
+//                }
+//                else if (audioFragment.isVisible()) {
+//                    fragmentTransaction.hide(audioFragment)
+//                            .hide(bookFragment)
+//                            .hide(videoFragment)
+//                            .show(audioFragment)
+//                            .commit();
+//                }
+
+
 
             }
         });
@@ -350,7 +395,14 @@ public class SquareFragment extends Fragment {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String result = object.toString();
-                    Log.e(TAG, "语言更新done: json：" + result);
+                    Log.e(TAG, "语言更新done: json：更改语言为" + result);
+
+                    try {
+                        getUserPageResponseData();
+                    } catch (JSONException jsonException) {
+                        jsonException.printStackTrace();
+                    }
+
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -367,6 +419,7 @@ public class SquareFragment extends Fragment {
         Bmob.initialize(getActivity(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
         String cloudCodeName = "userPage";
         JSONObject params = new JSONObject();
+        getUserID();
         params.put("objectId", objectId);
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
 //第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
@@ -424,8 +477,6 @@ public class SquareFragment extends Fragment {
 
             List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
             for (UserLocal userLocal1:personalList){
-                Log.e(TAG, "知识广场个人接口: "+userLocal1.getCoin());
-                Log.e(TAG, "知识广场个人接口: "+userLocal1.getLevel());
                 Log.e(TAG, "知识广场个人接口: "+userLocal1.getLanguage());
             }
         }
