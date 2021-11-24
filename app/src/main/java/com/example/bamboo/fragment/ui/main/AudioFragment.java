@@ -2,6 +2,7 @@ package com.example.bamboo.fragment.ui.main;
 
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,8 +21,11 @@ import com.example.bamboo.fragment.ui.adapter.AudioListAdapter;
 import com.example.bamboo.javaBean.AudioList;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookHome;
+import com.example.bamboo.javaBean.UserLocal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +46,15 @@ private List<AudioList> mAudioLists = new ArrayList<>();
     private void getResponseData() {
         Bmob.initialize(getActivity(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        if(userLocal==null) {
+            userLocal = new UserLocal();
+            userLocal.setCoin(0);
+            userLocal.setLevel("A");
+            userLocal.setLanguage("English");
+            userLocal.save();
+        }
+        if(userLocal.getLanguage().equals("Spanish")){
         ace.callEndpoint("indexEngMusicInfo", null, new CloudCodeListener() {
             @Override
             public void done(Object object, BmobException e) {
@@ -54,6 +67,20 @@ private List<AudioList> mAudioLists = new ArrayList<>();
             }
 
         });
+        }else{
+            ace.callEndpoint("indexSpanishMusicInfo", null, new CloudCodeListener() {
+                @Override
+                public void done(Object object, BmobException e) {
+                    if (e == null) {
+                        String result = object.toString();
+                        parseJsonDataWithGson(result);
+                    } else {
+                        Log.e(TAG, " " + e.getMessage());
+                    }
+                }
+
+            });
+        }
 
     }
 
@@ -67,11 +94,13 @@ private List<AudioList> mAudioLists = new ArrayList<>();
         initRecyclerView();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void initRecyclerView() {
         RecyclerView recyclerView = getView().findViewById(R.id.rv_audio_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         AudioListAdapter adapter = new AudioListAdapter(mAudioLists);
+        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
 

@@ -81,7 +81,8 @@ public class FileLoadEvaluationActivity extends BaseActivity {
             public void onClick(View view) {
                 String mText=tvFileContent.getText().toString();
                 if (!mText.equals("")){
-                    startToEvaluate(mText, getString(R.string.TextUrl),getString(R.string.levelUrl));
+//                    startToEvaluate(mText, getString(R.string.TextUrl),getString(R.string.levelUrl));
+                    goToEvaluatePart(mText);
                     Toast.makeText(getApplicationContext(),"测评中",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"文本为空，请重新输入",Toast.LENGTH_SHORT).show();
@@ -113,6 +114,13 @@ public class FileLoadEvaluationActivity extends BaseActivity {
             }
 
         }));
+    }
+
+    private void goToEvaluatePart(String mText) {
+        Intent intent = new Intent(FileLoadEvaluationActivity.this,ResultEvaluationActivity.class);
+        bundle.putString("text",mText);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private void startToEvaluate(String mText, String textUrl, String levelUrl) {

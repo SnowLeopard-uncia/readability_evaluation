@@ -176,6 +176,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
                 tv_next_grade.setText("M");
             }else{
                 tv_next_grade.setText((char)(personal.getLevel().charAt(0) + 1 )+"");
+                Log.e(TAG, "parseJsonDataWithGson1: "+( personal.getLevel().charAt(0)-65));
             }
             int need = updateCoinsNeed[personal.getLevel().charAt(0)-65];
 

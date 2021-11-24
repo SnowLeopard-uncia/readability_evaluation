@@ -376,12 +376,14 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                 mPosition=mPosition-1;
             if ((mPosition+1)==0){
                 Toast.makeText(getApplicationContext(),"这是第一首", LENGTH_SHORT).show();
+                mPosition=mPosition+1;
             }else if (mIsLockList.get(mPosition)==1){
                 Toast.makeText(getApplicationContext(),"金币数量不足", LENGTH_SHORT).show();
-                Log.e(TAG, "onClick: "+mPosition );
-                for (int i = 0; i < mIsLockList.size(); i++) {
-                    Log.e(TAG, "onClick: "+mIsLockList.get(i)+"   "+i );
-                }
+                mPosition=mPosition+1;
+//                Log.e(TAG, "onClick: "+mPosition );
+//                for (int i = 0; i < mIsLockList.size(); i++) {
+//                    Log.e(TAG, "onClick: "+mIsLockList.get(i)+"   "+i );
+//                }
             }
             else{
                 temp=1;
@@ -409,12 +411,14 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                 mPosition=mPosition+1;
                 if (mPosition==(mMaxPosition-1)){
                     Toast.makeText(getApplicationContext(),"这是最后一首", LENGTH_SHORT).show();
+                    mPosition=mPosition-1;
                 }else if (mIsLockList.get(mPosition)==1){
                     Toast.makeText(getApplicationContext(),"金币数量不足", LENGTH_SHORT).show();
-                    Log.e(TAG, "onClick: "+mPosition );
-                    for (int i = 0; i < mIsLockList.size(); i++) {
-                        Log.e(TAG, "onClick: "+mIsLockList.get(i)+"   "+i );
-                    }
+                    mPosition=mPosition-1;
+//                    Log.e(TAG, "onClick: "+mPosition );
+//                    for (int i = 0; i < mIsLockList.size(); i++) {
+//                        Log.e(TAG, "onClick: "+mIsLockList.get(i)+"   "+i );
+//                    }
 
                 }
                 else{

@@ -19,6 +19,7 @@ import com.example.bamboo.fragment.ui.adapter.WordListAdapter;
 import com.example.bamboo.fragment.ui.adapter.WordMenuAdapter;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookHome;
+import com.example.bamboo.javaBean.UserLocal;
 import com.example.bamboo.javaBean.WordList;
 import com.example.bamboo.javaBean.WordMenuList;
 import com.google.gson.Gson;
@@ -26,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,21 +80,38 @@ public class WordListActivity extends BaseActivity {
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
         JSONObject params= new JSONObject();
         params.put("level",level);
-        Log.e(TAG, "getResponseData: params"+params.toString());
+//        Log.e(TAG, "getResponseData: params"+params.toString());
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
 //第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams），第三个参数是回调类
-        ace.callEndpoint("wordBookInfo", params, new CloudCodeListener() {
-            @Override
-            public void done(Object object, BmobException e) {
-                if (e == null) {
-                    String result = object.toString();
-                    parseJsonDataWithGson(result);
-                    Log.e(TAG, "获取单词成功"+result);
-                } else {
-                    Log.e(TAG, "执行错误" + e.getMessage());
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        if(userLocal.getLanguage().equals("English")){
+            ace.callEndpoint("wordBookInfo", params, new CloudCodeListener() {
+                @Override
+                public void done(Object object, BmobException e) {
+                    if (e == null) {
+                        String result = object.toString();
+                        parseJsonDataWithGson(result);
+                        Log.e(TAG, "获取单词成功英语");
+                    } else {
+                        Log.e(TAG, "执行错误" + e.getMessage());
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            ace.callEndpoint("wordBookInfo_spanish", params, new CloudCodeListener() {
+                @Override
+                public void done(Object object, BmobException e) {
+                    if (e == null) {
+                        String result = object.toString();
+                        parseJsonDataWithGson(result);
+                        Log.e(TAG, "获取单词成功西语");
+                    } else {
+                        Log.e(TAG, "执行错误" + e.getMessage());
+                    }
+                }
+            });
+        }
+
 
     }
     private void parseJsonDataWithGson(String responseData) {

@@ -58,13 +58,21 @@ public class TextTextEvaluationActivity extends BaseActivity {
             String mText=et_text.getText().toString();
             Log.e(TAG, "initView: "+mText );
             if (!mText.equals("")){
-                startToEvaluate(mText, TextUrl,levelUrl);
-
-                Toast.makeText(this,"测评中",Toast.LENGTH_SHORT).show();
+                //原本的方法
+//                startToEvaluate(mText, TextUrl,levelUrl);
+                //现在的方法
+                goToEvaluatePart(mText);
             }else{
                 Toast.makeText(this,"文本为空，请重新输入",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void goToEvaluatePart(String text) {
+        Intent intent = new Intent(TextTextEvaluationActivity.this,ResultEvaluationActivity.class);
+        bundle.putString("text",text);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 

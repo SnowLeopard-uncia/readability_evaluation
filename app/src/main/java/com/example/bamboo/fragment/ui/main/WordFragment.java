@@ -75,7 +75,7 @@ public class WordFragment extends Fragment {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-//                    Log.e(TAG, "done: json："+responseData);
+                    Log.e(TAG, "done: json："+"英语接口单词");
                     parseJsonDataWithGson(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -91,12 +91,10 @@ public class WordFragment extends Fragment {
         BaseResponse<List<WordMenuList>> responseWordMenuList = gson.fromJson(jsonData,new TypeToken<BaseResponse<List<WordMenuList>>>(){}.getType());
         List<WordMenuList> dataResponseList= responseWordMenuList.getResults();
         wordMenuLists.clear();
-        for (WordMenuList wordMenuList:dataResponseList){
-            wordMenuLists.add(wordMenuList);
-//            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getCreatedAt());
-//            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getVocLevel());
-//            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getNew_tableName());
-        }
+        //            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getCreatedAt());
+        //            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getVocLevel());
+        //            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getNew_tableName());
+        wordMenuLists.addAll(dataResponseList);
     initRecyclerView();
 
     }

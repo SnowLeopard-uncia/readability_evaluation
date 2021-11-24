@@ -37,8 +37,8 @@ public class ResultEvaluationActivity extends BaseActivity {
     private String text;
     private String result;
     private Button btn_evaluation_again;
-    private String url="http://8.134.49.78:5000";
-    private String levelUrl="http://8.134.49.78:8081";
+    private final String url="http://8.134.49.78:5000";
+    private final String levelUrl="http://8.134.49.78:8081";
     private int temp =0;
     private String results="";
 
@@ -54,7 +54,10 @@ public class ResultEvaluationActivity extends BaseActivity {
         btn_evaluation_again.setOnClickListener((view -> {
             String mText = et_text.getText().toString();
             if (!mText.equals("")){
-                startToEvaluate(mText,url);
+                new Thread(()->{
+//                    startToEvaluate(mText,url);
+                    goToEvaluate(mText,url,levelUrl);
+                }).start();
                 Toast.makeText(this,"测评中",Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this,"文本为空，请重新输入",Toast.LENGTH_SHORT).show();
@@ -67,6 +70,50 @@ public class ResultEvaluationActivity extends BaseActivity {
         Bundle bundle =intent.getExtras();
          text = bundle.getString("text");
          result = bundle.getString("result");
+         new Thread(()->{
+             goToEvaluate(text,url,levelUrl);
+         }).start();
+
+    }
+
+    private void goToEvaluate(String text, String url, String levelUrl) {
+        HttpUtils.readabilityWithOkhttp(url, text, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                final String responseBody=response.body().string();
+                    String result = parseJsonDataWithGson(responseBody);
+                    results=results+result;
+                runOnUiThread(()->{
+                    tv_result.setText(results);
+                    Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+
+        HttpUtils.readabilityWithOkhttp(levelUrl, text, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                final String responseBody=response.body().string();
+
+                    Gson gson = new Gson();
+                    LevelText levelText = gson.fromJson(responseBody, new TypeToken<LevelText>() {
+                    }.getType());
+                    results=results+levelText.toString();
+                runOnUiThread(()->{
+                    tv_result.setText(results);
+                    Toast.makeText(getApplicationContext(),"等级显示",Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+
     }
 
     private void initView() {

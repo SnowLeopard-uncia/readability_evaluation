@@ -113,7 +113,12 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
         }else{
             holder.iv_playing.setVisibility(View.INVISIBLE);
         }
-
+        List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
+        for (UserLocal userLocal1:personalList){
+            Log.e(TAG, "音频个人接口: "+userLocal1.getCoin());
+            Log.e(TAG, "音频个人接口: "+userLocal1.getLevel());
+            Log.e(TAG, "音频个人接口: "+userLocal1.getLanguage());
+        }
         UserLocal userLocal = LitePal.findFirst(UserLocal.class);
         int userCoin = userLocal.getCoin();
         //如果等级一样，就设置锁不可见
