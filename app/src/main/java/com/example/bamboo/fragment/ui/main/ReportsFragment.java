@@ -200,9 +200,9 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
 
             List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
             for (UserLocal userLocal1:personalList){
-                Log.e(TAG, "onActivityCreated: "+userLocal1.getCoin());
-                Log.e(TAG, "onActivityCreated: "+userLocal1.getLevel());
-                Log.e(TAG, "onActivityCreated: "+userLocal1.getLanguage());
+                Log.e(TAG, "个人中心: "+userLocal1.getCoin());
+                Log.e(TAG, "个人中心: "+userLocal1.getLevel());
+                Log.e(TAG, "个人中心: "+userLocal1.getLanguage());
             }
 
 

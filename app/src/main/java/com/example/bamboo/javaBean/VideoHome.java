@@ -11,6 +11,7 @@ public class VideoHome {
     private String videoName;
     private Integer videoPrice;
 
+
     public String getCreatedAt() {
         return createdAt;
     }
@@ -74,4 +75,5 @@ public class VideoHome {
     public void setVideoPrice(Integer videoPrice) {
         this.videoPrice = videoPrice;
     }
+
 }

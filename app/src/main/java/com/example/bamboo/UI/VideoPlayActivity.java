@@ -1,5 +1,7 @@
 package com.example.bamboo.UI;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -13,6 +15,7 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
@@ -20,6 +23,8 @@ import android.widget.VideoView;
 import com.example.bamboo.R;
 
 import org.reactivestreams.Subscriber;
+
+import java.io.IOException;
 
 import io.reactivex.Observable;
 
@@ -39,6 +44,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
         initNavBar(true, "");
         url = getIntent().getExtras().getString("src");
+        Log.e(TAG, "视频播放页面视频路径： " + url);
         video_view = findViewById(R.id.video_view);
         btn_play = findViewById(R.id.btn_play);
         btn_pause = findViewById(R.id.btn_pause);
@@ -46,15 +52,11 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
         btn_play.setOnClickListener(this);
         btn_pause.setOnClickListener(this);
         btn_replay.setOnClickListener(this);
+
         video_view.setVideoURI(Uri.parse(url));
-//        if (ContextCompat.checkSelfPermission(VideoPlayActivity.this,
-//                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(VideoPlayActivity.this, new String[]{
-//                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-//        } else {
-//            video_view.setVideoURI(Uri.parse(url));
-//        }
     }
+
+
 
     @Override
     public void onClick(View view) {
