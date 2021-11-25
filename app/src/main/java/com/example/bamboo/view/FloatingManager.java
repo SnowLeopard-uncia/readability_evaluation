@@ -94,7 +94,7 @@ public class FloatingManager {
         TextView tvCurrent = new TextView(activity);
 //                tvCurrent.setBackground(activity.getResources().getDrawable(R.drawable.bg_tv_currentlevel));
                 tvCurrent.setBackground(activity.getResources().getDrawable(R.drawable.bg_current_level));
-        tvCurrent.setTextSize(20);
+        tvCurrent.setTextSize(15);
         tvCurrent.setText("当前：等级"+userLocal.getLevel());
         tvCurrent.setTextColor(activity.getResources().getColor(R.color.btn_book_reading));
         mRootView.addView(tvCurrent);
@@ -143,7 +143,7 @@ public class FloatingManager {
         //创建TextView
         TextView tvNext = new TextView(activity);
         tvNext.setBackground(activity.getResources().getDrawable(R.drawable.bg_next_levle));
-        tvNext.setTextSize(12);
+        tvNext.setTextSize(9);
 
         tvNext.setText("距离升级还需"+need+"金币");
         tvNext.setTextColor(activity.getResources().getColor(R.color.white));

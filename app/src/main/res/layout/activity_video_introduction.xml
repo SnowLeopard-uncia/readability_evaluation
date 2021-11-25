@@ -98,7 +98,6 @@
                 android:ellipsize="end"
                 android:maxEms="14"
                 android:maxLines="2"
-                android:text="介绍"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/book_introduction_textSize" />
 

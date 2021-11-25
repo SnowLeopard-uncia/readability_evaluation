@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,9 +15,11 @@ import android.widget.ImageView;
 import com.example.bamboo.R;
 import com.example.bamboo.javaBean.UserLocal;
 import com.example.bamboo.view.FloatingManager;
+import com.example.bamboo.view.PathView;
 
 import org.litepal.LitePal;
 
+import java.nio.file.Path;
 import java.util.List;
 
 public class PathActivity extends BaseActivity {
@@ -33,10 +36,10 @@ private int[] imgId={
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_path);
+        setContentView(R.layout.activity_new_path);
         initNavBar(true, "成长轨迹");
 
-        initView();
+//        initView();
 
     }
 
