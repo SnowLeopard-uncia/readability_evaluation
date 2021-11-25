@@ -3,6 +3,10 @@ package com.example.bamboo.fragment.ui.main;
 import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,6 +64,24 @@ public class VideoFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("changeLanguage");
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String key = intent.getStringExtra("language");
+//                Toast.makeText(getActivity(),"接受到了广播"+key,Toast.LENGTH_SHORT).show();
+                if(key.equals("English")) {
+                    getResponseData1();
+//                    Toast.makeText(getActivity(),"英语的广播",Toast.LENGTH_SHORT).show();
+                }else {
+                    getResponseData2();
+//                    Toast.makeText(getActivity(),"西语的广播",Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
 
     }
 
@@ -115,15 +139,7 @@ public class VideoFragment extends Fragment {
         }.getType());
         List<VideoHome> dataResponseList = responseVideoHomeList.getResults();
         videoList.clear();
-        for (VideoHome videoHome : dataResponseList) {
-            videoList.add(videoHome);
-//            Log.e(TAG, "parseJson: " + videoHome.getVideoID());
-//            Log.e(TAG, "parseJson: " + videoHome.getVideoPrice());
-//            Log.e(TAG, "parseJson: " + videoHome.getVideoPic());
-//            Log.e(TAG, "parseJson: " + videoHome.getVideoName());
-//            Log.e(TAG, "parseJson: " + videoHome.getVideoLevel());
-
-        }
+        videoList.addAll(dataResponseList);
 
         initRecyclerView();
 
@@ -156,14 +172,7 @@ public class VideoFragment extends Fragment {
         }.getType());
         List<VideoHome> dataResponseList = responseVideoHomeList.getResults();
         videoList.clear();
-        for (VideoHome videoHome : dataResponseList) {
-            videoList.add(videoHome);
-
-            Log.e(TAG, "parseJson: " + videoHome.getVideoID());
-            Log.e(TAG, "parseJson: " + videoHome.getVideoLevel());
-            Log.e(TAG, "parseJson: " + videoHome.getPng());
-
-        }
+        videoList.addAll(dataResponseList);
 
         initRecyclerView();
 
@@ -199,7 +208,6 @@ public class VideoFragment extends Fragment {
 
     private void parseUserJsonDataWithGson(String jsonData) {
         Gson gson = new Gson();
-
         BaseResponse<List<Personal>> responsePersonalList = gson.fromJson(jsonData,
                 new TypeToken<BaseResponse<List<Personal>>>() {
                 }.getType());

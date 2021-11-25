@@ -90,7 +90,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         holder.tv_level.setText(video.getVideoLevel());
         holder.tv_coin.setText("" + video.getVideoPrice());
         Glide.with(holder.videoView.getContext()).load(video.getPng()).into(holder.iv_book_shape);
-
+        holder.itemView.setVisibility(View.VISIBLE);
 
         UserLocal userLocal = LitePal.findFirst(UserLocal.class);
         if (userLocal == null){

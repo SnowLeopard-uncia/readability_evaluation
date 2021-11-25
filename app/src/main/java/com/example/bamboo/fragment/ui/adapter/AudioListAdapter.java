@@ -113,24 +113,22 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
         }else{
             holder.iv_playing.setVisibility(View.INVISIBLE);
         }
-        List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
-        for (UserLocal userLocal1:personalList){
-            Log.e(TAG, "音频个人接口: "+userLocal1.getCoin());
-            Log.e(TAG, "音频个人接口: "+userLocal1.getLevel());
-            Log.e(TAG, "音频个人接口: "+userLocal1.getLanguage());
-        }
-        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-        int userCoin = userLocal.getCoin();
+        List<UserLocal> userLocalList = LitePal.findAll(UserLocal.class);
+
+//        List<UserLocal> userLocalList = LitePal.findAll(UserLocal.class);
+
+
+        int userCoin = userLocalList.get(0).getCoin();
         //如果等级一样，就设置锁不可见
-        if (audioList.getLevel().equals(userLocal.getLevel())) {
+        if (audioList.getLevel().equals(userLocalList.get(0).getLevel())) {
             holder.iv_lock.setVisibility(View.INVISIBLE);
         }
         //如果等级不一样，用户金币比列表的金币多，锁不可见
-        if ((!audioList.getLevel().equals(userLocal.getLevel())) && userCoin >= audioList.getResourceCoin()) {
+        if ((!audioList.getLevel().equals(userLocalList.get(0).getLevel())) && userCoin >= audioList.getResourceCoin()) {
             holder.iv_lock.setVisibility(View.INVISIBLE);
         }
         //如果用户等级和列表等级不一样，金币数比资源小，锁可见
-        if ((!audioList.getLevel().equals(userLocal.getLevel())) && userCoin < audioList.getResourceCoin()) {
+        if ((!audioList.getLevel().equals(userLocalList.get(0).getLevel())) && userCoin < audioList.getResourceCoin()) {
             holder.iv_lock.setVisibility(View.VISIBLE);
         }
     }

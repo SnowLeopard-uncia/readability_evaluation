@@ -85,7 +85,9 @@
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_btn_mark.xml" value="0.104296875" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_btn_upload.xml" value="0.104296875" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_btn_uploadway.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_dialog.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_edit_text.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_video_dialog.xml" value="0.109765625" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_word_menu.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_word_menu_x.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/login_input_edit_shape.xml" value="0.1171875" />
@@ -105,8 +107,9 @@
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_register.xml" value="0.134375" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_result_evaluation.xml" value="0.12" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_text_text_evaluation.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_video_introduction.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_word_list.xml" value="0.1" />
-        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/dialog.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/dialog.xml" value="0.5040650406504065" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/frag_fragment_audio.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/frag_fragment_book.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/frag_fragment_video.xml" value="0.1" />

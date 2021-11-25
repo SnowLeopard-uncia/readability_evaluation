@@ -34,12 +34,14 @@ import com.example.bamboo.fragment.ui.adapter.AudioListAdapter;
 import com.example.bamboo.javaBean.Audio;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.LrcInfo;
+import com.example.bamboo.javaBean.UserLocal;
 import com.example.bamboo.service.MusicService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -248,11 +250,19 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
 
     }
     private void getDataFromResponse() throws JSONException {
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+
+        String name="";
+        if (userLocal.getLanguage().equals("English")){
+            name="playMusic";
+        }else{
+            name="playSpanishMusic";
+        }
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
         JSONObject params= new JSONObject();
         params.put("musicSelectedID", audioId);
-        ace.callEndpoint("playMusic", params, new CloudCodeListener() {
+        ace.callEndpoint(name, params, new CloudCodeListener() {
             @Override
             public void done(Object object, BmobException e) {
                 if (e == null) {

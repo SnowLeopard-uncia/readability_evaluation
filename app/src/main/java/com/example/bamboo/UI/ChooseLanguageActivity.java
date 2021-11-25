@@ -162,10 +162,7 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
                 new TypeToken<BaseResponse<List<UserRegister>>>() {
                 }.getType());
         List<UserRegister> dataResponseList = responseUserRegisterList.getResults();
-        for (UserRegister userRegister : dataResponseList) {
-            userList.add(userRegister);
-
-        }
+        userList.addAll(dataResponseList);
 
     }
 

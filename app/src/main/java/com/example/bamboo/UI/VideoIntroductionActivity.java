@@ -220,7 +220,7 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
         View dialogView = View.inflate(this, R.layout.dialog, null); // 将Dialog的布局加载进来
         builder.setView(dialogView);
         final AlertDialog alertDialog = builder.create(); // 创建对话框
-
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         ImageView close = dialogView.findViewById(R.id.iv_close);
         TextView tv_content = dialogView.findViewById(R.id.tv_content);
         tv_content.setText("  " + videoList.get(0).getIntroduce());

@@ -89,7 +89,7 @@ public class ResultEvaluationActivity extends BaseActivity {
                     results=results+result;
                 runOnUiThread(()->{
                     tv_result.setText(results);
-                    Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"测评成功",Toast.LENGTH_SHORT).show();
                 });
             }
         });
@@ -109,7 +109,7 @@ public class ResultEvaluationActivity extends BaseActivity {
                     results=results+levelText.toString();
                 runOnUiThread(()->{
                     tv_result.setText(results);
-                    Toast.makeText(getApplicationContext(),"等级显示",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(),"等级显示",Toast.LENGTH_SHORT).show();
                 });
             }
         });

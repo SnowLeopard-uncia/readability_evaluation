@@ -227,6 +227,7 @@ public class MainActivity extends BaseActivity {
                 new TypeToken<BaseResponse<List<Personal>>>() {
                 }.getType());
         List<Personal> dataResponseList = responsePersonalList.getResults();
+        personList.clear();
         for (Personal personal : dataResponseList) {
             personList.add(personal);
 

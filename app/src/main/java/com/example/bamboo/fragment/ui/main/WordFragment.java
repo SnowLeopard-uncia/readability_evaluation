@@ -2,30 +2,39 @@ package com.example.bamboo.fragment.ui.main;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bamboo.R;
 import com.example.bamboo.fragment.ui.adapter.WordMenuAdapter;
 import com.example.bamboo.javaBean.BaseResponse;
+import com.example.bamboo.javaBean.UserLocal;
 import com.example.bamboo.javaBean.WordMenuList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.LinkedTransferQueue;
 
 import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.Bmob;
@@ -35,6 +44,8 @@ import cn.bmob.v3.listener.CloudCodeListener;
 public class WordFragment extends Fragment {
 
     private List<WordMenuList> wordMenuLists = new ArrayList<>();
+    private String name;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,6 +63,21 @@ public class WordFragment extends Fragment {
         }
 //        init();
 //        initRecyclerView(); 放在这里不行
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("changeLanguage");
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String key = intent.getStringExtra("language");
+                try {
+                    getResponseData();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
     }
 //test
     private void init() {
@@ -70,12 +96,34 @@ public class WordFragment extends Fragment {
         JSONObject params= new JSONObject();
         params.put(null, null);
 //第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams），第三个参数是回调类
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+
+        if (userLocal!=null){
+            userLocal=new UserLocal();
+            userLocal.setLevel("A");
+            userLocal.setLanguage("English");
+            userLocal.setCoin(0);
+            userLocal.updateAll();
+        }else{
+            userLocal=new UserLocal();
+            userLocal.setLevel("A");
+            userLocal.setLanguage("English");
+            userLocal.setCoin(0);
+            userLocal.save();
+        }
+        name = userLocal.getLanguage();
+            if (userLocal.getLanguage().equals("English")){
+                name ="selectVocabulary";
+                Log.e(TAG, "done: json："+"英语接口单词");
+            }else{
+                name ="selectVocabulary_Spanish";
+            }
         ace.callEndpoint("selectVocabulary", params, new CloudCodeListener() {
             @Override
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json："+"英语接口单词");
+
                     parseJsonDataWithGson(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());

@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -30,6 +31,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
@@ -184,35 +186,10 @@ public class SquareFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
+                Intent intent = new Intent("changeLanguage");
+                intent.putExtra("language","English");
+                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
                 drawerLayout.closeDrawers();
-
-//                FragmentManager fragmentManager = getChildFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                if (bookFragment.isVisible()) {
-//                    fragmentTransaction.hide(bookFragment)
-//                            .hide(videoFragment)
-//                            .hide(audioFragment)
-//                            .show(bookFragment)
-//                            .commit();
-//                }
-//                else if (videoFragment.isVisible()) {
-//                    fragmentTransaction.hide(videoFragment)
-//                            .hide(bookFragment)
-//                            .hide(audioFragment)
-//                            .show(videoFragment)
-//                            .commit();
-//                }
-//                else if (audioFragment.isVisible()) {
-//                    fragmentTransaction.hide(audioFragment)
-//                            .hide(bookFragment)
-//                            .hide(videoFragment)
-//                            .show(audioFragment)
-//                            .commit();
-//                }
-
-
-
 
             }
         });
@@ -225,34 +202,11 @@ public class SquareFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                Intent intent = new Intent("changeLanguage");
+                intent.putExtra("language","Spanish");
+                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
 
                 drawerLayout.closeDrawers();
-
-//                FragmentManager fragmentManager = getChildFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                if (bookFragment.isVisible()) {
-//                    fragmentTransaction.hide(bookFragment)
-//                            .hide(videoFragment)
-//                            .hide(audioFragment)
-//                            .show(bookFragment)
-//                            .commit();
-//                }
-//                else if (videoFragment.isVisible()) {
-//                    fragmentTransaction.hide(videoFragment)
-//                            .hide(bookFragment)
-//                            .hide(audioFragment)
-//                            .show(videoFragment)
-//                            .commit();
-//                }
-//                else if (audioFragment.isVisible()) {
-//                    fragmentTransaction.hide(audioFragment)
-//                            .hide(bookFragment)
-//                            .hide(videoFragment)
-//                            .show(audioFragment)
-//                            .commit();
-//                }
-
-
 
             }
         });
@@ -369,18 +323,7 @@ public class SquareFragment extends Fragment {
         linearLayout.addView(view);
     }
 
-//    private void createMenuList() {
-//        SlideMenuItem menuItem0 = new SlideMenuItem("close", R.drawable.icn_close);
-//        slideMenuItems.add(menuItem0);
-//        SlideMenuItem menuItem1 = new SlideMenuItem("book", R.drawable.icn_book);
-//        slideMenuItems.add(menuItem1);
-//        SlideMenuItem menuItem2 = new SlideMenuItem("video", R.drawable.icn_video);
-//        slideMenuItems.add(menuItem2);
-//        SlideMenuItem menuItem3 = new SlideMenuItem("audio", R.drawable.icn_audio);
-//        slideMenuItems.add(menuItem3);
-//        SlideMenuItem menuItem4 = new SlideMenuItem("spanish", R.drawable.spanish);
-//        slideMenuItems.add(menuItem4);
-//    }
+
 
 
     public void updateLanguage() throws JSONException {
@@ -441,7 +384,6 @@ public class SquareFragment extends Fragment {
 
     private void parseJsonDataWithGson1(String jsonData) {
         Gson gson = new Gson();
-
         BaseResponse<List<Personal>> responsePersonalList = gson.fromJson(jsonData,
                 new TypeToken<BaseResponse<List<Personal>>>() {
                 }.getType());
@@ -472,7 +414,6 @@ public class SquareFragment extends Fragment {
             }else {
                 img_to_Spanish.setVisibility(View.INVISIBLE);
                 img_to_English.setVisibility(View.VISIBLE);
-
             }
 
             List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
@@ -480,8 +421,5 @@ public class SquareFragment extends Fragment {
                 Log.e(TAG, "知识广场个人接口: "+userLocal1.getLanguage());
             }
         }
-
     }
-
-
 }

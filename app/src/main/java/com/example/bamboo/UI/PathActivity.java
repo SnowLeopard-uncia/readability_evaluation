@@ -1,10 +1,13 @@
 package com.example.bamboo.UI;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,12 +17,13 @@ import com.example.bamboo.view.FloatingManager;
 
 import org.litepal.LitePal;
 
+import java.util.List;
+
 public class PathActivity extends BaseActivity {
 
 private ImageView currentLevel;
 private ImageView nextLevel;
-    UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-    int index = userLocal.getLevel().charAt(0)-65;
+
 private int[] imgId={
     R.id.iv_a, R.id.iv_b, R.id.iv_c, R.id.iv_d, R.id.iv_e, R.id.iv_f, R.id.iv_g,
         R.id.iv_h, R.id.iv_i, R.id.iv_j, R.id.iv_k, R.id.iv_l, R.id.iv_m,
@@ -37,7 +41,10 @@ private int[] imgId={
     }
 
     private void initView() {
-
+        List<UserLocal> userLocalList = LitePal.findAll(UserLocal.class);
+        UserLocal userLocal = userLocalList.get(0);
+        int index = userLocal.getLevel().charAt(0)-65;
+        Log.e(TAG, "initView: index"+index );
         currentLevel = findViewById(imgId[index]);
         currentLevel.setVisibility(View.VISIBLE);
         if(index==imgId.length-1){
