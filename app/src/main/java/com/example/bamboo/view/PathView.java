@@ -86,6 +86,21 @@ public class PathView extends View {
             canvas.drawLine(pointEntity.getX(), pointEntity.getY(), pointEntityNext.getX(), pointEntityNext.getY(), mLinePaint);
         }
         for (int i = 0; i < mPointEntities.size(); i++) {
+            PointEntity pointEntity= mPointEntities.get(i);
+            PathData pathData = mPathDataList.get(i);
+            if ((i/4)%2==0){
+                if (pathData.getWord().equals("K") || pathData.getWord().equals("L")){
+                    canvas.drawText(pathData.getWord(),pointEntity.getX()-textWidth,pointEntity.getY()-textWidth*2,mTextPaint);
+                }else{
+                    canvas.drawText(pathData.getWord(),pointEntity.getX()+textWidth*2,pointEntity.getY()+textWidth*2,mTextPaint);
+                }
+            }else{
+
+                canvas.drawText(pathData.getWord(),pointEntity.getX()-textWidth*2,pointEntity.getY()-textWidth*2,mTextPaint);
+            }
+
+        }
+        for (int i = 0; i < mPointEntities.size(); i++) {
             PointEntity pointEntity = mPointEntities.get(i);
             if (i==index){
                 imageWidth= BitmapFactory.decodeResource(getResources(), R.drawable.current_level).getWidth();
@@ -100,7 +115,7 @@ public class PathView extends View {
                 imageWidth= BitmapFactory.decodeResource(getResources(), R.drawable.next_level).getWidth();
                 canvas.drawBitmap(getBitmap(R.drawable.next_level),pointEntity.getX()-(imageWidth/2),pointEntity.getY()-(imageWidth/2),mCirclePaint);
                 canvas.drawBitmap(getBitmap(R.drawable.bg_next_levle),pointEntity.getX()+textWidth*3,pointEntity.getY()-nextImageHeight*2+textWidth,mCirclePaint);
-                canvas.drawText("距离升级还需"+need,pointEntity.getX()+textWidth*4,pointEntity.getY()-nextImageHeight,mNextTextPaint);
+                canvas.drawText("距离升级还需"+need+"金币",pointEntity.getX()+textWidth*4,pointEntity.getY()-nextImageHeight,mNextTextPaint);
             }else{
             imageWidth= BitmapFactory.decodeResource(getResources(), R.drawable.d).getWidth();
             canvas.drawBitmap(getBitmap(R.drawable.d),pointEntity.getX()-(imageWidth/2),pointEntity.getY()-(imageWidth/2),mCirclePaint);
@@ -108,21 +123,7 @@ public class PathView extends View {
             }
         }
 
-        for (int i = 0; i < mPointEntities.size(); i++) {
-           PointEntity pointEntity= mPointEntities.get(i);
-            PathData pathData = mPathDataList.get(i);
-            if ((i/4)%2==0){
-                if (pathData.getWord().equals("K") || pathData.getWord().equals("L")){
-                    canvas.drawText(pathData.getWord(),pointEntity.getX()-textWidth,pointEntity.getY()-textWidth*2,mTextPaint);
-                }else{
-                    canvas.drawText(pathData.getWord(),pointEntity.getX()+textWidth*2,pointEntity.getY()+textWidth*2,mTextPaint);
-                }
-            }else{
 
-                canvas.drawText(pathData.getWord(),pointEntity.getX()-textWidth*2,pointEntity.getY()-textWidth*2,mTextPaint);
-            }
-
-        }
 
     }
 

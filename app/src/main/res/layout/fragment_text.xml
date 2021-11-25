@@ -8,6 +8,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout_load_text"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
@@ -35,6 +36,7 @@
     <LinearLayout
         android:id="@+id/linearLayout_load_photo"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
         android:background="@drawable/bg_btn_uploadway"
@@ -65,6 +67,7 @@
         android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
         android:background="@drawable/bg_btn_uploadway"
         android:gravity="center"
+
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="spread"
