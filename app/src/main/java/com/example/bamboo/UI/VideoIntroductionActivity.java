@@ -66,28 +66,10 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
 
         videoID = getIntent().getExtras().getInt("videoID");
 
-        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-        if (userLocal == null){
-            userLocal=new UserLocal();
-            userLocal.setCoin(0);
-            userLocal.setLevel("A");
-            userLocal.setLanguage("English");
-            userLocal.save();
-        }
-        String language = userLocal.getLanguage();
-        if(language.equals("English")) {
-            try {
-                getResponseData1();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }else {
-            try {
-                getResponseData2();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        try {
+            getResponseData();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
     }
@@ -122,9 +104,17 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
         }
     }
 
-    private void getResponseData1() throws JSONException {
+    private void getResponseData() throws JSONException {
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+
+        String cloudCodeName = "";
+        if (userLocal.getLanguage().equals("English")){
+            cloudCodeName = "playVideo";
+        }else{
+            cloudCodeName = "playVideo_Spanish";
+        }
+
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
-        String cloudCodeName = "playVideo";
         JSONObject params = new JSONObject();
         params.put("videoID", videoID);
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
@@ -135,7 +125,7 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
                 if (e == null) {
                     String responseData = object.toString();
                     Log.e(TAG, "done: json：" + responseData);
-                    parseJsonDataWithGson1(responseData);
+                    parseJsonDataWithGson(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -145,7 +135,7 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
     }
 
 
-    private void parseJsonDataWithGson1(String jsonData) {
+    private void parseJsonDataWithGson(String jsonData) {
         Gson gson = new Gson();
 
         BaseResponse<List<VideoIntroduction>> responseVideoIntroductionList = gson.fromJson(jsonData,
@@ -169,51 +159,6 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
 
     }
 
-    private void getResponseData2() throws JSONException {
-        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
-        String cloudCodeName = "playVideo_Spanish";
-        JSONObject params = new JSONObject();
-        params.put("videoID", videoID);
-        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
-//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
-        ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
-            @Override
-            public void done(Object object, BmobException e) {
-                if (e == null) {
-                    String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
-                    parseJsonDataWithGson2(responseData);
-                } else {
-                    Log.e(TAG, " " + e.getMessage());
-                }
-            }
-        });
-
-    }
-
-
-    private void parseJsonDataWithGson2(String jsonData) {
-        Gson gson = new Gson();
-
-        BaseResponse<List<VideoIntroduction>> responseVideoIntroductionList = gson.fromJson(jsonData,
-                new TypeToken<BaseResponse<List<VideoIntroduction>>>() {
-                }.getType());
-        List<VideoIntroduction> dataResponseList = responseVideoIntroductionList.getResults();
-        videoList.clear();
-        for (VideoIntroduction videoIntroduction : dataResponseList) {
-            videoList.add(videoIntroduction);
-
-            tv_book_title.setText("标题：" + videoIntroduction.getVideoName());
-            tv_director.setText("导演：" + videoIntroduction.getAuthor());
-            tv_level.setText("等级：" + videoIntroduction.getVideoLevel());
-            tv_suit_age.setText("适合年级：" + videoIntroduction.getVideoAge());
-            tv_theme.setText("主题：" + videoIntroduction.getTopic());
-            tv_brief_introduction.setText("简介：" + videoIntroduction.getIntroduce());
-            Glide.with(this).load(videoIntroduction.getPng()).into(iv_book);
-
-        }
-
-    }
 
     private void createAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder((VideoIntroductionActivity.this));

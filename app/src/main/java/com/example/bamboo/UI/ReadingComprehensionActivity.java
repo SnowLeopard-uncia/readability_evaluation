@@ -19,11 +19,13 @@ import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookIntroduction;
 import com.example.bamboo.javaBean.QuizList;
+import com.example.bamboo.javaBean.UserLocal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,10 +73,20 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
         initNavBar(true, getResources().getString(R.string.reading_comprehension));
         init();
 
-        try {
-            getResponseData();
-        } catch (JSONException e) {
-            e.printStackTrace();
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        if (userLocal.getLanguage().equals("English")){
+            try {
+                getResponseDataAboutEnglish();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                getResponseDataAboutSpanish();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
 
     }
@@ -143,7 +155,8 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                 initButton();
 
                 select = true;
-                if ((mQuizList.get(question_num).getAnswer()).equals("a")) {
+                if ((mQuizList.get(question_num).getAnswer()).equals("a") ||
+                        (mQuizList.get(question_num).getAnswer()).equals("A")) {
                     iv_answerA.setBackgroundResource(R.drawable.correct);
                     correct = true;
                 } else {
@@ -157,7 +170,8 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                 initButton();
 
                 select = true;
-                if ((mQuizList.get(question_num).getAnswer()).equals("b")) {
+                if ((mQuizList.get(question_num).getAnswer()).equals("b") ||
+                        (mQuizList.get(question_num).getAnswer()).equals("B")) {
                     iv_answerB.setBackgroundResource(R.drawable.correct);
                     correct = true;
                 } else {
@@ -171,7 +185,8 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                 initButton();
                 btn_answerC.setBackgroundResource(R.drawable.option_select);
                 select = true;
-                if ((mQuizList.get(question_num).getAnswer()).equals("c")) {
+                if ((mQuizList.get(question_num).getAnswer()).equals("c") ||
+                        (mQuizList.get(question_num).getAnswer()).equals("C")) {
                     iv_answerC.setBackgroundResource(R.drawable.correct);
                     correct = true;
                 } else {
@@ -184,7 +199,8 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                 initButton();
                 btn_answerD.setBackgroundResource(R.drawable.option_select);
                 select = true;
-                if ((mQuizList.get(question_num).getAnswer()).equals("d")) {
+                if ((mQuizList.get(question_num).getAnswer()).equals("d") ||
+                        (mQuizList.get(question_num).getAnswer()).equals("D")) {
                     iv_answerD.setBackgroundResource(R.drawable.correct);
                     correct = true;
                 } else {
@@ -197,7 +213,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
         }
     }
 
-    private void getResponseData() throws JSONException {
+    private void getResponseDataAboutEnglish() throws JSONException {
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
         String cloudCodeName = "selectQuizInfo_byBookId";
         JSONObject params = new JSONObject();
@@ -210,8 +226,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
-                    parseJsonDataWithGson(responseData);
+                    parseJsonDataAboutEnglish(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -221,7 +236,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
     }
 
 
-    private void parseJsonDataWithGson(String jsonData) {
+    private void parseJsonDataAboutEnglish(String jsonData) {
         Gson gson = new Gson();
 
         BaseResponse<List<QuizList>> responseQuizList = gson.fromJson(jsonData,
@@ -236,12 +251,62 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
 
     }
 
+    private void getResponseDataAboutSpanish() throws JSONException {
+        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
+        String cloudCodeName = "selectSpanishQuizInfo_byBookId";
+        JSONObject params = new JSONObject();
+        Integer book_id = getIntent().getExtras().getInt("book_id");
+        params.put("book_id", book_id);
+        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
+        ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
+            @Override
+            public void done(Object object, BmobException e) {
+                if (e == null) {
+                    String responseData = object.toString();
+                    Log.e(TAG, "done: json：" + responseData);
+                    parseJsonDataAboutSpanish(responseData);
+                } else {
+                    Log.e(TAG, " " + e.getMessage());
+                }
+            }
+        });
+
+    }
+
+
+    private void parseJsonDataAboutSpanish(String jsonData) {
+        Gson gson = new Gson();
+
+        BaseResponse<List<QuizList>> responseQuizList = gson.fromJson(jsonData,
+                new TypeToken<BaseResponse<List<QuizList>>>() {
+                }.getType());
+        List<QuizList> dataResponseList = responseQuizList.getResults();
+        for (QuizList quizList : dataResponseList) {
+            mQuizList.add(quizList);
+
+        }
+        initQuestion();
+
+    }
+
+
     private void initQuestion() {
-        tv_question.setText(mQuizList.get(question_num).getQuestion());
-        tv_answerA.setText(mQuizList.get(question_num).getChoice_obj().getA());
-        tv_answerB.setText(mQuizList.get(question_num).getChoice_obj().getB());
-        tv_answerC.setText(mQuizList.get(question_num).getChoice_obj().getC());
-        tv_answerD.setText(mQuizList.get(question_num).getChoice_obj().getD());
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        if (userLocal.getLanguage().equals("English")){
+            tv_question.setText(mQuizList.get(question_num).getQuestion());
+            tv_answerA.setText(mQuizList.get(question_num).getChoice_obj().getA());
+            tv_answerB.setText(mQuizList.get(question_num).getChoice_obj().getB());
+            tv_answerC.setText(mQuizList.get(question_num).getChoice_obj().getC());
+            tv_answerD.setText(mQuizList.get(question_num).getChoice_obj().getD());
+        }else{
+            tv_question.setText(mQuizList.get(question_num).getQuestion());
+            tv_answerA.setText(mQuizList.get(question_num).getChoice().getA());
+            tv_answerB.setText(mQuizList.get(question_num).getChoice().getB());
+            tv_answerC.setText(mQuizList.get(question_num).getChoice().getC());
+            tv_answerD.setText(mQuizList.get(question_num).getChoice().getD());
+
+        }
     }
 
     private void initButton() {
@@ -256,15 +321,5 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
         select = false;
     }
 
-//    private void delay(){
-//        TimerTask task = new TimerTask() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        };
-//        Timer timer = new Timer();
-//        timer.schedule(task, 1000);//1秒后执行TimeTask的run方法
-//
-//    }
+
 }

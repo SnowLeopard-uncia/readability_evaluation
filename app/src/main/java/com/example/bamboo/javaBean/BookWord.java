@@ -8,6 +8,7 @@ public class BookWord {
     private String objectId;
     private String updatedAt;
     private List<String> word_list;
+    private List<String> word;
 
     public Integer getBook_id() {
         return book_id;
@@ -47,5 +48,13 @@ public class BookWord {
 
     public void setWord_list(List<String> word_list) {
         this.word_list = word_list;
+    }
+
+    public List<String> getWord() {
+        return word;
+    }
+
+    public void setWord(List<String> word) {
+        this.word = word;
     }
 }

@@ -54,6 +54,7 @@ public class VideoFragment extends Fragment {
 
     String objectId;
     private List<Personal> personList = new ArrayList<>();
+    private String key;
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -70,15 +71,18 @@ public class VideoFragment extends Fragment {
         BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                String key = intent.getStringExtra("language");
+                key = intent.getStringExtra("language");
+                getResponseData();
+
 //                Toast.makeText(getActivity(),"接受到了广播"+key,Toast.LENGTH_SHORT).show();
-                if(key.equals("English")) {
-                    getResponseData1();
+//                if(key.equals("English")) {
+//                    getResponseData1();
 //                    Toast.makeText(getActivity(),"英语的广播",Toast.LENGTH_SHORT).show();
-                }else {
-                    getResponseData2();
+//                }else {
+//                    getResponseData2();
 //                    Toast.makeText(getActivity(),"西语的广播",Toast.LENGTH_SHORT).show();
-                }
+//                }
+
             }
         };
         localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
@@ -113,60 +117,39 @@ public class VideoFragment extends Fragment {
     }
 
 
-    private void getResponseData1() {
+    private void getResponseData() {
         Bmob.initialize(getActivity(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
         AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
-//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams），第三个参数是回调类
-        ace.callEndpoint("IndexVideoInfo", null, new CloudCodeListener() {
-            @Override
-            public void done(Object object, BmobException e) {
-                if (e == null) {
-                    String responseData = object.toString();
-//                    Log.e(TAG, "done: json：" + responseData);
-                    parseJsonDataWithGson1(responseData);
-                } else {
-                    Log.e(TAG, " " + e.getMessage());
+        if(key.equals("English")){
+            ace.callEndpoint("IndexVideoInfo", null, new CloudCodeListener() {
+                @Override
+                public void done(Object object, BmobException e) {
+                    if (e == null) {
+                        String responseData = object.toString();
+                        parseJsonDataWithGson(responseData);
+                    } else {
+                        Log.e(TAG, " " + e.getMessage());
+                    }
                 }
-            }
-        });
-
-    }
-
-
-    private void parseJsonDataWithGson1(String jsonData) {
-        Gson gson = new Gson();
-        BaseResponse<List<VideoHome>> responseVideoHomeList = gson.fromJson(jsonData, new TypeToken<BaseResponse<List<VideoHome>>>() {
-        }.getType());
-        List<VideoHome> dataResponseList = responseVideoHomeList.getResults();
-        videoList.clear();
-        videoList.addAll(dataResponseList);
-
-        initRecyclerView();
-
-    }
-
-
-    private void getResponseData2() {
-        Bmob.initialize(getActivity(), "f2c0e499b2961d0a3b7f5c8d52f3a264");
-        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
-//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams），第三个参数是回调类
-        ace.callEndpoint("IndexVideoInfo_Spanish", null, new CloudCodeListener() {
-            @Override
-            public void done(Object object, BmobException e) {
-                if (e == null) {
-                    String responseData = object.toString();
-//                    Log.e(TAG, "done: json：" + responseData);
-                    parseJsonDataWithGson2(responseData);
-                } else {
-                    Log.e(TAG, " " + e.getMessage());
+            });
+        }else{
+            ace.callEndpoint("IndexVideoInfo_Spanish", null, new CloudCodeListener() {
+                @Override
+                public void done(Object object, BmobException e) {
+                    if (e == null) {
+                        String responseData = object.toString();
+                        parseJsonDataWithGson(responseData);
+                    } else {
+                        Log.e(TAG, " " + e.getMessage());
+                    }
                 }
-            }
-        });
+            });
+        }
 
     }
 
 
-    private void parseJsonDataWithGson2(String jsonData) {
+    private void parseJsonDataWithGson(String jsonData) {
         Gson gson = new Gson();
         BaseResponse<List<VideoHome>> responseVideoHomeList = gson.fromJson(jsonData, new TypeToken<BaseResponse<List<VideoHome>>>() {
         }.getType());
@@ -195,7 +178,6 @@ public class VideoFragment extends Fragment {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
                     parseUserJsonDataWithGson(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -231,13 +213,8 @@ public class VideoFragment extends Fragment {
                 userLocal.save(); //用save可以，初次
             }
 
-            String language = userLocal.getLanguage();
-            if(language.equals("English")) {
-                getResponseData1();
-
-            }else {
-                getResponseData2();
-            }
+            key = userLocal.getLanguage();
+            getResponseData();
 
             List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
             for (UserLocal userLocal1:personalList){
