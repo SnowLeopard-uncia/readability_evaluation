@@ -9,6 +9,7 @@ public class QuizList {
     private String question;
     private String question_id;
     private String updatedAt;
+    private ChoiceDTO choice;
 
     public static class ChoiceObjDTO {
         private String a;
@@ -49,6 +50,8 @@ public class QuizList {
         }
 
     }
+
+
 
     public String getAnswer() {
         return answer;
@@ -112,5 +115,53 @@ public class QuizList {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+
+    public static class ChoiceDTO {
+        private String A;
+        private String B;
+        private String C;
+        private String D;
+
+        public String getA() {
+            return A;
+        }
+
+        public void setA(String a) {
+            A = a;
+        }
+
+        public String getB() {
+            return B;
+        }
+
+        public void setB(String b) {
+            B = b;
+        }
+
+        public String getC() {
+            return C;
+        }
+
+        public void setC(String c) {
+            C = c;
+        }
+
+        public String getD() {
+            return D;
+        }
+
+        public void setD(String d) {
+            D = d;
+        }
+    }
+
+    public ChoiceDTO getChoice() {
+        return choice;
+    }
+
+    public void setChoice(ChoiceDTO choice) {
+        this.choice = choice;
     }
 }

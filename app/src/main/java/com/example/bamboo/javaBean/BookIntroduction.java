@@ -18,6 +18,10 @@ public class BookIntroduction {
     private String level;
     private String objectId;
     private String suit_age;
+    private String suitage;
+    private String theme;
+    private String title;
+    private String writer;
     private String updatedAt;
     private Integer word_count;
     private List<String> word_list;
@@ -206,5 +210,35 @@ public class BookIntroduction {
         this.word_list = word_list;
     }
 
+    public String getSuitage() {
+        return suitage;
+    }
 
+    public void setSuitage(String suitage) {
+        this.suitage = suitage;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
 }

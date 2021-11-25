@@ -68,11 +68,22 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
         book_id = getIntent().getExtras().getInt("book_id");
         gold_coin = getIntent().getExtras().getInt("gold_coin");
 
-        try {
-            getResponseData();
-        } catch (JSONException e) {
-            e.printStackTrace();
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        if (userLocal.getLanguage().equals("English")){
+            try {
+                getResponseDataAboutEnglish();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                getResponseDataAboutSpanish();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
+
 
     }
 
@@ -118,7 +129,7 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
         }
     }
 
-    private void getResponseData() throws JSONException {
+    private void getResponseDataAboutEnglish() throws JSONException {
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
         String cloudCodeName = "selectBookInfo_byId";
         JSONObject params = new JSONObject();
@@ -130,8 +141,7 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
-                    parseJsonDataWithGson(responseData);
+                    parseJsonDataAboutEnglish(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -141,7 +151,7 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
     }
 
 
-    private void parseJsonDataWithGson(String jsonData) {
+    private void parseJsonDataAboutEnglish(String jsonData) {
         Gson gson = new Gson();
 
         BaseResponse<List<BookIntroduction>> responseBookIntroductionList = gson.fromJson(jsonData,
@@ -159,6 +169,51 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
             tv_word_count.setText("单词总数：" + bookIntroduction.getWord_count());
             tv_SYN_ParseTreeHeight.setText("句法树深度：" + bookIntroduction.getSYN_ParseTreeHeight());
             tv_Word_CTTR.setText("CTTR指数：" + bookIntroduction.getWord_CTTR());
+            Glide.with(this).load(bookIntroduction.getCover_url()).into(iv_book);
+        }
+
+    }
+
+    private void getResponseDataAboutSpanish() throws JSONException {
+        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
+        String cloudCodeName = "selectSpanishBookInfo_byId";
+        JSONObject params = new JSONObject();
+        params.put("book_id", book_id);
+        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
+        ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
+            @Override
+            public void done(Object object, BmobException e) {
+                if (e == null) {
+                    String responseData = object.toString();
+                    parseJsonDataAboutSpanish(responseData);
+                } else {
+                    Log.e(TAG, " " + e.getMessage());
+                }
+            }
+        });
+
+    }
+
+    private void parseJsonDataAboutSpanish(String jsonData) {
+        Gson gson = new Gson();
+
+        BaseResponse<List<BookIntroduction>> responseBookIntroductionList = gson.fromJson(jsonData,
+                new TypeToken<BaseResponse<List<BookIntroduction>>>() {
+                }.getType());
+        List<BookIntroduction> dataResponseList = responseBookIntroductionList.getResults();
+        bookList.clear();
+        for (BookIntroduction bookIntroduction : dataResponseList) {
+            bookList.add(bookIntroduction);
+
+            tv_book_title.setText("标题：" + bookIntroduction.getTitle());
+            tv_author.setText("作者：" + bookIntroduction.getWriter());
+            tv_level.setText("等级：" + bookIntroduction.getLevel());
+            tv_suit_age.setText("适合年龄：" + bookIntroduction.getSuitage());
+//            tv_word_count.setText("单词总数：" + bookIntroduction.getWord_count());
+//            tv_SYN_ParseTreeHeight.setText("句法树深度：" + bookIntroduction.getSYN_ParseTreeHeight());
+//            tv_Word_CTTR.setText("CTTR指数：" + bookIntroduction.getWord_CTTR());
+            tv_word_count.setText("主题：" + bookIntroduction.getTheme());
             Glide.with(this).load(bookIntroduction.getCover_url()).into(iv_book);
         }
 

@@ -63,8 +63,15 @@ public class ReadingFinishingActivity extends BaseActivity {
     }
 
     public void updateCoin() throws JSONException {
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+
+        String cloudCodeName = "";
+        if (userLocal.getLanguage().equals("English")){
+            cloudCodeName = "coinUpdate";
+        }else{
+            cloudCodeName = "coinUpdate_Spanish";
+        }
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
-        String cloudCodeName = "coinUpdate";
         JSONObject params = new JSONObject();
         params.put("book_objectId", book_objectId);
 //        Log.e(TAG, "金币更新请求参数book_objectId：" + book_objectId);
@@ -86,9 +93,15 @@ public class ReadingFinishingActivity extends BaseActivity {
     }
 
     public void updateNum() throws JSONException {
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
 
+        String cloudCodeName = "";
+        if (userLocal.getLanguage().equals("English")){
+            cloudCodeName = "bookAndwordNumUpdate";
+        }else{
+            cloudCodeName = "bookAndwordNumUpdate_Spanish";
+        }
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
-        String cloudCodeName = "bookAndwordNumUpdate";
         JSONObject params = new JSONObject();
         params.put("objectId", book_objectId);
 //        Log.e(TAG, "书本量、词汇量更新请求参数objectId：" + book_objectId);
@@ -117,7 +130,6 @@ public class ReadingFinishingActivity extends BaseActivity {
     private void updateLocalDatabase() {
         UserLocal userLocal = LitePal.findFirst(UserLocal.class);
         userLocal.setCoin(userLocal.getCoin() + coin);
-//        updateUserLocal.update(1);
         userLocal.updateAll();
     }
 }

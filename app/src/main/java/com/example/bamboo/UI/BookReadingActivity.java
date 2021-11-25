@@ -20,11 +20,13 @@ import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookContent;
 import com.example.bamboo.javaBean.BookWord;
+import com.example.bamboo.javaBean.UserLocal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -162,8 +164,16 @@ public class BookReadingActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getResponseData() throws JSONException {
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+
+        String cloudCodeName = "";
+        if (userLocal.getLanguage().equals("English")){
+            cloudCodeName = "selectBookContent_byId";
+        }else{
+            cloudCodeName = "selectSpanishBookContent_byId";
+        }
+
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
-        String cloudCodeName = "selectBookContent_byId";
         JSONObject params = new JSONObject();
         Integer book_id = getIntent().getExtras().getInt("book_id");
         params.put("book_id", book_id);
@@ -192,9 +202,8 @@ public class BookReadingActivity extends BaseActivity implements View.OnClickLis
                 new TypeToken<BaseResponse<List<BookContent>>>() {
                 }.getType());
         List<BookContent> dataResponseList = responsePageList.getResults();
-        for (BookContent bookContent : dataResponseList) {
-            mBookContent.add(bookContent);
-        }
+        mBookContent.clear();
+        mBookContent.addAll(dataResponseList);
         Glide.with(this).load(mBookContent.get(page_num).getP()).into(iv_book);
         iv_toRight.setBackgroundResource(R.drawable.next_page);
 

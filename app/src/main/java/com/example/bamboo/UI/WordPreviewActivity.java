@@ -18,11 +18,13 @@ import com.example.bamboo.R;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.BookWord;
 import com.example.bamboo.javaBean.QuizList;
+import com.example.bamboo.javaBean.UserLocal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,11 +52,22 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
         initNavBar(true, getResources().getString(R.string.word_preview));
         init();
 
-        try {
-            getResponseData();
-        } catch (JSONException e) {
-            e.printStackTrace();
+        UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+        if (userLocal.getLanguage().equals("English")){
+            try {
+                getResponseDataAboutEnglish();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                getResponseDataAboutSpanish();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
+
 
     }
 
@@ -73,27 +86,43 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
             case R.id.iv_toLeft:
                 if (word_num > 0) {
                     word_num--;
-                    tv_word.setText(mBookWord.get(0).getWord_list().get(word_num));
+                    UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+                    if (userLocal.getLanguage().equals("English")){
+                        tv_word.setText(mBookWord.get(0).getWord_list().get(word_num));
+                    }else{
+                        tv_word.setText(mBookWord.get(0).getWord().get(word_num));
+
+                    }
                 } else {
                     Toast.makeText(this, "这是第一个单词", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
             case R.id.iv_toRight:
-                if (word_num < mBookWord.get(0).getWord_list().size() - 1) {
-                    word_num++;
-                    tv_word.setText(mBookWord.get(0).getWord_list().get(word_num));
-                } else {
-                    Toast.makeText(this, "这是最后一个单词", Toast.LENGTH_SHORT).show();
-                }
+                UserLocal userLocal = LitePal.findFirst(UserLocal.class);
+                if (userLocal.getLanguage().equals("English")){
+                    if (word_num < mBookWord.get(0).getWord_list().size() - 1) {
+                        word_num++;
+                        tv_word.setText(mBookWord.get(0).getWord_list().get(word_num));
 
+                    } else {
+                        Toast.makeText(this, "这是最后一个单词", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    if (word_num < mBookWord.get(0).getWord().size() - 1) {
+                        word_num++;
+                        tv_word.setText(mBookWord.get(0).getWord().get(word_num));
+                    } else {
+                        Toast.makeText(this, "这是最后一个单词", Toast.LENGTH_SHORT).show();
+                    }
+                }
                 break;
             default:
                 break;
         }
     }
 
-    private void getResponseData() throws JSONException {
+    private void getResponseDataAboutEnglish() throws JSONException {
         Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
         String cloudCodeName = "selectWordList_byBookId";
         JSONObject params = new JSONObject();
@@ -107,7 +136,7 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
                 if (e == null) {
                     String responseData = object.toString();
                     Log.e(TAG, "done: json：" + responseData);
-                    parseJsonDataWithGson(responseData);
+                    parseJsonDataAboutEnglish(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -117,7 +146,7 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    private void parseJsonDataWithGson(String jsonData) {
+    private void parseJsonDataAboutEnglish(String jsonData) {
         Gson gson = new Gson();
 
         BaseResponse<List<BookWord>> responseQuizList = gson.fromJson(jsonData,
@@ -128,6 +157,44 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
             mBookWord.add(bookWord);
         }
         tv_word.setText(mBookWord.get(0).getWord_list().get(word_num));
+
+    }
+
+    private void getResponseDataAboutSpanish() throws JSONException {
+        Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
+        String cloudCodeName = "selectSpanishWordList_byBookId";
+        JSONObject params = new JSONObject();
+        Integer book_id = getIntent().getExtras().getInt("book_id");
+        params.put("book_id", book_id);
+        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
+        ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
+            @Override
+            public void done(Object object, BmobException e) {
+                if (e == null) {
+                    String responseData = object.toString();
+                    Log.e(TAG, "done: json：" + responseData);
+                    parseJsonDataAboutSpanish(responseData);
+                } else {
+                    Log.e(TAG, " " + e.getMessage());
+                }
+            }
+        });
+
+    }
+
+
+    private void parseJsonDataAboutSpanish(String jsonData) {
+        Gson gson = new Gson();
+
+        BaseResponse<List<BookWord>> responseQuizList = gson.fromJson(jsonData,
+                new TypeToken<BaseResponse<List<BookWord>>>() {
+                }.getType());
+        List<BookWord> dataResponseList = responseQuizList.getResults();
+        for (BookWord bookWord : dataResponseList) {
+            mBookWord.add(bookWord);
+        }
+        tv_word.setText(mBookWord.get(0).getWord().get(word_num));
 
     }
 
