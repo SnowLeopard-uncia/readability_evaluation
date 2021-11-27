@@ -87,6 +87,7 @@
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_btn_uploadway.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_dialog.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_edit_text.xml" value="0.1" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_tv_currentlevel.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_video_dialog.xml" value="0.109765625" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_word_menu.xml" value="0.1" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/drawable/bg_word_menu_x.xml" value="0.1" />
@@ -100,7 +101,8 @@
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_file_load.xml" value="0.2" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_login.xml" value="0.3715277777777778" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_path.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_new_path.xml" value="0.12" />
+        <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_path.xml" value="0.16972878390201224" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_photo_load.xml" value="0.112109375" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_reading_comprehension.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/19761/Desktop/BambooApp/app/src/main/res/layout/activity_reading_finishing.xml" value="0.105078125" />

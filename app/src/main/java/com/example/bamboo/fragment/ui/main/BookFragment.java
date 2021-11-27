@@ -53,7 +53,7 @@ public class BookFragment extends Fragment {
 
     String objectId;
     private List<Personal> personList = new ArrayList<>();
-    private String key;
+    private String key="English";
 
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -119,29 +119,12 @@ public class BookFragment extends Fragment {
     public void onResume() {
         super.onResume();
 // 注意注意注意
-//        getResponseData();
-//        try {
-//            getUserPageResponseData();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        getResponseData();
         try {
             getUserPageResponseData();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("changeLanguage");
-        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                key = intent.getStringExtra("language");
-                getResponseData();
-
-            }
-        };
-        localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
 
     }
 
@@ -241,6 +224,7 @@ public class BookFragment extends Fragment {
                 if (e == null) {
                     String responseData = object.toString();
                     parseUserJsonDataWithGson(responseData);
+                    Log.e(TAG, "done: ？"+responseData );
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -274,8 +258,8 @@ public class BookFragment extends Fragment {
                 userLocal.setLanguage(personal.getLanguage());
                 userLocal.save(); //用save可以，初次
             }
-
-            key = userLocal.getLanguage();
+            Log.e(TAG, "parseUserJsonDataWithGson: "+userLocal.getLanguage()+"  "+ personList.get(0).getLanguage());
+            key = personList.get(0).getLanguage();
             getResponseData();
 
             List<UserLocal> personalList = LitePal.findAll(UserLocal.class);
