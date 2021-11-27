@@ -120,11 +120,28 @@ public class BookFragment extends Fragment {
         super.onResume();
 // 注意注意注意
 //        getResponseData();
+//        try {
+//            getUserPageResponseData();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
         try {
             getUserPageResponseData();
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("changeLanguage");
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                key = intent.getStringExtra("language");
+                getResponseData();
+
+            }
+        };
+        localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
 
     }
 
