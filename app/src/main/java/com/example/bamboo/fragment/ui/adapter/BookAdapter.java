@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 import static android.os.FileUtils.copy;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -103,7 +104,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();// 获取点击的书本在书列表中的位置
                 BookHome book = mBookList.get(position);// 获取点击的书本
-
                 UserLocal userLocal = LitePal.findFirst(UserLocal.class);
                 if (userLocal == null){
                     userLocal=new UserLocal();
@@ -128,6 +128,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     }
 
     // 对子项的数据进行赋值
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         BookHome book = mBookList.get(position);

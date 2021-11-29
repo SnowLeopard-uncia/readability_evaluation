@@ -47,7 +47,6 @@ import cn.bmob.v3.listener.CloudCodeListener;
 public class BookFragment extends Fragment {
 
     private List<BookHome> bookList = new ArrayList<>();
-//    private TextView tv_grade;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
 
@@ -58,7 +57,6 @@ public class BookFragment extends Fragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        tv_grade = getView().findViewById(R.id.tv_grade);
 
         getUserID();
         try {
@@ -79,34 +77,6 @@ public class BookFragment extends Fragment {
         };
         localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
 
-
-
-
-//        int position = gridLayoutManager.findFirstVisibleItemPosition();
-//        Log.e(TAG, "屏幕第一个item位置: " + position);
-
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//            }
-//
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-//                if (layoutManager instanceof GridLayoutManager) {
-//                    GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
-//                    //获取最后一个可见view的位置
-//                    int lastItemPosition = gridLayoutManager.findLastVisibleItemPosition();
-//                    //获取第一个可见view的位置
-//                    int firstItemPosition = gridLayoutManager.findFirstVisibleItemPosition();
-//                    Log.e(TAG, "屏幕第一个item位置：" + firstItemPosition);
-//    }
-//
-//            }
-//        });
-
     }
 
     @Override
@@ -118,7 +88,7 @@ public class BookFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-// 注意注意注意
+
         getResponseData();
         try {
             getUserPageResponseData();
@@ -180,31 +150,14 @@ public class BookFragment extends Fragment {
         bookList.clear();
         for (BookHome bookHome : dataResponseList) {
             bookList.add(bookHome);
+//            Log.e(TAG, "book_id: "+bookHome.getBookId());
+
         }
 
         initRecyclerView();
 
-//        int position = gridLayoutManager.findFirstVisibleItemPosition();
-//        Log.e(TAG, "屏幕第一个item位置: " + position);
     }
 
-
-//    public void MoveToPosition(LinearLayoutManager manager, RecyclerView mRecyclerView, int n) {
-//
-//
-//        int firstItem = manager.findFirstVisibleItemPosition();
-//
-//        int lastItem = manager.findLastVisibleItemPosition();
-//        if (n <= firstItem) {
-//            mRecyclerView.scrollToPosition(n);
-//        } else if (n <= lastItem) {
-//            int top = mRecyclerView.getChildAt(n - firstItem).getTop();
-//            mRecyclerView.scrollBy(0, top);
-//        } else {
-//            mRecyclerView.scrollToPosition(n);
-//        }
-//
-//    }
 
     private void getUserID() {
         SharedPreferences pref = getActivity().getSharedPreferences("userInformation", MODE_PRIVATE);

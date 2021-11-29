@@ -6,8 +6,18 @@
     android:background="@drawable/bg_video_play"
     android:orientation="vertical">
 
-    <include layout="@layout/nav_bar" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/icon_back"
+            android:layout_margin="@dimen/text_evaluation_marginHorizontal"
+            />
+    </LinearLayout>
 
     <VideoView
         android:id="@+id/video_view"
