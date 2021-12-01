@@ -65,12 +65,6 @@ public class PathView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-//        Paint paint = new Paint();
-//        paint.setColor(R.color.person_text_color);
-//        paint.setStyle(Paint.Style.STROKE);
-//        paint.setStrokeWidth(5);
-
-//        canvas.drawLine();
         drawData(canvas);
     }
     private void drawData(Canvas canvas) {
@@ -107,15 +101,15 @@ public class PathView extends View {
                 currentImageWidth = BitmapFactory.decodeResource(getResources(), R.drawable.bg_current_level).getWidth();
 
                 canvas.drawBitmap(getBitmap(R.drawable.current_level),pointEntity.getX()-(imageWidth/2),pointEntity.getY()-(imageWidth/2),mCirclePaint);
-                canvas.drawBitmap(getBitmap(R.drawable.bg_current_level),pointEntity.getX()-currentImageWidth,pointEntity.getY()-imageWidth,mCirclePaint);
-                canvas.drawText("当前：等级"+userLocal.getLevel(),pointEntity.getX()-currentImageWidth+textWidth*2,pointEntity.getY()-textWidth*2,mCurrentTextPaint);
+//                canvas.drawBitmap(getBitmap(R.drawable.bg_current_level),pointEntity.getX()-currentImageWidth,pointEntity.getY()-imageWidth,mCirclePaint);
+//                canvas.drawText("当前：等级"+userLocal.getLevel(),pointEntity.getX()-currentImageWidth+textWidth*2,pointEntity.getY()-textWidth*2,mCurrentTextPaint);
 
             }else if (i == index+1){
                 nextImageHeight =BitmapFactory.decodeResource(getResources(), R.drawable.bg_next_levle).getHeight();
                 imageWidth= BitmapFactory.decodeResource(getResources(), R.drawable.next_level).getWidth();
                 canvas.drawBitmap(getBitmap(R.drawable.next_level),pointEntity.getX()-(imageWidth/2),pointEntity.getY()-(imageWidth/2),mCirclePaint);
-                canvas.drawBitmap(getBitmap(R.drawable.bg_next_levle),pointEntity.getX()+textWidth*3,pointEntity.getY()-nextImageHeight*2+textWidth,mCirclePaint);
-                canvas.drawText("距离升级还需"+need+"金币",pointEntity.getX()+textWidth*4,pointEntity.getY()-nextImageHeight,mNextTextPaint);
+//                canvas.drawBitmap(getBitmap(R.drawable.bg_next_levle),pointEntity.getX()+textWidth*3,pointEntity.getY()-nextImageHeight*2+textWidth,mCirclePaint);
+//                canvas.drawText("距离升级还需"+need+"金币",pointEntity.getX()+textWidth*4,pointEntity.getY()-nextImageHeight,mNextTextPaint);
             }else{
             imageWidth= BitmapFactory.decodeResource(getResources(), R.drawable.d).getWidth();
             canvas.drawBitmap(getBitmap(R.drawable.d),pointEntity.getX()-(imageWidth/2),pointEntity.getY()-(imageWidth/2),mCirclePaint);

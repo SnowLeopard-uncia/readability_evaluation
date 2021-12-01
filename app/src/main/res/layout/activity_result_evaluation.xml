@@ -7,25 +7,32 @@
     android:background="@drawable/bg_main"
     tools:context=".UI.ResultEvaluationActivity">
 
-  <ScrollView
-
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rv_result"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:padding="@dimen/text_evaluation_padding"
-      android:background="@drawable/bg_edit_text"
-      android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
       app:layout_constraintBottom_toTopOf="@+id/guideline19"
-      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHeight_default="spread"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/guideline18" >
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+      app:layout_constraintTop_toTopOf="@+id/guideline18" />
+<!--  <ScrollView-->
 
-        />
-  </ScrollView>
+<!--      android:layout_width="match_parent"-->
+<!--      android:layout_height="0dp"-->
+<!--      android:padding="@dimen/text_evaluation_padding"-->
+<!--      android:background="@drawable/bg_edit_text"-->
+<!--      android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"-->
+<!--      app:layout_constraintBottom_toTopOf="@+id/guideline19"-->
+<!--      app:layout_constraintEnd_toEndOf="parent"-->
+<!--      app:layout_constraintHeight_default="spread"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toTopOf="@+id/guideline18" >-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_result"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+
+<!--        />-->
+<!--  </ScrollView>-->
 
   <ScrollView
       android:layout_width="match_parent"

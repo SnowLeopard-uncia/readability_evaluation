@@ -1,8 +1,13 @@
 package com.example.bamboo.UI;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,13 +24,18 @@ import android.widget.Toast;
 
 import com.example.bamboo.R;
 import com.example.bamboo.Util.HttpUtils;
+import com.example.bamboo.fragment.ui.adapter.AudioListAdapter;
+import com.example.bamboo.fragment.ui.adapter.ResultAdapter;
 import com.example.bamboo.javaBean.LevelText;
+import com.example.bamboo.javaBean.ResultData;
 import com.example.bamboo.javaBean.TextResponse;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -41,6 +52,7 @@ public class ResultEvaluationActivity extends BaseActivity {
     private final String levelUrl="http://8.134.49.78:8081";
     private int temp =0;
     private String results="";
+    private List<ResultData> mResultList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -50,6 +62,7 @@ public class ResultEvaluationActivity extends BaseActivity {
         getDataFromIntent();
         initView();
         initNavBar(true,"可读性测评");
+
 
         btn_evaluation_again.setOnClickListener((view -> {
             String mText = et_text.getText().toString();
@@ -63,6 +76,34 @@ public class ResultEvaluationActivity extends BaseActivity {
                 Toast.makeText(this,"文本为空，请重新输入",Toast.LENGTH_SHORT).show();
             }
         }));
+    }
+
+    private void initRecyclerView() {
+        /*
+            ResultData resultData = new ResultData(1.21,5.88,1.5,"深度语义",null);
+        ResultData resultData1 = new ResultData(0.57,1.77,0.7,"树结构",null);
+            ResultData resultData2 = new ResultData(0.94,0.96,0.95,"实体数量",null);
+        ResultData resultData3 = new ResultData(0.95,4.85,1.0,"词汇语义",null);
+            ResultData resultData4 = new ResultData(4.17,9.43,5.0,"浅层特征",null);
+        ResultData resultData5 = new ResultData(null,null,null,null,"1");
+            mResultList.add(resultData);
+        mResultList.add(resultData1);
+            mResultList.add(resultData2);
+        mResultList.add(resultData3);
+            mResultList.add(resultData4);
+        mResultList.add(resultData5);
+
+         */
+
+        RecyclerView recyclerView = findViewById(R.id.rv_result);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+        ResultAdapter adapter = new ResultAdapter(mResultList);
+        recyclerView.setAdapter(adapter);
+        //实现viewpager效果
+        PagerSnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
     }
 
     private void getDataFromIntent() {
@@ -86,11 +127,11 @@ public class ResultEvaluationActivity extends BaseActivity {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 final String responseBody=response.body().string();
                     String result = parseJsonDataWithGson(responseBody);
-                    results=results+result;
-                runOnUiThread(()->{
-                    tv_result.setText(results);
-                    Toast.makeText(getApplicationContext(),"测评成功",Toast.LENGTH_SHORT).show();
-                });
+//                    results=results+result;
+//                runOnUiThread(()->{
+////                    tv_result.setText(results);
+//                    Toast.makeText(getApplicationContext(),"测评成功",Toast.LENGTH_SHORT).show();
+//                });
             }
         });
 
@@ -106,10 +147,17 @@ public class ResultEvaluationActivity extends BaseActivity {
                     Gson gson = new Gson();
                     LevelText levelText = gson.fromJson(responseBody, new TypeToken<LevelText>() {
                     }.getType());
-                    results=results+levelText.toString();
+//                    results=results+levelText.toString();
+                mResultList.set(mResultList.size()-1,new ResultData(null,null,null,null,levelText.getGrade()));
+                temp++;
+                Message msg =Message.obtain();
+                msg.what=temp;
+                handler.sendMessage(msg);
+                temp--;
                 runOnUiThread(()->{
-                    tv_result.setText(results);
-//                    Toast.makeText(getApplicationContext(),"等级显示",Toast.LENGTH_SHORT).show();
+//                    tv_result.setText(results);
+                    Log.e(TAG, "onResponse: "+"等级"+levelText.getGrade() );
+                    Toast.makeText(getApplicationContext(),"等级显示",Toast.LENGTH_SHORT).show();
                 });
             }
         });
@@ -118,11 +166,11 @@ public class ResultEvaluationActivity extends BaseActivity {
 
     private void initView() {
         initNavBar(true,getResources().getString(R.string.result_title));
-        tv_result=findViewById(R.id.tv_result);
+//        tv_result=findViewById(R.id.tv_result);  因为改变了展示方式
         et_text=findViewById(R.id.et_text);
         btn_evaluation_again=findViewById(R.id.btn_evaluation_again);
         et_text.setText(text);
-        tv_result.setText(result);
+//        tv_result.setText(result);
 
     }
 
@@ -175,6 +223,7 @@ public class ResultEvaluationActivity extends BaseActivity {
                     Message msg =Message.obtain();
                     msg.what=temp;
                     handler.sendMessage(msg);
+                    temp--;
                 }).start();
             }
         });
@@ -185,6 +234,19 @@ public class ResultEvaluationActivity extends BaseActivity {
         TextResponse textResponse = gson.fromJson(jsonData, new TypeToken<TextResponse>() {
         }.getType());
 
+        mResultList.add(new ResultData(1.21,5.88,Double.parseDouble(textResponse.getWoKF().getWRich05_S()),"深度语义",null));
+        mResultList.add(new ResultData(0.57,1.77,Double.parseDouble(textResponse.getTrSF().getAt_FTree_C()),"树结构",null));
+        mResultList.add(new ResultData(0.94,0.96,Double.parseDouble(textResponse.getEnGF().getRa_NNTo_C()),"实体数量",null));
+        mResultList.add(new ResultData(0.95,4.85,Double.parseDouble(textResponse.getPsyF().getAs_AABiL_C()),"词汇语义",null));
+        mResultList.add( new ResultData(4.17,9.43,Double.parseDouble(textResponse.getShaF().getAt_Chara_C()),"浅层特征",null));
+        mResultList.add(new ResultData(null,null,null,null,"1"));
+        //等级不能是null，不然会报错
+
+        temp++;
+        Message msg =Message.obtain();
+        msg.what=temp;
+        handler.sendMessage(msg);
+        /*
         String result =textResponse.getEnDF().toString()+
                 textResponse.getEnGF().toString()+
                 textResponse.getOSKF().toString()+
@@ -200,12 +262,14 @@ public class ResultEvaluationActivity extends BaseActivity {
                 textResponse.getWoKF().toString()+
                 textResponse.getWoLF().toString()
                 ;
+
+         */
 //        String result ="BClar05_S: "+textResponse.getOSKF().getBClar05_S()+
 //                "\nAs_ContW_C: "+textResponse.getPOSF().getAs_ContW_C()+
 //                "\nAs_AABiL_C: "+textResponse.getPsyF().getAs_AABiL_C()+
 //                "\nTokSenL_S: "+textResponse.getShaF().getTokSenL_S();
-        return result;
-
+//        return result;
+        return null;
     }
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
@@ -213,8 +277,9 @@ public class ResultEvaluationActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {      //判断标志位
-                case 2:
-                    tv_result.setText(results);
+                case 1:
+//                    tv_result.setText(results);
+                    initRecyclerView();
                     Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
                     break;
             }

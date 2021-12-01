@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bamboo.R;
+import com.example.bamboo.fragment.ui.adapter.WordListAdapter;
 import com.example.bamboo.fragment.ui.adapter.WordMenuAdapter;
 import com.example.bamboo.javaBean.BaseResponse;
 import com.example.bamboo.javaBean.UserLocal;
@@ -149,6 +151,7 @@ public class WordFragment extends Fragment {
 
     private void initRecyclerView() {
         RecyclerView recyclerView = getView().findViewById(R.id.word_menu_list);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
       recyclerView.setLayoutManager(layoutManager);
         WordMenuAdapter adapter = new WordMenuAdapter(wordMenuLists);

@@ -2,6 +2,7 @@ package com.example.bamboo.UI;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,6 +13,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.bamboo.R;
@@ -119,14 +122,38 @@ public class WordListActivity extends BaseActivity {
         BaseResponse<List<WordList>> response = gson.fromJson(responseData, new TypeToken<BaseResponse<List<WordList>>>() {
         }.getType());
         List<WordList> responseWordList = response.getResults();
-        for (WordList wordList:responseWordList){
-            mWordLists.add(wordList);
-        }
+        mWordLists.addAll(responseWordList);
         initRecyclerView();
     }
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerview_word_list);
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                if (e!=null){
+                    //找到被点击位置的item的rootView
+                    View view = rv.findChildViewUnder(e.getX(),e.getY());
+                    if (view!=null){
+                        //通过rootView找到对应的ViewHolder
+                        WordListAdapter.ViewHolder holder = (WordListAdapter.ViewHolder) rv.getChildViewHolder(view);
+                        //由ViewHolder决定要不要请求不拦截,如果不拦截的话event就回一路传到rootView中.否则被rv消费.
+                        rv.requestDisallowInterceptTouchEvent(holder.isTouchNsv(e.getRawX(),e.getRawY()));
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
         GridLayoutManager layoutManager = new GridLayoutManager(this,2);
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

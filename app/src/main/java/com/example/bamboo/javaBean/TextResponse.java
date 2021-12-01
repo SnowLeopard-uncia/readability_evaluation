@@ -178,6 +178,10 @@ public class TextResponse {
               private String ra_XSTo_C;
               private String ra_XXTo_C;
 
+        public String getRa_NNTo_C() {
+            return ra_NNTo_C;
+        }
+
         @Override
         public String toString() {
             return "\nEnGF{" +
@@ -497,6 +501,10 @@ public class TextResponse {
                private String to_AAKuL_C;
                private String to_AAKuW_C;
 
+        public String getAs_AABiL_C() {
+            return as_AABiL_C;
+        }
+
         @Override
         public String toString() {
             return "\nPsyF{" +
@@ -530,6 +538,10 @@ public class TextResponse {
                private String as_Token_C;
                private String at_Chara_C;
                private String at_Sylla_C;
+
+        public String getAt_Chara_C() {
+            return at_Chara_C;
+        }
 
         @Override
         public String toString() {
@@ -576,6 +588,10 @@ public class TextResponse {
                private String at_TreeH_C;
                private String to_FTree_C;
                private String to_TreeH_C;
+
+        public String getAt_FTree_C() {
+            return at_FTree_C;
+        }
 
         @Override
         public String toString() {
@@ -710,6 +726,10 @@ public class TextResponse {
               private String WTopc10_S;
               private String WTopc15_S;
               private String WTopc20_S;
+
+        public String getWRich05_S() {
+            return WRich05_S;
+        }
 
         @Override
         public String toString() {
