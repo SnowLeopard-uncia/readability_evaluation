@@ -204,7 +204,7 @@ public class BarChartView extends View {
         }
         float realLength = (float) (mHeight-mTextWidth*3.5);
         float temp = (float) ((realLength-mTextWidth*3)/totalLength);
-        BigDecimal bigDecimal = new BigDecimal(mResultData.getData());
+        BigDecimal bigDecimal = BigDecimal.valueOf(mResultData.getData());
         Double data = bigDecimal.setScale(1,BigDecimal.ROUND_HALF_UP).doubleValue();
 
         canvas.drawText(String.valueOf(data),firstX-barWidth/2-maxMinTextMove,(float) (startY-temp*mResultData.getData()-10),mTextPaint);
