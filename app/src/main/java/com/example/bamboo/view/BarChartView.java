@@ -195,7 +195,13 @@ public class BarChartView extends View {
         float firstX = startX+XLength/6;
         float secondX = startX+XLength/2;
         float thirdX =startX+XLength*5/6;
-        Double totalLength =mResultData.getMax();
+
+        double totalLength =1.0;
+        if (mResultData.getMax()>mResultData.getData()){
+            totalLength = mResultData.getMax();
+        }else{
+            totalLength=mResultData.getData();
+        }
         float realLength = (float) (mHeight-mTextWidth*3.5);
         float temp = (float) ((realLength-mTextWidth*3)/totalLength);
         BigDecimal bigDecimal = new BigDecimal(mResultData.getData());
