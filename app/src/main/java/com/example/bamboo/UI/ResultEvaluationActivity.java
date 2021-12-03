@@ -236,8 +236,8 @@ public class ResultEvaluationActivity extends BaseActivity {
 
         mResultList.add(new ResultData(1.21,5.88,Double.parseDouble(textResponse.getWoKF().getWRich05_S()),"深度语义",null));
         mResultList.add(new ResultData(0.57,1.77,Double.parseDouble(textResponse.getTrSF().getAt_FTree_C()),"树结构",null));
-        mResultList.add(new ResultData(0.94,0.96,Double.parseDouble(textResponse.getEnGF().getRa_NNTo_C()),"实体数量",null));
-        mResultList.add(new ResultData(0.95,4.85,Double.parseDouble(textResponse.getPsyF().getAs_AABiL_C()),"词汇语义",null));
+        mResultList.add(new ResultData(0.625,1.0,Double.parseDouble(textResponse.getEnGF().getRa_NNTo_C()),"实体数量",null));
+        mResultList.add(new ResultData(0.95,4.85,Double.parseDouble(textResponse.getPsyF().getAt_AABiL_C()),"词汇语义",null));
         mResultList.add( new ResultData(4.17,9.43,Double.parseDouble(textResponse.getShaF().getAt_Chara_C()),"浅层特征",null));
         mResultList.add(new ResultData(null,null,null,null,"1"));
         //等级不能是null，不然会报错
@@ -280,7 +280,7 @@ public class ResultEvaluationActivity extends BaseActivity {
                 case 1:
 //                    tv_result.setText(results);
                     initRecyclerView();
-                    Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"测评成功",Toast.LENGTH_SHORT).show();
                     break;
             }
         }

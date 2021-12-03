@@ -57,14 +57,17 @@ public class TextTextEvaluationActivity extends BaseActivity {
         btn_result.setOnClickListener((view)->{
             String mText=et_text.getText().toString();
             Log.e(TAG, "initView: "+mText );
-            if (!mText.equals("")){
+            if (mText.equals("")){
+                Toast.makeText(this,"文本为空，请重新输入",Toast.LENGTH_SHORT).show();
+            }else if(mText.length() <10){
+                Toast.makeText(this,"字符数小于10，请重新输入",Toast.LENGTH_SHORT).show();
+            }else{
                 //原本的方法
 //                startToEvaluate(mText, TextUrl,levelUrl);
                 //现在的方法
                 goToEvaluatePart(mText);
-            }else{
-                Toast.makeText(this,"文本为空，请重新输入",Toast.LENGTH_SHORT).show();
             }
+
         });
     }
 

@@ -501,9 +501,11 @@ public class TextResponse {
                private String to_AAKuL_C;
                private String to_AAKuW_C;
 
-        public String getAs_AABiL_C() {
-            return as_AABiL_C;
+        public String getAt_AABiL_C() {
+            return at_AABiL_C;
         }
+
+
 
         @Override
         public String toString() {
