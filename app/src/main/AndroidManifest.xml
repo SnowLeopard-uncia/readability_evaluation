@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.bamboo">
+    package="com.snowleopard.bamboo">
     <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
     <application
         android:name="org.litepal.LitePalApplication"
@@ -15,79 +15,79 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".UI.AudioDialogActivity"
+            android:name="com.snowleopard.bamboo.UI.AudioDialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.PathActivity"
+            android:name="com.snowleopard.bamboo.UI.PathActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.VideoPlayActivity"
+            android:name="com.snowleopard.bamboo.UI.VideoPlayActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.VideoIntroductionActivity"
+            android:name="com.snowleopard.bamboo.UI.VideoIntroductionActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.WordListActivity"
+            android:name="com.snowleopard.bamboo.UI.WordListActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.FileLoadEvaluationActivity"
+            android:name="com.snowleopard.bamboo.UI.FileLoadEvaluationActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.PhotoLoadEvaluationActivity"
+            android:name="com.snowleopard.bamboo.UI.PhotoLoadEvaluationActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.AudioActivity"
+            android:name="com.snowleopard.bamboo.UI.AudioActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.BaseActivity"
+            android:name="com.snowleopard.bamboo.UI.BaseActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.TextTextEvaluationActivity"
+            android:name="com.snowleopard.bamboo.UI.TextTextEvaluationActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.BookIntroductionActivity"
+            android:name="com.snowleopard.bamboo.UI.BookIntroductionActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.BookReadingActivity"
+            android:name="com.snowleopard.bamboo.UI.BookReadingActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.ReadingComprehensionActivity"
+            android:name="com.snowleopard.bamboo.UI.ReadingComprehensionActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.WordPreviewActivity"
+            android:name="com.snowleopard.bamboo.UI.WordPreviewActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.ReadingFinishingActivity"
+            android:name="com.snowleopard.bamboo.UI.ReadingFinishingActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.ChooseLanguageActivity"
+            android:name="com.snowleopard.bamboo.UI.ChooseLanguageActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.ResultEvaluationActivity"
+            android:name="com.snowleopard.bamboo.UI.ResultEvaluationActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".UI.MainActivity"
+            android:name="com.snowleopard.bamboo.UI.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
-        <activity android:name=".UI.LoginActivity"
+        <activity android:name="com.snowleopard.bamboo.UI.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -97,16 +97,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.RegisterActivity"
+            android:name="com.snowleopard.bamboo.UI.RegisterActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
 
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
-            android:authorities="com.example.bamboo.BmobContentProvider" />
+            android:authorities="com.snowleopard.bamboo.BmobContentProvider" />
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.bamboo.UI.FileLoadEvaluationActivity.fileprovider"
+            android:authorities="com.snowleopard.bamboo.UI.FileLoadEvaluationActivity.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -115,7 +115,7 @@
         </provider>
 
         <service
-            android:name=".service.MusicService"
+            android:name="com.snowleopard.bamboo.service.MusicService"
             android:enabled="true"
             android:exported="true" />
     </application> <!-- 获取sd卡写的权限，用于文件上传和下载 -->

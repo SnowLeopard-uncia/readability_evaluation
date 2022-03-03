@@ -9,14 +9,15 @@
     android:paddingVertical="10dp"
     >
 
-    <ImageView
-        android:id="@+id/iv_lock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/audio_item_margin"
-        android:src="@drawable/lock"
-        app:layout_constraintEnd_toStartOf="@+id/tv_audio_level"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_lock"-->
+<!--        android:visibility="invisible"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="@dimen/audio_item_margin"-->
+<!--        android:src="@drawable/lock"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/tv_audio_level"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <ImageView
         android:id="@+id/iv_playing"
@@ -61,24 +62,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/coin"
-        android:layout_marginRight="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_audio_coin"
-        app:layout_constraintEnd_toStartOf="@+id/tv_audio_coin"
-        app:layout_constraintTop_toTopOf="@+id/tv_audio_coin" />
+<!--    <ImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/coin"-->
+<!--        android:layout_marginRight="5dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/tv_audio_coin"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/tv_audio_coin"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/tv_audio_coin" />-->
 
-    <TextView
-        android:id="@+id/tv_audio_coin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5"
-        android:layout_marginRight="@dimen/audio_item_margin"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_lock"
-        app:layout_constraintEnd_toStartOf="@+id/iv_lock"
-        app:layout_constraintTop_toTopOf="@+id/iv_lock" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_audio_coin"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="5"-->
+
+<!--        android:layout_marginRight="@dimen/audio_item_margin"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/iv_lock"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/iv_lock"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/iv_lock" />-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline34"

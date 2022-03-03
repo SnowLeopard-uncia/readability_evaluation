@@ -55,7 +55,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.example.bamboo.view.CircleImageView
+    <com.snowleopard.bamboo.view.CircleImageView
         android:id="@+id/iv_imageHead"
         android:layout_width="20dp"
         android:layout_height="20dp"

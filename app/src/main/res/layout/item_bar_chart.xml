@@ -9,7 +9,7 @@
     android:padding="15dp"
     >
 
-    <com.example.bamboo.view.BarChartView
+    <com.snowleopard.bamboo.view.BarChartView
         android:id="@+id/bar_chart_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

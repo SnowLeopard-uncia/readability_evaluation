@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         >
-        <com.example.bamboo.view.CircleRelativeLayout
+        <com.snowleopard.bamboo.view.CircleRelativeLayout
 
             android:id="@+id/cr_word_level"
             android:layout_width="110dp"
@@ -43,7 +43,7 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
-        </com.example.bamboo.view.CircleRelativeLayout>
+        </com.snowleopard.bamboo.view.CircleRelativeLayout>
 
 <!--        android:layout_centerInParent="true"-->
     </LinearLayout>

@@ -13,7 +13,7 @@
     android:background="@drawable/nopath"
     >
 
-    <com.example.bamboo.view.PathView
+    <com.snowleopard.bamboo.view.PathView
         android:id="@+id/pathView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

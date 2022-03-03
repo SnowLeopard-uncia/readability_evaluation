@@ -3,6 +3,6 @@
     <dbname value="UserLocal"> </dbname>
     <version value="2"> </version>
     <list>
-        <mapping class="com.example.bamboo.javaBean.UserLocal"></mapping>
+        <mapping class="com.snowleopard.bamboo.javaBean.UserLocal"></mapping>
     </list>
 </litepal>
