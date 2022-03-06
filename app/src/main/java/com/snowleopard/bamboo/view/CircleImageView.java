@@ -15,8 +15,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
-
 import com.snowleopard.bamboo.R;
+
 
 //画圆形
 public class CircleImageView extends androidx.appcompat.widget.AppCompatImageView {

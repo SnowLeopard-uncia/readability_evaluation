@@ -24,7 +24,7 @@
         android:text="@string/photo_upload"
         android:textColor="@color/white"
         android:layout_marginBottom="@dimen/text_view_margin_bottom"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintBottom_toTopOf="@+id/btn_pop_upload"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"></TextView>
     <Button
@@ -39,15 +39,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline17"></Button>
 
-    <ImageButton
-        android:id="@+id/imageButton"
+    <Button
+        android:id="@+id/btn_pop_upload"
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
         android:background="@drawable/bg_btn_upload"
         android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintTop_toTopOf="@+id/guideline14"
-        tools:layout_editor_absoluteX="22dp"></ImageButton>
+     ></Button>
 
     <ScrollView
         android:id="@+id/scrollView3"

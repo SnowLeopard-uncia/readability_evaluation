@@ -110,15 +110,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         Log.e(TAG, "onBindViewHolder: "+userCoin);
 //        Log.e(TAG, "后台返回的Level: " +book.getLevel());
 //        Log.e(TAG, "Adapter里面的userLevel: " +userLocal.getLevel());
-        if (book.getLevel().equals(userLocal.getLevel())) {
-            holder.iv_lock.setVisibility(View.INVISIBLE);
-        }
-        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin >= book.getGoldCoin()) {
-            holder.iv_lock.setVisibility(View.INVISIBLE);
-        }
-        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin < book.getGoldCoin()) {
-            holder.iv_lock.setVisibility(View.VISIBLE);
-        }
+//        if (book.getLevel().equals(userLocal.getLevel())) {
+//            holder.iv_lock.setVisibility(View.INVISIBLE);
+//        }
+//        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin >= book.getGoldCoin()) {
+//            holder.iv_lock.setVisibility(View.INVISIBLE);
+//        }
+//        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin < book.getGoldCoin()) {
+//            holder.iv_lock.setVisibility(View.VISIBLE);
+//        }
 
     }
 

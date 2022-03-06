@@ -11,7 +11,7 @@
     <color name="unselect_tab">#000000</color>
     <color name="text_color">#ffffff</color>
     <color name="tab_background">#00FFFFFF</color>
-    <color name="btn_mark">#3470F2</color>
+    <color name="btn_mark">#5781A8</color>
     <color name="status_background">#072059</color>
     <color name="colorHint">#7e7e7e</color>
     <color name="colorText">#1d1a1a</color>
@@ -28,5 +28,8 @@
     <color name="person_text_color">#2E6DC0</color>
     <color name="language_choose_text">#ffe400</color>
     <color name="chart_text_color">#707070</color>
-
+    <color name="lucency_white">#3BFFFFFF</color>
+    <color name="text_dack_gray">#7E7E7E</color>
+    <color name="semicircle_white">#F8F8F8</color>
+    <color name="main_color">#5781A8</color>
 </resources>

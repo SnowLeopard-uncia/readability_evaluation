@@ -10,6 +10,17 @@
         <attr name="border_width" format="dimension"/>
         <attr name="border_color" format="color"/>
     </declare-styleable>
+
+    <!--    声明样式-->
+    <declare-styleable name="inputView">
+        <!--        输入框前图标-->
+        <attr name="input_icon" format="reference"></attr>
+        <!--        输入框提示-->
+        <attr name="input_hint" format="string"></attr>
+        <!--        是否密码-->
+        <attr name="is_password" format="boolean"></attr>
+
+    </declare-styleable>
 </resources>
 
 

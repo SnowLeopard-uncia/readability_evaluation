@@ -157,7 +157,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
             tv_audioName=itemView.findViewById(R.id.tv_audio_name);
             tv_audioLevel=itemView.findViewById(R.id.tv_audio_level);
             iv_lock=itemView.findViewById(R.id.iv_lock);
-            tvAudioCoin=itemView.findViewById(R.id.tv_audio_coin);
+//            tvAudioCoin=itemView.findViewById(R.id.tv_audio_coin);
         }
     }
 

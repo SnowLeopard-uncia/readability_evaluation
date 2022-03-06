@@ -12,84 +12,84 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true">
         <activity
             android:name="com.snowleopard.bamboo.UI.AudioDialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.PathActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.VideoPlayActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.VideoIntroductionActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.WordListActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.FileLoadEvaluationActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.PhotoLoadEvaluationActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.AudioActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.BaseActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.TextTextEvaluationActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.BookIntroductionActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.BookReadingActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.ReadingComprehensionActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.WordPreviewActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.ReadingFinishingActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.ChooseLanguageActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.ResultEvaluationActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity
             android:name="com.snowleopard.bamboo.UI.MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
         <activity android:name="com.snowleopard.bamboo.UI.LoginActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -99,7 +99,7 @@
         <activity
             android:name="com.snowleopard.bamboo.UI.RegisterActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
 
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"

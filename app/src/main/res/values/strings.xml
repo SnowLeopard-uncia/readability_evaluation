@@ -27,13 +27,13 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
     <string name="spinnerPrompt">选择年级</string>
     <string name="user_input_hint">&#160;&#160;&#160;&#160;请输入用户名</string>
     <string name="password_input_hint">&#160;&#160;&#160;&#160;&#160;请输入密码</string>
-    <string name="password_confirm_hint">&#160;&#160;&#160;&#160;&#160;请确认密码</string>
+    <string name="password_confirm_hint">确认密码</string>
     <string name="name_input_hint">&#160;&#160;&#160;&#160;请输入昵称</string>
     <string name="grade_select_hint">&#160;&#160;&#160;&#160;&#160;&#160;&#160;
         &#160;&#160;&#160;&#160;请选择年级</string>
     <string name="jump_to_register_text">我要注册</string>
-    <string name="login">登 录</string>
-    <string name="register">注   册</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
     <string name="language_select">语种选择</string>
     <string name="word_preview">单词预习</string>
     <string name="reading_comprehension">阅读理解</string>
@@ -57,6 +57,13 @@ sfj bsjhfb jvbkjdxfhbvsjdhb sduhjkvdbjhfd</string>
     <string name="nav_title">分级词汇</string>
     <string name="personal_center">个人中心</string>
     <string name="growth_trajectory">成长轨迹</string>
+<string name="text_take_photo">拍照</string>
+    <string name="text_load_picture">从相册选择</string>
+    <string name="cancel">取消</string>
+    <string name="register_hint">还没有账号？</string>
+    <string name="user_hint">请输入用户名</string>
+    <string name="password_hint">输入密码</string>
+    <string name="remember_password">记住密码</string>
     <string-array name="tabNames">
         <item>"知识广场"</item>
         <item>"分级词汇"</item>

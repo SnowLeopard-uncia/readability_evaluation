@@ -5,6 +5,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MyAppTheme" parent="AppTheme">
+        <item name="background">@drawable/bg_main</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+
     <style name="book_line">
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_width">235dp</item>
@@ -27,4 +34,33 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="PopStyleTheme" parent="Theme.AppCompat.Dialog">
+<!--    边框-->
+        <item name="android:windowFrame">@null</item>
+<!--        是否悬浮在Activity上-->
+        <item name="android:windowIsFloating">true</item>
+<!--        半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+<!--        无标题-->
+        <item name="windowNoTitle">true</item>
+<!--        设置背景-->
+        <item name="android:windowBackground">@drawable/bg_pop_dialog</item>
+<!--        模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+<!--        遮罩层-->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+    <style name="pop_menu_animStyle">
+<!--进入的动画-->
+        <item name="android:windowEnterAnimation">@anim/dialog_in_anim</item>
+<!--退出的动画-->
+        <item name="android:windowExitAnimation">@anim/dialog_out_anim</item>
+    </style>
+    
+    <style name="loginRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/text_dack_gray</item>
+        <item name="colorControlActivated">@color/main_color</item>
+    </style>
+    
 </resources>

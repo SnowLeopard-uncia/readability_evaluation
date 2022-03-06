@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 
 import com.snowleopard.bamboo.R;
 
+
 public class CircleRelativeLayout extends RelativeLayout {
     private int color;
     private int[] colors;

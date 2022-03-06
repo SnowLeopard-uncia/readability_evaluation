@@ -36,7 +36,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.CloudCodeListener;
 
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity {
     EditText et_user;
     EditText et_password;
     Button btn_login;
@@ -53,51 +53,51 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_login);
 
 
-        et_user = findViewById(R.id.et_user);
-        et_password = findViewById(R.id.et_password);
-        btn_login = findViewById(R.id.btn_login);
-        tv_register = findViewById(R.id.to_register_text);
-        checkBox = findViewById(R.id.checkbox);
-        btn_login.setOnClickListener(this);
-        tv_register.setOnClickListener(this);
+//        et_user = findViewById(R.id.et_user);
+//        et_password = findViewById(R.id.et_password);
+//        btn_login = findViewById(R.id.btn_login);
+//        tv_register = findViewById(R.id.to_register_text);
+//        checkBox = findViewById(R.id.checkbox);
+//        btn_login.setOnClickListener(this);
+//        tv_register.setOnClickListener(this);
 
         // 控制用户名、密码图标大小
         Drawable drawable1 = getResources().getDrawable(R.drawable.phone);
         drawable1.setBounds(58, 0, 120, 98);
-        et_user.setCompoundDrawables(drawable1, null, null, null);
+//        et_user.setCompoundDrawables(drawable1, null, null, null);
         Drawable drawable2 = getResources().getDrawable(R.drawable.password_icon);
         drawable2.setBounds(45, 0, 120, 94);
-        et_password.setCompoundDrawables(drawable2, null, null, null);
+//        et_password.setCompoundDrawables(drawable2, null, null, null);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_login:
-//                try {
-////                    doLogin();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.to_register_text:
-                Intent intent2 = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent2);
-                break;
-            default:
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View view) {
+//        switch (view.getId()) {
+//            case R.id.btn_login:
+////                try {
+//////                    doLogin();
+////                } catch (JSONException e) {
+////                    e.printStackTrace();
+////                }
+//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                startActivity(intent);
+//                break;
+//
+//            case R.id.to_register_text:
+//                Intent intent2 = new Intent(LoginActivity.this, RegisterActivity.class);
+//                startActivity(intent2);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 
     public void doLogin() throws JSONException {
         String phone = et_user.getText().toString().trim();
         String password = et_password.getText().toString().trim();
 
         if(TextUtils.isEmpty(phone)){
-            Toast.makeText(this, "手机号不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "用户名不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -124,7 +124,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     Log.e(TAG, "done: json：" + result);
 
                     if (result.equals("2")) {
-                        Toast.makeText(LoginActivity.this, "手机号或密码错误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
                     } else {
                         parseJsonDataWithGson(result);
                         saveUserID();
