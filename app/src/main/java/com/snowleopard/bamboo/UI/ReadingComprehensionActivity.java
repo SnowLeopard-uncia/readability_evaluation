@@ -220,6 +220,7 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
+                    Log.e("ReadingComprehension", "done: "+responseData );
                     parseJsonDataAboutEnglish(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());

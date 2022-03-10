@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/et_username_register"
             android:layout_width="0dp"
             android:layout_height="@dimen/edit_height"
             android:background="@drawable/bg_edit_user"
@@ -52,12 +52,13 @@
             app:layout_constraintWidth_default="spread" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/et_password_register"
             android:layout_width="0dp"
             android:layout_height="@dimen/edit_height"
             android:background="@drawable/bg_edit_user"
             android:hint="@string/password_hint"
             android:textAlignment="center"
+            android:inputType="textPassword"
             android:textSize="@dimen/edit_text_hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline76"
             app:layout_constraintStart_toStartOf="@+id/guideline72"
@@ -65,12 +66,13 @@
             app:layout_constraintWidth_default="spread" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/et_confirm_password"
             android:layout_width="0dp"
             android:layout_height="@dimen/edit_height"
             android:background="@drawable/bg_edit_user"
             android:hint="@string/password_confirm_hint"
             android:textAlignment="center"
+            android:inputType="textPassword"
             android:textSize="@dimen/edit_text_hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline76"
             app:layout_constraintStart_toStartOf="@+id/guideline72"
@@ -78,7 +80,7 @@
             app:layout_constraintWidth_default="spread" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_btn_mark"

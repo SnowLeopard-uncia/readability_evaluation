@@ -159,8 +159,8 @@ public class ChooseLanguageActivity extends BaseActivity implements View.OnClick
     }
 
     private void saveUserID(){
-        SharedPreferences.Editor editor = getSharedPreferences("userInformation",MODE_PRIVATE).edit();
-        editor.putString("userID",userList.get(0).getObjectId());
+        SharedPreferences.Editor editor = getSharedPreferences("userinfo",MODE_PRIVATE).edit();
+        editor.putString("userId",userList.get(0).getObjectId());
         editor.apply();
     }
 }

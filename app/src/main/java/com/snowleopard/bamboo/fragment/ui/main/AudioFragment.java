@@ -79,12 +79,9 @@ private List<AudioList> mAudioLists = new ArrayList<>();
         localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
     }
 
-
-
-
     private void getUserID() {
-        SharedPreferences pref = getActivity().getSharedPreferences("userInformation", MODE_PRIVATE);
-        objectId = pref.getString("userID", "");
+        SharedPreferences pref = getActivity().getSharedPreferences("userinfo", MODE_PRIVATE);
+        objectId = pref.getString("userId", "");
     }
     private void getUserData() throws JSONException {
             Bmob.initialize(getActivity(), "f2c0e499b2961d0a3b7f5c8d52f3a264");

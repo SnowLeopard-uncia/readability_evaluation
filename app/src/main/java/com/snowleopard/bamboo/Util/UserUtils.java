@@ -8,16 +8,20 @@ import com.blankj.utilcode.util.RegexUtils;
 
 
 public class UserUtils {
-    // 检验手机号合法性
-    public static boolean validateLogin(Context context, String phone){
-        if(TextUtils.isEmpty(phone)){
-            Toast.makeText(context, "手机号不能为空",Toast.LENGTH_SHORT).show();
+    // 检验用户名合法性
+    public static boolean validateLogin(Context context, String username){
+        if(TextUtils.isEmpty(username)){
+            Toast.makeText(context, "用户名不能为空",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(!RegexUtils.isMobileExact(phone)){
-            Toast.makeText(context, "无效手机号",Toast.LENGTH_SHORT).show();
+        if(username.length()>10){
+            Toast.makeText(context, "用户名长度不能大于10位",Toast.LENGTH_SHORT).show();
             return false;
         }
+//        if(!RegexUtils.isMobileExact(username)){
+//            Toast.makeText(context, "无效手机号",Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
         return true;
 
     }

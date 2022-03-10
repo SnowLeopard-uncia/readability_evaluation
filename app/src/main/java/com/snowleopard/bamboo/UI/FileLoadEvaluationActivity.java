@@ -49,7 +49,7 @@ import okhttp3.Response;
 
 public class FileLoadEvaluationActivity extends BaseActivity {
 
-    private ImageButton ibLoadFile;
+    private Button ibLoadFile;
     public static final String TXT="text/plain";
     public static final String DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
     String fileContent="";

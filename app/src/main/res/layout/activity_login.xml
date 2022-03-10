@@ -30,7 +30,7 @@
             app:layout_constraintStart_toStartOf="@+id/guideline70" />
 
         <com.snowleopard.bamboo.view.InputView
-            android:id="@+id/inputView2"
+            android:id="@+id/et_username"
             android:layout_width="0dp"
             android:layout_height="@dimen/edit_height"
             app:input_hint="@string/user_hint"
@@ -41,7 +41,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline75" />
 
         <com.snowleopard.bamboo.view.InputView
-            android:id="@+id/inputView3"
+            android:id="@+id/et_password"
             android:layout_width="0dp"
             android:layout_height="@dimen/edit_height"
             app:input_hint="@string/password_hint"
@@ -52,7 +52,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline77" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_btn_mark"
@@ -62,15 +62,21 @@
             app:layout_constraintStart_toStartOf="@+id/guideline70"
             app:layout_constraintTop_toTopOf="@+id/guideline78" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/remember_password"
-            android:textSize="12sp"
-            android:theme="@style/loginRadioButton"
-            android:textColor="@color/text_dack_gray"
-            app:layout_constraintEnd_toStartOf="@+id/guideline71"
-            app:layout_constraintTop_toBottomOf="@+id/inputView3" />
+    <CheckBox
+        android:id="@+id/rb_remember_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remember_password"
+        android:textSize="12sp"
+        android:theme="@style/loginCheckBox"
+        style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+        android:textColor="@color/text_dack_gray"
+        app:layout_constraintEnd_toStartOf="@+id/guideline71"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        />
+
+
+
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -80,7 +86,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline71"
             app:layout_constraintStart_toStartOf="@+id/guideline70"
-            app:layout_constraintTop_toBottomOf="@+id/button">
+            app:layout_constraintTop_toBottomOf="@+id/btn_login">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -89,6 +95,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/tv_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/register"

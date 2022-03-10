@@ -157,8 +157,8 @@ public class BookFragment extends Fragment {
 
 
     private void getUserID() {
-        SharedPreferences pref = getActivity().getSharedPreferences("userInformation", MODE_PRIVATE);
-        objectId = pref.getString("userID", "");
+        SharedPreferences pref = getActivity().getSharedPreferences("userinfo", MODE_PRIVATE);
+        objectId = pref.getString("userId", "");
     }
 
     private void getUserPageResponseData() throws JSONException {
@@ -174,7 +174,7 @@ public class BookFragment extends Fragment {
                 if (e == null) {
                     String responseData = object.toString();
                     parseUserJsonDataWithGson(responseData);
-                    Log.e(TAG, "done: ？"+responseData );
+                    Log.e("BookFragment", "done: ？"+responseData );
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }

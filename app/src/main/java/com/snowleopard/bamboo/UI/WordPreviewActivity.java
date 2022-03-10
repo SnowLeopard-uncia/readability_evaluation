@@ -252,7 +252,7 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+                    Log.e("WordPreview", "done: json：" + responseData);
                     parseJsonDataAboutSpanish(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());

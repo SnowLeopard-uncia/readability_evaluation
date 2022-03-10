@@ -195,7 +195,7 @@ public class MainActivity extends BaseActivity {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+                    Log.e("MainActivity", "done: json：" + responseData);
                     parseJsonDataWithGson1(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -236,8 +236,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void getUserID() {
-        SharedPreferences pref = this.getSharedPreferences("userInformation", MODE_PRIVATE);
-        objectId = pref.getString("userID", "");
+        SharedPreferences pref = this.getSharedPreferences("userinfo", MODE_PRIVATE);
+        objectId = pref.getString("userId", "");
     }
 
     @Override

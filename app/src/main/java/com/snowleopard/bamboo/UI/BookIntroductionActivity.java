@@ -182,8 +182,10 @@ public class BookIntroductionActivity extends BaseActivity implements View.OnCli
             @Override
             public void done(Object object, BmobException e) {
                 if (e == null) {
+
                     String responseData = object.toString();
                     parseJsonDataAboutSpanish(responseData);
+                    Log.e("BookIntroduction", "done: "+responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }

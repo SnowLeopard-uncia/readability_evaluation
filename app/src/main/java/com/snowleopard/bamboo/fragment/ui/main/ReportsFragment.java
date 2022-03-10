@@ -200,8 +200,8 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
     }
 
     private void getUserID() {
-        SharedPreferences pref = getActivity().getSharedPreferences("userInformation", MODE_PRIVATE);
-        objectId = pref.getString("userID", "");
+        SharedPreferences pref = getActivity().getSharedPreferences("userinfo", MODE_PRIVATE);
+        objectId = pref.getString("userId", "");
     }
 
     private void getUserRankResponseData() throws JSONException {

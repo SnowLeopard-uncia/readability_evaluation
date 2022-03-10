@@ -79,7 +79,7 @@ public class InputView extends FrameLayout {
         //通过这两个属性控制edittext展示密文
         editText_input.setInputType(is_password ?
                 InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_PASSWORD
-                : InputType.TYPE_CLASS_PHONE);
+                : InputType.TYPE_CLASS_TEXT);
         //当为false时接受手机号的输入
         addView(mView);
 //        通过这个方法把mView放入这个inputView里面
@@ -90,5 +90,12 @@ public class InputView extends FrameLayout {
      */
     public String getInputStr(){
         return editText_input.getText().toString().trim();
+    }
+
+    /**
+     * setText 方法可行
+     */
+    public void setText(String string){
+        editText_input.setText(string);
     }
 }

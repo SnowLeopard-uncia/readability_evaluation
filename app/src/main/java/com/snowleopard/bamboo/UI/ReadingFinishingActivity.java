@@ -72,7 +72,7 @@ public class ReadingFinishingActivity extends BaseActivity {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String result = object.toString();
-                    Log.e(TAG, "金币更新done: json：" + result);
+                    Log.e("ReadingFinishing", "金币更新done: json：" + result);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }
@@ -111,7 +111,7 @@ public class ReadingFinishingActivity extends BaseActivity {
     }
 
     private void getUserID() {
-        SharedPreferences pref = getSharedPreferences("userInformation", MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences("userinfo", MODE_PRIVATE);
         objectId = pref.getString("userID", "");
     }
 

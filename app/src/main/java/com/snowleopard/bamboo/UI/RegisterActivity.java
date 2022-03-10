@@ -1,11 +1,16 @@
 package com.snowleopard.bamboo.UI;
 
+
+
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,9 +20,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.snowleopard.bamboo.R;
 import com.snowleopard.bamboo.Util.BackEndInterfaceDataUtil;
+import com.snowleopard.bamboo.Util.MD5Cypher;
 import com.snowleopard.bamboo.Util.UserUtils;
 import com.snowleopard.bamboo.javaBean.BaseResponse;
 import com.snowleopard.bamboo.javaBean.UserRegister;
+import com.snowleopard.bamboo.view.InputView;
 
 import androidx.annotation.RequiresApi;
 
@@ -27,16 +34,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.AsyncCustomEndpoints;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.CloudCodeListener;
+
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
     EditText et_user;
     EditText et_password;
     EditText et_confirm_password;
     private List<UserRegister> userList = new ArrayList<>();
-//    private EditText et_name;
-//    private TextView tv_grade;
-//    private Spinner spinner;
+
     private Button btn_register;
+
     String[] arr = {"", "幼儿园", "一年级", "二年级", "三年级", "四年级", "五年级", "六年级", "初一", "初二",
             "初三", "高一", "高二", "高三"};
     String[] grade = {"", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"};
@@ -45,18 +56,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_previous);
+        setContentView(R.layout.activity_register);
 
         initNavBar(true,getResources().getString(R.string.register));
 
-        et_user = findViewById(R.id.et_user);
-        et_password = findViewById(R.id.et_password);
-        et_confirm_password = findViewById(R.id.et_confirm_password);
-//        et_name = findViewById(R.id.et_name);
-//        tv_grade = findViewById(R.id.tv_grade);
-//        spinner = findViewById(R.id.spinner);
-        btn_register = findViewById(R.id.btn_register);
-        btn_register.setOnClickListener(this);
         initView();
 
     }
@@ -66,36 +69,23 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_register:
-                String phone = et_user.getText().toString();
+                String username = et_user.getText().toString();
                 String password = et_password.getText().toString();
+                password= MD5Cypher.md5(password+MD5Cypher.md5(password));
                 String confirmPassword = et_confirm_password.getText().toString();
-//                String name = et_name.getText().toString();
-
+                confirmPassword=MD5Cypher.md5(confirmPassword+MD5Cypher.md5(confirmPassword));
                 // 验证用户输入是否合法
-                if (!UserUtils.validateLogin(this, phone)){
+                if (!UserUtils.validateLogin(this, username)){
                     return ;
                 }
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(RegisterActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                if (TextUtils.isEmpty(name)) {
-//                    Toast.makeText(RegisterActivity.this, "昵称不能为空", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (tv_grade.equals("           请选择年级") || tv_grade.equals("")) {
-//                    Toast.makeText(RegisterActivity.this, "年级不能为空", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
                 if (!confirmPassword.equals(password)) {
                     Toast.makeText(RegisterActivity.this, "两次密码不一致", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String level = null;
-//                for (int i = 0; i < arr.length; i++) {
-//                    if ((tv_grade.getText()).equals("           " + arr[i]))
-//                        level = grade[i];
-//                }
 
                 /*
                  *
@@ -108,24 +98,44 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 intent.putExtras(bundle);
                 startActivity(intent);
                  */
+
+                Bmob.initialize(this, "f2c0e499b2961d0a3b7f5c8d52f3a264");
+//        String cloudCodeName = "userLogin";
+                String cloudCodeName = "userRegister";
                 JSONObject params = new JSONObject();
                 try {
-                    params.put("mobilePhoneNumber", phone);
+                    params.put("username", username);
                     params.put("password", password);
-                    params.put("nickname", phone);
-                    params.put("language", "English");
-                    params.put("level", "A");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                BackEndInterfaceDataUtil backEndInterfaceDataUtil = new BackEndInterfaceDataUtil();
-                String result = backEndInterfaceDataUtil.requestData(this,"userRegister",params);
-                assert result!=null;
-                parseJsonDataWithGson(result);
-                saveUserID();
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                startActivity(intent);
+
+                AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+//第一个参数是云函数的方法名称，第二个参数是上传到云函数的参数列表（JSONObject cloudCodeParams）
+                ace.callEndpoint(cloudCodeName, params, new CloudCodeListener() {
+                    @Override
+                    public void done(Object object, BmobException e) {
+                        if (e == null) {
+                            String result = object.toString();
+                            if (result.equals("1")){
+                                Toast.makeText(RegisterActivity.this,"用户名已存在",Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                parseJsonDataWithGson(result);
+                                Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                            Log.e("RegisterActivity：", "RegisterActivity：" + result);
+                        } else {
+                            Log.e(TAG, " " + e.getMessage());
+                        }
+                    }
+                });
+
+//                saveUserID();
+
                 break;
             default:
                 break;
@@ -134,63 +144,28 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private void parseJsonDataWithGson(String jsonData) {
         Gson gson = new Gson();
-        BaseResponse<List<UserRegister>> responseUserRegisterList = gson.fromJson(jsonData,
+        BaseResponse<List<UserRegister>> responseUserRegister = gson.fromJson(jsonData,
                 new TypeToken<BaseResponse<List<UserRegister>>>() {
                 }.getType());
-        List<UserRegister> dataResponseList = responseUserRegisterList.getResults();
-        userList.addAll(dataResponseList);
-
+        List<UserRegister> dataResponse =responseUserRegister.getResults();
+        userList.add(dataResponse.get(0));
+        Log.e("RegisterActivity", "parseJsonDataWithGson: "+dataResponse.get(0).getImageHead());
+//
     }
+
     private void saveUserID(){
         SharedPreferences.Editor editor = getSharedPreferences("userInformation",MODE_PRIVATE).edit();
         editor.putString("userID",userList.get(0).getObjectId());
         editor.apply();
     }
+
     private void initView() {
-        Drawable drawable1 = getResources().getDrawable(R.drawable.phone);
-        drawable1.setBounds(58, 0, 120, 98);
-        et_user.setCompoundDrawables(drawable1, null, null, null);
-        Drawable drawable2 = getResources().getDrawable(R.drawable.password_icon);
-        drawable2.setBounds(45, 0, 120, 94);
-        et_password.setCompoundDrawables(drawable2, null, null, null);
-        Drawable drawable3 = getResources().getDrawable(R.drawable.name_icon);
-        drawable3.setBounds(45, 0, 120, 94);
-//        et_name.setCompoundDrawables(drawable3, null, null, null);
-//        Drawable drawable4 = getResources().getDrawable(R.drawable.grade_icon);
-//        drawable4.setBounds(36, 0, 131, 105);
-//        tv_grade.setCompoundDrawables(drawable4, null, null, null);
-//        Drawable drawable5 = getResources().getDrawable(R.drawable.password_confirm);
-//        drawable5.setBounds(45, 0, 120, 94);
-//        et_confirm_password.setCompoundDrawables(drawable5, null, null, null);
 
-//        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-//                android.R.layout.simple_spinner_item, arr);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
-
-/*
- *
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0) {
-                    // 主要功能代码；
-                    view.setVisibility(View.INVISIBLE);
-                } else {
-                    //获取到对象
-                    String mGrade = adapter.getItem(i);
-                    tv_grade.setText("           " + mGrade);
-                    tv_grade.setTextColor(Color.parseColor("#000000"));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
- */
+        et_user = findViewById(R.id.et_username_register);
+        et_password = findViewById(R.id.et_password_register);
+        et_confirm_password = findViewById(R.id.et_confirm_password);
+        btn_register = findViewById(R.id.btn_register);
+        btn_register.setOnClickListener(this);
 
     }
 

@@ -32,6 +32,8 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
         this.mAudioList = mAudioList;
     }
 
+    /**
+     *
 
     public void lockList(){
         mIsLockList.clear();
@@ -46,6 +48,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
             mIsLockList.add(isLock);
         }
     }
+     */
 
     @NonNull
     @Override
@@ -56,7 +59,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
 
         holder.audioItemView.setOnClickListener((v -> {
             UserLocal userLocal = LitePal.findFirst(UserLocal.class);
-            int userCoin = userLocal.getCoin();
+      //      int userCoin = userLocal.getCoin();
 
             mPosition = holder.getAdapterPosition();
             AudioList audioList = mAudioList.get(mPosition);
@@ -68,21 +71,21 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
             Context context = v.getContext();
             Intent intent;
 //            int visibility = holder.iv_lock.getVisibility();
-            if ((!audioList.getLevel().equals(userLocal.getLevel())) && userCoin < audioList.getResourceCoin()) {
-                intent = new Intent(context, AudioDialogActivity.class);
-            }
-            else{
-            lockList();
+       //     if ((!audioList.getLevel().equals(userLocal.getLevel())) && userCoin < audioList.getResourceCoin()) {
+        //        intent = new Intent(context, AudioDialogActivity.class);
+       //     }
+      //      else{
+        //    lockList();
             intent = new Intent(context, AudioActivity.class);
             Bundle bundle = new Bundle();
 //            bundle.putInt("visibility",visibility);
-            bundle.putIntegerArrayList("isLockList",mIsLockList);
+        //    bundle.putIntegerArrayList("isLockList",mIsLockList);
             bundle.putString("musicSelectedID",String.valueOf(audioList.getId()));
             bundle.putString("musicName",audioList.getName());
             bundle.putInt("position", mPosition);
             bundle.putInt("maxPosition",getItemCount());
             intent.putExtras(bundle);
-            }
+       //     }
             context.startActivity(intent);
         }));
         return holder;
@@ -97,7 +100,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
     holder.tv_audioId.setText(""+audioList.getId());
     holder.tv_audioName.setText(audioList.getName());
     holder.tv_audioLevel.setText(""+audioList.getLevel());
-    holder.tvAudioCoin.setText(""+audioList.getResourceCoin());
+ //   holder.tvAudioCoin.setText(""+audioList.getResourceCoin());
 
     int itemBackGround = position % 2;
     if (itemBackGround==0){
@@ -114,6 +117,8 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
 
 //        List<UserLocal> userLocalList = LitePal.findAll(UserLocal.class);
 
+/**
+ *
 
         int userCoin = userLocalList.get(0).getCoin();
         //如果等级一样，就设置锁不可见
@@ -128,6 +133,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
         if ((!audioList.getLevel().equals(userLocalList.get(0).getLevel())) && userCoin < audioList.getResourceCoin()) {
             holder.iv_lock.setVisibility(View.VISIBLE);
         }
+ */
     }
         //解决滑动隔行颜色错乱
     @Override

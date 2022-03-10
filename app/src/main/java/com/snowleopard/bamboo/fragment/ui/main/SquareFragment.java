@@ -353,8 +353,8 @@ public class SquareFragment extends Fragment {
     }
 
     private void getUserID() {
-        SharedPreferences pref = getActivity().getSharedPreferences("userInformation", MODE_PRIVATE);
-        objectId = pref.getString("userID", "");
+        SharedPreferences pref = getActivity().getSharedPreferences("userinfo", MODE_PRIVATE);
+        objectId = pref.getString("userId", "");
     }
 
     private void getUserPageResponseData() throws JSONException {
@@ -370,7 +370,7 @@ public class SquareFragment extends Fragment {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+                    Log.e("SquareFragment", "done: json：" + responseData);
                     parseJsonDataWithGson1(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
