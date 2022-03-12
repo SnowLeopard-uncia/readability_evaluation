@@ -1,42 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="18dp"
-   android:layout_margin="8dp"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="33.3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/tv_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="14dp"
+        android:text="word"
+        android:textStyle="bold"
+        android:textSize="@dimen/edit_text_textSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    android:paddingHorizontal="@dimen/activity_horizontal_margin"
-     android:paddingVertical="10dp"
-        >
+        android:layout_height="1dp"
+        android:background="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ScrollView
-            android:id="@+id/sv_word"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/tv_word"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="word"
-                android:textSize="@dimen/edit_text_textSize"
-
-                />
-        </ScrollView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -118,7 +118,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
 //        List<UserLocal> userLocalList = LitePal.findAll(UserLocal.class);
 
 /**
- *
+ *金币锁操作
 
         int userCoin = userLocalList.get(0).getCoin();
         //如果等级一样，就设置锁不可见
@@ -162,7 +162,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.View
             tv_audioId=itemView.findViewById(R.id.tv_audio_id);
             tv_audioName=itemView.findViewById(R.id.tv_audio_name);
             tv_audioLevel=itemView.findViewById(R.id.tv_audio_level);
-            iv_lock=itemView.findViewById(R.id.iv_lock);
+//            iv_lock=itemView.findViewById(R.id.iv_lock);
 //            tvAudioCoin=itemView.findViewById(R.id.tv_audio_coin);
         }
     }

@@ -26,18 +26,18 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View videoView;
         ImageView iv_book_shape;
-        ImageView iv_lock;
-        TextView tv_level;
-        TextView tv_coin;
+//       ImageView iv_lock;
+      TextView tv_level;
+//        TextView tv_coin;
 
         // ViewHolder类的构造方法，View为RecyclerView子项的最外层布局
         public ViewHolder(View view) {
             super(view);
             videoView = view;
             iv_book_shape = (ImageView) view.findViewById(R.id.iv_book_shape);
-            iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
+//            iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
             tv_level = view.findViewById(R.id.tv_level);
-            tv_coin = view.findViewById(R.id.tv_coin);
+//            tv_coin = view.findViewById(R.id.tv_coin);
         }
 
     }
@@ -69,12 +69,15 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
                     userLocal.setLanguage("English");
                     userLocal.save();
                 }
+                /**
+                 * 金币操作
+
                 int userCoin = userLocal.getCoin();
                 if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin < video.getVideoPrice()) {
                     Toast.makeText(v.getContext(), "金币不足",Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                 */
                 Intent intent = new Intent(v.getContext(), VideoIntroductionActivity.class);
                 intent.putExtra("videoID", video.getVideoID());
                 v.getContext().startActivity(intent);
@@ -88,7 +91,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     public void onBindViewHolder(VideoAdapter.ViewHolder holder, int position) {
         VideoHome video = mVideoList.get(position);
         holder.tv_level.setText(video.getVideoLevel());
-        holder.tv_coin.setText("" + video.getVideoPrice());
+//        holder.tv_coin.setText("" + video.getVideoPrice());
         Glide.with(holder.videoView.getContext()).load(video.getPng()).into(holder.iv_book_shape);
         holder.itemView.setVisibility(View.VISIBLE);
 
@@ -100,6 +103,9 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             userLocal.setLanguage("English");
             userLocal.save();
         }
+        /**
+         * 金币操作
+
         int userCoin = userLocal.getCoin();
 
         if (video.getVideoLevel().equals(userLocal.getLevel())) {
@@ -112,6 +118,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         if ((!video.getVideoLevel().equals(userLocal.getLevel())) && userCoin < video.getVideoPrice()) {
             holder.iv_lock.setVisibility(View.VISIBLE);
         }
+         */
 
     }
 

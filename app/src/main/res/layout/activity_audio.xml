@@ -40,15 +40,14 @@
     <SeekBar
         android:id="@+id/musicSeekBar"
         android:layout_width="0dp"
-        style="@android:style/Widget.Holo.Light.SeekBar"
         android:paddingHorizontal="0dp"
-        android:layout_height="5dp"
-        android:background="@color/white"
+        android:layout_height="8dp"
+       style="@style/seekbarStyle"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintEnd_toStartOf="@+id/guideline33"
         app:layout_constraintStart_toStartOf="@+id/guideline32"
         app:layout_constraintTop_toTopOf="@+id/guideline23" />
-
+<!--    style="@android:style/Widget.Holo.Light.SeekBar"-->
 
     <TextView
         android:id="@+id/tv_audio_title"

@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"/>
 
+<!--    书的等级和右上角标志-->
     <ImageView
         android:layout_width="28.8dp"
         android:layout_height="29.6dp"
@@ -42,6 +43,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"/>
 
+<!--    金币标签-->
 <!--    <ImageView-->
 <!--        android:id="@+id/iv_lock"-->
 <!--        android:layout_width="17.6dp"-->
@@ -54,6 +56,7 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="1.0" />-->
 
+<!--金币数量以及图标-->
 <!--    <ImageView-->
 <!--        android:layout_width="15dp"-->
 <!--        android:layout_height="12dp"-->
@@ -65,15 +68,15 @@
 <!--        app:layout_constraintTop_toBottomOf="@id/iv_book_shape"-->
 <!--        app:layout_constraintVertical_bias="0.1"/>-->
 
-    <TextView
-        android:id="@+id/tv_coin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
-        app:layout_constraintTop_toBottomOf="@id/iv_book_shape"
-        app:layout_constraintVertical_bias="0.0" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_coin"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="13sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.7"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/iv_book_shape"-->
+<!--        app:layout_constraintVertical_bias="0.0" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

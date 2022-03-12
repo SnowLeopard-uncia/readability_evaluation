@@ -63,4 +63,9 @@
         <item name="colorControlActivated">@color/main_color</item>
     </style>
     
+    
+    <style name="seekbarStyle">
+        <item name="android:thumb">@drawable/seekbar_thumb</item>
+        <item name="android:progressDrawable">@drawable/progress_drawable</item>
+    </style>
 </resources>

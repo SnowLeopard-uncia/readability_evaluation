@@ -48,6 +48,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
             }
         });
 
+        /*
+        嵌套滑动
+
         //点击与滑动事件冲突解决
         final int[] lastY = new int[1];
         final int[] lastX = new int[1];
@@ -80,8 +83,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
                 return false;
             }
         });
-
-        /*
+ */
+        /* 无效
 
         holder.wordItemView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -118,14 +121,17 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View wordItemView;
         TextView tv_word;
-        ScrollView sv_word;
+//        ScrollView sv_word;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             wordItemView=itemView;
             tv_word=itemView.findViewById(R.id.tv_word);
-            sv_word=itemView.findViewById(R.id.sv_word);
+//            sv_word=itemView.findViewById(R.id.sv_word);
 
         }
+
+
+
 
         /**
          *
@@ -133,6 +139,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
          * @param y event的rowY
          * @return 这个点在不在sv的范围内.
          */
+
+         /*
         public boolean isTouchNsv(float x,float y) {
             int[] pos = new int[2];
             //获取sv在屏幕上的位置
@@ -140,6 +148,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
             int width = sv_word.getMeasuredWidth();
             int height = sv_word.getMeasuredHeight();
             return x >= pos[0] && x <= pos[0] + width && y >= pos[1] && y <= pos[1] + height;
-        }
+        }   */
     }
+
+
 }

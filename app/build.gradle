@@ -22,6 +22,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+//    导入aar写的 但是会报错> Build was configured to prefer settings repositories over project repositories but repository 'flatDir' was added by build file 'app\build.gradle'
+//    repositories {
+//        flatDir {
+//            dirs 'libs'
+//        }
+//    }
+//导入JniLibs加的
+        sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -33,12 +46,14 @@ android {
 
 dependencies {
 
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+//    implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
     implementation 'io.github.bmob:android-sdk:3.8.11'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'com.squareup.okhttp3:okhttp:4.8.1'
     implementation 'com.squareup.okio:okio:2.7.0'
-
+//    implementation(name:'ocrsdk', ext:'aar') //引用第三方库
     implementation 'com.github.yalantis:Side-Menu.Android:1.0.2'
     implementation ('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
         transitive = true;
@@ -55,8 +70,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "androidx.drawerlayout:drawerlayout:1.1.1"
     implementation "com.google.code.gson:gson:2.8.6"
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.alibaba:fastjson:1.2.76'
     implementation 'com.blankj:utilcode:1.30.1'
     implementation 'org.litepal.android:java:3.0.0'

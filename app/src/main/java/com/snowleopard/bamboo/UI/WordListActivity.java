@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -89,7 +90,9 @@ public class WordListActivity extends BaseActivity {
                     if (e == null) {
                         String result = object.toString();
                         parseJsonDataWithGson(result);
+                        Log.e("WordListActivity", "wordBookInfo: "+result );
                         Log.e(TAG, "获取单词成功英语");
+
                     } else {
                         Log.e(TAG, "执行错误" + e.getMessage());
                     }
@@ -119,9 +122,21 @@ public class WordListActivity extends BaseActivity {
         List<WordList> responseWordList = response.getResults();
         mWordLists.addAll(responseWordList);
         initRecyclerView();
+//        initRecyclerView();
     }
 
     private void initRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_word_list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        WordListAdapter adapter = new WordListAdapter(mWordLists);
+        recyclerView.setAdapter(adapter);
+    }
+
+    /*
+    嵌套滑动部分
+
+    private void initRecyclerView_pre() {
         RecyclerView recyclerView = findViewById(R.id.recyclerview_word_list);
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
@@ -155,6 +170,6 @@ public class WordListActivity extends BaseActivity {
         WordListAdapter adapter = new WordListAdapter(mWordLists);
         recyclerView.setAdapter(adapter);
 
-    }
+    }  */
 
 }

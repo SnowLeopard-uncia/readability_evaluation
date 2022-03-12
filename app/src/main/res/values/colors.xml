@@ -33,4 +33,7 @@
     <color name="semicircle_white">#F8F8F8</color>
     <color name="main_color">#5781A8</color>
     <color name="light_gray">#D5D5D5</color>
+    <color name="seekbar">#41569E</color>
+    <color name="seekbar_bg">#E0E0E0</color>
+    <color name="white_trans">#1AFFFFFF</color>
 </resources>

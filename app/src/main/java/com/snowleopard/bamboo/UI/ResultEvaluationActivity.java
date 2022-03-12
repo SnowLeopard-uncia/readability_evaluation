@@ -36,7 +36,12 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
-
+/*
+测评结果页面
+一开始我是在前一个Activity测评完再把结果带过来跳转显示
+后面改成了把数据带过来跳转再测评
+我觉得还是后面的好，因为用前面的方法的话有三个Activity要写测评代码，后面这个只用一个Activity
+ */
 public class ResultEvaluationActivity extends BaseActivity {
 
     private TextView tv_result;

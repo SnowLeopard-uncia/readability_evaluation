@@ -237,7 +237,3 @@ public class PathView extends View {
         }
     }
 }
-
-
-
-

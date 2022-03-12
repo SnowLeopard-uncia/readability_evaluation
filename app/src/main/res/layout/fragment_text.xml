@@ -23,13 +23,19 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:src="@drawable/text_decorate"
             android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/marginSize"
             android:src="@drawable/text_load" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="6"
             android:text="@string/text_load" />
     </LinearLayout>
 
@@ -45,17 +51,22 @@
         app:layout_constraintHeight_default="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline7">
-
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:src="@drawable/text_decorate"
             android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+     android:paddingRight="@dimen/marginSize"
             android:src="@drawable/photo_load" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="6"
             android:text="@string/photo_load" />
     </LinearLayout>
 
@@ -72,17 +83,22 @@
         app:layout_constraintHeight_default="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5">
-
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:src="@drawable/text_decorate"
             android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+          android:paddingRight="@dimen/marginSize"
             android:src="@drawable/file_load" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="6"
             android:text="@string/file_load" />
     </LinearLayout>
 
@@ -96,6 +112,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline10"></TextView>
+
+    <ImageView
+        android:id="@+id/iv_text_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/text_hint"
+    android:layout_marginHorizontal="@dimen/marginSize"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
     <TextView
         android:layout_width="wrap_content"

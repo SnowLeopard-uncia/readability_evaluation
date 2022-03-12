@@ -62,7 +62,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline15">
 
-        <TextView
+        <EditText
+            android:id="@+id/et_text_photo"
+            android:background="@color/transparent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="@dimen/text_evaluation_padding"

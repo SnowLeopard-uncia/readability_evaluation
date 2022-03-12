@@ -156,7 +156,9 @@
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/drawable/bg_pop_dialog.xml" value="0.1" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/drawable/bg_semicircle.xml" value="0.1" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/drawable/bg_video_dialog.xml" value="0.1" />
-        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/activity_audio.xml" value="0.1" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/drawable/bg_word_list.xml" value="0.1" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/drawable/progress_drawable.xml" value="0.1" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/activity_audio.xml" value="0.16666666666666666" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/activity_base.xml" value="0.12090163934426229" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/activity_choose_language.xml" value="0.1" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/activity_file_load.xml" value="0.14666666666666667" />
@@ -167,22 +169,27 @@
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/activity_register_previous.xml" value="0.1" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/activity_text_text_evaluation.xml" value="0.11031420765027322" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/activity_word_list.xml" value="0.1" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/dialog.xml" value="0.11031420765027322" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/dialog_pop_layout.xml" value="0.13333333333333333" />
-        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/frag_fragment_book.xml" value="0.11031420765027322" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/dialog_world.xml" value="0.22" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/frag_fragment_audio.xml" value="0.1" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/frag_fragment_book.xml" value="0.1" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/frag_fragment_video.xml" value="0.1" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/fragment_report.xml" value="0.11031420765027322" />
-        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/fragment_text.xml" value="0.11031420765027322" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/fragment_square.xml" value="0.1" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/fragment_text.xml" value="0.25" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/input_view.xml" value="0.1" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_audio_list.xml" value="0.41534391534391535" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_bar_chart.xml" value="0.11031420765027322" />
-        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_book.xml" value="0.11031420765027322" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_book.xml" value="0.6187050359712231" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_choose_language.xml" value="0.11031420765027322" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_drawer_list.xml" value="0.11031420765027322" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_show_grade.xml" value="0.11031420765027322" />
-        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_video.xml" value="0.11031420765027322" />
-        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_word.xml" value="0.11031420765027322" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_video.xml" value="0.4466666666666667" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/item_word.xml" value="0.16666666666666666" />
         <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/nav_bar.xml" value="0.11031420765027322" />
-        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/tab_style.xml" value="0.11031420765027322" />
+        <entry key="..\:/my_code/BambooApp2.0/app/src/main/res/layout/tab_style.xml" value="0.12" />
       </map>
     </option>
   </component>

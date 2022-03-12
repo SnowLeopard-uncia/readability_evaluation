@@ -36,16 +36,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         ImageView iv_book_shape;
         ImageView iv_lock;
         TextView tv_level;
-        TextView tv_coin;
+//        TextView tv_coin;
 
         // ViewHolder类的构造方法，View为RecyclerView子项的最外层布局
         public ViewHolder(View view) {
             super(view);
             bookView = view;
             iv_book_shape = (ImageView) view.findViewById(R.id.iv_book_shape);
-            iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
+//            iv_lock = (ImageView) view.findViewById(R.id.iv_lock);
             tv_level = view.findViewById(R.id.tv_level);
-            tv_coin = view.findViewById(R.id.tv_coin);
+//            tv_coin = view.findViewById(R.id.tv_coin);
         }
     }
 
@@ -74,11 +74,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
                     userLocal.save();
                 }
                 int userCoin = userLocal.getCoin();
+                /**
+                 *
+              金币操作
                 if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin < book.getGoldCoin()) {
                     Toast.makeText(v.getContext(), "金币不足", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                 */
                 Intent intent = new Intent(v.getContext(), BookIntroductionActivity.class);
                 intent.putExtra("book_id", book.getBookId());
                 intent.putExtra("gold_coin", book.getGoldCoin());
@@ -94,7 +97,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         BookHome book = mBookList.get(position);
         holder.tv_level.setText(book.getLevel());
-        holder.tv_coin.setText("" + book.getGoldCoin());
+//        holder.tv_coin.setText("" + book.getGoldCoin());
         Glide.with(holder.bookView.getContext()).load(book.getCover_url()).into(holder.iv_book_shape);
 
 
@@ -110,16 +113,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         Log.e(TAG, "onBindViewHolder: "+userCoin);
 //        Log.e(TAG, "后台返回的Level: " +book.getLevel());
 //        Log.e(TAG, "Adapter里面的userLevel: " +userLocal.getLevel());
-//        if (book.getLevel().equals(userLocal.getLevel())) {
-//            holder.iv_lock.setVisibility(View.INVISIBLE);
-//        }
-//        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin >= book.getGoldCoin()) {
-//            holder.iv_lock.setVisibility(View.INVISIBLE);
-//        }
-//        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin < book.getGoldCoin()) {
-//            holder.iv_lock.setVisibility(View.VISIBLE);
-//        }
+        /**
+         * 金币锁操作
 
+        if (book.getLevel().equals(userLocal.getLevel())) {
+            holder.iv_lock.setVisibility(View.INVISIBLE);
+        }
+        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin >= book.getGoldCoin()) {
+            holder.iv_lock.setVisibility(View.INVISIBLE);
+        }
+        if ((!book.getLevel().equals(userLocal.getLevel())) && userCoin < book.getGoldCoin()) {
+            holder.iv_lock.setVisibility(View.VISIBLE);
+        }
+         */
     }
 
     // 获取子项的个数

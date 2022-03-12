@@ -44,8 +44,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     Button btn_login;
     TextView tv_register;
     CheckBox rb_remember_pwd;
-
-
     private List<UserLogin> userList = new ArrayList<>();
 
 
@@ -115,14 +113,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     public void savePwd(String password){
         String userID = userList.get(0).getObjectId();
         SharedPreferences.Editor editor = getSharedPreferences("userinfo",MODE_PRIVATE).edit();
+        editor.putString("userId",userID);
+        editor.putString("userName",et_username.getInputStr().trim());
         //检查复选框是否选择
         if(rb_remember_pwd.isChecked()){
           //  String password=et_password.getInputStr().trim();
             editor.putBoolean("isRemember",true);
-            editor.putString("userName",et_username.getInputStr().trim());
-
             editor.putString("userPwd",password);
-            editor.putString("userId",userID);
+
         }else {
             editor.clear();
         }
@@ -167,13 +165,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         if(fileIsExists("/data/data/com.snowleopard.bamboo/shared_prefs/userinfo.xml")){
             SharedPreferences pref = getSharedPreferences("userinfo",MODE_PRIVATE);
             String name = pref.getString("userName","0");
-            if (name.equals("0")){
-                sendPassword=MD5Cypher.md5(password+MD5Cypher.md5(password));
-            }else if (!name.equals(userName)){
+            if (name.equals("0") || !name.equals(userName)){
                 sendPassword=MD5Cypher.md5(password+MD5Cypher.md5(password));
             }
             else {
-                sendPassword=pref.getString("userPwd","");
+                if (pref.getBoolean("isRemember",false)){
+                    sendPassword=pref.getString("userPwd","");
+                }else{
+                    sendPassword=MD5Cypher.md5(password+MD5Cypher.md5(password));
+                }
+
             }
         }else {
             sendPassword=MD5Cypher.md5(password+MD5Cypher.md5(password));
@@ -210,6 +211,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
                 } else {
                     Log.e(TAG, " " + e.getMessage());
+                    Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -124,12 +124,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             else {
                                 parseJsonDataWithGson(result);
                                 Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
+                                saveUserID();
                                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }
                             Log.e("RegisterActivity：", "RegisterActivity：" + result);
                         } else {
                             Log.e(TAG, " " + e.getMessage());
+                            Toast.makeText(RegisterActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -154,8 +156,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void saveUserID(){
-        SharedPreferences.Editor editor = getSharedPreferences("userInformation",MODE_PRIVATE).edit();
-        editor.putString("userID",userList.get(0).getObjectId());
+        SharedPreferences.Editor editor = getSharedPreferences("userinfo",MODE_PRIVATE).edit();
+        editor.putString("userId",userList.get(0).getObjectId());
         editor.apply();
     }
 
