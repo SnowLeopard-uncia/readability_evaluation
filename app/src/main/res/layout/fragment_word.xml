@@ -19,6 +19,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/word_menu_list"
+        android:paddingVertical="@dimen/marginSize"
+        android:background="@drawable/bg_rv_word_book"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

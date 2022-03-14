@@ -4,8 +4,17 @@ public class WordList {
 
     private String word;
     private String soundmard;
+    private String phonetic;
     private String zh;
     private int isClick=0;
+
+    public String getPhonetic() {
+        return phonetic;
+    }
+
+    public void setPhonetic(String phonetic) {
+        this.phonetic = phonetic;
+    }
 
     public int getIsClick() {
         return isClick;

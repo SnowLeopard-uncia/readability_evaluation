@@ -28,7 +28,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_word_menu_list,parent,false); // 将子项布局加载进来
+                .inflate(R.layout.item_word_book,parent,false); // 将子项布局加载进来
         final ViewHolder holder = new ViewHolder(view);
 
         //holder.wordItemView.setClickable(false);
@@ -45,7 +45,6 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
                 bundle.putString("wordNum",wordMenuList.getVocWordnum());
                 intent.putExtras(bundle);
                 context.startActivity(intent);
-
             }
         });
         return holder;
@@ -58,12 +57,16 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
 //        holder.tv_wordTitle.setText(wordMenuList.getVocTitle());
         holder.tv_wordAge.setText(wordMenuList.getVocAge());
         holder.tv_wordAccount.setText(wordMenuList.getVocWordnum());
+        /**
+         * 设置recyclerview单复数item不同色
+
         int itemBackGround = position % 2;
         if (itemBackGround==0){
             holder.crWordLevel.setBackgroundResource(R.drawable.bg_word_menu);
         }else{
             holder.crWordLevel.setBackgroundResource(R.drawable.bg_word_menu_x);
         }
+         */
     }
 
     @Override
@@ -77,7 +80,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
         TextView tv_wordTitle;
         TextView tv_wordAccount;
         TextView tv_wordAge;
-        com.snowleopard.bamboo.view.CircleRelativeLayout crWordLevel;
+//        com.snowleopard.bamboo.view.CircleRelativeLayout crWordLevel;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,7 +88,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
             tv_wordAccount=itemView.findViewById(R.id.tv_word_account);
             tv_wordLevel=itemView.findViewById(R.id.tv_word_menu_level);
 //            tv_wordTitle=itemView.findViewById(R.id.tv_word_list_title);
-            crWordLevel=itemView.findViewById(R.id.cr_word_level);
+//            crWordLevel=itemView.findViewById(R.id.cr_word_level);
             tv_wordAge=itemView.findViewById(R.id.tv_suit_age_word);
         }
     }

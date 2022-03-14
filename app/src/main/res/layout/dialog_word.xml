@@ -2,11 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_pop_word"
+    >
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
+        android:id="@+id/iv_back_pop"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:src="@drawable/popdown"
@@ -15,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_word_pop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Word"
@@ -24,18 +26,19 @@
         android:textSize="30.67sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_back_pop" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tv_phonetic_pop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="phonetic"
         android:textColor="@color/light_gray"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintStart_toStartOf="@+id/tv_word_pop"
+        app:layout_constraintTop_toBottomOf="@+id/tv_word_pop" />
 
     <TextView
+        android:id="@+id/tv_Chniese_pop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="28dp"
@@ -45,6 +48,6 @@
         android:layout_marginTop="26dp"
         android:paddingBottom="23dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_phonetic_pop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

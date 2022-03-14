@@ -1,24 +1,38 @@
 package com.snowleopard.bamboo.fragment.ui.adapter;
 
 import android.annotation.SuppressLint;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.snowleopard.bamboo.R;
 import com.snowleopard.bamboo.javaBean.WordList;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHolder> {
 
     private List<WordList> mWordListList;
+    private TextView tv_word;
+    private TextView tv_phonetic;
+    private TextView tv_Chinese;
+    private ImageView iv_back_pop;
+    private  PopupWindow popupWindow;
+private View popview;
+
 
     public WordListAdapter(List<WordList> mWordListList) {
         this.mWordListList = mWordListList;
@@ -31,6 +45,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
                 .inflate(R.layout.item_word,parent,false); // 将子项布局加载进来
         final ViewHolder holder = new ViewHolder(view);
 
+         popview = LayoutInflater.from(parent.getContext()).inflate(R.layout.dialog_word,parent,false);
+          popupWindow = new PopupWindow(popview,ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,true);
         return holder;
     }
 
@@ -39,6 +56,36 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WordList wordList = mWordListList.get(position);
         holder.tv_word.setText(wordList.getWord());
+        holder.wordItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv_word=popview.findViewById(R.id.tv_word_pop);
+                tv_Chinese=popview.findViewById(R.id.tv_Chniese_pop);
+                tv_phonetic=popview.findViewById(R.id.tv_phonetic_pop);
+                iv_back_pop=popview.findViewById(R.id.iv_back_pop);
+
+                tv_word.setText(wordList.getWord());
+                tv_Chinese.setText(wordList.getZh());
+                tv_phonetic.setText(wordList.getPhonetic());
+
+                //设置动画
+                popupWindow.setAnimationStyle(R.style.pop_menu_animStyle);
+                //设置出现的位置
+                popupWindow.showAtLocation(popview, Gravity.BOTTOM,0,0);
+                //聚焦
+                popupWindow.setFocusable(true);
+                //允许外部点击消失
+                popupWindow.setOutsideTouchable(true);
+                iv_back_pop.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+                    }
+                });
+            }
+        });
+        /**
+         * item内切换中英文的写法
         holder.wordItemView.setOnClickListener(view -> {
             wordList.setIsClick(wordList.getIsClick()+1);
             if ((wordList.getIsClick()%2)==1){
@@ -47,6 +94,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
                 holder.tv_word.setText(wordList.getWord());
             }
         });
+    */
 
         /*
         嵌套滑动

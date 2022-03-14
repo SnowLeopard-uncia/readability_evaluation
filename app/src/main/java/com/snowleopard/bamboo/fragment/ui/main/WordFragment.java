@@ -112,7 +112,7 @@ public class WordFragment extends Fragment {
         name = userLocal.getLanguage();
             if (userLocal.getLanguage().equals("English")){
                 name ="selectVocabulary";
-                Log.e(TAG, "done: json："+"英语接口单词");
+                Log.e("WordFragment", "selectVocabulary: "+"英语接口单词");
             }else{
                 name ="selectVocabulary_Spanish";
             }
@@ -121,7 +121,7 @@ public class WordFragment extends Fragment {
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e("WordFragment", "done: "+responseData );
+                    Log.e("WordFragment", "selectVocabulary: "+responseData );
                     parseJsonDataWithGson(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -137,10 +137,6 @@ public class WordFragment extends Fragment {
         BaseResponse<List<WordMenuList>> responseWordMenuList = gson.fromJson(jsonData,new TypeToken<BaseResponse<List<WordMenuList>>>(){}.getType());
         List<WordMenuList> dataResponseList= responseWordMenuList.getResults();
         wordMenuLists.clear();
-
-        //            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getCreatedAt());
-        //            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getVocLevel());
-        //            Log.e(TAG, "parseJsonDataWithGson: "+wordMenuList.getNew_tableName());
         wordMenuLists.addAll(dataResponseList);
     initRecyclerView();
 

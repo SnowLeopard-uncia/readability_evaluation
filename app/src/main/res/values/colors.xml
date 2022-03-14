@@ -35,5 +35,6 @@
     <color name="light_gray">#D5D5D5</color>
     <color name="seekbar">#41569E</color>
     <color name="seekbar_bg">#E0E0E0</color>
-    <color name="white_trans">#1AFFFFFF</color>
+    <color name="white_trans">#26FFFFFF</color>
+    <color name="btn_word_book">#49ABE8</color>
 </resources>
