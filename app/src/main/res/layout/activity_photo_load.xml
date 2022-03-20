@@ -43,10 +43,10 @@
         android:id="@+id/btn_pop_upload"
         android:layout_width="match_parent"
         android:layout_height="57dp"
-        android:text="上传图片"
+        android:text="@string/photo_upload"
+        android:textColor="@color/text_dack_gray"
         android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
         android:background="@drawable/bg_btn_upload"
-        android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintTop_toTopOf="@+id/guideline14"
      ></Button>
 

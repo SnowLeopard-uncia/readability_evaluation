@@ -281,6 +281,15 @@ public class PhotoLoadEvaluationActivity extends BaseActivity implements View.On
         Log.e("SHARE", "onClick: "+"display？");
 
 //        hiddenMethodAccess();
+        getAccessTokenFromSP();
+//        displayImage(uri);
+//这里坑个人！！！就是安卓9还可以通过寻找image path就是图片路径的方式来取出图片，所以修改前我这里参数传的是image path
+        //然后下面用的是decodeFile(imagepath)来取图片，但是在安卓10不行
+        //所以我就改了，安卓十直接传uri,用parcelFileDescriptor,这个好像叫"Scoped Storage"
+        //On Android 10, they introduced the concept of "Scoped Storage" and this way, you no longer can OPEN a image using its path.
+    }
+
+    private void getAccessTokenFromSP() {
         SharedPreferences pref = getSharedPreferences("AccessToken",MODE_PRIVATE);
         accessToken  = pref.getString("AccessToken",null);
         if(accessToken==null){
@@ -288,17 +297,8 @@ public class PhotoLoadEvaluationActivity extends BaseActivity implements View.On
         }else {
             OCR();
         }
-
-
-
-
-
-        displayImage(uri);
-//这里坑个人！！！就是安卓9还可以通过寻找image path就是图片路径的方式来取出图片，所以修改前我这里参数传的是image path
-        //然后下面用的是decodeFile(imagepath)来取图片，但是在安卓10不行
-        //所以我就改了，安卓十直接传uri,用parcelFileDescriptor,这个好像叫"Scoped Storage"
-        //On Android 10, they introduced the concept of "Scoped Storage" and this way, you no longer can OPEN a image using its path.
     }
+
 
     public void getAccessToken(){
         new Thread(()->{

@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,7 +60,7 @@ public class WordFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        init();
+
 //        initRecyclerView(); 放在这里不行
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
         IntentFilter intentFilter = new IntentFilter();
@@ -77,15 +78,7 @@ public class WordFragment extends Fragment {
         };
         localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
     }
-//test
-    private void init() {
-        WordMenuList wordMenuList = new WordMenuList("12","A","什么标题都系"
-        ,"200","word101");
-        wordMenuLists.add(wordMenuList);
-        WordMenuList wordMenuList2 = new WordMenuList("13","B","什么标题"
-                ,"20","word102");
-        wordMenuLists.add(wordMenuList2);
-    }
+
 
 
     private void getResponseData() throws JSONException {
@@ -148,6 +141,7 @@ public class WordFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
       recyclerView.setLayoutManager(layoutManager);
         WordMenuAdapter adapter = new WordMenuAdapter(wordMenuLists);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL));
         recyclerView.setAdapter(adapter);
     }
 

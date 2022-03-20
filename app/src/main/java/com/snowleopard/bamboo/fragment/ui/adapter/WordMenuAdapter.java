@@ -9,11 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.snowleopard.bamboo.R;
 import com.snowleopard.bamboo.UI.WordListActivity;
 import com.snowleopard.bamboo.javaBean.WordMenuList;
@@ -32,7 +35,7 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
         final ViewHolder holder = new ViewHolder(view);
 
         //holder.wordItemView.setClickable(false);
-        holder.wordItemView.setOnClickListener(new View.OnClickListener() {
+        holder.btn_Study.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             int position=holder.getAdapterPosition();
@@ -56,6 +59,8 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
         holder.tv_wordLevel.setText(wordMenuList.getVocLevel());
 //        holder.tv_wordTitle.setText(wordMenuList.getVocTitle());
         holder.tv_wordAge.setText(wordMenuList.getVocAge());
+        Glide.with(holder.itemView.getContext()).load(wordMenuList.getCover()).into(holder.iv_book_cover);
+
         holder.tv_wordAccount.setText(wordMenuList.getVocWordnum());
         /**
          * 设置recyclerview单复数item不同色
@@ -80,6 +85,8 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
         TextView tv_wordTitle;
         TextView tv_wordAccount;
         TextView tv_wordAge;
+        ImageView iv_book_cover;
+        Button btn_Study;
 //        com.snowleopard.bamboo.view.CircleRelativeLayout crWordLevel;
 
         public ViewHolder(@NonNull View itemView) {
@@ -87,6 +94,8 @@ public class WordMenuAdapter extends RecyclerView.Adapter<WordMenuAdapter.ViewHo
             wordItemView=itemView;
             tv_wordAccount=itemView.findViewById(R.id.tv_word_account);
             tv_wordLevel=itemView.findViewById(R.id.tv_word_menu_level);
+            iv_book_cover=itemView.findViewById(R.id.iv_word_book_cover);
+            btn_Study=itemView.findViewById(R.id.btn_study);
 //            tv_wordTitle=itemView.findViewById(R.id.tv_word_list_title);
 //            crWordLevel=itemView.findViewById(R.id.cr_word_level);
             tv_wordAge=itemView.findViewById(R.id.tv_suit_age_word);

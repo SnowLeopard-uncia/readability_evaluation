@@ -49,6 +49,7 @@ public class WordListActivity extends BaseActivity {
         setContentView(R.layout.activity_word_list);
         initNavBar(true,"分级词汇");
         initView();
+//        textRecyclerView();
         try {
             getDataFromIntent();
         } catch (JSONException e) {
@@ -56,6 +57,18 @@ public class WordListActivity extends BaseActivity {
         }
 
 //        initView();
+
+    }
+
+    private void textRecyclerView() {
+        for (int i = 0; i < 3; i++) {
+            WordList wordList = new WordList("hello","/asd/","/sdf/","你好");
+            WordList wordList1 = new WordList("hi","/asd/","/sdf/","你好");
+            WordList wordList2 = new WordList("bye","/asd/","/sdf/","你好");
+            mWordLists.add(wordList);
+            mWordLists.add(wordList1);
+            mWordLists.add(wordList2);
+        }
 
     }
 
@@ -120,6 +133,7 @@ public class WordListActivity extends BaseActivity {
         BaseResponse<List<WordList>> response = gson.fromJson(responseData, new TypeToken<BaseResponse<List<WordList>>>() {
         }.getType());
         List<WordList> responseWordList = response.getResults();
+
         mWordLists.addAll(responseWordList);
         initRecyclerView();
 //        initRecyclerView();

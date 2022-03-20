@@ -39,11 +39,13 @@ import cn.bmob.v3.listener.CloudCodeListener;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener{
-    InputView et_username;
-    InputView et_password;
-    Button btn_login;
-    TextView tv_register;
-    CheckBox rb_remember_pwd;
+    InputView etUsername;
+    InputView etPassword;
+
+    Button btnLogin;
+    TextView tvRegister;
+    CheckBox rbRememberPwd;
+    CheckBox cbLoginHint;
     private List<UserLogin> userList = new ArrayList<>();
 
 
@@ -54,16 +56,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        et_username = findViewById(R.id.et_username);
-        et_password = findViewById(R.id.et_password);
-        btn_login = findViewById(R.id.btn_login);
-        tv_register = findViewById(R.id.tv_register);
-        rb_remember_pwd=findViewById(R.id.rb_remember_pwd);
+        cbLoginHint=findViewById(R.id.cb_login_hint);
+        etUsername = findViewById(R.id.et_username);
+        etPassword = findViewById(R.id.et_password);
+        btnLogin = findViewById(R.id.btn_login);
+        tvRegister = findViewById(R.id.tv_register);
+        rbRememberPwd =findViewById(R.id.rb_remember_pwd);
 //        checkBox = findViewById(R.id.checkbox);
 
-        btn_login.setOnClickListener(this);
-        tv_register.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
+        tvRegister.setOnClickListener(this);
 
 //        et_username.setText("hello");
         rememberPwd();
@@ -102,9 +104,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         if (isRemember){
             String userName = pref.getString("userName","");
             String password = pref.getString("userPwd","");
-            et_username.setText(userName);
-            et_password.setText(password);
-            rb_remember_pwd.setChecked(true);
+            etUsername.setText(userName);
+            etPassword.setText(password);
+            rbRememberPwd.setChecked(true);
         }
 
     }
@@ -114,9 +116,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         String userID = userList.get(0).getObjectId();
         SharedPreferences.Editor editor = getSharedPreferences("userinfo",MODE_PRIVATE).edit();
         editor.putString("userId",userID);
-        editor.putString("userName",et_username.getInputStr().trim());
+        editor.putString("userName", etUsername.getInputStr().trim());
         //检查复选框是否选择
-        if(rb_remember_pwd.isChecked()){
+        if(rbRememberPwd.isChecked()){
           //  String password=et_password.getInputStr().trim();
             editor.putBoolean("isRemember",true);
             editor.putString("userPwd",password);
@@ -145,8 +147,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         return true;
     }
     public void doLogin() throws JSONException {
-        String userName = et_username.getInputStr().trim();
-        String password = et_password.getInputStr().trim();
+        String userName = etUsername.getInputStr().trim();
+        String password = etPassword.getInputStr().trim();
 
         if(TextUtils.isEmpty(userName)){
             Toast.makeText(this, "用户名不能为空",Toast.LENGTH_SHORT).show();
@@ -157,10 +159,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-//        if (!checkBox.isChecked()) {
-//            Toast.makeText(this, "请勾选用户协议", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
+        if (!cbLoginHint.isChecked()) {
+            Toast.makeText(this, "请勾选用户协议", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String sendPassword="";
         if(fileIsExists("/data/data/com.snowleopard.bamboo/shared_prefs/userinfo.xml")){
             SharedPreferences pref = getSharedPreferences("userinfo",MODE_PRIVATE);
@@ -233,8 +235,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     }
     private void saveUserID(){
-        SharedPreferences.Editor editor = getSharedPreferences("userInformation",MODE_PRIVATE).edit();
-        editor.putString("userID",userList.get(0).getObjectId());
+        SharedPreferences.Editor editor = getSharedPreferences("userinfo",MODE_PRIVATE).edit();
+        editor.putString("userId",userList.get(0).getObjectId());
         editor.apply();
     }
 

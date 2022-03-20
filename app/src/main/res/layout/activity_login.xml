@@ -76,8 +76,6 @@
         />
 
 
-
-
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
@@ -86,7 +84,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline71"
             app:layout_constraintStart_toStartOf="@+id/guideline70"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login">
+            app:layout_constraintTop_toBottomOf="@+id/btn_login"
+            app:layout_constraintVertical_bias="0.32">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -102,6 +101,19 @@
                 android:textColor="@color/main_color" />
 
         </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_login_hint"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/agreeProtocol"
+            android:textColor="@color/text_dack_gray"
+            android:theme="@style/loginCheckBox"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline71"
+            app:layout_constraintStart_toStartOf="@+id/guideline70"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 
         <androidx.constraintlayout.widget.Guideline

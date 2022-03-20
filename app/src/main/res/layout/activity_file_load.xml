@@ -18,15 +18,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"></TextView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/file_upload"
-        android:textColor="@color/white"
-        android:layout_marginBottom="@dimen/text_view_margin_bottom"
-        app:layout_constraintBottom_toTopOf="@+id/ib_load_file"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></TextView>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/file_upload"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:layout_marginBottom="@dimen/text_view_margin_bottom"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/ib_load_file"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"></TextView>-->
     <Button
         android:id="@+id/btn_file_score"
         android:textColor="@color/white"
@@ -42,6 +42,8 @@
         android:id="@+id/ib_load_file"
         android:layout_width="match_parent"
         android:layout_height="57dp"
+        android:text="@string/file_upload"
+        android:textColor="@color/text_dack_gray"
         android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
         android:background="@drawable/bg_btn_upload"
         android:src="@drawable/ic_baseline_add_24"

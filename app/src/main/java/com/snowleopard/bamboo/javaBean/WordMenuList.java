@@ -12,13 +12,25 @@ public class WordMenuList {
     private String vocLevel;
     private String vocTitle;
     private String vocWordnum;
+    private String cover;
 
-    public WordMenuList(String vocAge, String vocLevel, String vocTitle, String vocWordnum,String newTablename) {
+
+
+    public WordMenuList(String vocAge, String vocLevel, String vocTitle, String vocWordnum,String newTablename,String cover) {
         this.vocAge = vocAge;
+        this.cover=cover;
         this.vocLevel = vocLevel;
         this.vocTitle = vocTitle;
         this.vocWordnum = vocWordnum;
         this.new_tableName =newTablename;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public String getCreatedAt() {

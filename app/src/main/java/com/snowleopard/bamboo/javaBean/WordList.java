@@ -8,6 +8,13 @@ public class WordList {
     private String zh;
     private int isClick=0;
 
+    public WordList(String word, String soundmard, String phonetic, String zh) {
+        this.word = word;
+        this.soundmard = soundmard;
+        this.phonetic = phonetic;
+        this.zh = zh;
+    }
+
     public String getPhonetic() {
         return phonetic;
     }

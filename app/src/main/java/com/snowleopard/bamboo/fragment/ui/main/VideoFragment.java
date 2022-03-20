@@ -106,7 +106,7 @@ public class VideoFragment extends Fragment {
 
     private void initRecyclerView() {
         recyclerView = getView().findViewById(R.id.recycler_view);
-        gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         VideoAdapter adapter = new VideoAdapter(videoList);
         recyclerView.setAdapter(adapter);

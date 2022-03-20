@@ -18,44 +18,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.217" />
 
-    <LinearLayout
-        android:id="@+id/second_linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/v_background"
-        app:layout_constraintVertical_bias="0.036">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/second_linearLayout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@id/v_background"-->
+<!--        app:layout_constraintVertical_bias="0.036">-->
 
-        <TextView
-            android:id="@+id/tv_grade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="等级 "
-            android:layout_marginLeft="8.9dp"
-            android:textColor="@color/text_color"
-            android:textSize="18.69sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_grade"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="等级 "-->
+<!--            android:layout_marginLeft="8.9dp"-->
+<!--            android:textColor="@color/text_color"-->
+<!--            android:textSize="18.69sp" />-->
 
-        <View
-            style="@style/book_line"
-            android:layout_height="1.3dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="6dp" />
-    </LinearLayout>
+<!--        <View-->
+<!--            style="@style/book_line"-->
+<!--            android:layout_height="1.3dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginLeft="6dp" />-->
+<!--    </LinearLayout>-->
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="315dp"
-        android:layout_height="490dp"
+        android:layout_height="510dp"
         app:layout_constraintBottom_toBottomOf="@id/v_background"
         app:layout_constraintEnd_toEndOf="@id/v_background"
-
         app:layout_constraintStart_toStartOf="@id/v_background"
-        app:layout_constraintTop_toBottomOf="@id/second_linearLayout"
-        app:layout_constraintVertical_bias="1" />
+        app:layout_constraintTop_toTopOf="@+id/v_background"
+        app:layout_constraintVertical_bias="0.7" />
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="17.8dp"-->
