@@ -8,15 +8,15 @@
     tools:context=".UI.PhotoLoadEvaluationActivity">
     <include layout="@layout/nav_bar"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/result"
-        android:textColor="@color/white"
-        android:layout_marginBottom="@dimen/text_view_margin_bottom"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/text_view_margin_bottom"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"></TextView>
 
 <!--    <TextView-->
 <!--        android:layout_width="wrap_content"-->
@@ -27,78 +27,78 @@
 <!--        app:layout_constraintBottom_toTopOf="@+id/btn_pop_upload"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"></TextView>-->
-    <Button
-        android:id="@+id/btn_photo_score"
-        android:layout_width="@dimen/btn_mark_width"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_btn_mark"
-        android:textColor="@color/white"
-        android:text="@string/mark"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline17"></Button>
-
-    <Button
-        android:id="@+id/btn_pop_upload"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:text="@string/photo_upload"
-        android:textColor="@color/text_dack_gray"
-        android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
-        android:background="@drawable/bg_btn_upload"
-        app:layout_constraintTop_toTopOf="@+id/guideline14"
-     ></Button>
-
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
-        android:background="@drawable/bg_btn_uploadway"
-        android:padding="@dimen/text_evaluation_padding"
-        app:layout_constraintBottom_toTopOf="@+id/guideline16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline15">
-
-        <EditText
-            android:id="@+id/et_text_photo"
+        <Button
+            android:id="@+id/btn_photo_score"
+            android:layout_width="@dimen/btn_mark_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_mark"
             android:textColor="@color/white"
-            android:background="@color/transparent"
+            android:text="@string/mark"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline17"></Button>
+
+        <Button
+            android:id="@+id/btn_pop_upload"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="@dimen/text_evaluation_padding"
+            android:layout_height="57dp"
+            android:text="@string/photo_upload"
+            android:textColor="@color/text_dack_gray"
+            android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
+            android:background="@drawable/bg_btn_upload"
+            app:layout_constraintTop_toTopOf="@+id/guideline14"
+         ></Button>
 
-            android:textSize="@dimen/edit_text_textSize" />
-    </ScrollView>
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/text_evaluation_marginHorizontal"
+            android:background="@drawable/bg_btn_uploadway"
+            android:padding="@dimen/text_evaluation_padding"
+            app:layout_constraintBottom_toTopOf="@+id/guideline16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline15">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+            <EditText
+                android:id="@+id/et_text_photo"
+                android:textColor="@color/white"
+                android:background="@color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/text_evaluation_padding"
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.32" />
+                android:textSize="@dimen/edit_text_textSize" />
+        </ScrollView>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.703" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.746" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.32" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.703" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.746" />
 </androidx.constraintlayout.widget.ConstraintLayout>

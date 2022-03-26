@@ -108,7 +108,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             etPassword.setText(password);
             rbRememberPwd.setChecked(true);
         }
-
     }
 
 //登录成功之后才能执行这个记住密码的方法(存入)
@@ -146,6 +145,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         }
         return true;
     }
+
+
     public void doLogin() throws JSONException {
         String userName = etUsername.getInputStr().trim();
         String password = etPassword.getInputStr().trim();

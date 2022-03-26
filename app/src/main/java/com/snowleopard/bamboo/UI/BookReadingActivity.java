@@ -35,11 +35,11 @@ import cn.bmob.v3.listener.CloudCodeListener;
 public class BookReadingActivity extends BaseActivity implements View.OnClickListener {
 
     private MediaPlayer mediaPlayer = new MediaPlayer();
-    private ImageView iv_book;
-    private ImageView iv_back;
-    private ImageView iv_toLeft;
-    private ImageView iv_toRight;
-    private ImageView iv_speaker;
+    private ImageView ivBook;
+    private ImageView ivBack;
+    private ImageView ivToLeft;
+    private ImageView ivToRight;
+    private ImageView ivSpeaker;
 
     private List<BookContent> mBookContent = new ArrayList<>();
     private int page_num = 0;
@@ -50,15 +50,15 @@ public class BookReadingActivity extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_reading);
 
-        iv_book = findViewById(R.id.iv_book);
-        iv_back = findViewById(R.id.iv_back);
-        iv_toLeft = findViewById(R.id.iv_toLeft);
-        iv_toRight = findViewById(R.id.iv_toRight);
-        iv_speaker = findViewById(R.id.iv_speaker);
-        iv_back.setOnClickListener(this);
-        iv_toLeft.setOnClickListener(this);
-        iv_toRight.setOnClickListener(this);
-        iv_speaker.setOnClickListener(this);
+        ivBook = findViewById(R.id.iv_book);
+        ivBack = findViewById(R.id.iv_back);
+        ivToLeft = findViewById(R.id.iv_toLeft);
+        ivToRight = findViewById(R.id.iv_toRight);
+        ivSpeaker = findViewById(R.id.iv_speaker);
+        ivBack.setOnClickListener(this);
+        ivToLeft.setOnClickListener(this);
+        ivToRight.setOnClickListener(this);
+        ivSpeaker.setOnClickListener(this);
 
         Log.e(TAG, "page_num:" + page_num);
 
@@ -107,17 +107,17 @@ public class BookReadingActivity extends BaseActivity implements View.OnClickLis
                     mediaPlayer.stop();
                     mediaPlayer.reset();
                     initPage();
-                    iv_toLeft.setBackgroundResource(R.drawable.last_page);
-                    iv_toRight.setBackgroundResource(R.drawable.next_page);
-                    iv_speaker.setBackgroundResource(R.drawable.book_reading_speaker);
+                    ivToLeft.setBackgroundResource(R.drawable.last_page);
+                    ivToRight.setBackgroundResource(R.drawable.next_page);
+                    ivSpeaker.setBackgroundResource(R.drawable.book_reading_speaker);
                 }
                 if (page_num == 1) {
                     page_num--;
                     mediaPlayer.stop();
                     mediaPlayer.reset();
-                    Glide.with(this).load(mBookContent.get(page_num).getP()).into(iv_book);
-                    iv_toLeft.setBackgroundResource(0);
-                    iv_speaker.setBackgroundResource(0);
+                    Glide.with(this).load(mBookContent.get(page_num).getP()).into(ivBook);
+                    ivToLeft.setBackgroundResource(0);
+                    ivSpeaker.setBackgroundResource(0);
                 }
                 break;
             case R.id.iv_toRight:
@@ -126,17 +126,17 @@ public class BookReadingActivity extends BaseActivity implements View.OnClickLis
                     mediaPlayer.stop();
                     mediaPlayer.reset();
                     initPage();
-                    iv_toLeft.setBackgroundResource(R.drawable.last_page);
-                    iv_toRight.setBackgroundResource(R.drawable.next_page);
-                    iv_speaker.setBackgroundResource(R.drawable.book_reading_speaker);
+                    ivToLeft.setBackgroundResource(R.drawable.last_page);
+                    ivToRight.setBackgroundResource(R.drawable.next_page);
+                    ivSpeaker.setBackgroundResource(R.drawable.book_reading_speaker);
                 }
                 if (page_num == mBookContent.size() - 2) {
                     page_num++;
                     mediaPlayer.stop();
                     mediaPlayer.reset();
-                    Glide.with(this).load(mBookContent.get(page_num).getP()).into(iv_book);
-                    iv_toRight.setBackgroundResource(0);
-                    iv_speaker.setBackgroundResource(0);
+                    Glide.with(this).load(mBookContent.get(page_num).getP()).into(ivBook);
+                    ivToRight.setBackgroundResource(0);
+                    ivSpeaker.setBackgroundResource(0);
                 }
 
                 break;
@@ -199,13 +199,13 @@ public class BookReadingActivity extends BaseActivity implements View.OnClickLis
         List<BookContent> dataResponseList = responsePageList.getResults();
         mBookContent.clear();
         mBookContent.addAll(dataResponseList);
-        Glide.with(this).load(mBookContent.get(page_num).getP()).into(iv_book);
-        iv_toRight.setBackgroundResource(R.drawable.next_page);
+        Glide.with(this).load(mBookContent.get(page_num).getP()).into(ivBook);
+        ivToRight.setBackgroundResource(R.drawable.next_page);
 
     }
 
     private void initPage() {
-        Glide.with(this).load(mBookContent.get(page_num).getP()).into(iv_book);
+        Glide.with(this).load(mBookContent.get(page_num).getP()).into(ivBook);
 //        Uri uri = Uri.parse(mBookContent.get(page_num).getV());
         String url = mBookContent.get(page_num).getV();
         try {

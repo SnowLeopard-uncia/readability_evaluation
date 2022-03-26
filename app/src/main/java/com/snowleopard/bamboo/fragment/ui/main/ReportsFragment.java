@@ -44,17 +44,17 @@ import cn.bmob.v3.listener.CloudCodeListener;
 
 public class ReportsFragment extends Fragment implements View.OnClickListener{
 
-    private TextView tv_name;
-    private TextView tv_level;
-    private TextView tv_book_num;
-    private TextView tv_word_num;
-    private TextView tv_coin_num;
-    private TextView tv_rank;
-    private Spinner rank_spinner;
-    private TextView tv_personal_grade;
-    private TextView tv_next_grade;
-    private TextView tv_coin_need;
-    private Button btn_toPath;
+    private TextView tvName;
+    private TextView tvLevel;
+    private TextView tvBookNum;
+    private TextView tvWordNum;
+    private TextView tvCoinNum;
+    private TextView tvRank;
+    private Spinner rankSpinner;
+    private TextView tvPersonalGrade;
+    private TextView tvNextGrade;
+    private TextView tvCoinNeed;
+    private Button btnTopath;
     private LinearLayout llOpenSpinner;
 
 
@@ -102,22 +102,22 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
 
 
     private void init() {
-        tv_name = getView().findViewById(R.id.tv_name);
-        tv_level = getView().findViewById(R.id.tv_level);
-        tv_book_num = getView().findViewById(R.id.tv_book_num);
-        tv_word_num = getView().findViewById(R.id.tv_word_num);
-        tv_coin_num = getView().findViewById(R.id.tv_coin_num);
-        tv_rank = getView().findViewById(R.id.tv_rank);
-        rank_spinner = getView().findViewById(R.id.rank_spinner);
-        tv_personal_grade = getView().findViewById(R.id.tv_personal_grade);
-        tv_next_grade = getView().findViewById(R.id.tv_next_grade);
-        tv_coin_need = getView().findViewById(R.id.tv_coin_need);
-        btn_toPath = getView().findViewById(R.id.btn_toPath);
+        tvName = getView().findViewById(R.id.tv_name);
+        tvLevel = getView().findViewById(R.id.tv_level);
+        tvBookNum = getView().findViewById(R.id.tv_book_num);
+        tvWordNum = getView().findViewById(R.id.tv_word_num);
+        tvCoinNum = getView().findViewById(R.id.tv_coin_num);
+        tvRank = getView().findViewById(R.id.tv_rank);
+        rankSpinner = getView().findViewById(R.id.rank_spinner);
+        tvPersonalGrade = getView().findViewById(R.id.tv_personal_grade);
+        tvNextGrade = getView().findViewById(R.id.tv_next_grade);
+        tvCoinNeed = getView().findViewById(R.id.tv_coin_need);
+        btnTopath = getView().findViewById(R.id.btn_toPath);
         llOpenSpinner=getView().findViewById(R.id.ll_open_spinner);
-        btn_toPath.setOnClickListener(this);
+        btnTopath.setOnClickListener(this);
 
         RankAdapter rankAdapter = new RankAdapter(getActivity(), rankList);
-        rank_spinner.setAdapter(rankAdapter);
+        rankSpinner.setAdapter(rankAdapter);
 
     }
 
@@ -133,7 +133,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
             public void done(Object object, BmobException e) {
                 if (e == null) {
                     String responseData = object.toString();
-                    Log.e(TAG, "done: json：" + responseData);
+                    Log.e(TAG, "getUserPageResponseData: json：" + responseData);
                     parseJsonDataWithGson1(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
@@ -155,21 +155,21 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
         for (Personal personal : dataResponseList) {
             personList.add(personal);
 
-            tv_name.setText(personal.getNickname());
-            tv_level.setText("等级" + personal.getLevel());
-            tv_book_num.setText(personal.getBooknum() + "");
-            tv_word_num.setText(personal.getWordnum() + "");
-            tv_coin_num.setText(personal.getCoin() + "");
-            tv_personal_grade.setText(personal.getLevel());
+            tvName.setText(personal.getNickname());
+            tvLevel.setText("等级" + personal.getLevel());
+            tvBookNum.setText(personal.getBooknum() + "");
+            tvWordNum.setText(personal.getWordnum() + "");
+            tvCoinNum.setText(personal.getCoin() + "");
+            tvPersonalGrade.setText(personal.getLevel());
             if (personal.getLevel().equals("M")) {
-                tv_next_grade.setText("M");
+                tvNextGrade.setText("M");
             }else{
-                tv_next_grade.setText((char)(personal.getLevel().charAt(0) + 1 )+"");
+                tvNextGrade.setText((char)(personal.getLevel().charAt(0) + 1 )+"");
                 Log.e(TAG, "parseJsonDataWithGson1: "+( personal.getLevel().charAt(0)-65));
             }
             int need = updateCoinsNeed[personal.getLevel().charAt(0)-65];
 
-            tv_coin_need.setText("距离升级还需：" + need + "金币");
+            tvCoinNeed.setText("距离升级还需：" + need + "金币");
 
             UserLocal userLocal = LitePal.findFirst(UserLocal.class);
             if (userLocal!=null){
@@ -217,7 +217,7 @@ public class ReportsFragment extends Fragment implements View.OnClickListener{
                 if (e == null) {
                     String responseData = object.toString();
 //                    Log.e(TAG, "done: json：" + responseData);
-                    tv_rank.setText(responseData);
+                    tvRank.setText(responseData);
                 } else {
                     Log.e(TAG, " " + e.getMessage());
                 }

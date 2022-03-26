@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,21 +36,27 @@ import cn.bmob.v3.listener.CloudCodeListener;
 
 public class ReadingComprehensionActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView tv_question;
-    private TextView tv_answerA;
-    private TextView tv_answerB;
-    private TextView tv_answerC;
-    private TextView tv_answerD;
-    private Button btn_answerA;
-    private Button btn_answerB;
-    private Button btn_answerC;
-    private Button btn_answerD;
-    private ImageView iv_toLeft;
-    private ImageView iv_toRight;
-    private ImageView iv_answerA;
-    private ImageView iv_answerB;
-    private ImageView iv_answerC;
-    private ImageView iv_answerD;
+    private LinearLayout llAnswerA;
+    private LinearLayout llAnswerB;
+    private LinearLayout llAnswerC;
+    private LinearLayout llAnswerD;
+
+    private TextView tvQuestion;
+    private TextView tvAnswerA;
+    private TextView tvAnswerB;
+    private TextView tvAnswerC;
+    private TextView tvAnswerD;
+    private Button btnAnswerA;
+    private Button btnAnswerB;
+    private Button btnAnswerC;
+    private Button btnAnswerD;
+    
+    private ImageView ivToLeft;
+    private ImageView ivToRight;
+    private Button btnAnswerACheck;
+    private Button btnAnswerBCheck;
+    private Button btnAnswerCCheck;
+    private Button btnAnswerDCheck;
 
     private int question_num = 0;
     private boolean correct = false;
@@ -88,27 +95,31 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
 
     private void init() {
         gold_coin = getIntent().getExtras().getInt("gold_coin");
-        tv_question = findViewById(R.id.tv_question);
-        tv_answerA = findViewById(R.id.tv_answerA);
-        tv_answerB = findViewById(R.id.tv_answerB);
-        tv_answerC = findViewById(R.id.tv_answerC);
-        tv_answerD = findViewById(R.id.tv_answerD);
-        btn_answerA = findViewById(R.id.btn_answerA);
-        btn_answerB = findViewById(R.id.btn_answerB);
-        btn_answerC = findViewById(R.id.btn_answerC);
-        btn_answerD = findViewById(R.id.btn_answerD);
-        iv_answerA = findViewById(R.id.iv_answerA);
-        iv_answerB = findViewById(R.id.iv_answerB);
-        iv_answerC = findViewById(R.id.iv_answerC);
-        iv_answerD = findViewById(R.id.iv_answerD);
-        iv_toLeft = findViewById(R.id.iv_toLeft);
-        iv_toRight = findViewById(R.id.iv_toRight);
-        iv_toLeft.setOnClickListener(this);
-        iv_toRight.setOnClickListener(this);
-        btn_answerA.setOnClickListener(this);
-        btn_answerB.setOnClickListener(this);
-        btn_answerC.setOnClickListener(this);
-        btn_answerD.setOnClickListener(this);
+        tvQuestion = findViewById(R.id.tv_question);
+        tvAnswerA = findViewById(R.id.tv_answerA);
+        tvAnswerB = findViewById(R.id.tv_answerB);
+        tvAnswerC = findViewById(R.id.tv_answerC);
+        tvAnswerD = findViewById(R.id.tv_answerD);
+        btnAnswerA = findViewById(R.id.btn_answerA);
+        btnAnswerB = findViewById(R.id.btn_answerB);
+        btnAnswerC = findViewById(R.id.btn_answerC);
+        btnAnswerD = findViewById(R.id.btn_answerD);
+        btnAnswerACheck = findViewById(R.id.iv_answerA);
+        btnAnswerBCheck = findViewById(R.id.iv_answerB);
+        btnAnswerCCheck = findViewById(R.id.iv_answerC);
+        btnAnswerDCheck = findViewById(R.id.iv_answerD);
+        ivToLeft = findViewById(R.id.iv_toLeft);
+        ivToRight = findViewById(R.id.iv_toRight);
+        llAnswerA=findViewById(R.id.ll_answerA);
+        llAnswerB=findViewById(R.id.ll_answerB);
+        llAnswerC=findViewById(R.id.ll_answerC);
+        llAnswerD=findViewById(R.id.ll_answerD);
+        ivToLeft.setOnClickListener(this);
+        ivToRight.setOnClickListener(this);
+        llAnswerA.setOnClickListener(this);
+        llAnswerB.setOnClickListener(this);
+        llAnswerC.setOnClickListener(this);
+        llAnswerD.setOnClickListener(this);
     }
 
     @Override
@@ -144,61 +155,63 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
                 }
 
                 break;
-            case R.id.btn_answerA:
+            case R.id.ll_answerA:
 //                correct = false;
                 initButton();
-
+                btnAnswerA.setBackgroundResource(R.drawable.option_select);
                 select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("a") ||
                         (mQuizList.get(question_num).getAnswer()).equals("A")) {
-                    iv_answerA.setBackgroundResource(R.drawable.correct);
+                    btnAnswerACheck.setBackgroundResource(R.drawable.correct);
                     correct = true;
                 } else {
-                    iv_answerA.setBackgroundResource(R.drawable.incorrect);
+                    btnAnswerACheck.setBackgroundResource(R.drawable.incorrect);
                     correct = false;
                 }
-                btn_answerA.setBackgroundResource(R.drawable.option_select);
+
                 break;
-            case R.id.btn_answerB:
+            case R.id.ll_answerB:
 //                correct = false;
                 initButton();
-
+                btnAnswerB.setBackgroundResource(R.drawable.option_select);
                 select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("b") ||
                         (mQuizList.get(question_num).getAnswer()).equals("B")) {
-                    iv_answerB.setBackgroundResource(R.drawable.correct);
+                    btnAnswerBCheck.setBackgroundResource(R.drawable.correct);
                     correct = true;
                 } else {
-                    iv_answerB.setBackgroundResource(R.drawable.incorrect);
+                    btnAnswerBCheck.setBackgroundResource(R.drawable.incorrect);
                     correct = false;
                 }
-                btn_answerB.setBackgroundResource(R.drawable.option_select);
+
                 break;
-            case R.id.btn_answerC:
+            case R.id.ll_answerC:
 //                correct = false;
                 initButton();
-                btn_answerC.setBackgroundResource(R.drawable.option_select);
+
+                btnAnswerC.setBackgroundResource(R.drawable.option_select);
                 select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("c") ||
                         (mQuizList.get(question_num).getAnswer()).equals("C")) {
-                    iv_answerC.setBackgroundResource(R.drawable.correct);
+                    btnAnswerCCheck.setBackgroundResource(R.drawable.correct);
                     correct = true;
                 } else {
-                    iv_answerC.setBackgroundResource(R.drawable.incorrect);
+                    btnAnswerCCheck.setBackgroundResource(R.drawable.incorrect);
                     correct = false;
                 }
                 break;
-            case R.id.btn_answerD:
+
+            case R.id.ll_answerD:
 //                correct = false;
                 initButton();
-                btn_answerD.setBackgroundResource(R.drawable.option_select);
+                btnAnswerD.setBackgroundResource(R.drawable.option_select);
                 select = true;
                 if ((mQuizList.get(question_num).getAnswer()).equals("d") ||
                         (mQuizList.get(question_num).getAnswer()).equals("D")) {
-                    iv_answerD.setBackgroundResource(R.drawable.correct);
+                    btnAnswerDCheck.setBackgroundResource(R.drawable.correct);
                     correct = true;
                 } else {
-                    iv_answerD.setBackgroundResource(R.drawable.incorrect);
+                    btnAnswerDCheck.setBackgroundResource(R.drawable.incorrect);
                     correct = false;
                 }
                 break;
@@ -289,30 +302,30 @@ public class ReadingComprehensionActivity extends BaseActivity implements View.O
     private void initQuestion() {
         UserLocal userLocal = LitePal.findFirst(UserLocal.class);
         if (userLocal.getLanguage().equals("English")){
-            tv_question.setText(mQuizList.get(question_num).getQuestion());
-            tv_answerA.setText(mQuizList.get(question_num).getChoice_obj().getA());
-            tv_answerB.setText(mQuizList.get(question_num).getChoice_obj().getB());
-            tv_answerC.setText(mQuizList.get(question_num).getChoice_obj().getC());
-            tv_answerD.setText(mQuizList.get(question_num).getChoice_obj().getD());
+            tvQuestion.setText(mQuizList.get(question_num).getQuestion());
+            tvAnswerA.setText(mQuizList.get(question_num).getChoice_obj().getA());
+            tvAnswerB.setText(mQuizList.get(question_num).getChoice_obj().getB());
+            tvAnswerC.setText(mQuizList.get(question_num).getChoice_obj().getC());
+            tvAnswerD.setText(mQuizList.get(question_num).getChoice_obj().getD());
         }else{
-            tv_question.setText(mQuizList.get(question_num).getQuestion());
-            tv_answerA.setText(mQuizList.get(question_num).getChoice().getA());
-            tv_answerB.setText(mQuizList.get(question_num).getChoice().getB());
-            tv_answerC.setText(mQuizList.get(question_num).getChoice().getC());
-            tv_answerD.setText(mQuizList.get(question_num).getChoice().getD());
+            tvQuestion.setText(mQuizList.get(question_num).getQuestion());
+            tvAnswerA.setText(mQuizList.get(question_num).getChoice().getA());
+            tvAnswerB.setText(mQuizList.get(question_num).getChoice().getB());
+            tvAnswerC.setText(mQuizList.get(question_num).getChoice().getC());
+            tvAnswerD.setText(mQuizList.get(question_num).getChoice().getD());
 
         }
     }
 
     private void initButton() {
-        btn_answerA.setBackgroundResource(R.drawable.option_unselect);
-        btn_answerB.setBackgroundResource(R.drawable.option_unselect);
-        btn_answerC.setBackgroundResource(R.drawable.option_unselect);
-        btn_answerD.setBackgroundResource(R.drawable.option_unselect);
-        iv_answerA.setBackgroundResource(R.color.transparent);
-        iv_answerB.setBackgroundResource(R.color.transparent);
-        iv_answerC.setBackgroundResource(R.color.transparent);
-        iv_answerD.setBackgroundResource(R.color.transparent);
+        btnAnswerA.setBackgroundResource(R.drawable.option_unselect);
+        btnAnswerB.setBackgroundResource(R.drawable.option_unselect);
+        btnAnswerC.setBackgroundResource(R.drawable.option_unselect);
+        btnAnswerD.setBackgroundResource(R.drawable.option_unselect);
+        btnAnswerACheck.setBackgroundResource(R.color.transparent);
+        btnAnswerBCheck.setBackgroundResource(R.color.transparent);
+        btnAnswerCCheck.setBackgroundResource(R.color.transparent);
+        btnAnswerDCheck.setBackgroundResource(R.color.transparent);
         select = false;
     }
 

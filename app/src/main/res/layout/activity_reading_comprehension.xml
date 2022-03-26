@@ -41,6 +41,7 @@
             android:textSize="19sp" />
 
         <LinearLayout
+            android:id="@+id/ll_answerA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,10 +61,11 @@
                     android:text="@string/A"
                     android:textColor="@color/text_color"
                     android:textSize="18.69sp" />
-                <ImageView
+                <Button
                     android:id="@+id/iv_answerA"
                     android:layout_width="35.6dp"
                     android:layout_height="35.6dp"
+                    android:background="@color/transparent"
                     android:layout_marginLeft="9dp" />
 
             </FrameLayout>
@@ -78,6 +80,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_answerB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -98,9 +101,10 @@
                     android:textColor="@color/text_color"
                     android:textSize="18.69sp" />
 
-                <ImageView
+                <Button
                     android:id="@+id/iv_answerB"
                     android:layout_width="35.6dp"
+                    android:background="@color/transparent"
                     android:layout_height="35.6dp"
                     android:layout_marginLeft="9dp" />
             </FrameLayout>
@@ -115,6 +119,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_answerC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -135,10 +140,11 @@
                     android:textColor="@color/text_color"
                     android:textSize="18.69sp" />
 
-                <ImageView
+                <Button
                     android:id="@+id/iv_answerC"
                     android:layout_width="35.6dp"
                     android:layout_height="35.6dp"
+                    android:background="@color/transparent"
                     android:layout_marginLeft="9dp" />
             </FrameLayout>
 
@@ -152,6 +158,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_answerD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -172,10 +179,11 @@
                     android:textColor="@color/text_color"
                     android:textSize="18.69sp" />
 
-                <ImageView
+                <Button
                     android:id="@+id/iv_answerD"
                     android:layout_width="35.6dp"
                     android:layout_height="35.6dp"
+                    android:background="@color/transparent"
                     android:layout_marginLeft="9dp" />
             </FrameLayout>
 

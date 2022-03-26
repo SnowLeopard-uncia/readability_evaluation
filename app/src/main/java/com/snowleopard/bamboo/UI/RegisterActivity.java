@@ -57,9 +57,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         initNavBar(true,getResources().getString(R.string.register));
-
         initView();
 
     }
@@ -162,7 +160,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initView() {
-
         et_user = findViewById(R.id.et_username_register);
         et_password = findViewById(R.id.et_password_register);
         et_confirm_password = findViewById(R.id.et_confirm_password);

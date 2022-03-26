@@ -35,12 +35,12 @@ import cn.bmob.v3.listener.CloudCodeListener;
 
 public class WordPreviewActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView tv_word;
-    private TextView tv_explain;
-    private TextView tv_pronunciation;
-    private ImageView iv_toLeft;
-    private ImageView iv_toRight;
-    private ImageView iv_speaker;
+    private TextView tvWord;
+    private TextView tvExplain;
+    private TextView tvPronunciation;
+    private ImageView ivToLeft;
+    private ImageView ivToRight;
+    private ImageView ivSpeaker;
 
     private List<BookWord> mBookWord = new ArrayList<>();
     private int word_num = 0;
@@ -100,15 +100,15 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
 
 
     private void init() {
-        tv_word = findViewById(R.id.tv_word);
-        tv_explain = findViewById(R.id.tv_explain);
-        tv_pronunciation = findViewById(R.id.tv_pronunciation);
-        iv_toLeft = findViewById(R.id.iv_toLeft);
-        iv_toRight = findViewById(R.id.iv_toRight);
-        iv_speaker = findViewById(R.id.iv_speaker);
-        iv_toLeft.setOnClickListener(this);
-        iv_toRight.setOnClickListener(this);
-        iv_speaker.setOnClickListener(this);
+        tvWord = findViewById(R.id.tv_word);
+        tvExplain = findViewById(R.id.tv_explain);
+        tvPronunciation = findViewById(R.id.tv_pronunciation);
+        ivToLeft = findViewById(R.id.iv_toLeft);
+        ivToRight = findViewById(R.id.iv_toRight);
+        ivSpeaker = findViewById(R.id.iv_speaker);
+        ivToLeft.setOnClickListener(this);
+        ivToRight.setOnClickListener(this);
+        ivSpeaker.setOnClickListener(this);
 
 
     }
@@ -125,17 +125,17 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
                     }
                     UserLocal userLocal = LitePal.findFirst(UserLocal.class);
                     if (userLocal.getLanguage().equals("English")){
-                        tv_word.setText(mBookWord.get(0).getWord_list().get(word_num));
+                        tvWord.setText(mBookWord.get(0).getWord_list().get(word_num));
                         if(book_id == 1){
-                            tv_pronunciation.setText(pronunciation[word_num]);
-                            tv_explain.setText(EnglishExplain[word_num]);
+                            tvPronunciation.setText(pronunciation[word_num]);
+                            tvExplain.setText(EnglishExplain[word_num]);
                             url = EnglishUrl[word_num];
                             initMediaPlayer();
                         }
                     }else{
-                        tv_word.setText(mBookWord.get(0).getWord().get(word_num));
+                        tvWord.setText(mBookWord.get(0).getWord().get(word_num));
                         if(book_id == 1){
-                            tv_explain.setText(SpanishExplain[word_num]);
+                            tvExplain.setText(SpanishExplain[word_num]);
                             url = SpanishUrl[word_num];
                             initMediaPlayer();
                         }
@@ -154,10 +154,10 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
                             mediaPlayer.stop();
                             mediaPlayer.reset();
                         }
-                        tv_word.setText(mBookWord.get(0).getWord_list().get(word_num));
+                        tvWord.setText(mBookWord.get(0).getWord_list().get(word_num));
                         if(book_id == 1){
-                            tv_pronunciation.setText(pronunciation[word_num]);
-                            tv_explain.setText(EnglishExplain[word_num]);
+                            tvPronunciation.setText(pronunciation[word_num]);
+                            tvExplain.setText(EnglishExplain[word_num]);
                             url = EnglishUrl[word_num];
                             initMediaPlayer();
                         }
@@ -171,9 +171,9 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
                             mediaPlayer.stop();
                             mediaPlayer.reset();
                         }
-                        tv_word.setText(mBookWord.get(0).getWord().get(word_num));
+                        tvWord.setText(mBookWord.get(0).getWord().get(word_num));
                         if(book_id == 1){
-                            tv_explain.setText(SpanishExplain[word_num]);
+                            tvExplain.setText(SpanishExplain[word_num]);
                             url = SpanishUrl[word_num];
                             initMediaPlayer();
                         }
@@ -228,11 +228,11 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
         for (BookWord bookWord : dataResponseList) {
             mBookWord.add(bookWord);
         }
-        tv_word.setText(mBookWord.get(0).getWord_list().get(word_num));
+        tvWord.setText(mBookWord.get(0).getWord_list().get(word_num));
 
         if(book_id == 1){
-            tv_pronunciation.setText(pronunciation[word_num]);
-            tv_explain.setText(EnglishExplain[word_num]);
+            tvPronunciation.setText(pronunciation[word_num]);
+            tvExplain.setText(EnglishExplain[word_num]);
             url = EnglishUrl[word_num];
             initMediaPlayer();
         }
@@ -273,10 +273,10 @@ public class WordPreviewActivity extends BaseActivity implements View.OnClickLis
         for (BookWord bookWord : dataResponseList) {
             mBookWord.add(bookWord);
         }
-        tv_word.setText(mBookWord.get(0).getWord().get(word_num));
+        tvWord.setText(mBookWord.get(0).getWord().get(word_num));
 
         if(book_id == 1){
-            tv_explain.setText(SpanishExplain[word_num]);
+            tvExplain.setText(SpanishExplain[word_num]);
             url = SpanishUrl[word_num];
             initMediaPlayer();
         }

@@ -17,7 +17,6 @@
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -39,8 +38,6 @@
             android:paddingBottom="@dimen/text_evaluation_padding"
             android:background="@color/transparent"></EditText>
     </ScrollView>
-
-
     <Button
         android:id="@+id/btn_txt_score"
         android:layout_width="@dimen/btn_mark_width"

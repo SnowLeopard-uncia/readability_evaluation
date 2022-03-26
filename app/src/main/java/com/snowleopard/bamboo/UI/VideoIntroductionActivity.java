@@ -35,16 +35,15 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.CloudCodeListener;
 
 public class VideoIntroductionActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView iv_book;
-    private TextView tv_book_title;
-    private TextView tv_director;
-    private TextView tv_level;
-    private TextView tv_suit_age;
-    private TextView tv_theme;
-    private TextView tv_brief_introduction;
-    private TextView tv_show_more;
-    private Button btn_enter;
-
+    private ImageView ivBook;
+    private TextView tvBookTitle;
+    private TextView tvDirector;
+    private TextView tvLevel;
+    private TextView tvSuitAge;
+    private TextView tvTheme;
+    private TextView tvBriefIntroduction;
+    private TextView tvShowMore;
+    private Button btnEnter;
     private Integer videoID;
 
     private List<VideoIntroduction> videoList = new ArrayList<>();
@@ -70,17 +69,17 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
 
 
     private void init() {
-        iv_book = findViewById(R.id.iv_book);
-        tv_book_title = findViewById(R.id.tv_book_title);
-        tv_director = findViewById(R.id.tv_director);
-        tv_level = findViewById(R.id.tv_level);
-        tv_suit_age = findViewById(R.id.tv_suit_age);
-        tv_theme = findViewById(R.id.tv_theme);
-        tv_brief_introduction = findViewById(R.id.tv_brief_introduction);
-        tv_show_more = findViewById(R.id.tv_show_more);
-        btn_enter = findViewById(R.id.btn_enter);
-        btn_enter.setOnClickListener(this);
-        tv_show_more.setOnClickListener(this);
+        ivBook = findViewById(R.id.iv_book);
+        tvBookTitle = findViewById(R.id.tv_book_title);
+        tvDirector = findViewById(R.id.tv_director);
+        tvLevel = findViewById(R.id.tv_level);
+        tvSuitAge = findViewById(R.id.tv_suit_age);
+        tvTheme = findViewById(R.id.tv_theme);
+        tvBriefIntroduction = findViewById(R.id.tv_brief_introduction);
+        tvShowMore = findViewById(R.id.tv_show_more);
+        btnEnter = findViewById(R.id.btn_enter);
+        btnEnter.setOnClickListener(this);
+        tvShowMore.setOnClickListener(this);
     }
 
     @Override
@@ -140,13 +139,13 @@ public class VideoIntroductionActivity extends BaseActivity implements View.OnCl
         for (VideoIntroduction videoIntroduction : dataResponseList) {
             videoList.add(videoIntroduction);
 
-            tv_book_title.setText("标题：" + videoIntroduction.getVideoName());
-            tv_director.setText("导演：" + videoIntroduction.getAuthor());
-            tv_level.setText("等级：" + videoIntroduction.getVideoLevel());
-            tv_suit_age.setText("适合年级：" + videoIntroduction.getVideoAge());
-            tv_theme.setText("主题：" + videoIntroduction.getTopic());
-            tv_brief_introduction.setText("简介：" + videoIntroduction.getIntroduce());
-            Glide.with(this).load(videoIntroduction.getPng()).into(iv_book);
+            tvBookTitle.setText("标题：" + videoIntroduction.getVideoName());
+            tvDirector.setText("导演：" + videoIntroduction.getAuthor());
+            tvLevel.setText("等级：" + videoIntroduction.getVideoLevel());
+            tvSuitAge.setText("适合年级：" + videoIntroduction.getVideoAge());
+            tvTheme.setText("主题：" + videoIntroduction.getTopic());
+            tvBriefIntroduction.setText("简介：" + videoIntroduction.getIntroduce());
+            Glide.with(this).load(videoIntroduction.getPng()).into(ivBook);
 //            Log.e(TAG, "parseJson: " + videoIntroduction.getSrc());
 
         }

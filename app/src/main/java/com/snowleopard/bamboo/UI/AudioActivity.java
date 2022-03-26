@@ -46,7 +46,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -65,9 +64,9 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
     private String audioName;
     private String mp3Url;
     private String lrcUrl;
-    private ImageView iv_play;
-    private ImageView iv_last;
-    private ImageView iv_next;
+    private ImageView ivPlay;
+    private ImageView ivLast;
+    private ImageView ivNext;
     private MediaPlayer mediaPlayer = new MediaPlayer();
     private Uri uri;
     private InputStream inputStream;
@@ -79,13 +78,13 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
     private String singer;
     private int mPosition;
     private int mMaxPosition;
-    private TextView tv_title;
-    private TextView tv_singer;
-    private TextView tv_duration;
-    private TextView tv_level;
+    private TextView tvTitle;
+    private TextView tvSinger;
+    private TextView tvDuration;
+    private TextView tvLevel;
     private String lrcWord="";
-    private TextView tv_audio_content;
-    private TextView tv_audio_start_duration;
+    private TextView tvAudioContent;
+    private TextView tvAudioStartDuration;
     private Intent mServiceIntent;
     private boolean isBindService;
     private MusicService.MusicBind musicBind;
@@ -126,9 +125,9 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
         int time =mediaPlayer.getDuration();
         int second = time /1000;
         if (second >=10){
-            tv_audio_start_duration.setText("00:" + second);
+            tvAudioStartDuration.setText("00:" + second);
         }else {
-            tv_audio_start_duration.setText("00:" +"0" + second);
+            tvAudioStartDuration.setText("00:" +"0" + second);
         }
 //        musicSeekBar.setMax(second);
     }
@@ -150,20 +149,20 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener{
 
     private void init() {
         initNavBar(true,"");
-        iv_play=findViewById(R.id.iv_play);
-        iv_last=findViewById(R.id.iv_last);
-        iv_next=findViewById(R.id.iv_next);
+        ivPlay =findViewById(R.id.iv_play);
+        ivLast =findViewById(R.id.iv_last);
+        ivNext =findViewById(R.id.iv_next);
         musicSeekBar =findViewById(R.id.musicSeekBar);
-        tv_title=findViewById(R.id.tv_audio_title);
-        tv_level=findViewById(R.id.tv_audio_level);
-        tv_singer=findViewById(R.id.tv_singer);
-        tv_duration=findViewById(R.id.tv_audio_duration);
-tv_audio_content=findViewById(R.id.tv_audio_content);
-        tv_audio_start_duration=findViewById(R.id.tv_audio_start_duration);
+        tvTitle =findViewById(R.id.tv_audio_title);
+        tvLevel =findViewById(R.id.tv_audio_level);
+        tvSinger =findViewById(R.id.tv_singer);
+        tvDuration =findViewById(R.id.tv_audio_duration);
+tvAudioContent =findViewById(R.id.tv_audio_content);
+        tvAudioStartDuration =findViewById(R.id.tv_audio_start_duration);
 
-        iv_play.setOnClickListener(this);
-        iv_last.setOnClickListener(this);
-        iv_next.setOnClickListener(this);
+        ivPlay.setOnClickListener(this);
+        ivLast.setOnClickListener(this);
+        ivNext.setOnClickListener(this);
 
 
         musicSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -173,16 +172,16 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
 
                 if(i<60000){
                     if (i >=10000){
-                        tv_audio_start_duration.setText("00:" + i/1000);
+                        tvAudioStartDuration.setText("00:" + i/1000);
                     }else {
-                        tv_audio_start_duration.setText("00:0" + i/1000);
+                        tvAudioStartDuration.setText("00:0" + i/1000);
                     }
                 }else{
                     int sec = i/1000 %60;
                     if(sec<10){
-                        tv_audio_start_duration.setText("0"+i/60000+":"+"0"+sec);
+                        tvAudioStartDuration.setText("0"+i/60000+":"+"0"+sec);
                     }else{
-                        tv_audio_start_duration.setText("0"+i/60000+":"+sec);
+                        tvAudioStartDuration.setText("0"+i/60000+":"+sec);
                     }
                 }
             }
@@ -190,7 +189,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
             public void onStartTrackingTouch(SeekBar seekBar) {
                 if (mediaPlayer.isPlaying()){
                     seekBar.setTag(!mediaPlayer.isPlaying());
-                    iv_play.setActivated(false);
+                    ivPlay.setActivated(false);
                     mediaPlayer.pause();
 //此处逻辑要理清楚
                 }else {
@@ -208,7 +207,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
 //                mediaPlayer.seekTo(time*dest/max);
 
                 if (!(boolean)seekBar.getTag()){
-                    iv_play.setActivated(true);
+                    ivPlay.setActivated(true);
                     mediaPlayer.seekTo(seekBar.getProgress());
 //                    mediaPlayer.seekTo(dest*1000);
                     mediaPlayer.start();
@@ -287,10 +286,10 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
         mp3Url=audio.getMp3Path();
         lrcUrl=audio.getLrcPath();
         audioName=audio.getName();
-        tv_title.setText(audioName);
-        tv_singer.setText(audio.getSinger());
-        tv_duration.setText(audio.getDuration());
-        tv_level.setText(audio.getLevel());
+        tvTitle.setText(audioName);
+        tvSinger.setText(audio.getSinger());
+        tvDuration.setText(audio.getDuration());
+        tvLevel.setText(audio.getLevel());
         Log.e(TAG, "parseJsonDataWithGson: "+mp3Url+"   "+lrcUrl);
         downloadLrc(lrcUrl);
         initMediaPlayer(mp3Url);
@@ -336,7 +335,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                 assert mediaPlayer!=null;
                 if(temp==0 && !mediaPlayer.isPlaying()){
 //                    startMusicService();
-                    iv_play.setActivated(true);
+                    ivPlay.setActivated(true);
                     mediaPlayer.start(); //开始播放
                     musicSeekBar.setMax(mediaPlayer.getDuration());
 
@@ -371,7 +370,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                     };
                     timer.schedule(timerTask, 0, 1000);
                 }else{
-                    iv_play.setActivated(false);
+                    ivPlay.setActivated(false);
 //                    musicBind.stopMusic();
                     mediaPlayer.pause();
                 }
@@ -411,7 +410,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                     Log.e(TAG, "onClick: "+audioId);
                     getDataFromResponse();
                     temp=0;
-                    iv_play.setActivated(false);
+                    ivPlay.setActivated(false);
                     musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -453,7 +452,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                         Log.e(TAG, "onClick: "+audioId);
                         getDataFromResponse();
                         temp=0;
-                        iv_play.setActivated(false);
+                        ivPlay.setActivated(false);
                         musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -528,7 +527,7 @@ tv_audio_content=findViewById(R.id.tv_audio_content);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            tv_audio_content.setText(lrcWord);
+                            tvAudioContent.setText(lrcWord);
 //                            Toast.makeText(getApplicationContext(),"歌词换了", LENGTH_SHORT).show();
                         }
                     });

@@ -139,21 +139,21 @@ public class BookFragment extends Fragment {
     }
 
 
-    private void parseJsonDataWithGson(String jsonData) {
-        Gson gson = new Gson();
-        BaseResponse<List<BookHome>> responseBookHomeList = gson.fromJson(jsonData, new TypeToken<BaseResponse<List<BookHome>>>() {
-        }.getType());
-        List<BookHome> dataResponseList = responseBookHomeList.getResults();
-        bookList.clear();
-        for (BookHome bookHome : dataResponseList) {
-            bookList.add(bookHome);
-//            Log.e(TAG, "book_id: "+bookHome.getBookId());
+        private void parseJsonDataWithGson(String jsonData) {
+            Gson gson = new Gson();
+            BaseResponse<List<BookHome>> responseBookHomeList = gson.fromJson(jsonData, new TypeToken<BaseResponse<List<BookHome>>>() {
+            }.getType());
+            List<BookHome> dataResponseList = responseBookHomeList.getResults();
+            bookList.clear();
+            for (BookHome bookHome : dataResponseList) {
+                bookList.add(bookHome);
+    //            Log.e(TAG, "book_id: "+bookHome.getBookId());
+
+            }
+
+            initRecyclerView();
 
         }
-
-        initRecyclerView();
-
-    }
 
 
     private void getUserID() {
